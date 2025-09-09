@@ -54,7 +54,7 @@
 					<li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-medium-teal dark:hover:text-light-mint">Documentation</a></li>
 					<li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-medium-teal dark:hover:text-light-mint">Help Center</a></li>
 					<li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-medium-teal dark:hover:text-light-mint">Contact Us</a></li>
-					<li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-medium-teal dark:hover:text-light-mint">Privacy Policy</a></li>
+					<li><a href="/privacy-policy" class="text-gray-600 dark:text-gray-400 hover:text-medium-teal dark:hover:text-light-mint">Privacy Policy</a></li>
 				</ul>
 			</div>
 		</div>
