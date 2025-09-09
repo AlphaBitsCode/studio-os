@@ -294,13 +294,6 @@
 							<ChevronRight size={16} strokeWidth={2} />
 						</i>
 					</Button>
-					<Button 
-						variant="outline" 
-						size="lg"
-						class="border-[#57DCCD]/30 text-[#57DCCD] hover:bg-[#57DCCD]/10"
-					>
-						Watch Demo
-					</Button>
 				</div>
 
 				<!-- Stats -->
