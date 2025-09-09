@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { theme } from '$lib/stores/theme';
-
 	interface Props {
 		size?: 'small' | 'medium' | 'large' | 'header';
 		variant?: 'default' | 'square' | 'tagline' | 'trim';
@@ -18,15 +16,13 @@
 		header: 'h-10 w-auto'
 	};
 
-	// Logo selection logic based on theme and variant
-	function getLogoSrc(currentTheme: 'light' | 'dark', variant: string): string {
+	// Logo selection logic for light theme only
+	function getLogoSrc(variant: string): string {
 		const basePath = '/logos';
 		
 		switch (variant) {
 			case 'square':
-				return currentTheme === 'dark' 
-					? `${basePath}/logo_square_white.png`
-					: `${basePath}/logo_square.png`;
+				return `${basePath}/logo_square.png`;
 					
 			case 'tagline':
 				return `${basePath}/logo_tagline.png`;
@@ -39,13 +35,11 @@
 				if (variant === 'header' || size === 'header') {
 					return `${basePath}/logo_header.png`;
 				}
-				return currentTheme === 'dark' 
-					? `${basePath}/logo_square_white.png`
-					: `${basePath}/logo_black.png`;
+				return `${basePath}/logo_black.png`;
 		}
 	}
 
-	const logoSrc = $derived(getLogoSrc($theme, variant));
+	const logoSrc = $derived(getLogoSrc(variant));
 	const combinedClasses = $derived(`${sizeClasses[size]} ${className}`.trim());
 </script>
 

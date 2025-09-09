@@ -72,7 +72,7 @@
 	];
 </script>
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-deep-navy/95 backdrop-blur-sm shadow-sm border-b border-gray-200 dark:border-dark-teal">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-200">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="flex justify-between items-center h-14">
 			<!-- Logo -->
@@ -97,11 +97,11 @@
 						
 						<!-- Services -->
 						<NavigationMenu.Item>
-							<NavigationMenu.Trigger class="text-gray-700 dark:text-gray-300 hover:text-medium-teal dark:hover:text-light-mint">
+							<NavigationMenu.Trigger class="text-gray-700 hover:text-medium-teal">
 								Services
 							</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
-								<div class="grid w-[600px] gap-3 p-4 md:grid-cols-2 bg-white/95 dark:bg-deep-navy/95 backdrop-blur-sm border border-gray-200 dark:border-dark-teal rounded-md shadow-lg">
+								<div class="grid w-[600px] gap-3 p-4 md:grid-cols-2 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
 									{#each services as service}
 										<NavigationMenu.Link href={service.href}>
 											{#snippet child()}
@@ -109,7 +109,7 @@
 													href={service.href}
 													class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
 												>
-													<div class="text-sm font-medium leading-none text-gray-900 dark:text-gray-100">
+													<div class="text-sm font-medium leading-none text-gray-900">
 														{service.title}
 													</div>
 													<p class="line-clamp-2 text-sm leading-snug text-muted-foreground">
@@ -134,11 +134,11 @@
 
 						<!-- Resources -->
 						<NavigationMenu.Item>
-							<NavigationMenu.Trigger class="text-gray-700 dark:text-gray-300 hover:text-medium-teal dark:hover:text-light-mint">
+							<NavigationMenu.Trigger class="text-gray-700 hover:text-medium-teal">
 								Resources
 							</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
-								<div class="grid w-[500px] gap-3 p-4 bg-white/95 dark:bg-deep-navy/95 backdrop-blur-sm border border-gray-200 dark:border-dark-teal rounded-md shadow-lg">
+								<div class="grid w-[500px] gap-3 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
 									{#each resources as resource}
 										<NavigationMenu.Link href={resource.href}>
 											{#snippet child()}
@@ -146,7 +146,7 @@
 													href={resource.href}
 													class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
 												>
-													<div class="text-sm font-medium leading-none text-gray-900 dark:text-gray-100">
+													<div class="text-sm font-medium leading-none text-gray-900">
 														{resource.title}
 													</div>
 													<p class="line-clamp-2 text-sm leading-snug text-muted-foreground">

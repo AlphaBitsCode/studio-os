@@ -17,7 +17,7 @@
 	<script src="https://cdn.tailwindcss.com"></script>
 </svelte:head>
 
-<div class="min-h-screen flex flex-col bg-white dark:bg-deep-navy text-gray-900 dark:text-white transition-colors">
+<div class="min-h-screen flex flex-col bg-white text-gray-900 transition-colors">
 	{#if isBlogRoute}
 		<BlogHeader user={data.user} />
 	{:else}
