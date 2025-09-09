@@ -1,6 +1,11 @@
 <script>
     /** @type {import('./$types').PageData} */
     export let data;
+    
+    import Card from '$lib/components/ui/card.svelte';
+    import Button from '$lib/components/ui/button.svelte';
+    import Badge from '$lib/components/ui/badge.svelte';
+    import Separator from '$lib/components/ui/separator.svelte';
 </script>
 
 <svelte:head>
@@ -20,12 +25,12 @@
                 We help businesses streamline operations, modernize infrastructure, and unlock the power of AI-driven automation.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="/services" class="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
+                <Button href="/services" size="lg" class="bg-yellow-400 text-gray-900 hover:bg-yellow-300">
                     Explore Our Services
-                </a>
-                <a href="/contact" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors">
+                </Button>
+                <Button href="/contact" variant="outline" size="lg" class="border-2 border-white text-white hover:bg-white hover:text-gray-900">
                     Get Started Today
-                </a>
+                </Button>
             </div>
         </div>
     </div>
@@ -42,53 +47,64 @@
         </div>
         
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+            <Card class="p-6 hover:shadow-xl transition-shadow">
                 <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
                     <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold mb-3">AI Workflow Automation</h3>
+                <div class="flex items-center gap-2 mb-3">
+                    <h3 class="text-xl font-semibold">AI Workflow Automation</h3>
+                    <Badge variant="secondary">Popular</Badge>
+                </div>
                 <p class="text-gray-600 dark:text-gray-300 mb-4">
                     Streamline your operations with intelligent AI agents and IoT workflow automation across all departments.
                 </p>
-                <a href="/services/ai-workflow-automation" class="text-blue-600 dark:text-blue-400 font-medium hover:underline">
+                <Button href="/services/ai-workflow-automation" variant="link" class="p-0 h-auto font-medium">
                     Learn More →
-                </a>
-            </div>
+                </Button>
+            </Card>
             
-            <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+            <Card class="p-6 hover:shadow-xl transition-shadow">
                 <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-4">
                     <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold mb-3">Fractional CTO & Tech Leadership</h3>
+                <div class="flex items-center gap-2 mb-3">
+                    <h3 class="text-xl font-semibold">Fractional CTO & Tech Leadership</h3>
+                    <Badge variant="outline">Expert</Badge>
+                </div>
                 <p class="text-gray-600 dark:text-gray-300 mb-4">
                     Get expert technical leadership with deep-dive assessments, infrastructure modernization, and strategic guidance.
                 </p>
-                <a href="/services/fractional-cto" class="text-blue-600 dark:text-blue-400 font-medium hover:underline">
+                <Button href="/services/fractional-cto" variant="link" class="p-0 h-auto font-medium">
                     Learn More →
-                </a>
-            </div>
+                </Button>
+            </Card>
             
-            <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+            <Card class="p-6 hover:shadow-xl transition-shadow">
                 <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-4">
                     <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold mb-3">Data & AI Solutions</h3>
+                <div class="flex items-center gap-2 mb-3">
+                    <h3 class="text-xl font-semibold">Data & AI Solutions</h3>
+                    <Badge>New</Badge>
+                </div>
                 <p class="text-gray-600 dark:text-gray-300 mb-4">
                     Harness the power of big data with analytics, AI infrastructure, and intelligent agent building platforms.
                 </p>
-                <a href="/services/data-ai-solutions" class="text-blue-600 dark:text-blue-400 font-medium hover:underline">
+                <Button href="/services/data-ai-solutions" variant="link" class="p-0 h-auto font-medium">
                     Learn More →
-                </a>
-            </div>
+                </Button>
+            </Card>
         </div>
     </div>
 </section>
+
+<Separator class="my-8" />
 
 <!-- Why Choose AlphaBits -->
 <section class="py-16">
@@ -144,6 +160,8 @@
     </div>
 </section>
 
+<Separator class="my-8" />
+
 <!-- CTA Section -->
 <section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
@@ -154,12 +172,12 @@
             Let's discuss how AI workflow automation and digital transformation can accelerate your growth.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            <Button href="/contact" size="lg" class="bg-white text-blue-600 hover:bg-gray-100">
                 Schedule a Consultation
-            </a>
-            <a href="/case-studies" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+            </Button>
+            <Button href="/case-studies" variant="outline" size="lg" class="border-2 border-white text-white hover:bg-white hover:text-blue-600">
                 View Case Studies
-            </a>
+            </Button>
         </div>
     </div>
 </section>
