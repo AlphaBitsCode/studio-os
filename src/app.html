@@ -5,6 +5,30 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
 		
+		<!-- Theme initialization script to prevent flash of unstyled content -->
+		<script>
+			(function() {
+				function getSystemTheme() {
+					return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+				}
+				
+				function resolveTheme(mode) {
+					if (mode === 'auto') {
+						return getSystemTheme();
+					}
+					return mode;
+				}
+				
+				const stored = localStorage.getItem('theme-mode');
+				const themeMode = (stored === 'light' || stored === 'dark' || stored === 'auto') ? stored : 'auto';
+				const resolvedTheme = resolveTheme(themeMode);
+				
+				if (resolvedTheme === 'dark') {
+					document.documentElement.classList.add('dark');
+				}
+			})();
+		</script>
+		
 		<script type="text/javascript">
 			(function(m,e,t,r,i,k,a){
 				m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
