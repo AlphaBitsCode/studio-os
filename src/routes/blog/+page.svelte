@@ -1,5 +1,6 @@
 <script>
 	import { PUBLIC_DIRECTUS_URL } from '$env/static/public';
+	import * as Card from "$lib/components/ui/card/index.js";
 
 	/** @type {import('./$types').PageData} */
 	export let data;
@@ -36,86 +37,59 @@
 	<meta name="description" content="Read our latest blog posts and insights" />
 </svelte:head>
 
-<div class="container mx-auto px-4 py-8">
-	<!-- Header -->
+<div class="container mx-auto px-4 py-8 bg-white dark:bg-deep-navy">
 	<div class="text-center mb-12">
-		<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Blog</h1>
-		<p class="text-xl text-gray-600 max-w-2xl mx-auto">
+		<h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-light-mint mb-4">Blog</h1>
+		<p class="text-xl text-gray-600 dark:text-cyan-accent max-w-2xl mx-auto">
 			Discover insights, tutorials, and stories from our team
 		</p>
 	</div>
 
-	<!-- Blog Posts Grid -->
 	{#if data.posts && data.posts.length > 0}
-		<div class="grid gap-8 md:gap-12">
-			{#each data.posts as post, index}
-				<article class="group">
-					<a href="/blog/{post.slug}" class="block">
-						<div class="grid md:grid-cols-2 gap-8 items-center">
-							<!-- Image -->
-							<div class="{index % 2 === 0 ? 'md:order-1' : 'md:order-2'}">
-								<div class="aspect-video rounded-lg overflow-hidden bg-gray-200">
-									<img
-										src={getImageUrl(post.image)}
-										alt={post.title}
-										class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-										loading="lazy"
-									/>
-								</div>
-							</div>
-
-							<!-- Content -->
-							<div class="{index % 2 === 0 ? 'md:order-2' : 'md:order-1'} space-y-4">
-								<!-- Category -->
-								{#if post.category}
-									<div class="flex items-center gap-2">
-										<span
-											class="inline-block px-3 py-1 text-sm font-medium rounded-full bg-blue-100 text-blue-800"
-										>
-											Category
-										</span>
-									</div>
-								{/if}
-
-								<!-- Title -->
-								<h2 class="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
-									{post.title}
-								</h2>
-
-								<!-- Summary -->
-								{#if post.summary}
-									<p class="text-gray-600 text-lg leading-relaxed">
-										{post.summary}
-									</p>
-								{/if}
-
-								<!-- Meta -->
-								<div class="flex items-center gap-4 text-sm text-gray-500">
-									<span>{formatDate(post.date_published || post.date_created)}</span>
-									{#if post.author}
-										<span>•</span>
-										<span>By Author</span>
-									{/if}
-								</div>
-
-								<!-- Read More -->
-								<div class="pt-2">
-									<span class="inline-flex items-center text-blue-600 font-medium group-hover:text-blue-700">
-										Read more
-										<svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-										</svg>
-									</span>
-								</div>
-							</div>
+		<div class="grid gap-8 md:gap-12 md:grid-cols-2 lg:grid-cols-3">
+			{#each data.posts as post}
+				<Card.Root class="group h-full">
+					<Card.Header class="p-0">
+						<div class="aspect-video overflow-hidden bg-gray-200">
+							<img
+								src={getImageUrl(post.image)}
+								alt={post.title}
+								class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+								loading="lazy"
+							/>
 						</div>
-					</a>
-				</article>
-
-				<!-- Divider (except for last item) -->
-				{#if index < data.posts.length - 1}
-					<hr class="border-gray-200" />
-				{/if}
+					</Card.Header>
+					<Card.Content class="space-y-4 p-6">
+						{#if post.category}
+							<span class="inline-block px-3 py-1 text-sm font-medium rounded-full bg-medium-teal text-white">
+								Category
+							</span>
+						{/if}
+						<h2 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-medium-teal transition-colors">
+							{post.title}
+						</h2>
+						{#if post.summary}
+							<p class="text-gray-600 dark:text-gray-300">
+								{post.summary}
+							</p>
+						{/if}
+						<div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+							<span>{formatDate(post.date_published || post.date_created)}</span>
+							{#if post.author}
+								<span>•</span>
+								<span>By {getAuthorName(post.author)}</span>
+							{/if}
+						</div>
+					</Card.Content>
+					<Card.Footer class="p-6 pt-0">
+						<a href="/blog/{post.slug}" class="inline-flex items-center text-medium-teal font-medium group-hover:text-dark-teal">
+							Read more
+							<svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+							</svg>
+						</a>
+					</Card.Footer>
+				</Card.Root>
 			{/each}
 		</div>
 	{:else}

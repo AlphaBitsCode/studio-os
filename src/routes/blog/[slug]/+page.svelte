@@ -1,6 +1,8 @@
 <script>
 	import { PUBLIC_DIRECTUS_URL } from '$env/static/public';
 
+	import * as Card from "$lib/components/ui/card/index.js";
+
 	/** @type {import('./$types').PageData} */
 	export let data;
 
@@ -73,102 +75,86 @@
 	{/if}
 </svelte:head>
 
-<article class="max-w-4xl mx-auto px-4 py-8">
-	<!-- Breadcrumb -->
+<article class="max-w-4xl mx-auto px-4 py-8 bg-white dark:bg-deep-navy">
 	<nav class="mb-8">
-		<ol class="flex items-center space-x-2 text-sm text-gray-500">
-			<li><a href="/" class="hover:text-gray-700">Home</a></li>
+		<ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-cyan-accent">
+			<li><a href="/" class="hover:text-medium-teal">Home</a></li>
 			<li><span class="mx-2">/</span></li>
-			<li><a href="/blog" class="hover:text-gray-700">Blog</a></li>
+			<li><a href="/blog" class="hover:text-medium-teal">Blog</a></li>
 			<li><span class="mx-2">/</span></li>
-			<li class="text-gray-900 truncate">{post.title}</li>
+			<li class="text-gray-900 dark:text-light-mint truncate">{post.title}</li>
 		</ol>
 	</nav>
 
-	<!-- Header -->
 	<header class="mb-8">
-		<!-- Category -->
 		{#if post.category}
 			<div class="mb-4">
-				<span
-					class="inline-block px-3 py-1 text-sm font-medium rounded-full bg-blue-100 text-blue-800"
-				>
+				<span class="inline-block px-3 py-1 text-sm font-medium rounded-full bg-medium-teal text-white">
 					Category
 				</span>
 			</div>
 		{/if}
 
-		<!-- Title -->
-		<h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+		<h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-light-mint mb-6 leading-tight">
 			{post.title}
 		</h1>
 
-		<!-- Summary -->
 		{#if post.summary}
-			<p class="text-xl text-gray-600 mb-6 leading-relaxed">
+			<p class="text-xl text-gray-600 dark:text-cyan-accent mb-6 leading-relaxed">
 				{post.summary}
 			</p>
 		{/if}
 
-		<!-- Meta Information -->
-		<div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-8">
+		<div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-8">
 			<span>{formatDate(post.date_published || post.date_created)}</span>
 			{#if post.author}
 				<span>•</span>
-				<span>By Author</span>
+				<span>By {getAuthorName(post.author)}</span>
 			{/if}
 			<span>•</span>
 			<span>{getReadingTime(post.content)}</span>
 		</div>
 
-		<!-- Featured Image -->
 		{#if post.image}
 			<div class="aspect-video rounded-lg overflow-hidden bg-gray-200 mb-8">
-				<img
-					src={getImageUrl(post.image)}
-					alt={post.title}
-					class="w-full h-full object-cover"
-				/>
+				<img src={getImageUrl(post.image)} alt={post.title} class="w-full h-full object-cover" />
 			</div>
 		{/if}
 	</header>
 
-	<!-- Content -->
-	<div class="prose prose-lg max-w-none mb-12">
+	<div class="prose prose-lg max-w-none mb-12 text-gray-900 dark:text-white">
 		{#if post.content}
 			{@html post.content}
 		{:else}
-			<p class="text-gray-500 italic">No content available for this post.</p>
+			<p class="text-gray-500 dark:text-gray-400 italic">No content available for this post.</p>
 		{/if}
 	</div>
 
-	<!-- Author Bio -->
 	{#if post.author}
-		<div class="border-t border-gray-200 pt-8 mb-12">
+		<div class="border-t border-gray-200 dark:border-dark-teal pt-8 mb-12">
 			<div class="flex items-center space-x-4">
-				<div class="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center">
-					<span class="text-gray-600 font-medium text-lg">
-						A
+				<div class="w-16 h-16 rounded-full bg-gray-300 dark:bg-medium-teal flex items-center justify-center">
+					<span class="text-gray-600 dark:text-white font-medium text-lg">
+						{getAuthorName(post.author)[0]}
 					</span>
 				</div>
 				<div>
-					<h3 class="font-medium text-gray-900">Author</h3>
-					<p class="text-gray-500">Blog Author</p>
+					<h3 class="font-medium text-gray-900 dark:text-light-mint">{getAuthorName(post.author)}</h3>
+					<p class="text-gray-500 dark:text-cyan-accent">Blog Author</p>
 				</div>
 			</div>
 		</div>
 	{/if}
 
-	<!-- Related Posts -->
 	{#if relatedPosts.length > 0}
-		<section class="border-t border-gray-200 pt-12">
-			<h2 class="text-2xl font-bold text-gray-900 mb-8">Related Posts</h2>
+		<section class="border-t border-gray-200 dark:border-dark-teal pt-12">
+			<h2 class="text-2xl font-bold text-gray-900 dark:text-light-mint mb-8">Related Posts</h2>
 			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 				{#each relatedPosts as relatedPost}
-					<article class="group">
-						<a href="/blog/{relatedPost.slug}" class="block">
+					<Card.Root class="group h-full">
+						<Card.Header class="p-0">
 							{#if relatedPost.image}
-								<div class="aspect-video rounded-lg overflow-hidden bg-gray-200 mb-4">
+								<div class="aspect-video rounded-t-lg overflow-hidden bg-gray-200">
 									<img
 										src={getImageUrl(relatedPost.image, 400, 250)}
 										alt={relatedPost.title}
@@ -177,30 +163,28 @@
 									/>
 								</div>
 							{/if}
-							<h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">
+						</Card.Header>
+						<Card.Content class="p-6">
+							<h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-medium-teal transition-colors mb-2">
 								{relatedPost.title}
 							</h3>
 							{#if relatedPost.summary}
-								<p class="text-gray-600 text-sm mb-2 line-clamp-2">
+								<p class="text-gray-600 dark:text-gray-300 text-sm mb-2 line-clamp-2">
 									{relatedPost.summary}
 								</p>
 							{/if}
-							<p class="text-xs text-gray-500">
+							<p class="text-xs text-gray-500 dark:text-gray-400">
 								{formatDate(relatedPost.date_published)}
 							</p>
-						</a>
-					</article>
+						</Card.Content>
+					</Card.Root>
 				{/each}
 			</div>
 		</section>
 	{/if}
 
-	<!-- Back to Blog -->
-	<div class="mt-12 pt-8 border-t border-gray-200">
-		<a
-			href="/blog"
-			class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
-		>
+	<div class="mt-12 pt-8 border-t border-gray-200 dark:border-dark-teal">
+		<a href="/blog" class="inline-flex items-center text-medium-teal hover:text-dark-teal font-medium">
 			<svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
 			</svg>
