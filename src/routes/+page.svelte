@@ -6,6 +6,7 @@
     import Button from '$lib/components/ui/button.svelte';
     import Badge from '$lib/components/ui/badge.svelte';
     import Separator from '$lib/components/ui/separator.svelte';
+    import HeroWorkFlow from '$lib/components/HeroWorkFlow.svelte';
 </script>
 
 <svelte:head>
@@ -14,27 +15,7 @@
 </svelte:head>
 
 <!-- Hero Section -->
-<section class="bg-gradient-to-br from-deep-navy via-medium-teal to-dark-teal text-white py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                Transform Your Business with
-                <span class="text-light-mint">AI Workflow Automation</span>
-            </h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-                We help businesses streamline operations, modernize infrastructure, and unlock the power of AI-driven automation.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button href="/services" size="lg" class="bg-light-mint text-gray-900 hover:bg-cyan-accent">
-                    Explore Our Services
-                </Button>
-                <Button href="/contact" variant="outline" size="lg" class="border-2 border-white text-white hover:bg-white hover:text-gray-900">
-                    Get Started Today
-                </Button>
-            </div>
-        </div>
-    </div>
-</section>
+<HeroWorkFlow />
 
 <!-- Services Overview -->
 <section class="py-16 bg-gray-50 dark:bg-deep-navy">
