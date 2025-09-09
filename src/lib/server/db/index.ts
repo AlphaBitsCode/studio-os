@@ -16,6 +16,7 @@ export interface DirectusSchema {
 		role?: string;
 		date_created?: string;
 		date_updated?: string;
+		avatar?: string;
 	};
 	user_sessions: {
 		id: string;
@@ -23,6 +24,79 @@ export interface DirectusSchema {
 		token: string;
 		expires_at: string;
 		created_at?: string;
+	};
+	posts: {
+		id: string;
+		title: string;
+		slug: string;
+		summary?: string;
+		content?: string;
+		status: 'published' | 'draft' | 'archived';
+		type: 'blog' | 'project';
+		date_created?: string;
+		date_updated?: string;
+		date_published?: string;
+		image?: string;
+		author?: string;
+		category?: string;
+		seo?: string;
+		sort?: number;
+		user_created?: string;
+		user_updated?: string;
+		client?: string;
+		cost?: string;
+		built_with?: string[];
+		video_url?: string;
+		gallery?: string[];
+	};
+	categories: {
+		id: string;
+		title: string;
+		slug: string;
+		color?: string;
+		headline?: string;
+		seo?: string;
+		sort?: number;
+	};
+	seo: {
+		id: string;
+		title?: string;
+		meta_description?: string;
+		meta_keywords?: string;
+		og_image?: string;
+	};
+	global: {
+		id: string;
+		title?: string;
+		description?: string;
+		tagline?: string;
+		url?: string;
+		email?: string;
+		phone?: string;
+		address_country?: string;
+		address_locality?: string;
+		address_region?: string;
+		street_address?: string;
+		postal_code?: string;
+		og_image?: string;
+		logo_on_dark_bg?: string;
+		logo_on_light_bg?: string;
+		social_links?: any;
+		theme?: any;
+		build_hook_url?: string;
+	};
+	pages: {
+		id: string;
+		title: string;
+		slug: string;
+		content?: string;
+		description?: string;
+		status?: 'published' | 'draft' | 'archived';
+		date_created?: string;
+		date_updated?: string;
+		user_created?: string;
+		user_updated?: string;
+		seo?: string;
 	};
 }
 
