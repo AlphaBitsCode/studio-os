@@ -191,7 +191,7 @@
 								<div class="text-6xl mb-4">📅</div>
 								<h3 class="text-xl font-semibold text-gray-900 mb-3">Ready to Get Started?</h3>
 								<p class="text-gray-600 mb-6">Click below to open our booking calendar and select your preferred time slot.</p>
-								<Button onclick={openBookingModal} class="px-8 py-3 text-lg">
+								<Button href="http://cal.com/alphabits/mini" class="px-8 py-3 text-lg">
 									📅 Open Booking Calendar
 								</Button>
 							</div>

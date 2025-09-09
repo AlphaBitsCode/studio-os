@@ -54,22 +54,22 @@
 	bind:this={headerElement}
 	class="-mt-14 category-header transition-all duration-300 {isSticky ? 'sticky top-0 z-50 shadow-lg bg-white/95 backdrop-blur-sm dark:bg-deep-navy/95' : 'bg-white dark:bg-deep-navy'}"
 >
-	<div class="container mx-auto px-4 py-2">
-		<div class="flex justify-center items-center gap-6 md:gap-8">
+	<div class="container mx-auto px-2 sm:px-4 py-2">
+		<div class="flex justify-between sm:justify-center items-center gap-2 sm:gap-4 md:gap-8">
 			{#each categories as category}
 				<button
 					on:click={() => handleCategoryClick(category.path)}
-					class="flex flex-col items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group"
+					class="flex flex-col items-center gap-1 sm:gap-2 p-1 sm:p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group flex-1 sm:flex-none"
 					aria-label={`View ${category.name} posts`}
 				>
-					<div class="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center">
+					<div class="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center">
 						<img 
 							src={category.icon} 
 							alt={`${category.name} icon`}
 							class="w-full h-full object-contain group-hover:brightness-75 transition-all"
 						/>
 					</div>
-					<span class="text-xs md:text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-medium-teal transition-colors text-center">
+					<span class="text-[10px] sm:text-xs md:text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-medium-teal transition-colors text-center line-clamp-2 sm:line-clamp-1"></span>
 						{category.name}
 					</span>
 				</button>
