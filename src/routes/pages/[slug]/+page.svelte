@@ -28,29 +28,3 @@
         <a href="/" class="text-blue-600 hover:underline">← Back to Home</a>
     </footer>
 </article>
-
-<style>
-    :global(.prose h1) {
-        @apply text-3xl font-bold mb-4;
-    }
-    
-    :global(.prose h2) {
-        @apply text-2xl font-semibold mb-3 mt-8;
-    }
-    
-    :global(.prose h3) {
-        @apply text-xl font-semibold mb-2 mt-6;
-    }
-    
-    :global(.prose p) {
-        @apply mb-4 leading-relaxed;
-    }
-    
-    :global(.prose ul, .prose ol) {
-        @apply mb-4 pl-6;
-    }
-    
-    :global(.prose li) {
-        @apply mb-2;
-    }
-</style>
