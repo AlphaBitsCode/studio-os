@@ -20,9 +20,11 @@
 	}
 
 	// Get image URL from Directus
-	/** @param {string | null | undefined} imageId */
-	/** @param {number} width */
-	/** @param {number} height */
+	/**
+	 * @param {string | null | undefined} imageId
+	 * @param {number} width
+	 * @param {number} height
+	 */
 	function getImageUrl(imageId, width = 1200, height = 600) {
 		if (!imageId) return '/placeholder-image.jpg';
 		return `${PUBLIC_DIRECTUS_URL}/assets/${imageId}?width=${width}&height=${height}&fit=cover&quality=80`;
@@ -89,10 +91,9 @@
 		{#if post.category}
 			<div class="mb-4">
 				<span
-					class="inline-block px-3 py-1 text-sm font-medium rounded-full"
-					style="background-color: {post.category.color}20; color: {post.category.color}"
+					class="inline-block px-3 py-1 text-sm font-medium rounded-full bg-blue-100 text-blue-800"
 				>
-					{post.category.title}
+					Category
 				</span>
 			</div>
 		{/if}
@@ -114,7 +115,7 @@
 			<span>{formatDate(post.date_published || post.date_created)}</span>
 			{#if post.author}
 				<span>•</span>
-				<span>By {getAuthorName(post.author)}</span>
+				<span>By Author</span>
 			{/if}
 			<span>•</span>
 			<span>{getReadingTime(post.content)}</span>
@@ -145,22 +146,14 @@
 	{#if post.author}
 		<div class="border-t border-gray-200 pt-8 mb-12">
 			<div class="flex items-center space-x-4">
-				{#if post.author.avatar}
-					<img
-						src={getImageUrl(post.author.avatar, 80, 80)}
-						alt={getAuthorName(post.author)}
-						class="w-16 h-16 rounded-full object-cover"
-					/>
-				{:else}
-					<div class="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center">
-						<span class="text-gray-600 font-medium text-lg">
-							{getAuthorName(post.author).charAt(0)}
-						</span>
-					</div>
-				{/if}
+				<div class="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center">
+					<span class="text-gray-600 font-medium text-lg">
+						A
+					</span>
+				</div>
 				<div>
-					<h3 class="font-medium text-gray-900">{getAuthorName(post.author)}</h3>
-					<p class="text-gray-500">Author</p>
+					<h3 class="font-medium text-gray-900">Author</h3>
+					<p class="text-gray-500">Blog Author</p>
 				</div>
 			</div>
 		</div>

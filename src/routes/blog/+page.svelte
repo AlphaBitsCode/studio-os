@@ -70,10 +70,9 @@
 								{#if post.category}
 									<div class="flex items-center gap-2">
 										<span
-											class="inline-block px-3 py-1 text-sm font-medium rounded-full"
-											style="background-color: {post.category.color}20; color: {post.category.color}"
+											class="inline-block px-3 py-1 text-sm font-medium rounded-full bg-blue-100 text-blue-800"
 										>
-											{post.category.title}
+											Category
 										</span>
 									</div>
 								{/if}
@@ -95,7 +94,7 @@
 									<span>{formatDate(post.date_published || post.date_created)}</span>
 									{#if post.author}
 										<span>•</span>
-										<span>By {getAuthorName(post.author)}</span>
+										<span>By Author</span>
 									{/if}
 								</div>
 

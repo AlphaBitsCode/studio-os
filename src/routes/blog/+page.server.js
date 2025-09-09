@@ -1,13 +1,15 @@
-import getDirectusInstance from '$lib/directus';
+import directus from '$lib/server/db';
 import { readItems } from '@directus/sdk';
 
-/** @type {import('./$types').PageLoad} */
-export async function load({ fetch }) {
+// @ts-ignore - Directus typing issue with posts collection
+const typedDirectus = /** @type {any} */ (directus);
+
+/** @type {import('./$types').PageServerLoad} */
+export async function load() {
 	try {
-		const directus = getDirectusInstance(fetch);
 		
 		// Fetch published blog posts with author and category information
-		const posts = await directus.request(
+		const posts = await typedDirectus.request(
 			readItems('posts', {
 				filter: {
 					status: { _eq: 'published' },
@@ -22,12 +24,8 @@ export async function load({ fetch }) {
 					'date_published',
 					'date_created',
 					'image',
-					'author.first_name',
-					'author.last_name',
-					'author.avatar',
-					'category.title',
-					'category.color',
-					'category.slug'
+					'author',
+					'category'
 				]
 			})
 		);

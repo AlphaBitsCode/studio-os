@@ -1,13 +1,15 @@
-/** @type {import('./$types').PageLoad} */
-import getDirectusInstance from '$lib/directus';
+/** @type {import('./$types').PageServerLoad} */
+import directus from '$lib/server/db';
 import { readItems } from '@directus/sdk';
 
-export async function load({ fetch }) {
-    const directus = getDirectusInstance(fetch);
+// @ts-ignore - Directus typing issue with global collection
+const typedDirectus = /** @type {any} */ (directus);
+
+export async function load() {
     
     try {
         // Example: Fetch from a global collection (you'll need to create this in Directus)
-        const global = await directus.request(readItems('global'));
+		const global = await typedDirectus.request(readItems('global'));
         
         return {
             global: global?.[0] || { title: 'Welcome to SvelteKit with Directus', description: 'This is a demo site powered by Directus CMS' }
