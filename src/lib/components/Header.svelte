@@ -74,7 +74,7 @@
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-deep-navy/95 backdrop-blur-sm shadow-sm border-b border-gray-200 dark:border-dark-teal">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="flex justify-between items-center h-16">
+		<div class="flex justify-between items-center h-14">
 			<!-- Logo -->
 			<div class="flex-shrink-0">
 				<a href="/" class="flex items-center">
@@ -201,15 +201,13 @@
 				</NavigationMenu.Root>
 			</nav>
 
-			<!-- CTA Button and User Menu -->
-			<div class="flex items-center space-x-4">
-				<!-- CTA Icon Button -->
+			<div class="flex items-center space-x-2">
 				<a
 					href="/quick-assessment"
-					class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-medium-teal text-white hover:bg-dark-teal transition-colors shadow-md hover:shadow-lg"
+					class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-medium-teal text-white hover:bg-dark-teal transition-colors shadow-md hover:shadow-lg"
 					title="Start Quick Assessment"
 				>
-					<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
 					</svg>
 				</a>
@@ -226,16 +224,10 @@
 						</button>
 					</div>
 				{:else}
-					<div class="flex items-center space-x-3">
-						<a
-							href="/auth/login"
-							class="text-gray-700 dark:text-gray-300 hover:text-medium-teal dark:hover:text-light-mint px-3 py-2 text-sm font-medium"
-						>
-							Login
-						</a>
+					<div class="flex items-center space-x-2">
 						<a
 							href="/auth/register"
-							class="bg-medium-teal text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-dark-teal transition-colors"
+							class="bg-medium-teal text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-dark-teal transition-colors"
 						>
 							Register
 						</a>
