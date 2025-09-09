@@ -2,6 +2,8 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import Logo from './Logo.svelte';
+	import * as NavigationMenu from './ui/navigation-menu/index.js';
+	import { navigationMenuTriggerStyle } from './ui/navigation-menu/navigation-menu-trigger.svelte';
 
 	let { user = null } = $props();
 
@@ -17,6 +19,57 @@
 			console.error('Logout failed:', error);
 		}
 	}
+
+	const services = [
+		{
+			title: "AI Workflow Automation",
+			href: "/services/ai-workflow-automation",
+			description: "Streamline your business processes with intelligent automation solutions."
+		},
+		{
+			title: "Fractional CTO & Tech Leadership",
+			href: "/services/fractional-cto",
+			description: "Strategic technology leadership and guidance for growing businesses."
+		},
+		{
+			title: "Data & AI Solutions",
+			href: "/services/data-ai-solutions",
+			description: "Transform your data into actionable insights with AI-powered analytics."
+		},
+		{
+			title: "Digital Transformation",
+			href: "/services/digital-transformation",
+			description: "Modernize your business operations with cutting-edge digital solutions."
+		},
+		{
+			title: "IoT Infrastructure",
+			href: "/services/iot-infrastructure",
+			description: "Build connected ecosystems with robust IoT infrastructure solutions."
+		}
+	];
+
+	const resources = [
+		{
+			title: "SecondBrains Framework",
+			href: "/resources/secondbrains-framework",
+			description: "Our proprietary methodology for building intelligent business systems."
+		},
+		{
+			title: "Courses",
+			href: "/resources/courses",
+			description: "Learn cutting-edge technologies and methodologies through our courses."
+		},
+		{
+			title: "Blog / Insights",
+			href: "/resources/blog",
+			description: "Stay updated with the latest trends and insights in technology."
+		},
+		{
+			title: "Notion Wiki",
+			href: "/resources/notion-wiki",
+			description: "Comprehensive knowledge base and documentation resources."
+		}
+	];
 </script>
 
 <header class="bg-white dark:bg-deep-navy shadow-sm border-b border-gray-200 dark:border-dark-teal">
@@ -30,70 +83,113 @@
 			</div>
 
 			<!-- Navigation -->
-			<nav class="hidden md:flex space-x-8">
-				<a href="/" class="text-gray-700 dark:text-gray-300 hover:text-medium-teal dark:hover:text-light-mint px-3 py-2 text-sm font-medium">
-					Home
-				</a>
-				<div class="relative group">
-					<a href="/services" class="text-gray-700 dark:text-gray-300 hover:text-medium-teal dark:hover:text-light-mint px-3 py-2 text-sm font-medium flex items-center">
-						Services
-						<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-						</svg>
-					</a>
-					<div class="absolute left-0 mt-2 w-64 bg-white dark:bg-deep-navy rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 border border-gray-200 dark:border-dark-teal">
-						<div class="py-2">
-							<a href="/services/ai-workflow-automation" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-light-mint/10 dark:hover:bg-dark-teal hover:text-medium-teal">
-								AI Workflow Automation
-							</a>
-							<a href="/services/fractional-cto" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-light-mint/10 dark:hover:bg-dark-teal hover:text-medium-teal">
-								Fractional CTO & Tech Leadership
-							</a>
-							<a href="/services/data-ai-solutions" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-light-mint/10 dark:hover:bg-dark-teal hover:text-medium-teal">
-								Data & AI Solutions
-							</a>
-							<a href="/services/digital-transformation" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-light-mint/10 dark:hover:bg-dark-teal hover:text-medium-teal">
-								Digital Transformation
-							</a>
-							<a href="/services/iot-infrastructure" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-light-mint/10 dark:hover:bg-dark-teal hover:text-medium-teal">
-								IoT Infrastructure
-							</a>
-						</div>
-					</div>
-				</div>
-				<a href="/case-studies" class="text-gray-700 dark:text-gray-300 hover:text-medium-teal dark:hover:text-light-mint px-3 py-2 text-sm font-medium">
-					Case Studies
-				</a>
-				<div class="relative group">
-					<a href="/resources" class="text-gray-700 dark:text-gray-300 hover:text-medium-teal dark:hover:text-light-mint px-3 py-2 text-sm font-medium flex items-center">
-						Resources
-						<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-						</svg>
-					</a>
-					<div class="absolute left-0 mt-2 w-56 bg-white dark:bg-deep-navy rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 border border-gray-200 dark:border-dark-teal">
-						<div class="py-2">
-							<a href="/resources/secondbrains-framework" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-light-mint/10 dark:hover:bg-dark-teal hover:text-medium-teal">
-								SecondBrains Framework
-							</a>
-							<a href="/resources/courses" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-light-mint/10 dark:hover:bg-dark-teal hover:text-medium-teal">
-								Courses
-							</a>
-							<a href="/resources/blog" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-light-mint/10 dark:hover:bg-dark-teal hover:text-medium-teal">
-								Blog / Insights
-							</a>
-							<a href="/resources/notion-wiki" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-light-mint/10 dark:hover:bg-dark-teal hover:text-medium-teal">
-								Notion Wiki
-							</a>
-						</div>
-					</div>
-				</div>
-				<a href="/about" class="text-gray-700 dark:text-gray-300 hover:text-medium-teal dark:hover:text-light-mint px-3 py-2 text-sm font-medium">
-					About
-				</a>
-				<a href="/contact" class="text-gray-700 dark:text-gray-300 hover:text-medium-teal dark:hover:text-light-mint px-3 py-2 text-sm font-medium">
-					Contact
-				</a>
+			<nav class="hidden md:flex">
+				<NavigationMenu.Root class="relative z-10 flex max-w-max flex-1 items-center justify-center">
+					<NavigationMenu.List class="group flex flex-1 list-none items-center justify-center space-x-1">
+						<!-- Home -->
+						<NavigationMenu.Item>
+							<NavigationMenu.Link href="/">
+								{#snippet child()}
+									<a href="/" class={navigationMenuTriggerStyle()}>Home</a>
+								{/snippet}
+							</NavigationMenu.Link>
+						</NavigationMenu.Item>
+
+						<!-- Services -->
+						<NavigationMenu.Item>
+							<NavigationMenu.Trigger class="text-gray-700 dark:text-gray-300 hover:text-medium-teal dark:hover:text-light-mint">
+								Services
+							</NavigationMenu.Trigger>
+							<NavigationMenu.Content>
+								<div class="grid w-[600px] gap-3 p-4 md:grid-cols-2">
+									{#each services as service}
+										<NavigationMenu.Link href={service.href}>
+											{#snippet child()}
+												<a
+													href={service.href}
+													class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+												>
+													<div class="text-sm font-medium leading-none text-gray-900 dark:text-gray-100">
+														{service.title}
+													</div>
+													<p class="line-clamp-2 text-sm leading-snug text-muted-foreground">
+														{service.description}
+													</p>
+												</a>
+											{/snippet}
+										</NavigationMenu.Link>
+									{/each}
+								</div>
+							</NavigationMenu.Content>
+						</NavigationMenu.Item>
+
+						<!-- Case Studies -->
+						<NavigationMenu.Item>
+							<NavigationMenu.Link href="/case-studies">
+								{#snippet child()}
+									<a href="/case-studies" class={navigationMenuTriggerStyle()}>Case Studies</a>
+								{/snippet}
+							</NavigationMenu.Link>
+						</NavigationMenu.Item>
+
+						<!-- Resources -->
+						<NavigationMenu.Item>
+							<NavigationMenu.Trigger class="text-gray-700 dark:text-gray-300 hover:text-medium-teal dark:hover:text-light-mint">
+								Resources
+							</NavigationMenu.Trigger>
+							<NavigationMenu.Content>
+								<div class="grid w-[500px] gap-3 p-4">
+									{#each resources as resource}
+										<NavigationMenu.Link href={resource.href}>
+											{#snippet child()}
+												<a
+													href={resource.href}
+													class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+												>
+													<div class="text-sm font-medium leading-none text-gray-900 dark:text-gray-100">
+														{resource.title}
+													</div>
+													<p class="line-clamp-2 text-sm leading-snug text-muted-foreground">
+														{resource.description}
+													</p>
+												</a>
+											{/snippet}
+										</NavigationMenu.Link>
+									{/each}
+								</div>
+							</NavigationMenu.Content>
+						</NavigationMenu.Item>
+
+						<!-- About -->
+						<NavigationMenu.Item>
+							<NavigationMenu.Link href="/about">
+								{#snippet child()}
+									<a href="/about" class={navigationMenuTriggerStyle()}>About</a>
+								{/snippet}
+							</NavigationMenu.Link>
+						</NavigationMenu.Item>
+
+						<!-- Contact -->
+						<NavigationMenu.Item>
+							<NavigationMenu.Link href="/contact">
+								{#snippet child()}
+									<a href="/contact" class={navigationMenuTriggerStyle()}>Contact</a>
+								{/snippet}
+							</NavigationMenu.Link>
+						</NavigationMenu.Item>
+
+						<!-- Quick Assessment CTA -->
+						<NavigationMenu.Item>
+							<NavigationMenu.Link href="/quick-assessment">
+								{#snippet child()}
+									<a href="/quick-assessment" class="{navigationMenuTriggerStyle()} bg-medium-teal text-white hover:bg-dark-teal">
+										Quick Assessment
+									</a>
+								{/snippet}
+							</NavigationMenu.Link>
+						</NavigationMenu.Item>
+					</NavigationMenu.List>
+				</NavigationMenu.Root>
 			</nav>
 
 			<!-- User Menu -->
