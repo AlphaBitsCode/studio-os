@@ -246,7 +246,7 @@
 	</div>
 	
 	<!-- Hero Content -->
-	<main class="relative z-10 pt-24 pb-16">
+	<main class="relative z-10 pt-24 pb-14">
 		<div class="max-w-7xl mx-auto px-6 lg:px-8">
 			<div class="text-center">
 				<!-- Announcement Banner -->

@@ -86,6 +86,15 @@
 			<nav class="hidden md:flex">
 				<NavigationMenu.Root class="relative z-10 flex max-w-max flex-1 items-center justify-center">
 					<NavigationMenu.List class="group flex flex-1 list-none items-center justify-center space-x-1">
+						<!-- About -->
+						<NavigationMenu.Item>
+							<NavigationMenu.Link href="/about">
+								{#snippet child()}
+									<a href="/about" class={navigationMenuTriggerStyle()}>About</a>
+								{/snippet}
+							</NavigationMenu.Link>
+						</NavigationMenu.Item>
+						
 						<!-- Services -->
 						<NavigationMenu.Item>
 							<NavigationMenu.Trigger class="text-gray-700 dark:text-gray-300 hover:text-medium-teal dark:hover:text-light-mint">
@@ -151,14 +160,7 @@
 							</NavigationMenu.Content>
 						</NavigationMenu.Item>
 
-						<!-- About -->
-						<NavigationMenu.Item>
-							<NavigationMenu.Link href="/about">
-								{#snippet child()}
-									<a href="/about" class={navigationMenuTriggerStyle()}>About</a>
-								{/snippet}
-							</NavigationMenu.Link>
-						</NavigationMenu.Item>
+						
 
 						<!-- Blog -->
 						<NavigationMenu.Item>
@@ -175,35 +177,13 @@
 			<div class="flex items-center space-x-2">
 				<a
 					href="/quick-assessment"
-					class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-medium-teal text-white hover:bg-dark-teal transition-colors shadow-md hover:shadow-lg"
+					class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-medium-teal text-foreground hover:bg-dark-teal transition-colors"
 					title="Start Quick Assessment"
 				>
 					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
 					</svg>
 				</a>
-				{#if user}
-					<div class="flex items-center space-x-3">
-						<span class="text-sm text-gray-700 dark:text-gray-300">
-							Welcome, {user.first_name || user.email}
-						</span>
-						<button
-							on:click={handleLogout}
-							class="bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors"
-						>
-							Logout
-						</button>
-					</div>
-				{:else}
-					<div class="flex items-center space-x-2">
-						<a
-							href="/auth/register"
-							class="bg-medium-teal text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-dark-teal transition-colors"
-						>
-							Register
-						</a>
-					</div>
-				{/if}
 			</div>
 		</div>
 	</div>
