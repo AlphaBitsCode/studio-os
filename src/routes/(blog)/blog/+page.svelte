@@ -38,7 +38,7 @@
 	<meta name="description" content="Read our latest blog posts and insights" />
 </svelte:head>
 
-<div class="container mx-auto px-4 py-4 bg-white dark:bg-deep-navy">
+<div class="container mx-auto px-4 py-4 bg-white">
 	
 	<!-- Blog Category Header -->
 	<BlogCategoryHeader />
@@ -65,15 +65,15 @@
 									Category
 								</span>
 							{/if}
-							<h2 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-medium-teal transition-colors">
+							<h2 class="text-2xl font-bold text-gray-900 group-hover:text-medium-teal transition-colors">
 								{post.title}
 							</h2>
 							{#if post.summary}
-								<p class="text-gray-600 dark:text-gray-300">
+								<p class="text-gray-600">
 									{post.summary}
 								</p>
 							{/if}
-							<div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+							<div class="flex items-center gap-4 text-sm text-gray-500">
 								<span>{formatDate(post.date_published || post.date_created)}</span>
 								{#if post.author}
 									<span>•</span>

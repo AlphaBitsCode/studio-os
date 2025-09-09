@@ -1,10 +1,8 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import Logo from './Logo.svelte';
 	import * as NavigationMenu from './ui/navigation-menu/index.js';
 
-	let { user = null } = $props();
 	let mobileMenuOpen = $state(false);
 
 	async function handleLogout() {
@@ -93,7 +91,7 @@
 	}
 </script>
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-200 dark:bg-white/95 dark:border-gray-200">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-200">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="flex justify-between items-center h-14">
 			<!-- Logo -->
@@ -111,18 +109,18 @@
 						<NavigationMenu.Item>
 							<NavigationMenu.Link href="/about">
 								{#snippet child()}
-									<a href="/about" class="text-gray-700 hover:text-medium-teal">Team</a>
+									<a href="/about" class="text-gray-700 hover:text-medium-teal font-semibold">Team</a>
 								{/snippet}
 							</NavigationMenu.Link>
 						</NavigationMenu.Item>
 						
 						<!-- AI Workflow -->
 						<NavigationMenu.Item>
-							<NavigationMenu.Trigger class="text-gray-700 hover:text-medium-teal">
-								AI Workflow
-							</NavigationMenu.Trigger>
+							<NavigationMenu.Trigger class="text-gray-700 hover:text-medium-teal font-semibold">
+							AI Workflow
+						</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
-								<div class="grid w-[500px] gap-3 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg dark:bg-white/95 dark:border-gray-200">
+								<div class="grid w-[500px] gap-3 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
 									{#each aiWorkflowItems as item}
 										<NavigationMenu.Link href={item.href}>
 											{#snippet child()}
@@ -146,11 +144,11 @@
 
 						<!-- Services -->
 						<NavigationMenu.Item>
-							<NavigationMenu.Trigger class="text-gray-700 hover:text-medium-teal">
-								Services
-							</NavigationMenu.Trigger>
+							<NavigationMenu.Trigger class="text-gray-700 hover:text-medium-teal font-semibold">
+							Services
+						</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
-								<div class="grid w-[600px] gap-3 p-4 md:grid-cols-2 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg dark:bg-white/95 dark:border-gray-200">
+								<div class="grid w-[600px] gap-3 p-4 md:grid-cols-2 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
 									{#each servicesItems as service}
 										<NavigationMenu.Link href={service.href}>
 											{#snippet child()}
@@ -174,11 +172,11 @@
 
 						<!-- Free Resources -->
 						<NavigationMenu.Item>
-							<NavigationMenu.Trigger class="text-gray-700 hover:text-medium-teal">
-								Free Resources
-							</NavigationMenu.Trigger>
+							<NavigationMenu.Trigger class="text-gray-700 hover:text-medium-teal font-semibold">
+							Free Resources
+						</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
-								<div class="grid w-[500px] gap-3 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg dark:bg-white/95 dark:border-gray-200">
+								<div class="grid w-[500px] gap-3 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
 									{#each freeResourcesItems as resource}
 										<NavigationMenu.Link href={resource.href}>
 											{#snippet child()}
@@ -204,7 +202,7 @@
 						<NavigationMenu.Item>
 							<NavigationMenu.Link href="/blog">
 								{#snippet child()}
-									<a href="/blog" class="text-gray-700 hover:text-medium-teal">Tech Blog</a>
+									<a href="/blog" class="text-gray-700 hover:text-medium-teal font-semibold">Tech Blog</a>
 								{/snippet}
 							</NavigationMenu.Link>
 						</NavigationMenu.Item>
@@ -248,9 +246,9 @@
 	<!-- Mobile menu -->
 	{#if mobileMenuOpen}
 		<div class="lg:hidden">
-			<div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200 shadow-lg dark:bg-white dark:border-gray-200">
+			<div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200 shadow-lg">
 				<!-- Team -->
-				<a href="/about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-medium-teal hover:bg-gray-50" onclick={closeMobileMenu}>
+				<a href="/about" class="block px-3 py-2 rounded-md text-base font-semibold text-gray-700 hover:text-medium-teal hover:bg-gray-50" onclick={closeMobileMenu}>
 					Team
 				</a>
 
@@ -258,7 +256,7 @@
 				<div class="space-y-1">
 					<div class="px-3 py-2 text-sm font-semibold text-gray-900 uppercase tracking-wider">AI Workflow</div>
 					{#each aiWorkflowItems as item}
-						<a href={item.href} class="block px-6 py-2 text-sm text-gray-600 hover:text-medium-teal hover:bg-gray-50" onclick={closeMobileMenu}>
+						<a href={item.href} class="block px-6 py-2 text-sm font-semibold text-gray-600 hover:text-medium-teal hover:bg-gray-50" onclick={closeMobileMenu}>
 							{item.title}
 						</a>
 					{/each}
@@ -268,7 +266,7 @@
 				<div class="space-y-1">
 					<div class="px-3 py-2 text-sm font-semibold text-gray-900 uppercase tracking-wider">Services</div>
 					{#each servicesItems as service}
-						<a href={service.href} class="block px-6 py-2 text-sm text-gray-600 hover:text-medium-teal hover:bg-gray-50" onclick={closeMobileMenu}>
+						<a href={service.href} class="block px-6 py-2 text-sm font-semibold text-gray-600 hover:text-medium-teal hover:bg-gray-50" onclick={closeMobileMenu}>
 							{service.title}
 						</a>
 					{/each}
@@ -278,14 +276,14 @@
 				<div class="space-y-1">
 					<div class="px-3 py-2 text-sm font-semibold text-gray-900 uppercase tracking-wider">Free Resources</div>
 					{#each freeResourcesItems as resource}
-						<a href={resource.href} class="block px-6 py-2 text-sm text-gray-600 hover:text-medium-teal hover:bg-gray-50" onclick={closeMobileMenu}>
+						<a href={resource.href} class="block px-6 py-2 text-sm font-semibold text-gray-600 hover:text-medium-teal hover:bg-gray-50" onclick={closeMobileMenu}>
 							{resource.title}
 						</a>
 					{/each}
 				</div>
 
 				<!-- Tech Blog -->
-				<a href="/blog" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-medium-teal hover:bg-gray-50" onclick={closeMobileMenu}>
+				<a href="/blog" class="block px-3 py-2 rounded-md text-base font-semibold text-gray-700 hover:text-medium-teal hover:bg-gray-50" onclick={closeMobileMenu}>
 					Tech Blog
 				</a>
 			</div>

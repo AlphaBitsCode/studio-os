@@ -75,14 +75,14 @@
 	{/if}
 </svelte:head>
 
-<article class="max-w-4xl mx-auto px-4 py-8 bg-white dark:bg-deep-navy">
+<article class="max-w-4xl mx-auto px-4 py-8 bg-white">
 	<nav class="mb-8">
-		<ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-cyan-accent">
+		<ol class="flex items-center space-x-2 text-sm text-gray-500">
 			<li><a href="/" class="hover:text-medium-teal">Home</a></li>
 			<li><span class="mx-2">/</span></li>
 			<li><a href="/blog" class="hover:text-medium-teal">Blog</a></li>
 			<li><span class="mx-2">/</span></li>
-			<li class="text-gray-900 dark:text-light-mint truncate">{post.title}</li>
+			<li class="text-gray-900 truncate">{post.title}</li>
 		</ol>
 	</nav>
 
@@ -95,17 +95,17 @@
 			</div>
 		{/if}
 
-		<h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-light-mint mb-6 leading-tight">
+		<h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
 			{post.title}
 		</h1>
 
 		{#if post.summary}
-			<p class="text-xl text-gray-600 dark:text-cyan-accent mb-6 leading-relaxed">
+			<p class="text-xl text-gray-600 mb-6 leading-relaxed">
 				{post.summary}
 			</p>
 		{/if}
 
-		<div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-8">
+		<div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-8">
 			<span>{formatDate(post.date_published || post.date_created)}</span>
 			{#if post.author}
 				<span>•</span>
@@ -122,33 +122,33 @@
 		{/if}
 	</header>
 
-	<div class="prose prose-lg max-w-none mb-12 text-gray-900 dark:text-white">
+	<div class="prose prose-lg max-w-none mb-12 text-gray-900">
 		{#if post.content}
 			{@html post.content}
 		{:else}
-			<p class="text-gray-500 dark:text-gray-400 italic">No content available for this post.</p>
+			<p class="text-gray-500 italic">No content available for this post.</p>
 		{/if}
 	</div>
 
 	{#if post.author}
-		<div class="border-t border-gray-200 dark:border-dark-teal pt-8 mb-12">
+		<div class="border-t border-gray-200 pt-8 mb-12">
 			<div class="flex items-center space-x-4">
-				<div class="w-16 h-16 rounded-full bg-gray-300 dark:bg-medium-teal flex items-center justify-center">
-					<span class="text-gray-600 dark:text-white font-medium text-lg">
+				<div class="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center">
+					<span class="text-gray-600 font-medium text-lg">
 						{getAuthorName(post.author)[0]}
 					</span>
 				</div>
 				<div>
-					<h3 class="font-medium text-gray-900 dark:text-light-mint">{getAuthorName(post.author)}</h3>
-					<p class="text-gray-500 dark:text-cyan-accent">Blog Author</p>
+					<h3 class="font-medium text-gray-900">{getAuthorName(post.author)}</h3>
+					<p class="text-gray-500">Blog Author</p>
 				</div>
 			</div>
 		</div>
 	{/if}
 
 	{#if relatedPosts.length > 0}
-		<section class="border-t border-gray-200 dark:border-dark-teal pt-12">
-			<h2 class="text-2xl font-bold text-gray-900 dark:text-light-mint mb-8">Related Posts</h2>
+		<section class="border-t border-gray-200 pt-12">
+			<h2 class="text-2xl font-bold text-gray-900 mb-8">Related Posts</h2>
 			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 				{#each relatedPosts as relatedPost}
 					<Card.Root class="group h-full">
@@ -165,15 +165,15 @@
 							{/if}
 						</Card.Header>
 						<Card.Content class="p-6">
-							<h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-medium-teal transition-colors mb-2">
+							<h3 class="font-semibold text-gray-900 group-hover:text-medium-teal transition-colors mb-2">
 								{relatedPost.title}
 							</h3>
 							{#if relatedPost.summary}
-								<p class="text-gray-600 dark:text-gray-300 text-sm mb-2 line-clamp-2">
+								<p class="text-gray-600 text-sm mb-2 line-clamp-2">
 									{relatedPost.summary}
 								</p>
 							{/if}
-							<p class="text-xs text-gray-500 dark:text-gray-400">
+							<p class="text-xs text-gray-500">
 								{formatDate(relatedPost.date_published)}
 							</p>
 						</Card.Content>
@@ -183,7 +183,7 @@
 		</section>
 	{/if}
 
-	<div class="mt-12 pt-8 border-t border-gray-200 dark:border-dark-teal">
+	<div class="mt-12 pt-8 border-t border-gray-200">
 		<a href="/blog" class="inline-flex items-center text-medium-teal hover:text-dark-teal font-medium">
 			<svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
