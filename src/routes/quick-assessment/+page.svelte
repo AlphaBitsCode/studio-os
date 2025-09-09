@@ -5,16 +5,18 @@
 
 	// Current step in the assessment journey
 	let currentStep = $state(1);
-	let calEmbed: HTMLElement;
 	let isBookingComplete = $state(false);
+	let showBookingModal = $state(false);
+	let calEmbed: HTMLElement;
 
 	// Cal.com configuration
-	const calUsername = "your-cal-username"; // Replace with your actual Cal.com username
-	const eventSlug = "30min"; // Replace with your actual event slug
+	const calUsername = "alphabits"; // Replace with your actual Cal.com username
+	const eventSlug = "mini"; // Replace with your actual event slug
 
 	function handleBookingSuccess() {
 		console.log("Booking created successfully");
 		isBookingComplete = true;
+		showBookingModal = false;
 		// You can add additional success handling here
 	}
 
@@ -26,36 +28,50 @@
 		if (currentStep > 1) currentStep--;
 	}
 
-	// Initialize Cal.com embed when component mounts
-	onMount(async () => {
-		if (typeof window !== 'undefined') {
-			try {
-				// Load Cal.com embed script
-				const script = document.createElement('script');
-				script.src = 'https://app.cal.com/embed/embed.js';
-				script.async = true;
-				document.head.appendChild(script);
-				
-				script.onload = () => {
-					// Initialize Cal embed after script loads
-					const cal = (window as any).Cal;
-					if (cal) {
-						cal('init', {
-							origin: 'https://cal.com'
-						});
+	function openBookingModal() {
+		showBookingModal = true;
+		// Initialize Cal.com embed when modal opens
+		setTimeout(() => {
+			if (typeof window !== 'undefined' && calEmbed) {
+				try {
+					// Load Cal.com embed script if not already loaded
+					if (!(window as any).Cal) {
+						const script = document.createElement('script');
+						script.src = 'https://app.cal.com/embed/embed.js';
+						script.async = true;
+						document.head.appendChild(script);
 						
-						// Listen for booking success
-						cal('on', {
-							action: 'bookingSuccessful',
-							callback: handleBookingSuccess
-						});
+						script.onload = () => {
+							initializeCal();
+						};
+					} else {
+						initializeCal();
 					}
-				};
-			} catch (error) {
-				console.warn('Cal.com embed not available, using fallback:', error);
+				} catch (error) {
+					console.warn('Cal.com embed not available:', error);
+				}
 			}
+		}, 100);
+	}
+
+	function initializeCal() {
+		const cal = (window as any).Cal;
+		if (cal) {
+			cal('init', {
+				origin: 'https://cal.com'
+			});
+			
+			// Listen for booking success
+			cal('on', {
+				action: 'bookingSuccessful',
+				callback: handleBookingSuccess
+			});
 		}
-	});
+	}
+
+	function closeBookingModal() {
+		showBookingModal = false;
+	}
 </script>
 
 <svelte:head>
@@ -158,57 +174,44 @@
 
 		{:else if currentStep === 2}
 			<!-- Step 2: Assessment & Booking -->
-			<div class="max-w-7xl mx-auto">
-				<Card class="p-4 sm:p-6 lg:p-8">
-				<div class="text-center mb-6 sm:mb-8">
-					<h2 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">
+			<div class="max-w-4xl mx-auto">
+				<Card class="p-6 lg:p-8">
+				<div class="text-center mb-8">
+					<h2 class="text-2xl font-bold text-gray-900 mb-4">
 						📅 Schedule Your Assessment
 					</h2>
-					<p class="text-base sm:text-lg text-gray-600 px-2">
+					<p class="text-lg text-gray-600 mb-6">
 						Book a 30-minute consultation with our AI experts to discuss your specific needs and opportunities.
 					</p>
 				</div>
 				
-				<div class="mb-6">
-					<div class="grid lg:grid-cols-4 gap-4 lg:gap-8">
-						<!-- Cal.com Booking Widget -->
-						<div class="lg:col-span-3">
-							<div class="bg-white rounded-lg border overflow-hidden">
-								<div class="p-4 sm:p-6 border-b bg-gray-50">
-									<h3 class="text-lg font-semibold text-gray-900">Select Your Preferred Time</h3>
-									<p class="text-sm text-gray-600 mt-1">Choose a convenient time slot for your AI assessment consultation</p>
-								</div>
-								
-								<!-- Cal.com Embed Container -->
-								<div class="relative min-h-[500px] sm:min-h-[600px] lg:min-h-[700px]">
-									<!-- Inline Cal.com booking widget -->
-									<div 
-										bind:this={calEmbed}
-										data-cal-link="{calUsername}/{eventSlug}"
-										data-cal-config='{JSON.stringify({layout:"month_view",theme:"light"})}'
-										class="w-full h-full"
-										style="width:100%;height:100%;overflow:scroll"
-									></div>
-									
-									<!-- Fallback content if Cal.com doesn't load -->
-									<div class="absolute inset-0 flex items-center justify-center bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg">
-										<div class="text-center p-6">
-											<div class="text-4xl mb-4">📅</div>
-											<h4 class="text-lg font-semibold text-gray-900 mb-2">Booking System Loading...</h4>
-											<p class="text-gray-600 mb-4">Please wait while we load the booking calendar</p>
-											<div class="text-sm text-gray-500">
-												If this takes too long, please contact us directly at <br>
-												<a href="mailto:contact@alphabits.team" class="text-blue-600 hover:underline">contact@alphabits.team</a>
-											</div>
-										</div>
-									</div>
-								</div>
+				<div class="mb-8">
+					<div class="grid md:grid-cols-2 gap-8">
+						<!-- Booking Call-to-Action -->
+						<div class="text-center">
+							<div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-8 mb-6">
+								<div class="text-6xl mb-4">📅</div>
+								<h3 class="text-xl font-semibold text-gray-900 mb-3">Ready to Get Started?</h3>
+								<p class="text-gray-600 mb-6">Click below to open our booking calendar and select your preferred time slot.</p>
+								<Button onclick={openBookingModal} class="px-8 py-3 text-lg">
+									📅 Open Booking Calendar
+								</Button>
 							</div>
+							
+							{#if isBookingComplete}
+								<div class="bg-green-50 border border-green-200 rounded-lg p-4">
+									<div class="flex items-center justify-center space-x-2 mb-2">
+										<span class="text-green-600 text-xl">✅</span>
+										<p class="font-semibold text-green-800">Booking Confirmed!</p>
+									</div>
+									<p class="text-sm text-green-700">Check your email for confirmation details</p>
+								</div>
+							{/if}
 						</div>
 
-						<!-- Assessment Details Sidebar -->
-						<div class="lg:col-span-1">
-							<div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-4 sm:p-6 sticky top-6">
+						<!-- Assessment Details -->
+						<div>
+							<div class="bg-white rounded-lg border p-6">
 								<h3 class="text-lg font-semibold mb-4 text-gray-900">Assessment Details</h3>
 								<div class="space-y-4">
 									<div class="flex items-start space-x-3">
@@ -227,7 +230,7 @@
 										</div>
 										<div>
 											<p class="text-sm font-medium text-gray-900">Format</p>
-											<p class="text-sm text-gray-600">Video Call (Zoom/Teams)</p>
+											<p class="text-sm text-gray-600">Video Call</p>
 										</div>
 									</div>
 									
@@ -241,19 +244,7 @@
 										</div>
 									</div>
 									
-									{#if isBookingComplete}
-										<div class="border-t pt-4 mt-4">
-											<div class="bg-green-50 border border-green-200 rounded-lg p-3">
-												<div class="flex items-center space-x-2">
-													<span class="text-green-600">✅</span>
-													<p class="text-sm font-medium text-green-800">Booking Confirmed!</p>
-												</div>
-												<p class="text-xs text-green-700 mt-1">Check your email for confirmation details</p>
-											</div>
-										</div>
-									{/if}
-									
-									<div class="mt-6 p-4 bg-white rounded-lg border border-gray-200">
+									<div class="mt-6 p-4 bg-gray-50 rounded-lg">
 										<h4 class="text-sm font-semibold text-gray-900 mb-2">What to Expect</h4>
 										<ul class="text-xs text-gray-600 space-y-1">
 											<li>• Process analysis & pain point identification</li>
@@ -328,6 +319,52 @@
 		{/if}
 	</div>
 </div>
+
+<!-- Booking Modal -->
+{#if showBookingModal}
+	<div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+		<div class="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+			<!-- Modal Header -->
+			<div class="flex items-center justify-between p-6 border-b">
+				<div>
+					<h3 class="text-xl font-semibold text-gray-900">Book Your AI Assessment</h3>
+					<p class="text-sm text-gray-600 mt-1">Select your preferred time slot</p>
+				</div>
+				<button 
+					onclick={closeBookingModal}
+					class="text-gray-400 hover:text-gray-600 transition-colors"
+				>
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+					</svg>
+				</button>
+			</div>
+			
+			<!-- Modal Content -->
+			<div class="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+				<div class="relative min-h-[600px]">
+					<!-- Cal.com Embed Container -->
+					<div 
+						bind:this={calEmbed}
+						data-cal-link="{calUsername}/{eventSlug}"
+						data-cal-config='{JSON.stringify({layout:"month_view",theme:"light"})}'
+						class="w-full h-full"
+						style="width:100%;height:100%;overflow:scroll"
+					></div>
+					
+					<!-- Loading fallback -->
+					<div class="absolute inset-0 flex items-center justify-center bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg">
+						<div class="text-center p-6">
+							<div class="text-4xl mb-4">📅</div>
+							<h4 class="text-lg font-semibold text-gray-900 mb-2">Loading Calendar...</h4>
+							<p class="text-gray-600">Please wait while we load the booking calendar</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{/if}
 
 <style>
 	.no-scrollbar {
