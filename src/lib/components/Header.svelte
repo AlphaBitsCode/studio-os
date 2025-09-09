@@ -24,7 +24,7 @@
 	const aiWorkflowItems = [
 		{
 			title: "What is AI Workflow Automation?",
-			href: "/ai-workflow/what-is-ai-workflow",
+			href: "/services/ai-workflow-automation",
 			description: "Learn the fundamentals of AI workflow automation and its benefits."
 		},
 		{
@@ -34,7 +34,7 @@
 		},
 		{
 			title: "AI Tools",
-			href: "/ai-workflow/ai-tools",
+			href: "/resources/ai-tools",
 			description: "Discover the best AI tools for workflow automation."
 		}
 	];
@@ -112,7 +112,7 @@
 						<NavigationMenu.Item>
 							<NavigationMenu.Link href="/about">
 								{#snippet child()}
-									<a href="/about" class={navigationMenuTriggerStyle()}>Team</a>
+									<a href="/about" class="text-gray-700 hover:text-medium-teal">Team</a>
 								{/snippet}
 							</NavigationMenu.Link>
 						</NavigationMenu.Item>
@@ -205,7 +205,7 @@
 						<NavigationMenu.Item>
 							<NavigationMenu.Link href="/blog">
 								{#snippet child()}
-									<a href="/blog" class={navigationMenuTriggerStyle()}>Tech Blog</a>
+									<a href="/blog" class="text-gray-700 hover:text-medium-teal">Tech Blog</a>
 								{/snippet}
 							</NavigationMenu.Link>
 						</NavigationMenu.Item>

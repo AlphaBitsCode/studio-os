@@ -1,21 +1,17 @@
+<script>
+    import Hero from '$lib/components/Hero.svelte';
+</script>
+
 <svelte:head>
     <title>Our Services - AlphaBits</title>
     <meta name="description" content="Comprehensive AI workflow automation, fractional CTO services, data solutions, digital transformation, and IoT infrastructure services." />
 </svelte:head>
 
-<!-- Hero Section -->
-<section class="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-800 text-white py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6">
-                Our Services
-            </h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-                Comprehensive solutions to transform your business with cutting-edge technology and expert guidance.
-            </p>
-        </div>
-    </div>
-</section>
+<Hero 
+    title="Our Services" 
+    subtitle="Comprehensive solutions to transform your business with cutting-edge technology and expert guidance."
+    variant="services"
+/>
 
 <!-- Services Grid -->
 <section class="py-16">

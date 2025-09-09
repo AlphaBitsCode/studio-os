@@ -1,26 +1,28 @@
+<script>
+    import Hero from '$lib/components/Hero.svelte';
+</script>
+
 <svelte:head>
     <title>IoT Infrastructure - AlphaBits</title>
-    <meta name="description" content="Complete IoT ecosystem with Node-RED workflow automation, Mosquitto message queuing, Grafana real-time monitoring, InfluxDB local data storage, and intuitive touch UI controls." />
+    <meta name="description" content="Complete IoT ecosystem with workflow automation, message queuing, real-time monitoring, local data storage, and intuitive touch UI controls." />
 </svelte:head>
 
-<!-- Hero Section -->
-<section class="bg-gradient-to-br from-teal-600 via-cyan-600 to-blue-800 text-white py-16">
+<Hero 
+    title="IoT Infrastructure" 
+    subtitle="Complete IoT ecosystem with workflow automation, message queuing, real-time monitoring, local data storage, and intuitive touch UI controls."
+    variant="services"
+/>
+
+<!-- CTA Buttons -->
+<section class="py-8 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6">
-                IoT Infrastructure
-            </h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-                Complete IoT ecosystem with workflow automation, message queuing, real-time monitoring, local data storage, and intuitive touch UI controls.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="/quick-assessment" class="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
-                    Build Your IoT System
-                </a>
-                <a href="/quick-assessment" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors">
-                    See Implementation
-                </a>
-            </div>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/quick-assessment" class="bg-teal-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors text-center">
+                Build Your IoT System
+            </a>
+            <a href="/quick-assessment" class="border-2 border-teal-600 text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-teal-600 hover:text-white transition-colors text-center">
+                See Implementation
+            </a>
         </div>
     </div>
 </section>

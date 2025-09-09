@@ -1,26 +1,28 @@
+<script>
+    import Hero from '$lib/components/Hero.svelte';
+</script>
+
 <svelte:head>
     <title>Data & AI Solutions - AlphaBits</title>
-    <meta name="description" content="Comprehensive data analytics, big data infrastructure, AI agent building, and local LLM solutions covering all 6 stages of data processing with BigQuery, ClickHouse, MindStudio, and more." />
+    <meta name="description" content="Harness the power of big data with comprehensive analytics, AI infrastructure, and intelligent agent building platforms." />
 </svelte:head>
 
-<!-- Hero Section -->
-<section class="bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-800 text-white py-16">
+<Hero 
+    title="Data & AI Solutions" 
+    subtitle="Harness the power of big data with comprehensive analytics, AI infrastructure, and intelligent agent building platforms."
+    variant="services"
+/>
+
+<!-- CTA Buttons -->
+<section class="py-8 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6">
-                Data & AI Solutions
-            </h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-                Harness the power of big data with comprehensive analytics, AI infrastructure, and intelligent agent building platforms.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="/contact" class="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
-                    Get Started
-                </a>
-                <a href="/case-studies/maua-app" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors">
-                    View Implementation
-                </a>
-            </div>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact" class="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors text-center">
+                Get Started
+            </a>
+            <a href="/case-studies/maua-app" class="border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-600 hover:text-white transition-colors text-center">
+                View Implementation
+            </a>
         </div>
     </div>
 </section>

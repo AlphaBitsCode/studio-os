@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from "$lib/components/ui/button.svelte";
 	import Card from "$lib/components/ui/card.svelte";
+	import Hero from '$lib/components/Hero.svelte';
 	import { onMount } from 'svelte';
 
 	// Current step in the assessment journey
@@ -79,17 +80,14 @@
 	<meta name="description" content="Start your AI automation journey with a quick 30-minute assessment. Book your consultation to discover how AI can transform your business processes." />
 </svelte:head>
 
+<Hero 
+	title="Start Your AI Journey" 
+	subtitle="Every transformation begins with understanding. Let's explore how AI can revolutionize your business processes in just 30 minutes."
+	variant="default"
+/>
+
 <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-	<!-- Hero Section -->
 	<div class="container mx-auto px-4 py-8 sm:py-12 lg:py-16">
-		<div class="text-center mb-8 sm:mb-12 lg:mb-16">
-			<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 px-2">
-				Start Your <span class="text-blue-600">AI Journey</span>
-			</h1>
-			<p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
-				Every transformation begins with understanding. Let's explore how AI can revolutionize your business processes in just 30 minutes.
-			</p>
-		</div>
 
 		<!-- Progress Steps -->
 		<div class="flex justify-center mb-8 sm:mb-12 px-4">

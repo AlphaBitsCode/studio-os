@@ -1,4 +1,6 @@
 <script lang="ts">
+    import Hero from '$lib/components/Hero.svelte';
+    
     let formData = {
         name: '',
         email: '',
@@ -44,19 +46,11 @@
     <meta name="description" content="Get in touch with AlphaBits for AI workflow automation, fractional CTO services, and digital transformation solutions." />
 </svelte:head>
 
-<!-- CTA Section -->
-<section class="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-800 text-white py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6">
-                Contact Us
-            </h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-                Ready to transform your business? Let's discuss how we can help you achieve your goals.
-            </p>
-        </div>
-    </div>
-</section>
+<Hero 
+    title="Contact Us" 
+    subtitle="Ready to transform your business? Let's discuss how we can help you achieve your goals."
+    variant="contact"
+/>
 
 <!-- Contact Form & Info -->
 <section class="py-16">
