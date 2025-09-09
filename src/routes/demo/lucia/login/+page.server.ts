@@ -3,7 +3,7 @@ import { encodeBase32LowerCase } from '@oslojs/encoding';
 import { fail, redirect } from '@sveltejs/kit';
 import * as auth from '$lib/server/auth';
 import { directus } from '$lib/server/db';
-import { readUsers, createUser } from '@directus/sdk';
+import { readUsers, createUser, authentication } from '@directus/sdk';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
@@ -29,7 +29,19 @@ export const actions: Actions = {
 		}
 
 		try {
-			// Get user info first to validate credentials
+			// Authenticate with Directus
+			const authResult = await directus.request(
+				authentication('login', {
+					email: username,
+					password: password
+				})
+			);
+
+			if (!authResult || !authResult.access_token) {
+				return fail(400, { message: 'Incorrect username or password' });
+			}
+
+			// Get user info after successful authentication
 			const users = await directus.request(
 				readUsers({
 					filter: { email: { _eq: username } },
@@ -39,13 +51,12 @@ export const actions: Actions = {
 			);
 
 			if (!users || users.length === 0) {
-				return fail(400, { message: 'Incorrect username or password' });
+				return fail(400, { message: 'User not found' });
 			}
 
 			const user = users[0];
 			
-			// For now, we'll create a session without password verification
-			// In a real implementation, you'd verify the password against Directus
+			// Create session after successful Directus authentication
 			const sessionToken = auth.generateSessionToken();
 			const session = await auth.createSession(sessionToken, user.id);
 			auth.setSessionTokenCookie(event, sessionToken, session.expires_at);

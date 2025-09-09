@@ -18,20 +18,28 @@ const handleAuth: Handle = async ({ event, resolve }) => {
 	if (!sessionToken) {
 		event.locals.user = null;
 		event.locals.session = null;
-		return resolve(event);
+		return resolve(event, {
+			filterSerializedResponseHeaders: (key, value) => {
+				return key.toLowerCase() === 'content-type';
+			}
+		});
 	}
 
 	const { session, user } = await auth.validateSessionToken(sessionToken);
 
 	if (session) {
-		auth.setSessionTokenCookie(event, sessionToken, session.expiresAt);
+		auth.setSessionTokenCookie(event, sessionToken, session.expires_at);
 	} else {
 		auth.deleteSessionTokenCookie(event);
 	}
 
 	event.locals.user = user;
 	event.locals.session = session;
-	return resolve(event);
+	return resolve(event, {
+		filterSerializedResponseHeaders: (key, value) => {
+			return key.toLowerCase() === 'content-type';
+		}
+	});
 };
 
 export const handle: Handle = sequence(handleParaglide, handleAuth);
