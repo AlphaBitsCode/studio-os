@@ -24,7 +24,7 @@
 		<Header user={data.user} />
 	{/if}
 	
-	<main class="flex-1 pt-16">
+	<main class="flex-1 pt-14">
 		{@render children?.()}
 	</main>
 	

@@ -38,13 +38,7 @@
 	<meta name="description" content="Read our latest blog posts and insights" />
 </svelte:head>
 
-<div class="container mx-auto px-4 py-8 bg-white dark:bg-deep-navy">
-	<div class="text-center mb-12">
-		<h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-light-mint mb-4">Blog</h1>
-		<p class="text-xl text-gray-600 dark:text-cyan-accent max-w-2xl mx-auto">
-			Discover insights, tutorials, and stories from our team
-		</p>
-	</div>
+<div class="container mx-auto px-4 py-4 bg-white dark:bg-deep-navy">
 	
 	<!-- Blog Category Header -->
 	<BlogCategoryHeader />

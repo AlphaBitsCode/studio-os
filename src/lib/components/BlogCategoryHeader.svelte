@@ -34,7 +34,7 @@
 			icon: '/icons/icon_analytics.png'
 		},
 		{
-			name: 'Workflow Automation',
+			name: 'AI Workflow',
 			path: '/blog/workflow-automation',
 			icon: '/icons/icon_workflow.png'
 		},
@@ -52,14 +52,14 @@
 
 <div 
 	bind:this={headerElement}
-	class="category-header transition-all duration-300 {isSticky ? 'sticky top-0 z-50 shadow-lg bg-white/95 backdrop-blur-sm dark:bg-deep-navy/95' : 'bg-white dark:bg-deep-navy'}"
+	class="-mt-14 category-header transition-all duration-300 {isSticky ? 'sticky top-0 z-50 shadow-lg bg-white/95 backdrop-blur-sm dark:bg-deep-navy/95' : 'bg-white dark:bg-deep-navy'}"
 >
-	<div class="container mx-auto px-4 py-4">
+	<div class="container mx-auto px-4 py-2">
 		<div class="flex justify-center items-center gap-6 md:gap-8">
 			{#each categories as category}
 				<button
 					on:click={() => handleCategoryClick(category.path)}
-					class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group"
+					class="flex flex-col items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group"
 					aria-label={`View ${category.name} posts`}
 				>
 					<div class="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center">

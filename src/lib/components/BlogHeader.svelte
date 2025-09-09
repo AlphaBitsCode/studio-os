@@ -47,32 +47,6 @@
 					</NavigationMenu.List>
 				</NavigationMenu.Root>
 			</nav>
-
-			<!-- User Actions -->
-			<div class="flex items-center space-x-2">
-				{#if user}
-					<div class="flex items-center space-x-3">
-						<span class="text-sm text-gray-700 dark:text-gray-300">
-							Welcome, {user.first_name || user.email}
-						</span>
-						<button
-							on:click={handleLogout}
-							class="bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors"
-						>
-							Logout
-						</button>
-					</div>
-				{:else}
-					<div class="flex items-center space-x-2">
-						<a
-							href="/auth/register"
-							class="bg-medium-teal text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-dark-teal transition-colors"
-						>
-							Register
-						</a>
-					</div>
-				{/if}
-			</div>
 		</div>
 	</div>
 </header>
