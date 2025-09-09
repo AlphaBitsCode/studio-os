@@ -72,7 +72,7 @@
 	];
 </script>
 
-<header class="bg-white dark:bg-deep-navy shadow-sm border-b border-gray-200 dark:border-dark-teal">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-deep-navy/95 backdrop-blur-sm shadow-sm border-b border-gray-200 dark:border-dark-teal">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="flex justify-between items-center h-16">
 			<!-- Logo -->
@@ -101,7 +101,7 @@
 								Services
 							</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
-								<div class="grid w-[600px] gap-3 p-4 md:grid-cols-2">
+								<div class="grid w-[600px] gap-3 p-4 md:grid-cols-2 bg-white/95 dark:bg-deep-navy/95 backdrop-blur-sm border border-gray-200 dark:border-dark-teal rounded-md shadow-lg">
 									{#each services as service}
 										<NavigationMenu.Link href={service.href}>
 											{#snippet child()}
@@ -138,7 +138,7 @@
 								Resources
 							</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
-								<div class="grid w-[500px] gap-3 p-4">
+								<div class="grid w-[500px] gap-3 p-4 bg-white/95 dark:bg-deep-navy/95 backdrop-blur-sm border border-gray-200 dark:border-dark-teal rounded-md shadow-lg">
 									{#each resources as resource}
 										<NavigationMenu.Link href={resource.href}>
 											{#snippet child()}
@@ -169,6 +169,15 @@
 							</NavigationMenu.Link>
 						</NavigationMenu.Item>
 
+						<!-- Blog -->
+						<NavigationMenu.Item>
+							<NavigationMenu.Link href="/blog">
+								{#snippet child()}
+									<a href="/blog" class={navigationMenuTriggerStyle()}>Blog</a>
+								{/snippet}
+							</NavigationMenu.Link>
+						</NavigationMenu.Item>
+
 						<!-- Contact -->
 						<NavigationMenu.Item>
 							<NavigationMenu.Link href="/contact">
@@ -192,8 +201,18 @@
 				</NavigationMenu.Root>
 			</nav>
 
-			<!-- User Menu -->
+			<!-- CTA Button and User Menu -->
 			<div class="flex items-center space-x-4">
+				<!-- CTA Icon Button -->
+				<a
+					href="/quick-assessment"
+					class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-medium-teal text-white hover:bg-dark-teal transition-colors shadow-md hover:shadow-lg"
+					title="Start Quick Assessment"
+				>
+					<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+					</svg>
+				</a>
 				{#if user}
 					<div class="flex items-center space-x-3">
 						<span class="text-sm text-gray-700 dark:text-gray-300">

@@ -15,7 +15,7 @@
 <div class="min-h-screen flex flex-col bg-white dark:bg-deep-navy text-gray-900 dark:text-white transition-colors">
 	<Header user={data.user} />
 	
-	<main class="flex-1">
+	<main class="flex-1 pt-16">
 		{@render children?.()}
 	</main>
 	
