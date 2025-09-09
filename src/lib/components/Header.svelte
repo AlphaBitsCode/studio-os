@@ -86,15 +86,6 @@
 			<nav class="hidden md:flex">
 				<NavigationMenu.Root class="relative z-10 flex max-w-max flex-1 items-center justify-center">
 					<NavigationMenu.List class="group flex flex-1 list-none items-center justify-center space-x-1">
-						<!-- Home -->
-						<NavigationMenu.Item>
-							<NavigationMenu.Link href="/">
-								{#snippet child()}
-									<a href="/" class={navigationMenuTriggerStyle()}>Home</a>
-								{/snippet}
-							</NavigationMenu.Link>
-						</NavigationMenu.Item>
-
 						<!-- Services -->
 						<NavigationMenu.Item>
 							<NavigationMenu.Trigger class="text-gray-700 dark:text-gray-300 hover:text-medium-teal dark:hover:text-light-mint">
@@ -174,26 +165,6 @@
 							<NavigationMenu.Link href="/blog">
 								{#snippet child()}
 									<a href="/blog" class={navigationMenuTriggerStyle()}>Blog</a>
-								{/snippet}
-							</NavigationMenu.Link>
-						</NavigationMenu.Item>
-
-						<!-- Contact -->
-						<NavigationMenu.Item>
-							<NavigationMenu.Link href="/contact">
-								{#snippet child()}
-									<a href="/contact" class={navigationMenuTriggerStyle()}>Contact</a>
-								{/snippet}
-							</NavigationMenu.Link>
-						</NavigationMenu.Item>
-
-						<!-- Quick Assessment CTA -->
-						<NavigationMenu.Item>
-							<NavigationMenu.Link href="/quick-assessment">
-								{#snippet child()}
-									<a href="/quick-assessment" class="{navigationMenuTriggerStyle()} bg-medium-teal text-white hover:bg-dark-teal">
-										Quick Assessment
-									</a>
 								{/snippet}
 							</NavigationMenu.Link>
 						</NavigationMenu.Item>
