@@ -286,7 +286,7 @@
 				<!-- CTA Buttons -->
 				<div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-in fade-in slide-in-from-bottom-4 duration-600 delay-700">
 					<!-- Get Started Button -->
-					<Button class="group relative overflow-hidden bg-[#57DCCD] hover:bg-[#4BC4B8] text-[#1B2951]" size="lg">
+					<Button href="/quick-assessment" class="group relative overflow-hidden bg-[#57DCCD] hover:bg-[#4BC4B8] text-[#1B2951]" size="lg">
 						<span class="mr-8 transition-opacity duration-500 group-hover:opacity-0">
 							Get Started
 						</span>
