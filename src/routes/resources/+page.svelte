@@ -280,10 +280,10 @@
             Our experts are here to help you navigate your digital transformation journey.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+            <a href="/quick-assessment" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
                 Schedule a Consultation
             </a>
-            <a href="/services" class="border-2 border-blue-600 text-blue-600 dark:text-blue-400 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors">
+            <a href="/quick-assessment" class="border-2 border-blue-600 text-blue-600 dark:text-blue-400 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors">
                 Explore Our Services
             </a>
         </div>

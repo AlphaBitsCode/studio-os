@@ -153,7 +153,7 @@
             Let's discuss how AI workflow automation and digital transformation can accelerate your growth.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button href="/contact" size="lg" class="bg-white text-medium-teal hover:bg-gray-100">
+            <Button href="/quick-assessment" size="lg" class="bg-white text-medium-teal hover:bg-gray-100">
                 Schedule a Consultation
             </Button>
             <Button href="/case-studies" variant="outline" size="lg" class="border-2 border-white text-white hover:bg-white hover:text-medium-teal">

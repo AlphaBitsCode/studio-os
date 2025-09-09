@@ -421,10 +421,10 @@
             Let's discuss how we can create a similar comprehensive solution for your business needs.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            <a href="/quick-assessment" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                 Start Your Project
             </a>
-            <a href="/services" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+            <a href="/quick-assessment" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
                 Explore Our Services
             </a>
         </div>

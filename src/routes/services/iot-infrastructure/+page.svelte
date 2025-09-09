@@ -14,10 +14,10 @@
                 Complete IoT ecosystem with workflow automation, message queuing, real-time monitoring, local data storage, and intuitive touch UI controls.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="/contact" class="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
+                <a href="/quick-assessment" class="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
                     Build Your IoT System
                 </a>
-                <a href="/case-studies/maua-app" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors">
+                <a href="/quick-assessment" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors">
                     See Implementation
                 </a>
             </div>
