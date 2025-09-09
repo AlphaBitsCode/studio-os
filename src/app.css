@@ -1,5 +1,21 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
+
+/* Custom Font Face */
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('./lib/assets/fonts/SVN-Gilroy Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('./lib/assets/fonts/SVN-Gilroy Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 @custom-variant dark (&:is(.dark *));
 @plugin '@tailwindcss/forms';
@@ -8,6 +24,9 @@
 @plugin 'tailwindcss-animate';
 
 @theme inline {
+  --font-family-heading: 'SVN-Gilroy', system-ui, sans-serif;
+  --font-family-gilroy: 'SVN-Gilroy', system-ui, sans-serif;
+  --font-family-body: 'SVN-Gilroy', system-ui, sans-serif;
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
   --color-sidebar-ring: var(--sidebar-ring);
@@ -156,5 +175,10 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-family-body);
+    font-weight: 400;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-heading);
   }
 }
