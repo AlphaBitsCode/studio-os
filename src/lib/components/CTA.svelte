@@ -35,7 +35,7 @@
 
 	// Background variants
 	const backgroundClasses = {
-		default: 'py-16',
+		default: 'py-16 bg-gray-50',
 		'gradient-teal': 'bg-gradient-to-r from-medium-teal to-dark-teal text-white py-16',
 		'gradient-orange': 'py-16 bg-gradient-to-r from-orange-600 to-red-600 text-white',
 		'gradient-blue': 'py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white'

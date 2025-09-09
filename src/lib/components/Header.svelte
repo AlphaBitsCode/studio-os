@@ -29,7 +29,7 @@
 		},
 		{
 			title: "Getting Started",
-			href: "/ai-workflow/getting-started",
+			href: "/quick-assessment",
 			description: "Step-by-step guide to implementing AI workflows in your business."
 		},
 		{
@@ -94,7 +94,7 @@
 	}
 </script>
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-200">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-200 dark:bg-white/95 dark:border-gray-200">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="flex justify-between items-center h-14">
 			<!-- Logo -->
@@ -123,21 +123,21 @@
 								AI Workflow
 							</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
-								<div class="grid w-[500px] gap-3 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
+								<div class="grid w-[500px] gap-3 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg dark:bg-white/95 dark:border-gray-200">
 									{#each aiWorkflowItems as item}
 										<NavigationMenu.Link href={item.href}>
 											{#snippet child()}
 												<a
-													href={item.href}
-													class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-												>
-													<div class="text-sm font-medium leading-none text-gray-900">
-														{item.title}
-													</div>
-													<p class="line-clamp-2 text-sm leading-snug text-muted-foreground">
-														{item.description}
-													</p>
-												</a>
+											href={item.href}
+											class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 hover:text-medium-teal focus:bg-gray-100 focus:text-medium-teal"
+										>
+											<div class="text-sm font-medium leading-none text-gray-900">
+												{item.title}
+											</div>
+											<p class="line-clamp-2 text-sm leading-snug text-gray-600">
+												{item.description}
+											</p>
+										</a>
 											{/snippet}
 										</NavigationMenu.Link>
 									{/each}
@@ -151,21 +151,21 @@
 								Services
 							</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
-								<div class="grid w-[600px] gap-3 p-4 md:grid-cols-2 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
+								<div class="grid w-[600px] gap-3 p-4 md:grid-cols-2 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg dark:bg-white/95 dark:border-gray-200">
 									{#each servicesItems as service}
 										<NavigationMenu.Link href={service.href}>
 											{#snippet child()}
 												<a
-													href={service.href}
-													class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-												>
-													<div class="text-sm font-medium leading-none text-gray-900">
-														{service.title}
-													</div>
-													<p class="line-clamp-2 text-sm leading-snug text-muted-foreground">
-														{service.description}
-													</p>
-												</a>
+											href={service.href}
+											class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 hover:text-medium-teal focus:bg-gray-100 focus:text-medium-teal"
+										>
+											<div class="text-sm font-medium leading-none text-gray-900">
+												{service.title}
+											</div>
+											<p class="line-clamp-2 text-sm leading-snug text-gray-600">
+												{service.description}
+											</p>
+										</a>
 											{/snippet}
 										</NavigationMenu.Link>
 									{/each}
@@ -179,21 +179,21 @@
 								Free Resources
 							</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
-								<div class="grid w-[500px] gap-3 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
+								<div class="grid w-[500px] gap-3 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg dark:bg-white/95 dark:border-gray-200">
 									{#each freeResourcesItems as resource}
 										<NavigationMenu.Link href={resource.href}>
 											{#snippet child()}
 												<a
-													href={resource.href}
-													class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-												>
-													<div class="text-sm font-medium leading-none text-gray-900">
-														{resource.title}
-													</div>
-													<p class="line-clamp-2 text-sm leading-snug text-muted-foreground">
-														{resource.description}
-													</p>
-												</a>
+											href={resource.href}
+											class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 hover:text-medium-teal focus:bg-gray-100 focus:text-medium-teal"
+										>
+											<div class="text-sm font-medium leading-none text-gray-900">
+												{resource.title}
+											</div>
+											<p class="line-clamp-2 text-sm leading-snug text-gray-600">
+												{resource.description}
+											</p>
+										</a>
 											{/snippet}
 										</NavigationMenu.Link>
 									{/each}
@@ -217,7 +217,7 @@
 			<div class="flex items-center space-x-2">
 				<a
 					href="/quick-assessment"
-					class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-medium-teal text-foreground hover:bg-dark-teal transition-colors"
+					class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-medium-teal text-white hover:bg-dark-teal transition-colors"
 					title="Start Quick Assessment"
 				>
 					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -249,7 +249,7 @@
 	<!-- Mobile menu -->
 	{#if mobileMenuOpen}
 		<div class="lg:hidden">
-			<div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200 shadow-lg">
+			<div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200 shadow-lg dark:bg-white dark:border-gray-200">
 				<!-- Team -->
 				<a href="/about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-medium-teal hover:bg-gray-50" onclick={closeMobileMenu}>
 					Team
