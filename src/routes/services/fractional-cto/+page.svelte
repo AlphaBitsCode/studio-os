@@ -1,5 +1,6 @@
 <script>
     import Hero from '$lib/components/Hero.svelte';
+    import CTA from '$lib/components/CTA.svelte';
 </script>
 
 <svelte:head>
@@ -434,25 +435,18 @@
     </div>
 </section>
 
-<!-- CTA Section -->
-<section class="py-16 bg-gradient-to-r from-green-600 to-blue-600 text-white">
-    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">
-            Ready for Strategic Technology Leadership?
-        </h2>
-        <p class="text-xl mb-8">
-            Let's discuss how our fractional CTO services can accelerate your technology initiatives.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="http://cal.com/alphabits/mini" target="_blank" rel="noopener noreferrer" class="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                </svg>
-                Book CTO Assessment (30 min)
-            </a>
-            <a href="/about" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors">
-                Meet Our Leadership Team
-            </a>
-        </div>
-    </div>
-</section>
+<CTA 
+    title="Ready for Strategic Technology Leadership?"
+    description="Let's discuss how our fractional CTO services can accelerate your technology initiatives."
+    primaryButton={{
+        text: 'Book CTO Assessment (30 min)',
+        href: 'http://cal.com/alphabits/mini',
+        variant: 'custom',
+        class: 'bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center'
+    }}
+    secondaryButton={{
+        text: 'Meet Our Leadership Team',
+        href: '/about'
+    }}
+    variant="gradient-blue"
+/>

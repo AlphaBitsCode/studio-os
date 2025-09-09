@@ -1,5 +1,6 @@
 <script>
     import Hero from '$lib/components/Hero.svelte';
+    import CTA from '$lib/components/CTA.svelte';
 </script>
 
 <svelte:head>
@@ -165,28 +166,27 @@
     </div>
 </section>
 
-<!-- CTA Section -->
-<section class="bg-gray-50 py-16">
+<CTA 
+    title="Ready to Get Started?"
+    description="Let's discuss which services align best with your business goals and technical requirements."
+    primaryButton={{
+        text: 'Book CTO Assessment (30 min)',
+        href: 'http://cal.com/alphabits/mini',
+        variant: 'custom',
+        class: 'bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center'
+    }}
+    secondaryButton={{
+        text: 'General Consultation',
+        href: '/contact'
+    }}
+    variant="default"
+/>
+
+<!-- Additional CTA Button -->
+<section class="py-8 bg-gray-50">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Get Started?
-        </h2>
-        <p class="text-xl text-gray-700 mb-8">
-            Let's discuss which services align best with your business goals and technical requirements.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="http://cal.com/alphabits/mini" target="_blank" rel="noopener noreferrer" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                </svg>
-                Book CTO Assessment (30 min)
-            </a>
-            <a href="/contact" class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors">
-                General Consultation
-            </a>
-            <a href="/case-studies" class="border-2 border-gray-400 text-gray-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-400 hover:text-white transition-colors">
-                View Case Studies
-            </a>
-        </div>
+        <a href="/case-studies" class="border-2 border-gray-400 text-gray-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-400 hover:text-white transition-colors inline-block">
+            View Case Studies
+        </a>
     </div>
 </section>

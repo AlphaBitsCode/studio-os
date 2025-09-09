@@ -2,9 +2,7 @@
 	import { goto } from '$app/navigation';
 	import Logo from './Logo.svelte';
 	import * as NavigationMenu from './ui/navigation-menu/index.js';
-	import { navigationMenuTriggerStyle } from './ui/navigation-menu/navigation-menu-trigger.svelte';
-	import { cn } from '$lib/utils.js';
-
+	
 	let { user = null } = $props();
 
 	async function handleLogout() {
@@ -39,7 +37,7 @@
 						<NavigationMenu.Item>
 							<NavigationMenu.Link href="/">
 								{#snippet child()}
-									<a href="/" class={navigationMenuTriggerStyle()}>Back to Main Site</a>
+									<a href="/" class="">Back to Main Site</a>
 								{/snippet}
 							</NavigationMenu.Link>
 						</NavigationMenu.Item>

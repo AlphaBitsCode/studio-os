@@ -1,5 +1,6 @@
 <script>
     import Hero from '$lib/components/Hero.svelte';
+    import CTA from '$lib/components/CTA.svelte';
 </script>
 
 <svelte:head>
@@ -399,22 +400,16 @@
     </div>
 </section>
 
-<!-- CTA Section -->
-<section class="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Automate Your Workflows?
-        </h2>
-        <p class="text-xl mb-8">
-            Let's discuss how AI workflow automation can transform your business operations.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                Schedule a Consultation
-            </a>
-            <a href="/case-studies/maua-app" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-                View Success Story
-            </a>
-        </div>
-    </div>
-</section>
+<CTA 
+    title="Ready to Automate Your Workflows?"
+    description="Let's discuss how AI workflow automation can transform your business operations."
+    primaryButton={{
+        text: 'Schedule a Consultation',
+        href: '/contact'
+    }}
+    secondaryButton={{
+        text: 'View Success Story',
+        href: '/case-studies/maua-app'
+    }}
+    variant="gradient-blue"
+/>

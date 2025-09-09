@@ -69,7 +69,7 @@
 							class="w-full h-full object-contain group-hover:brightness-75 transition-all"
 						/>
 					</div>
-					<span class="text-[10px] sm:text-xs md:text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-medium-teal transition-colors text-center line-clamp-2 sm:line-clamp-1"></span>
+					<span class="text-[10px] sm:text-xs md:text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-medium-teal transition-colors text-center line-clamp-2 sm:line-clamp-1">
 						{category.name}
 					</span>
 				</button>

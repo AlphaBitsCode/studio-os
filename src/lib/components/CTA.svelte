@@ -33,20 +33,20 @@
 		class: className = ''
 	}: Props = $props();
 
-	// Background variants
+	// Background variants - Updated to light theme
 	const backgroundClasses = {
 		default: 'py-16 bg-gray-50',
-		'gradient-teal': 'bg-gradient-to-r from-medium-teal to-dark-teal text-white py-16',
-		'gradient-orange': 'py-16 bg-gradient-to-r from-orange-600 to-red-600 text-white',
-		'gradient-blue': 'py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white'
+		'gradient-teal': 'py-16 bg-gradient-to-r from-teal-50 to-teal-100',
+		'gradient-orange': 'py-16 bg-gradient-to-r from-orange-50 to-orange-100',
+		'gradient-blue': 'py-16 bg-gradient-to-r from-blue-50 to-blue-100'
 	};
 
-	// Text color variants
+	// Text color variants - Updated to dark text for light theme
 	const textClasses = {
 		default: 'text-gray-600',
-		'gradient-teal': 'text-white',
-		'gradient-orange': 'text-white',
-		'gradient-blue': 'text-white'
+		'gradient-teal': 'text-gray-700',
+		'gradient-orange': 'text-gray-700',
+		'gradient-blue': 'text-gray-700'
 	};
 
 	const sectionClasses = $derived(`${backgroundClasses[variant]} ${className}`.trim());
@@ -55,7 +55,7 @@
 
 <section class={sectionClasses}>
 	<div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-		<h2 class="text-3xl md:text-4xl font-bold mb-4">
+		<h2 class="text-3xl md:text-4xl font-bold mb-4 {variant === 'default' ? 'text-gray-900' : 'text-gray-800'}">
 			{title}
 		</h2>
 		<p class={descriptionClasses}>

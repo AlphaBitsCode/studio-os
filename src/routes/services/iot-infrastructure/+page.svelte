@@ -1,5 +1,6 @@
 <script>
     import Hero from '$lib/components/Hero.svelte';
+    import CTA from '$lib/components/CTA.svelte';
 </script>
 
 <svelte:head>
@@ -527,22 +528,16 @@
     </div>
 </section>
 
-<!-- CTA Section -->
-<section class="py-16 bg-gradient-to-r from-teal-600 to-blue-600 text-white">
-    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Build Your IoT Infrastructure?
-        </h2>
-        <p class="text-xl mb-8">
-            Let's discuss how our comprehensive IoT solutions can transform your operations and provide real-time insights.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact" class="bg-white text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                Start Your IoT Project
-            </a>
-            <a href="/case-studies/maua-app" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-teal-600 transition-colors">
-                See Implementation
-            </a>
-        </div>
-    </div>
-</section>
+<CTA 
+    title="Ready to Build Your IoT Infrastructure?"
+    description="Let's discuss how our comprehensive IoT solutions can transform your operations and provide real-time insights."
+    primaryButton={{
+        text: 'Start Your IoT Project',
+        href: '/contact'
+    }}
+    secondaryButton={{
+        text: 'See Implementation',
+        href: '/case-studies/maua-app'
+    }}
+    variant="gradient-teal"
+/>

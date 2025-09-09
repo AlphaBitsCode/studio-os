@@ -3,7 +3,6 @@
 	import { goto } from '$app/navigation';
 	import Logo from './Logo.svelte';
 	import * as NavigationMenu from './ui/navigation-menu/index.js';
-	import { navigationMenuTriggerStyle } from './ui/navigation-menu/navigation-menu-trigger.svelte';
 
 	let { user = null } = $props();
 	let mobileMenuOpen = $state(false);
