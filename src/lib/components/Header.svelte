@@ -6,6 +6,7 @@
 	import { navigationMenuTriggerStyle } from './ui/navigation-menu/navigation-menu-trigger.svelte';
 
 	let { user = null } = $props();
+	let mobileMenuOpen = $state(false);
 
 	async function handleLogout() {
 		try {
@@ -20,56 +21,77 @@
 		}
 	}
 
-	const services = [
+	const aiWorkflowItems = [
+		{
+			title: "What is AI Workflow Automation?",
+			href: "/ai-workflow/what-is-ai-workflow",
+			description: "Learn the fundamentals of AI workflow automation and its benefits."
+		},
+		{
+			title: "Getting Started",
+			href: "/ai-workflow/getting-started",
+			description: "Step-by-step guide to implementing AI workflows in your business."
+		},
+		{
+			title: "AI Tools",
+			href: "/ai-workflow/ai-tools",
+			description: "Discover the best AI tools for workflow automation."
+		}
+	];
+
+	const servicesItems = [
+		{
+			title: "Digital Transformation & Digital Infrastructure",
+			href: "/services/digital-transformation",
+			description: "Complete digital infrastructure and transformation solutions."
+		},
+		{
+			title: "Fractional CTO",
+			href: "/services/fractional-cto",
+			description: "Strategic technology leadership for growing businesses."
+		},
 		{
 			title: "AI Workflow Automation",
 			href: "/services/ai-workflow-automation",
-			description: "Streamline your business processes with intelligent automation solutions."
+			description: "Intelligent automation solutions for business processes."
 		},
 		{
-			title: "Fractional CTO & Tech Leadership",
-			href: "/services/fractional-cto",
-			description: "Strategic technology leadership and guidance for growing businesses."
-		},
-		{
-			title: "Data & AI Solutions",
+			title: "Data Analytics",
 			href: "/services/data-ai-solutions",
 			description: "Transform your data into actionable insights with AI-powered analytics."
 		},
 		{
-			title: "Digital Transformation",
-			href: "/services/digital-transformation",
-			description: "Modernize your business operations with cutting-edge digital solutions."
-		},
-		{
-			title: "IoT Infrastructure",
+			title: "IoT Solutions for Energy Management",
 			href: "/services/iot-infrastructure",
-			description: "Build connected ecosystems with robust IoT infrastructure solutions."
+			description: "Smart IoT solutions for efficient energy management and monitoring."
 		}
 	];
 
-	const resources = [
+	const freeResourcesItems = [
 		{
-			title: "SecondBrains Framework",
-			href: "/resources/secondbrains-framework",
-			description: "Our proprietary methodology for building intelligent business systems."
+			title: "AI Tools",
+			href: "/resources/ai-tools",
+			description: "Free AI tools and resources for productivity and automation."
 		},
 		{
-			title: "Courses",
-			href: "/resources/courses",
-			description: "Learn cutting-edge technologies and methodologies through our courses."
+			title: "Productivity Tips",
+			href: "/resources/productivity-tips",
+			description: "Expert tips and strategies to boost your productivity."
 		},
 		{
-			title: "Blog / Insights",
-			href: "/resources/blog",
-			description: "Stay updated with the latest trends and insights in technology."
-		},
-		{
-			title: "Notion Wiki",
-			href: "/resources/notion-wiki",
-			description: "Comprehensive knowledge base and documentation resources."
+			title: "NodeRED Learning Materials",
+			href: "/resources/nodered-learning",
+			description: "Comprehensive guides and tutorials for NodeRED automation."
 		}
 	];
+
+	function toggleMobileMenu() {
+		mobileMenuOpen = !mobileMenuOpen;
+	}
+
+	function closeMobileMenu() {
+		mobileMenuOpen = false;
+	}
 </script>
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-200">
@@ -82,19 +104,47 @@
 				</a>
 			</div>
 
-			<!-- Navigation -->
-			<nav class="hidden md:flex">
+			<!-- Desktop Navigation -->
+			<nav class="hidden lg:flex">
 				<NavigationMenu.Root class="relative z-10 flex max-w-max flex-1 items-center justify-center">
 					<NavigationMenu.List class="group flex flex-1 list-none items-center justify-center space-x-1">
-						<!-- About -->
+						<!-- Team -->
 						<NavigationMenu.Item>
 							<NavigationMenu.Link href="/about">
 								{#snippet child()}
-									<a href="/about" class={navigationMenuTriggerStyle()}>About</a>
+									<a href="/about" class={navigationMenuTriggerStyle()}>Team</a>
 								{/snippet}
 							</NavigationMenu.Link>
 						</NavigationMenu.Item>
 						
+						<!-- AI Workflow -->
+						<NavigationMenu.Item>
+							<NavigationMenu.Trigger class="text-gray-700 hover:text-medium-teal">
+								AI Workflow
+							</NavigationMenu.Trigger>
+							<NavigationMenu.Content>
+								<div class="grid w-[500px] gap-3 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
+									{#each aiWorkflowItems as item}
+										<NavigationMenu.Link href={item.href}>
+											{#snippet child()}
+												<a
+													href={item.href}
+													class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+												>
+													<div class="text-sm font-medium leading-none text-gray-900">
+														{item.title}
+													</div>
+													<p class="line-clamp-2 text-sm leading-snug text-muted-foreground">
+														{item.description}
+													</p>
+												</a>
+											{/snippet}
+										</NavigationMenu.Link>
+									{/each}
+								</div>
+							</NavigationMenu.Content>
+						</NavigationMenu.Item>
+
 						<!-- Services -->
 						<NavigationMenu.Item>
 							<NavigationMenu.Trigger class="text-gray-700 hover:text-medium-teal">
@@ -102,7 +152,7 @@
 							</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
 								<div class="grid w-[600px] gap-3 p-4 md:grid-cols-2 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
-									{#each services as service}
+									{#each servicesItems as service}
 										<NavigationMenu.Link href={service.href}>
 											{#snippet child()}
 												<a
@@ -123,23 +173,14 @@
 							</NavigationMenu.Content>
 						</NavigationMenu.Item>
 
-						<!-- Case Studies -->
-						<NavigationMenu.Item>
-							<NavigationMenu.Link href="/case-studies">
-								{#snippet child()}
-									<a href="/case-studies" class={navigationMenuTriggerStyle()}>Case Studies</a>
-								{/snippet}
-							</NavigationMenu.Link>
-						</NavigationMenu.Item>
-
-						<!-- Resources -->
+						<!-- Free Resources -->
 						<NavigationMenu.Item>
 							<NavigationMenu.Trigger class="text-gray-700 hover:text-medium-teal">
-								Resources
+								Free Resources
 							</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
 								<div class="grid w-[500px] gap-3 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
-									{#each resources as resource}
+									{#each freeResourcesItems as resource}
 										<NavigationMenu.Link href={resource.href}>
 											{#snippet child()}
 												<a
@@ -160,13 +201,11 @@
 							</NavigationMenu.Content>
 						</NavigationMenu.Item>
 
-						
-
-						<!-- Blog -->
+						<!-- Tech Blog -->
 						<NavigationMenu.Item>
 							<NavigationMenu.Link href="/blog">
 								{#snippet child()}
-									<a href="/blog" class={navigationMenuTriggerStyle()}>Blog</a>
+									<a href="/blog" class={navigationMenuTriggerStyle()}>Tech Blog</a>
 								{/snippet}
 							</NavigationMenu.Link>
 						</NavigationMenu.Item>
@@ -174,6 +213,7 @@
 				</NavigationMenu.Root>
 			</nav>
 
+			<!-- Right side actions -->
 			<div class="flex items-center space-x-2">
 				<a
 					href="/quick-assessment"
@@ -184,9 +224,74 @@
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
 					</svg>
 				</a>
+
+				<!-- Mobile menu button -->
+				<button
+					class="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-medium-teal hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-medium-teal"
+					aria-expanded="false"
+					onclick={toggleMobileMenu}
+				>
+					<span class="sr-only">Open main menu</span>
+					{#if !mobileMenuOpen}
+						<svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+						</svg>
+					{:else}
+						<svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+						</svg>
+					{/if}
+				</button>
 			</div>
 		</div>
 	</div>
+
+	<!-- Mobile menu -->
+	{#if mobileMenuOpen}
+		<div class="lg:hidden">
+			<div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200 shadow-lg">
+				<!-- Team -->
+				<a href="/about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-medium-teal hover:bg-gray-50" onclick={closeMobileMenu}>
+					Team
+				</a>
+
+				<!-- AI Workflow -->
+				<div class="space-y-1">
+					<div class="px-3 py-2 text-sm font-semibold text-gray-900 uppercase tracking-wider">AI Workflow</div>
+					{#each aiWorkflowItems as item}
+						<a href={item.href} class="block px-6 py-2 text-sm text-gray-600 hover:text-medium-teal hover:bg-gray-50" onclick={closeMobileMenu}>
+							{item.title}
+						</a>
+					{/each}
+				</div>
+
+				<!-- Services -->
+				<div class="space-y-1">
+					<div class="px-3 py-2 text-sm font-semibold text-gray-900 uppercase tracking-wider">Services</div>
+					{#each servicesItems as service}
+						<a href={service.href} class="block px-6 py-2 text-sm text-gray-600 hover:text-medium-teal hover:bg-gray-50" onclick={closeMobileMenu}>
+							{service.title}
+						</a>
+					{/each}
+				</div>
+
+				<!-- Free Resources -->
+				<div class="space-y-1">
+					<div class="px-3 py-2 text-sm font-semibold text-gray-900 uppercase tracking-wider">Free Resources</div>
+					{#each freeResourcesItems as resource}
+						<a href={resource.href} class="block px-6 py-2 text-sm text-gray-600 hover:text-medium-teal hover:bg-gray-50" onclick={closeMobileMenu}>
+							{resource.title}
+						</a>
+					{/each}
+				</div>
+
+				<!-- Tech Blog -->
+				<a href="/blog" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-medium-teal hover:bg-gray-50" onclick={closeMobileMenu}>
+					Tech Blog
+				</a>
+			</div>
+		</div>
+	{/if}
 </header>
 
 <style>
