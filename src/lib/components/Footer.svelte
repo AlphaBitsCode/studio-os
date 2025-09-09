@@ -41,9 +41,7 @@
 				<h3 class="text-sm font-semibold text-gray-900 dark:text-white tracking-wider uppercase mb-4">Quick Links</h3>
 				<ul class="space-y-3">
 					<li><a href="/" class="text-gray-600 dark:text-gray-400 hover:text-medium-teal dark:hover:text-light-mint">Home</a></li>
-					<li><a href="/blog" class="text-gray-600 dark:text-gray-400 hover:text-medium-teal dark:hover:text-light-mint">Blog</a></li>
-					<li><a href="/pages" class="text-gray-600 dark:text-gray-400 hover:text-medium-teal dark:hover:text-light-mint">Pages</a></li>
-					<li><a href="/admin" class="text-gray-600 dark:text-gray-400 hover:text-medium-teal dark:hover:text-light-mint">Admin</a></li>
+					<li><a href="/services" class="text-gray-600 dark:text-gray-400 hover:text-medium-teal dark:hover:text-light-mint">Services</a></li>
 				</ul>
 			</div>
 
@@ -51,8 +49,7 @@
 			<div>
 				<h3 class="text-sm font-semibold text-gray-900 dark:text-white tracking-wider uppercase mb-4">Support</h3>
 				<ul class="space-y-3">
-					<li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-medium-teal dark:hover:text-light-mint">Documentation</a></li>
-					<li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-medium-teal dark:hover:text-light-mint">Help Center</a></li>
+					<li><a href="/blog" class="text-gray-600 dark:text-gray-400 hover:text-medium-teal dark:hover:text-light-mint">Blog</a></li>
 					<li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-medium-teal dark:hover:text-light-mint">Contact Us</a></li>
 					<li><a href="/privacy-policy" class="text-gray-600 dark:text-gray-400 hover:text-medium-teal dark:hover:text-light-mint">Privacy Policy</a></li>
 				</ul>
