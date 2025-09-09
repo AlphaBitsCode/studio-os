@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import Logo from './Logo.svelte';
 
 	let { user = null } = $props();
 
@@ -18,25 +19,25 @@
 	}
 </script>
 
-<header class="bg-white shadow-sm border-b">
+<header class="bg-white dark:bg-gray-900 shadow-sm border-b border-gray-200 dark:border-gray-700">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="flex justify-between items-center h-16">
 			<!-- Logo -->
 			<div class="flex-shrink-0">
-				<a href="/" class="text-xl font-bold text-gray-900">
-					AlphaBits
+				<a href="/" class="flex items-center">
+					<Logo size="header" variant="default" alt="AlphaBits" />
 				</a>
 			</div>
 
 			<!-- Navigation -->
 			<nav class="hidden md:flex space-x-8">
-				<a href="/" class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
+				<a href="/" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 text-sm font-medium">
 					Home
 				</a>
-				<a href="/blog" class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
+				<a href="/blog" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 text-sm font-medium">
 					Blog
 				</a>
-				<a href="/pages" class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
+				<a href="/pages" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 text-sm font-medium">
 					Pages
 				</a>
 			</nav>
@@ -45,7 +46,7 @@
 			<div class="flex items-center space-x-4">
 				{#if user}
 					<div class="flex items-center space-x-3">
-						<span class="text-sm text-gray-700">
+						<span class="text-sm text-gray-700 dark:text-gray-300">
 							Welcome, {user.first_name || user.email}
 						</span>
 						<button
@@ -59,7 +60,7 @@
 					<div class="flex items-center space-x-3">
 						<a
 							href="/auth/login"
-							class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+							class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 text-sm font-medium"
 						>
 							Login
 						</a>

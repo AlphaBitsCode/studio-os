@@ -1,14 +1,17 @@
 <script lang="ts">
-	// Footer component for the application
+	import { theme, toggleTheme } from '$lib/stores/theme';
+	import Logo from './Logo.svelte';
 </script>
 
-<footer class="bg-gray-50 border-t">
+<footer class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 		<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
 			<!-- Company Info -->
 			<div class="col-span-1 md:col-span-2">
-				<h3 class="text-lg font-semibold text-gray-900 mb-4">AlphaBits</h3>
-				<p class="text-gray-600 mb-4">
+				<div class="mb-4">
+					<Logo size="medium" variant="default" alt="AlphaBits" />
+				</div>
+				<p class="text-gray-600 dark:text-gray-400 mb-4">
 					Building modern web applications with cutting-edge technology and exceptional user experiences.
 				</p>
 				<div class="flex space-x-4">
@@ -35,31 +38,52 @@
 
 			<!-- Quick Links -->
 			<div>
-				<h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Quick Links</h3>
+				<h3 class="text-sm font-semibold text-gray-900 dark:text-white tracking-wider uppercase mb-4">Quick Links</h3>
 				<ul class="space-y-3">
-					<li><a href="/" class="text-gray-600 hover:text-gray-900">Home</a></li>
-					<li><a href="/blog" class="text-gray-600 hover:text-gray-900">Blog</a></li>
-					<li><a href="/pages" class="text-gray-600 hover:text-gray-900">Pages</a></li>
-					<li><a href="/admin" class="text-gray-600 hover:text-gray-900">Admin</a></li>
+					<li><a href="/" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Home</a></li>
+					<li><a href="/blog" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Blog</a></li>
+					<li><a href="/pages" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Pages</a></li>
+					<li><a href="/admin" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Admin</a></li>
 				</ul>
 			</div>
 
 			<!-- Support -->
 			<div>
-				<h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Support</h3>
+				<h3 class="text-sm font-semibold text-gray-900 dark:text-white tracking-wider uppercase mb-4">Support</h3>
 				<ul class="space-y-3">
-					<li><a href="#" class="text-gray-600 hover:text-gray-900">Documentation</a></li>
-					<li><a href="#" class="text-gray-600 hover:text-gray-900">Help Center</a></li>
-					<li><a href="#" class="text-gray-600 hover:text-gray-900">Contact Us</a></li>
-					<li><a href="#" class="text-gray-600 hover:text-gray-900">Privacy Policy</a></li>
+					<li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Documentation</a></li>
+					<li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Help Center</a></li>
+					<li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Contact Us</a></li>
+					<li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Privacy Policy</a></li>
 				</ul>
 			</div>
 		</div>
 
-		<div class="mt-8 pt-8 border-t border-gray-200">
-			<p class="text-center text-gray-500 text-sm">
-				© {new Date().getFullYear()} AlphaBits. All rights reserved.
-			</p>
+		<div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+			<div class="flex flex-col sm:flex-row justify-between items-center">
+				<p class="text-center text-gray-500 dark:text-gray-400 text-sm mb-4 sm:mb-0">
+					© {new Date().getFullYear()} AlphaBits. All rights reserved.
+				</p>
+				
+				<!-- Theme Toggle -->
+				<button
+					on:click={toggleTheme}
+					class="flex items-center space-x-2 px-3 py-2 rounded-md bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 transition-colors"
+					aria-label="Toggle theme"
+				>
+					{#if $theme === 'light'}
+						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+						</svg>
+						<span class="text-sm font-medium">Dark</span>
+					{:else}
+						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+						</svg>
+						<span class="text-sm font-medium">Light</span>
+					{/if}
+				</button>
 			</div>
+		</div>
 	</div>
 </footer>
