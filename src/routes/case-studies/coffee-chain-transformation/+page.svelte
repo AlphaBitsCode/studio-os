@@ -3,9 +3,77 @@
     <meta name="description" content="Detailed case study of a major Vietnamese coffee chain's digital transformation - consolidating 5 POS systems, multiple databases, and marketing data into a unified BigQuery data warehouse with Looker Studio analytics." />
 </svelte:head>
 
+<style>
+    .hero-background {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-background::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('/case-studies/coffee-background.jpg');
+        background-size: cover;
+        background-position: center;
+        animation: kenBurns 20s ease-in-out infinite;
+        z-index: 1;
+    }
+    
+    .hero-background::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 2;
+    }
+    
+    .hero-content {
+        position: relative;
+        z-index: 3;
+    }
+    
+    @keyframes kenBurns {
+        0% {
+            background-image: url('/case-studies/coffee-background.jpg');
+            transform: scale(1);
+        }
+        16.66% {
+            background-image: url('/case-studies/coffee-background.jpg');
+            transform: scale(1.1);
+        }
+        33.33% {
+            background-image: url('/office/office_7.jpg');
+            transform: scale(1);
+        }
+        50% {
+            background-image: url('/office/office_7.jpg');
+            transform: scale(1.1);
+        }
+        66.66% {
+            background-image: url('/office/office_aofarm2.jpg');
+            transform: scale(1);
+        }
+        83.33% {
+            background-image: url('/office/office_aofarm2.jpg');
+            transform: scale(1.1);
+        }
+        100% {
+            background-image: url('/case-studies/coffee-background.jpg');
+            transform: scale(1);
+        }
+    }
+</style>
+
 <!-- Hero Section -->
-<section class="bg-gradient-to-br from-amber-600 via-orange-600 to-red-800 text-white py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section class="hero-background text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hero-content">
         <div class="text-center">
             <div class="inline-block bg-white bg-opacity-20 text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
                 Case Study
@@ -55,15 +123,15 @@
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-700">Duration:</span>
-                            <span class="font-medium">6 months</span>
+                            <span class="font-medium">6-12 months</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-700">Team Size:</span>
                             <span class="font-medium">4 specialists</span>
                         </div>
                         <div class="flex justify-between">
-                            <span class="text-gray-700">Budget:</span>
-                            <span class="font-medium">$80K - $150K</span>
+                            <span class="text-gray-700">Budget Reference:</span>
+                            <span class="font-medium">$25K - $75K USD</span>
                         </div>
                     </div>
                 </div>
