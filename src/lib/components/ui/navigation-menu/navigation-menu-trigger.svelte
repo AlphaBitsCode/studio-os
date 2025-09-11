@@ -13,12 +13,12 @@
 
 <NavigationMenuPrimitive.Trigger
 	bind:ref
-	class={cn("", "group", className)}
+	class={cn("flex items-center whitespace-nowrap", "group", className)}
 	{...restProps}
 >
 	{@render children?.()}
 	<ChevronDownIcon
-		class="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180"
+		class="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180 flex-shrink-0"
 		aria-hidden="true"
 	/>
 </NavigationMenuPrimitive.Trigger>
