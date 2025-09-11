@@ -198,11 +198,11 @@
 							</NavigationMenu.Content>
 						</NavigationMenu.Item>
 
-						<!-- Tech Blog -->
+						<!-- Tech Hotpot -->
 						<NavigationMenu.Item>
-							<NavigationMenu.Link href="/blog">
+							<NavigationMenu.Link href="/tech-hotpot">
 								{#snippet child()}
-									<a href="/blog" class="text-sm font-medium text-gray-700 hover:text-medium-teal transition-colors whitespace-nowrap">Tech Blog</a>
+									<a href="/tech-hotpot" class="text-sm font-medium text-gray-700 hover:text-medium-teal transition-colors whitespace-nowrap">Tech Hotpot</a>
 								{/snippet}
 							</NavigationMenu.Link>
 						</NavigationMenu.Item>
@@ -282,9 +282,9 @@
 					{/each}
 				</div>
 
-				<!-- Tech Blog -->
-				<a href="/blog" class="block px-3 py-3 rounded-md text-sm font-medium text-gray-700 hover:text-medium-teal hover:bg-gray-50 transition-colors" onclick={closeMobileMenu}>
-					Tech Blog
+				<!-- Tech Hotpot -->
+				<a href="/tech-hotpot" class="block px-3 py-3 rounded-md text-sm font-medium text-gray-700 hover:text-medium-teal hover:bg-gray-50 transition-colors" onclick={closeMobileMenu}>
+					Tech Hotpot
 				</a>
 			</div>
 		</div>

@@ -662,7 +662,7 @@
 </section>
 
 <!-- CTA Section -->
-<section class="py-16 bg-gradient-to-r from-amber-600 to-orange-600 text-white">
+<section class="py-16 bg-gradient-to-r from-amber-600 to-orange-600 text-black/90">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl md:text-4xl font-bold mb-4">
             Ready for Your Data Transformation?
@@ -671,10 +671,10 @@
             Let's discuss how we can consolidate your business data and create powerful analytics solutions for your organization.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/quick-assessment" class="bg-white text-amber-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            <a href="/quick-assessment" class="bg-white  border-black/20 text-amber-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                 Start Your Project
             </a>
-            <a href="/services" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-amber-600 transition-colors">
+            <a href="/services" class="border-2 border-black/20 text-black/70 px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-amber-600 transition-colors">
                 Explore Our Services
             </a>
         </div>

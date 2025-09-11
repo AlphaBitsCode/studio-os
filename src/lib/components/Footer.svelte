@@ -34,7 +34,7 @@
 				<h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Company</h3>
 				<ul class="space-y-3">
 					<li><a href="/about" class="text-gray-700 hover:text-medium-teal transition-colors">About Us</a></li>
-					<li><a href="/blog" class="text-gray-700 hover:text-medium-teal transition-colors">Tech Blog</a></li>
+					<li><a href="/tech-hotpot" class="text-gray-700 hover:text-medium-teal transition-colors">Tech Hotpot</a></li>
 					<li><a href="/contact" class="text-gray-700 hover:text-medium-teal transition-colors">Contact Us</a></li>
 					<li><a href="/privacy-policy" class="text-gray-700 hover:text-medium-teal transition-colors">Privacy Policy</a></li>
 				</ul>

@@ -1,6 +1,25 @@
 <script>
     import CTA from '$lib/components/CTA.svelte';
-    import Hero from '$lib/components/Hero.svelte';
+    import ImageSlideshow from '$lib/components/ImageSlideshow.svelte';
+    import { onMount } from 'svelte';
+    
+    let mounted = false;
+    
+    // Office and teamwork images
+    const officeImages = [
+        '/office/office_1.jpg',
+        '/office/office_2.jpg',
+        '/office/office_3.jpg',
+        '/office/office_4.jpg',
+        '/office/teamwork_1.jpg',
+        '/office/teamwork_2.jpg',
+        '/office/teamwork_3.jpg',
+        '/office/teamwork_4.jpg'
+    ];
+    
+    onMount(() => {
+        mounted = true;
+    });
 </script>
 
 <svelte:head>
@@ -8,11 +27,144 @@
     <meta name="description" content="Learn about AlphaBits' mission to transform businesses through AI workflow automation, digital transformation, and expert technical leadership." />
 </svelte:head>
 
-<Hero 
-    title="About AlphaBits" 
-    subtitle="We're passionate about helping businesses harness the transformative power of AI and modern technology."
-    variant="about"
-/>
+<!-- Animated SVG Hero Section -->
+<section class="relative overflow-hidden bg-gradient-to-br from-cyan-400 via-blue-200 min-h-[600px] flex items-center justify-center">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0">
+        <svg class="w-full h-full" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+            <!-- Floating Geometric Shapes -->
+            <g class="{mounted ? 'animate-float-slow' : ''}">
+                <circle cx="100" cy="100" r="30" fill="rgba(255,255,255,0.3)" />
+                <rect x="1000" y="80" width="40" height="40" fill="rgba(255,255,255,0.08)" rx="8" />
+                <polygon points="200,500 230,450 260,500" fill="rgba(255,255,255,0.06)" />
+            </g>
+            
+            <!-- Pulsing Dots -->
+            <g class="{mounted ? 'animate-pulse-gentle' : ''}">
+                <circle cx="300" cy="150" r="8" fill="rgba(255,255,255,0.3)" />
+                <circle cx="900" cy="200" r="6" fill="rgba(255,255,255,0.25)" />
+                <circle cx="150" cy="400" r="10" fill="rgba(255,255,255,0.2)" />
+                <circle cx="1050" cy="450" r="7" fill="rgba(255,255,255,0.28)" />
+            </g>
+            
+            <!-- Flowing Lines -->
+            <g class="{mounted ? 'animate-flow' : ''}" stroke="rgba(255,255,255,0.3)" stroke-width="4" fill="none">
+                <path d="M0,300 Q300,250 600,300 T1200,300" />
+                <path d="M0,350 Q400,300 800,350 T1200,350" />
+            </g>
+            
+            <!-- Tech-inspired Grid Pattern -->
+            <defs>
+                <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+                    <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+            
+            <!-- Glowing Orbs -->
+            <defs>
+                <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" style="stop-color:rgba(255,255,255,0.5);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgba(255,255,255,0.1);stop-opacity:0" />
+                </radialGradient>
+                <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" style="stop-color:rgba(99,102,241,0.4);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgba(99,102,241,0);stop-opacity:0" />
+                </radialGradient>
+            </defs>
+            
+            <circle cx="800" cy="120" r="80" fill="url(#glow1)" class="{mounted ? 'animate-glow' : ''}" />
+            <circle cx="400" cy="480" r="60" fill="url(#glow2)" class="{mounted ? 'animate-glow-delayed' : ''}" />
+        </svg>
+    </div>
+    
+    <!-- Content -->
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+        <h1 class="text-5xl md:text-7xl font-bold text-black/90 mb-6 {mounted ? 'animate-fade-in-up' : 'opacity-0'}">
+            About AlphaBits
+        </h1>
+        <p class="text-xl md:text-2xl text-black/80 leading-relaxed {mounted ? 'animate-fade-in-up-delayed' : 'opacity-0'}">
+            We're passionate about helping businesses harness the transformative power of AI and modern technology.
+        </p>
+        
+        <!-- Floating Action Elements -->
+        <div class="mt-8 flex justify-center space-x-4 {mounted ? 'animate-fade-in-up-more-delayed' : 'opacity-0'}">
+            <div class="w-3 h-3 bg-white/40 rounded-full animate-bounce" style="animation-delay: 0s;"></div>
+            <div class="w-3 h-3 bg-white/40 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
+            <div class="w-3 h-3 bg-white/40 rounded-full animate-bounce" style="animation-delay: 0.4s;"></div>
+        </div>
+    </div>
+    
+    <!-- Bottom Gradient Fade -->
+    <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent"></div>
+</section>
+
+<style>
+    @keyframes float-slow {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    @keyframes pulse-gentle {
+        0%, 100% { opacity: 0.3; transform: scale(1); }
+        50% { opacity: 0.6; transform: scale(1.1); }
+    }
+    
+    @keyframes flow {
+        0% { transform: translateX(-100px); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: translateX(100px); opacity: 0; }
+    }
+    
+    @keyframes glow {
+        0%, 100% { opacity: 0.3; transform: scale(1); }
+        50% { opacity: 0.6; transform: scale(1.05); }
+    }
+    
+    @keyframes fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .animate-float-slow {
+        animation: float-slow 6s ease-in-out infinite;
+    }
+    
+    .animate-pulse-gentle {
+        animation: pulse-gentle 3s ease-in-out infinite;
+    }
+    
+    .animate-flow {
+        animation: flow 8s linear infinite;
+    }
+    
+    .animate-glow {
+        animation: glow 4s ease-in-out infinite;
+    }
+    
+    .animate-glow-delayed {
+        animation: glow 4s ease-in-out infinite;
+        animation-delay: 2s;
+    }
+    
+    .animate-fade-in-up {
+        animation: fade-in-up 1s ease-out forwards;
+    }
+    
+    .animate-fade-in-up-delayed {
+        animation: fade-in-up 1s ease-out 0.3s forwards;
+    }
+    
+    .animate-fade-in-up-more-delayed {
+        animation: fade-in-up 1s ease-out 0.6s forwards;
+    }
+</style>
 
 <!-- Mission & Vision -->
 <section class="py-16">
@@ -119,6 +271,161 @@
             <div class="bg-white p-6 rounded-lg shadow-lg text-center">
                 <h3 class="text-lg font-semibold mb-2">Cloud Infrastructure</h3>
                 <p class="text-sm text-gray-600">Modern cloud architectures, network configuration, and scalable systems</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Office Gallery -->
+<section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Workspace</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Take a look inside our collaborative environment where innovation happens every day.
+            </p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto">
+            <ImageSlideshow 
+                images={officeImages}
+                size="large"
+                interval={4000}
+                alt="AlphaBits office and teamwork"
+            />
+        </div>
+    </div>
+</section>
+
+<!-- Contact Information -->
+<section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Contact Information</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Get in touch with us for consultations, partnerships, or any inquiries about our services.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-12">
+            <!-- Company Details -->
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-semibold mb-6 text-gray-800">Company Details</h3>
+                
+                <div class="space-y-6">
+                    <!-- Company Name -->
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold mb-1 text-gray-800">Legal Name</h4>
+                            <p class="text-gray-600 font-medium">ALPHA BITS TECHNOLOGY INNOVATION CONSULTING COMPANY LIMITED</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Address -->
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold mb-1 text-gray-800">Address</h4>
+                            <p class="text-gray-600">Lầu 2, 68 Nguyễn Huệ</p>
+                            <p class="text-gray-600">Phường Bến Nghé, Quận 1</p>
+                            <p class="text-gray-600">Thành phố Hồ Chí Minh, Việt Nam</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Tax ID -->
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold mb-1 text-gray-800">Tax ID</h4>
+                            <a 
+                                href="https://masothue.com/0317647935-cong-ty-tnhh-tu-van-cong-nghe-sang-tao-alpha-bits" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="text-purple-600 hover:text-purple-700 hover:underline transition-colors"
+                            >
+                                0317647935
+                            </a>
+                            <p class="text-sm text-gray-500 mt-1">Click to verify registration</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Methods -->
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-semibold mb-6 text-gray-800">Get In Touch</h3>
+                
+                <div class="space-y-6">
+                    <!-- Phone -->
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold mb-1 text-gray-800">Phone</h4>
+                            <p class="text-gray-600 font-medium">+84 868 000 317</p>
+                            <p class="text-sm text-gray-500">Available on WhatsApp & Telegram</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold mb-1 text-gray-800">Email</h4>
+                            <p class="text-gray-600">contact@alphabits.com</p>
+                            <p class="text-sm text-gray-500">We typically respond within 24 hours</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Bank Account -->
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold mb-1 text-gray-800">Bank Account</h4>
+                            <p class="text-gray-600">BIDV Account: <span class="font-mono">1471388638</span></p>
+                            <p class="text-sm text-gray-500">For business transactions</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Business Hours -->
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold mb-1 text-gray-800">Business Hours</h4>
+                            <p class="text-gray-600">Monday - Friday: 9 AM - 6 PM</p>
+                            <p class="text-sm text-gray-500">GMT+7 (Ho Chi Minh City Time)</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
