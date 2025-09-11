@@ -222,7 +222,7 @@
                     </svg>
                 </div>
                 <h3 class="text-xl font-semibold mb-3">Client-Centric</h3>
-                <p class="text-gray-600 dark:text-gray-300">
+                <p class="text-gray-600">
                     Every solution is tailored to your specific needs, challenges, and goals. We don't believe in one-size-fits-all approaches.
                 </p>
             </div>
@@ -234,7 +234,7 @@
                     </svg>
                 </div>
                 <h3 class="text-xl font-semibold mb-3">Results-Driven</h3>
-                <p class="text-gray-600 dark:text-gray-300">
+                <p class="text-gray-600">
                     We measure success by the tangible impact our solutions have on your business operations, efficiency, and growth.
                 </p>
             </div>
@@ -300,12 +300,6 @@
 <!-- Contact Information -->
 <section class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Contact Information</h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Get in touch with us for consultations, partnerships, or any inquiries about our services.
-            </p>
-        </div>
         
         <div class="grid md:grid-cols-2 gap-12">
             <!-- Company Details -->
