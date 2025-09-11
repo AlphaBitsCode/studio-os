@@ -1,14 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Bot, Zap, Brain, Workflow, ArrowRight, ExternalLink } from 'lucide-svelte';
+	import { Bot, Zap, Brain, Workflow, ArrowRight, ExternalLink, Server, Code, Globe, Shield, Cloud, Terminal, Cpu, Database } from 'lucide-svelte';
 
 	let mounted = false;
+	let selectedCategory = 'All';
+	let searchTerm = '';
 
 	onMount(() => {
 		mounted = true;
 	});
 
-	const aiTools = [
+	// JSON array of tools for easy management
+	const toolsData = [
 		{
 			name: "ChatGPT",
 			category: "Conversational AI",
@@ -16,7 +19,7 @@
 			features: ["Natural language processing", "Code generation", "Content writing", "Data analysis"],
 			price: "Free tier available",
 			url: "https://chat.openai.com",
-			icon: Bot
+			icon: "Bot"
 		},
 		{
 			name: "Claude",
@@ -25,7 +28,25 @@
 			features: ["Document analysis", "Code review", "Research assistance", "Creative writing"],
 			price: "Free tier available",
 			url: "https://claude.ai",
-			icon: Brain
+			icon: "Brain"
+		},
+		{
+			name: "Claude Desktop",
+			category: "AI Assistant",
+			description: "Desktop application for Claude with enhanced features and local file access.",
+			features: ["Local file integration", "Desktop notifications", "Offline capabilities", "Enhanced privacy"],
+			price: "Free",
+			url: "https://claude.ai/desktop",
+			icon: "Brain"
+		},
+		{
+			name: "Claude Code",
+			category: "Development",
+			description: "Claude's specialized coding interface for developers and programmers.",
+			features: ["Code generation", "Debugging assistance", "Architecture planning", "Code review"],
+			price: "Free tier available",
+			url: "https://claude.ai/code",
+			icon: "Code"
 		},
 		{
 			name: "Zapier",
@@ -34,16 +55,34 @@
 			features: ["App integrations", "Automated workflows", "Trigger-based actions", "Multi-step automation"],
 			price: "Free tier available",
 			url: "https://zapier.com",
-			icon: Workflow
+			icon: "Workflow"
+		},
+		{
+			name: "n8n",
+			category: "Workflow Automation",
+			description: "Open-source workflow automation tool with visual editor and self-hosting options.",
+			features: ["Visual workflow builder", "Self-hosted option", "Custom nodes", "API integrations"],
+			price: "Free (open source)",
+			url: "https://n8n.io",
+			icon: "Workflow"
 		},
 		{
 			name: "Make (Integromat)",
-			category: "Automation Platform",
+			category: "Workflow Automation",
 			description: "Visual platform for creating, building and automating anything.",
 			features: ["Visual automation builder", "Advanced logic", "Data transformation", "Real-time monitoring"],
 			price: "Free tier available",
 			url: "https://make.com",
-			icon: Zap
+			icon: "Zap"
+		},
+		{
+			name: "Flowise",
+			category: "AI Development",
+			description: "Open-source low-code tool for building customized LLM orchestration flows and AI agents.",
+			features: ["Visual LLM builder", "Custom AI agents", "API integration", "Self-hosted"],
+			price: "Free (open source)",
+			url: "https://flowiseai.com",
+			icon: "Bot"
 		},
 		{
 			name: "Notion AI",
@@ -52,7 +91,7 @@
 			features: ["Content generation", "Summarization", "Translation", "Brainstorming"],
 			price: "Paid add-on",
 			url: "https://notion.so",
-			icon: Bot
+			icon: "Bot"
 		},
 		{
 			name: "GitHub Copilot",
@@ -61,11 +100,144 @@
 			features: ["Code completion", "Function generation", "Documentation", "Test writing"],
 			price: "Subscription required",
 			url: "https://github.com/features/copilot",
-			icon: Brain
+			icon: "Brain"
+		},
+		{
+			name: "CasaOS",
+			category: "Infrastructure",
+			description: "Simple, elegant home cloud system with Docker container management.",
+			features: ["Docker management", "Web interface", "App store", "File management"],
+			price: "Free (open source)",
+			url: "https://casaos.io",
+			icon: "Server"
+		},
+		{
+			name: "PM2",
+			category: "Deployment",
+			description: "Advanced process manager for Node.js applications with built-in load balancer.",
+			features: ["Process management", "Load balancing", "Monitoring", "Auto-restart"],
+			price: "Free (open source)",
+			url: "https://pm2.keymetrics.io",
+			icon: "Terminal"
+		},
+		{
+			name: "Cloudflare",
+			category: "Networking",
+			description: "Global CDN, DNS, and security services for websites and applications.",
+			features: ["CDN", "DNS management", "DDoS protection", "SSL certificates"],
+			price: "Free tier available",
+			url: "https://cloudflare.com",
+			icon: "Cloud"
+		},
+		{
+			name: "Cloudflare Tunnel",
+			category: "Networking",
+			description: "Secure way to connect resources to Cloudflare without a publicly routable IP.",
+			features: ["Zero-trust access", "No open ports", "Automatic failover", "Traffic encryption"],
+			price: "Free tier available",
+			url: "https://developers.cloudflare.com/cloudflare-one/connections/connect-apps",
+			icon: "Shield"
+		},
+		{
+			name: "ZeroTier",
+			category: "Networking",
+			description: "Global area networking solution that creates secure virtual networks.",
+			features: ["Virtual networking", "P2P connections", "Cross-platform", "Network management"],
+			price: "Free tier available",
+			url: "https://zerotier.com",
+			icon: "Globe"
+		},
+		{
+			name: "Netlify",
+			category: "Deployment",
+			description: "Platform for deploying and hosting modern web applications with continuous deployment.",
+			features: ["Git integration", "Continuous deployment", "Edge functions", "Form handling"],
+			price: "Free tier available",
+			url: "https://netlify.com",
+			icon: "Globe"
+		},
+		{
+			name: "Lovable.dev",
+			category: "Development Platform",
+			description: "AI-powered full-stack development platform for building applications quickly.",
+			features: ["AI code generation", "Full-stack development", "Rapid prototyping", "Deployment automation"],
+			price: "Subscription required",
+			url: "https://lovable.dev",
+			icon: "Code"
+		},
+		{
+			name: "Replit",
+			category: "Development Platform",
+			description: "Online IDE and development platform with collaborative features and AI assistance.",
+			features: ["Online IDE", "Collaboration", "AI assistance", "Instant deployment"],
+			price: "Free tier available",
+			url: "https://replit.com",
+			icon: "Code"
+		},
+		{
+			name: "Trae IDE",
+			category: "Development Tools",
+			description: "AI-powered IDE with advanced code intelligence and automation features.",
+			features: ["AI code assistance", "Smart refactoring", "Automated testing", "Project management"],
+			price: "Subscription required",
+			url: "https://trae.ai",
+			icon: "Code"
+		},
+		{
+			name: "Cursor IDE",
+			category: "Development Tools",
+			description: "AI-first code editor built for pair programming with AI.",
+			features: ["AI pair programming", "Code generation", "Natural language editing", "Codebase chat"],
+			price: "Free tier available",
+			url: "https://cursor.sh",
+			icon: "Code"
+		},
+		{
+			name: "Windsurf IDE",
+			category: "Development Tools",
+			description: "Modern IDE with AI-powered development features and collaborative tools.",
+			features: ["AI assistance", "Real-time collaboration", "Smart debugging", "Code analysis"],
+			price: "Free tier available",
+			url: "https://windsurf.ai",
+			icon: "Code"
+		},
+		{
+			name: "OpenCode",
+			category: "Development Tools",
+			description: "Open-source client with Model Context Protocol (MCP) support for AI development.",
+			features: ["MCP support", "Open source", "AI model integration", "Extensible architecture"],
+			price: "Free (open source)",
+			url: "https://github.com/opencode-ai",
+			icon: "Code"
 		}
 	];
 
-	const categories = [...new Set(aiTools.map(tool => tool.category))];
+	// Icon mapping
+	const iconMap: Record<string, any> = {
+		Bot,
+		Brain,
+		Workflow,
+		Zap,
+		Code,
+		Server,
+		Terminal,
+		Cloud,
+		Shield,
+		Globe,
+		Cpu,
+		Database
+	};
+
+	// Reactive filtering
+	$: filteredTools = toolsData.filter(tool => {
+		const matchesCategory = selectedCategory === 'All' || tool.category === selectedCategory;
+		const matchesSearch = tool.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+							  tool.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+							  tool.category.toLowerCase().includes(searchTerm.toLowerCase());
+		return matchesCategory && matchesSearch;
+	});
+
+	$: categories = ['All', ...new Set(toolsData.map(tool => tool.category))];
 </script>
 
 <svelte:head>
@@ -107,23 +279,57 @@
 	</div>
 </section>
 
+<!-- Search and Filter Section -->
+<section class="py-12 bg-gray-50">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+			<!-- Search Bar -->
+			<div class="w-full md:w-1/2">
+				<input 
+					bind:value={searchTerm}
+					type="text" 
+					placeholder="Search tools, categories, or features..."
+					class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+				/>
+			</div>
+			
+			<!-- Category Filter -->
+			<div class="flex flex-wrap gap-2">
+				{#each categories as category}
+					<button 
+						on:click={() => selectedCategory = category}
+						class="px-4 py-2 rounded-lg font-medium transition-colors {selectedCategory === category ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-blue-50'}"
+					>
+						{category}
+					</button>
+				{/each}
+			</div>
+		</div>
+		
+		<!-- Results Count -->
+		<div class="mt-4 text-center">
+			<p class="text-gray-600">Showing {filteredTools.length} of {toolsData.length} tools</p>
+		</div>
+	</div>
+</section>
+
 <!-- Tools Grid Section -->
 <section id="tools" class="py-20 bg-white">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="text-center mb-16">
-			<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Featured AI Tools</h2>
+			<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">AI Tools & Development Resources</h2>
 			<p class="text-lg text-gray-600 max-w-3xl mx-auto">
-				Handpicked selection of AI tools that can transform your business operations and boost productivity.
+				Comprehensive collection of AI tools, development platforms, and infrastructure solutions to boost your productivity.
 			</p>
 		</div>
 
 		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-			{#each aiTools as tool}
+			{#each filteredTools as tool}
 				<div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
 					<div class="flex items-start justify-between mb-4">
 						<div class="flex items-center">
 							<div class="p-3 bg-blue-100 rounded-lg mr-4">
-								<svelte:component this={tool.icon} class="w-6 h-6 text-blue-600" />
+								<svelte:component this={iconMap[tool.icon]} class="w-6 h-6 text-blue-600" />
 							</div>
 							<div>
 								<h3 class="text-xl font-semibold text-gray-900 mb-1">{tool.name}</h3>
@@ -159,36 +365,21 @@
 				</div>
 			{/each}
 		</div>
+		
+		{#if filteredTools.length === 0}
+			<div class="text-center py-12">
+				<p class="text-gray-500 text-lg">No tools found matching your criteria.</p>
+				<button 
+					on:click={() => { selectedCategory = 'All'; searchTerm = ''; }}
+					class="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+				>
+					Clear Filters
+				</button>
+			</div>
+		{/if}
 	</div>
 </section>
 
-<!-- Categories Section -->
-<section class="py-20 bg-gray-50">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="text-center mb-16">
-			<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Tool Categories</h2>
-			<p class="text-lg text-gray-600 max-w-3xl mx-auto">
-				Explore AI tools organized by category to find the perfect solution for your specific needs.
-			</p>
-		</div>
-
-		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-			{#each categories as category}
-				<div class="bg-white rounded-lg p-6  hover:transition-shadow">
-					<h3 class="text-lg font-semibold text-gray-900 mb-2">{category}</h3>
-					<p class="text-gray-600 text-sm mb-4">
-						{aiTools.filter(tool => tool.category === category).length} tools available
-					</p>
-					<div class="flex flex-wrap gap-2">
-						{#each aiTools.filter(tool => tool.category === category) as tool}
-							<span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">{tool.name}</span>
-						{/each}
-					</div>
-				</div>
-			{/each}
-		</div>
-	</div>
-</section>
 
 <!-- CTA Section -->
 <section class="py-20 bg-gradient-to-r from-blue-600 to-purple-600">

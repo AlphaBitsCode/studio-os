@@ -269,133 +269,89 @@
     </div>
 </section>
 
-<!-- Engagement Models -->
+<!-- Engagement Models Overview -->
 <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Engagement Models</h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Flexible engagement options to match your needs and budget.
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Flexible Engagement Models</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+                We offer multiple engagement approaches to match your specific needs, timeline, and budget. From strategic advisory to hands-on development teams.
             </p>
         </div>
         
-        <div class="grid md:grid-cols-3 gap-8">
-            <!-- Strategic Advisory -->
-            <div class="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-200 hover:border-green-500 transition-colors">
-                <div class="text-center mb-6">
-                    <h3 class="text-xl font-bold mb-2">Strategic Advisory</h3>
-                    <div class="text-3xl font-bold text-green-600 mb-2">$5K-10K</div>
-                    <div class="text-sm text-gray-600">per month</div>
-                </div>
-                <ul class="space-y-3 mb-6">
-                    <li class="flex items-center space-x-2">
-                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-sm">Monthly strategic planning sessions</span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-sm">Technology roadmap development</span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-sm">Executive reporting and updates</span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-sm">Email and phone support</span>
-                    </li>
-                </ul>
-                <div class="text-center">
-                    <span class="text-sm text-gray-600">Best for: Strategic guidance and planning</span>
-                </div>
-            </div>
-            
-            <!-- Hands-on Leadership -->
-            <div class="bg-white p-6 rounded-lg shadow-lg border-2 border-blue-500 hover:border-blue-600 transition-colors relative">
-                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-medium">Most Popular</span>
-                </div>
-                <div class="text-center mb-6">
-                    <h3 class="text-xl font-bold mb-2">Hands-on Leadership</h3>
-                    <div class="text-3xl font-bold text-blue-600 mb-2">$15K-25K</div>
-                    <div class="text-sm text-gray-600">per month</div>
-                </div>
-                <ul class="space-y-3 mb-6">
-                    <li class="flex items-center space-x-2">
-                        <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-sm">Direct team management and mentoring</span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-sm">Architecture and code reviews</span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-sm">Project planning and execution</span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-sm">Regular on-site or remote presence</span>
-                    </li>
-                </ul>
-                <div class="text-center">
-                    <span class="text-sm text-gray-600">Best for: Active technical leadership</span>
-                </div>
-            </div>
-            
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- Project-based -->
-            <div class="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-200 hover:border-teal-500 transition-colors">
-                <div class="text-center mb-6">
-                    <h3 class="text-xl font-bold mb-2">Project-based</h3>
-                    <div class="text-3xl font-bold text-teal-600 mb-2">Custom</div>
-                    <div class="text-sm text-gray-600">pricing</div>
+            <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                    </svg>
                 </div>
-                <ul class="space-y-3 mb-6">
-                    <li class="flex items-center space-x-2">
-                        <svg class="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-sm">Technology assessments</span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <svg class="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-sm">Infrastructure modernization</span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <svg class="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-sm">Team training and development</span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <svg class="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-sm">Specific deliverable-focused work</span>
-                    </li>
+                <h3 class="text-lg font-semibold mb-2">Project-based</h3>
+                <p class="text-sm text-gray-600 mb-4">Fixed-scope projects with defined deliverables and timelines.</p>
+                <ul class="text-xs text-gray-500 space-y-1">
+                    <li>• Technology assessments</li>
+                    <li>• Infrastructure modernization</li>
+                    <li>• Team training</li>
                 </ul>
-                <div class="text-center">
-                    <span class="text-sm text-gray-600">Best for: Specific initiatives and assessments</span>
-                </div>
             </div>
+            
+            <!-- Strategic Advisory -->
+            <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Strategic Advisory</h3>
+                <p class="text-sm text-gray-600 mb-4">Ongoing strategic guidance and technology leadership.</p>
+                <ul class="text-xs text-gray-500 space-y-1">
+                    <li>• Technology roadmaps</li>
+                    <li>• Executive reporting</li>
+                    <li>• Strategic planning</li>
+                </ul>
+            </div>
+            
+            <!-- Project + Rev Share -->
+            <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
+                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Project + Rev Share</h3>
+                <p class="text-sm text-gray-600 mb-4">Partnership model with shared success and ongoing revenue.</p>
+                <ul class="text-xs text-gray-500 space-y-1">
+                    <li>• Reduced upfront costs</li>
+                    <li>• Shared success model</li>
+                    <li>• Long-term partnership</li>
+                </ul>
+            </div>
+            
+            <!-- B.O.T Offshore Team -->
+            <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
+                <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">B.O.T Offshore Team</h3>
+                <p class="text-sm text-gray-600 mb-4">Build-Operate-Transfer model with dedicated Vietnam-based team.</p>
+                <ul class="text-xs text-gray-500 space-y-1">
+                    <li>• Dedicated offshore team</li>
+                    <li>• Cost-effective scaling</li>
+                    <li>• Knowledge transfer</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="/pricing" class="inline-flex items-center bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                View Detailed Pricing & Models
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
         </div>
     </div>
 </section>
