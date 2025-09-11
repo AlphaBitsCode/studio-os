@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import Logo from './Logo.svelte';
 	import * as NavigationMenu from './ui/navigation-menu/index.js';
+	import { BookOpen, Zap } from 'lucide-svelte';
 
 	let mobileMenuOpen = $state(false);
 
@@ -82,6 +83,21 @@
 		}
 	];
 
+	const caseStudyItems = [
+		{
+			title: "Coffee Chain Digital Transformation",
+			href: "/case-studies/coffee-chain-transformation",
+			description: "Unifying 200+ outlets by consolidating 5 POS systems into BigQuery with Looker Studio analytics.",
+			thumbnail: "/case-studies/coffee-background.jpg"
+		},
+		{
+			title: "SENCAR Smoke Detection AIoT",
+			href: "/case-studies/sencar-smoke-detection",
+			description: "AI-powered smoke detection system for rental car fleets with 15-30 second accuracy.",
+			thumbnail: "/partners/sencar_slide1.jpg"
+		}
+	];
+
 	function toggleMobileMenu() {
 		mobileMenuOpen = !mobileMenuOpen;
 	}
@@ -113,40 +129,28 @@
 								{/snippet}
 							</NavigationMenu.Link>
 						</NavigationMenu.Item>
-						
-						<!-- AI Workflow -->
-						<NavigationMenu.Item>
-							<NavigationMenu.Link href="/services/ai-workflow-automation">
-								{#snippet child()}
-									<a href="/services/ai-workflow-automation" class="text-sm font-medium text-gray-700 hover:text-medium-teal transition-colors whitespace-nowrap">AI Workflow</a>
-								{/snippet}
-							</NavigationMenu.Link>
-						</NavigationMenu.Item>
 
-						<!-- AI Workflow Dropdown (keeping the dropdown functionality) -->
+						<!-- AI Workflow with Dropdown -->
 						<NavigationMenu.Item>
-							<NavigationMenu.Trigger class="text-sm font-medium text-gray-700 hover:text-medium-teal transition-colors whitespace-nowrap flex items-center">
-							<span class="sr-only">AI Workflow Menu</span>
-							<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-							</svg>
-						</NavigationMenu.Trigger>
+							<NavigationMenu.Trigger class="text-sm font-medium text-gray-700 hover:text-medium-teal transition-colors whitespace-nowrap">
+								<a href="/services/ai-workflow-automation" class="hover:text-medium-teal transition-colors">AI Workflow</a>
+							</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
 								<div class="grid w-[500px] gap-3 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
 									{#each aiWorkflowItems as item}
 										<NavigationMenu.Link href={item.href}>
 											{#snippet child()}
 												<a
-											href={item.href}
-											class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 hover:text-medium-teal focus:bg-gray-100 focus:text-medium-teal"
-										>
-											<div class="text-sm font-medium leading-none text-gray-900">
-												{item.title}
-											</div>
-											<p class="line-clamp-2 text-sm leading-snug text-gray-600">
-												{item.description}
-											</p>
-										</a>
+										href={item.href}
+										class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 hover:text-medium-teal focus:bg-gray-100 focus:text-medium-teal"
+									>
+										<div class="text-sm font-medium leading-none text-gray-900">
+											{item.title}
+										</div>
+										<p class="line-clamp-2 text-sm leading-snug text-gray-600">
+											{item.description}
+										</p>
+									</a>
 											{/snippet}
 										</NavigationMenu.Link>
 									{/each}
@@ -154,39 +158,27 @@
 							</NavigationMenu.Content>
 						</NavigationMenu.Item>
 
-						<!-- Services -->
+						<!-- Services with Dropdown -->
 						<NavigationMenu.Item>
-							<NavigationMenu.Link href="/services">
-								{#snippet child()}
-									<a href="/services" class="text-sm font-medium text-gray-700 hover:text-medium-teal transition-colors whitespace-nowrap">Services</a>
-								{/snippet}
-							</NavigationMenu.Link>
-						</NavigationMenu.Item>
-
-						<!-- Services Dropdown (keeping the dropdown functionality) -->
-						<NavigationMenu.Item>
-							<NavigationMenu.Trigger class="text-sm font-medium text-gray-700 hover:text-medium-teal transition-colors whitespace-nowrap flex items-center">
-							<span class="sr-only">Services Menu</span>
-							<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-							</svg>
-						</NavigationMenu.Trigger>
+							<NavigationMenu.Trigger class="text-sm font-medium text-gray-700 hover:text-medium-teal transition-colors whitespace-nowrap">
+								<a href="/services" class="hover:text-medium-teal transition-colors">Services</a>
+							</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
 								<div class="grid w-[600px] gap-3 p-4 md:grid-cols-2 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
 									{#each servicesItems as service}
 										<NavigationMenu.Link href={service.href}>
 											{#snippet child()}
 												<a
-											href={service.href}
-											class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 hover:text-medium-teal focus:bg-gray-100 focus:text-medium-teal"
-										>
-											<div class="text-sm font-medium leading-none text-gray-900">
-												{service.title}
-											</div>
-											<p class="line-clamp-2 text-sm leading-snug text-gray-600">
-												{service.description}
-											</p>
-										</a>
+										href={service.href}
+										class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 hover:text-medium-teal focus:bg-gray-100 focus:text-medium-teal"
+									>
+										<div class="text-sm font-medium leading-none text-gray-900">
+											{service.title}
+										</div>
+										<p class="line-clamp-2 text-sm leading-snug text-gray-600">
+											{service.description}
+										</p>
+									</a>
 											{/snippet}
 										</NavigationMenu.Link>
 									{/each}
@@ -194,39 +186,64 @@
 							</NavigationMenu.Content>
 						</NavigationMenu.Item>
 
-						<!-- Free Resources -->
+						<!-- Case Studies with Thumbnail Preview -->
 						<NavigationMenu.Item>
-							<NavigationMenu.Link href="/free-materials">
-								{#snippet child()}
-									<a href="/free-materials" class="text-sm font-medium text-gray-700 hover:text-medium-teal transition-colors whitespace-nowrap">Learning Materials</a>
-								{/snippet}
-							</NavigationMenu.Link>
+							<NavigationMenu.Trigger class="text-sm font-medium text-gray-700 hover:text-medium-teal transition-colors whitespace-nowrap">
+								Case Studies
+							</NavigationMenu.Trigger>
+							<NavigationMenu.Content>
+								<div class="grid w-[600px] gap-4 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
+									{#each caseStudyItems as caseStudy}
+										<NavigationMenu.Link href={caseStudy.href}>
+											{#snippet child()}
+												<a
+													href={caseStudy.href}
+													class="flex items-start space-x-4 select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 hover:text-medium-teal focus:bg-gray-100 focus:text-medium-teal"
+												>
+													<div class="w-20 h-16 rounded-md overflow-hidden flex-shrink-0">
+														<img 
+															src={caseStudy.thumbnail} 
+															alt={caseStudy.title}
+															class="w-full h-full object-cover"
+														/>
+													</div>
+													<div class="flex-1 space-y-1">
+														<div class="text-sm font-medium leading-none text-gray-900">
+															{caseStudy.title}
+														</div>
+														<p class="line-clamp-2 text-sm leading-snug text-gray-600">
+															{caseStudy.description}
+														</p>
+													</div>
+												</a>
+											{/snippet}
+										</NavigationMenu.Link>
+									{/each}
+								</div>
+							</NavigationMenu.Content>
 						</NavigationMenu.Item>
 
-						<!-- Free Materials Dropdown (keeping the dropdown functionality) -->
+						<!-- Learning Materials Icon -->
 						<NavigationMenu.Item>
-							<NavigationMenu.Trigger class="text-sm font-medium text-gray-700 hover:text-medium-teal transition-colors whitespace-nowrap flex items-center">
-							<span class="sr-only">Free Materials Menu</span>
-							<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-							</svg>
-						</NavigationMenu.Trigger>
+							<NavigationMenu.Trigger class="p-2 rounded-md text-gray-700 hover:text-medium-teal hover:bg-gray-100 transition-colors" title="Learning Materials">
+								<BookOpen class="w-5 h-5" />
+							</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
-								<div class="grid w-[500px] gap-3 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
+								<div class="grid w-[400px] gap-3 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
 									{#each freeResourcesItems as resource}
 										<NavigationMenu.Link href={resource.href}>
 											{#snippet child()}
 												<a
-											href={resource.href}
-											class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 hover:text-medium-teal focus:bg-gray-100 focus:text-medium-teal"
-										>
-											<div class="text-sm font-medium leading-none text-gray-900">
-												{resource.title}
-											</div>
-											<p class="line-clamp-2 text-sm leading-snug text-gray-600">
-												{resource.description}
-											</p>
-										</a>
+										href={resource.href}
+										class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 hover:text-medium-teal focus:bg-gray-100 focus:text-medium-teal"
+									>
+										<div class="text-sm font-medium leading-none text-gray-900">
+											{resource.title}
+										</div>
+										<p class="line-clamp-2 text-sm leading-snug text-gray-600">
+											{resource.description}
+										</p>
+									</a>
 											{/snippet}
 										</NavigationMenu.Link>
 									{/each}
@@ -234,11 +251,34 @@
 							</NavigationMenu.Content>
 						</NavigationMenu.Item>
 
-						<!-- Tech Hotpot -->
+						<!-- Tech Hotpot Icon -->
 						<NavigationMenu.Item>
 							<NavigationMenu.Link href="/tech-hotpot">
 								{#snippet child()}
-									<a href="/tech-hotpot" class="text-sm font-medium text-gray-700 hover:text-medium-teal transition-colors whitespace-nowrap">Tech Hotpot</a>
+									<a href="/tech-hotpot" class="p-2 rounded-md text-gray-700 hover:text-medium-teal hover:bg-gray-100 transition-colors inline-flex items-center justify-center" title="Tech Hotpot">
+										<!-- Custom Tech Hotpot Icon with Steam Animation -->
+										<div class="relative w-5 h-5">
+											<svg viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+												<!-- Pot/Bowl -->
+												<path d="M4 10c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v6c0 2.2-1.8 4-4 4H8c-2.2 0-4-1.8-4-4v-6z" fill="#6B7280"/>
+												<!-- Tech Circuit Pattern -->
+												<circle cx="8" cy="13" r="1" fill="#10B981"/>
+												<circle cx="12" cy="15" r="1" fill="#3B82F6"/>
+												<circle cx="16" cy="13" r="1" fill="#F59E0B"/>
+												<path d="M8 13h4m0 0h4" stroke="#9CA3AF" stroke-width="0.5"/>
+											</svg>
+											<!-- Animated Steam -->
+											<div class="absolute -top-1 left-1/2 transform -translate-x-1/2">
+												<div class="w-0.5 h-2 bg-gray-400 rounded-full opacity-60 animate-pulse" style="animation-delay: 0s;"></div>
+											</div>
+											<div class="absolute -top-1 left-1/2 transform -translate-x-1/2 -translate-x-1">
+												<div class="w-0.5 h-1.5 bg-gray-400 rounded-full opacity-40 animate-pulse" style="animation-delay: 0.3s;"></div>
+											</div>
+											<div class="absolute -top-1 left-1/2 transform -translate-x-1/2 translate-x-1">
+												<div class="w-0.5 h-1.5 bg-gray-400 rounded-full opacity-40 animate-pulse" style="animation-delay: 0.6s;"></div>
+											</div>
+										</div>
+									</a>
 								{/snippet}
 							</NavigationMenu.Link>
 						</NavigationMenu.Item>
@@ -290,7 +330,7 @@
 
 				<!-- AI Workflow -->
 				<div class="space-y-2">
-					<div class="px-3 py-2 text-xs font-bold text-gray-900 uppercase tracking-wider border-b border-gray-100">AI Workflow</div>
+					<a href="/services/ai-workflow-automation" class="block px-3 py-2 text-xs font-bold text-gray-900 uppercase tracking-wider border-b border-gray-100 hover:text-medium-teal transition-colors" onclick={closeMobileMenu}>AI Workflow</a>
 					{#each aiWorkflowItems as item}
 						<a href={item.href} class="block px-6 py-2 text-sm font-medium text-gray-600 hover:text-medium-teal hover:bg-gray-50 transition-colors rounded-md" onclick={closeMobileMenu}>
 							{item.title}
@@ -300,7 +340,7 @@
 
 				<!-- Services -->
 				<div class="space-y-2">
-					<div class="px-3 py-2 text-xs font-bold text-gray-900 uppercase tracking-wider border-b border-gray-100">Services</div>
+					<a href="/services" class="block px-3 py-2 text-xs font-bold text-gray-900 uppercase tracking-wider border-b border-gray-100 hover:text-medium-teal transition-colors" onclick={closeMobileMenu}>Services</a>
 					{#each servicesItems as service}
 						<a href={service.href} class="block px-6 py-2 text-sm font-medium text-gray-600 hover:text-medium-teal hover:bg-gray-50 transition-colors rounded-md" onclick={closeMobileMenu}>
 							{service.title}
@@ -308,9 +348,32 @@
 					{/each}
 				</div>
 
-				<!-- Free Materials -->
+				<!-- Case Studies -->
 				<div class="space-y-2">
-					<div class="px-3 py-2 text-xs font-bold text-gray-900 uppercase tracking-wider border-b border-gray-100">Learning Materials</div>
+					<div class="px-3 py-2 text-xs font-bold text-gray-900 uppercase tracking-wider border-b border-gray-100">Case Studies</div>
+					{#each caseStudyItems as caseStudy}
+						<a href={caseStudy.href} class="flex items-start space-x-3 px-3 py-3 text-sm font-medium text-gray-600 hover:text-medium-teal hover:bg-gray-50 transition-colors rounded-md" onclick={closeMobileMenu}>
+							<div class="w-12 h-10 rounded overflow-hidden flex-shrink-0">
+								<img 
+									src={caseStudy.thumbnail} 
+									alt={caseStudy.title}
+									class="w-full h-full object-cover"
+								/>
+							</div>
+							<div class="flex-1">
+								<div class="font-medium text-gray-900">{caseStudy.title}</div>
+								<div class="text-xs text-gray-500 mt-1 line-clamp-2">{caseStudy.description}</div>
+							</div>
+						</a>
+					{/each}
+				</div>
+
+				<!-- Learning Materials -->
+				<div class="space-y-2">
+					<div class="flex items-center px-3 py-2 text-xs font-bold text-gray-900 uppercase tracking-wider border-b border-gray-100">
+						<BookOpen class="w-4 h-4 mr-2" />
+						Learning Materials
+					</div>
 					{#each freeResourcesItems as resource}
 						<a href={resource.href} class="block px-6 py-2 text-sm font-medium text-gray-600 hover:text-medium-teal hover:bg-gray-50 transition-colors rounded-md" onclick={closeMobileMenu}>
 							{resource.title}
@@ -319,7 +382,28 @@
 				</div>
 
 				<!-- Tech Hotpot -->
-				<a href="/tech-hotpot" class="block px-3 py-3 rounded-md text-sm font-medium text-gray-700 hover:text-medium-teal hover:bg-gray-50 transition-colors" onclick={closeMobileMenu}>
+				<a href="/tech-hotpot" class="flex items-center px-3 py-3 rounded-md text-sm font-medium text-gray-700 hover:text-medium-teal hover:bg-gray-50 transition-colors" onclick={closeMobileMenu}>
+					<div class="relative w-5 h-5 mr-2">
+						<svg viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+							<!-- Pot/Bowl -->
+							<path d="M4 10c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v6c0 2.2-1.8 4-4 4H8c-2.2 0-4-1.8-4-4v-6z" fill="#6B7280"/>
+							<!-- Tech Circuit Pattern -->
+							<circle cx="8" cy="13" r="1" fill="#10B981"/>
+							<circle cx="12" cy="15" r="1" fill="#3B82F6"/>
+							<circle cx="16" cy="13" r="1" fill="#F59E0B"/>
+							<path d="M8 13h4m0 0h4" stroke="#9CA3AF" stroke-width="0.5"/>
+						</svg>
+						<!-- Animated Steam -->
+						<div class="absolute -top-1 left-1/2 transform -translate-x-1/2">
+							<div class="w-0.5 h-2 bg-gray-400 rounded-full opacity-60 animate-pulse" style="animation-delay: 0s;"></div>
+						</div>
+						<div class="absolute -top-1 left-1/2 transform -translate-x-1/2 -translate-x-1">
+							<div class="w-0.5 h-1.5 bg-gray-400 rounded-full opacity-40 animate-pulse" style="animation-delay: 0.3s;"></div>
+						</div>
+						<div class="absolute -top-1 left-1/2 transform -translate-x-1/2 translate-x-1">
+							<div class="w-0.5 h-1.5 bg-gray-400 rounded-full opacity-40 animate-pulse" style="animation-delay: 0.6s;"></div>
+						</div>
+					</div>
 					Tech Hotpot
 				</a>
 			</div>
