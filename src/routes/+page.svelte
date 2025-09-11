@@ -8,12 +8,69 @@
     import Separator from '$lib/components/ui/separator.svelte';
     import HeroWorkFlow from '$lib/components/HeroWorkFlow.svelte';
     import CTA from '$lib/components/CTA.svelte';
+    import SEOHead from '$lib/components/SEOHead.svelte';
+    
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "AlphaBits",
+        "url": "https://alphabits.team",
+        "logo": "https://alphabits.team/logos/logo_square.png",
+        "description": "AI Workflow Automation & Digital Transformation Solutions",
+        "foundingDate": "2020",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "VN"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "url": "https://alphabits.team/contact"
+        },
+        "sameAs": [
+            "https://www.linkedin.com/company/alphabits-team"
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "AlphaBits Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "AI Workflow Automation",
+                        "description": "Intelligent AI agents and IoT workflow automation across all departments"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Fractional CTO Services",
+                        "description": "Expert technical leadership and strategic guidance"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Data & AI Solutions",
+                        "description": "Big data analytics, AI infrastructure, and intelligent agents"
+                    }
+                }
+            ]
+        }
+    };
 </script>
 
-<svelte:head>
-    <title>AlphaBits - AI Workflow Automation & Digital Transformation</title>
-    <meta name="description" content="Transform your business with AI workflow automation, fractional CTO services, and comprehensive digital transformation solutions." />
-</svelte:head>
+<SEOHead 
+    title="AlphaBits - AI Workflow Automation & Digital Transformation"
+    description="Transform your business with AI workflow automation, fractional CTO services, and comprehensive digital transformation solutions. Reduce manual work by 80% with intelligent automation."
+    keywords="AI workflow automation, digital transformation, fractional CTO, IoT infrastructure, data analytics, business automation, AI agents, Node-RED, process automation"
+    canonicalUrl="https://alphabits.team"
+    ogImage="https://alphabits.team/alphabits_cover.png"
+    {structuredData}
+/>
 
 <!-- Hero Section -->
 <HeroWorkFlow />

@@ -1,11 +1,40 @@
 <script>
     import CTA from '$lib/components/CTA.svelte';
+    import SEOHead from '$lib/components/SEOHead.svelte';
+    
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "AI Workflow Automation",
+        "description": "Transform your business operations with intelligent AI agents that automate complex workflows across all departments, reducing manual work by up to 80% while improving accuracy and response times.",
+        "provider": {
+            "@type": "Organization",
+            "name": "AlphaBits",
+            "url": "https://alphabits.team"
+        },
+        "serviceType": "Business Process Automation",
+        "category": "AI & Automation Services",
+        "offers": {
+            "@type": "Offer",
+            "description": "AI workflow automation implementation and consulting",
+            "seller": {
+                "@type": "Organization",
+                "name": "AlphaBits"
+            }
+        }
+    };
 </script>
 
-<svelte:head>
-    <title>AI Workflow Automation - AlphaBits</title>
-    <meta name="description" content="Transform your business operations with intelligent AI agents that automate complex workflows across all departments, reducing manual work by up to 80% while improving accuracy and response times." />
-</svelte:head>
+<SEOHead 
+    title="AI Workflow Automation Services - AlphaBits | Reduce Manual Work by 80%"
+    description="Transform your business operations with intelligent AI agents that automate complex workflows across all departments, reducing manual work by up to 80% while improving accuracy and response times."
+    keywords="AI workflow automation, business process automation, AI agents, intelligent automation, workflow optimization, process automation, AI implementation, business automation solutions"
+    canonicalUrl="https://alphabits.team/services/ai-workflow-automation"
+    ogImage="https://alphabits.team/animations/ai-workflow-animation.svg"
+    ogType="article"
+    articleSection="Services"
+    {structuredData}
+/>
 
 <!-- Animated Hero Section -->
 <section class="py-20 bg-gradient-to-br from-blue-50 to-indigo-50 overflow-hidden">
