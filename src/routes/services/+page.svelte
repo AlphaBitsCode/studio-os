@@ -16,7 +16,213 @@
         <div class="text-center max-w-6xl mx-auto">
             <!-- Large Vector Animation -->
             <div class="mb-8 flex justify-center">
-                <img src="/animations/services-hero-animation.svg?v=1" alt="AlphaBits Services Overview" class="w-full max-w-4xl h-auto" />
+                <svg width="800" height="500" viewBox="0 0 800 500" class="w-full max-w-4xl h-auto">
+                    <!-- Background gradient -->
+                    <defs>
+                        <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#dbeafe;stop-opacity:0.4" />
+                            <stop offset="100%" style="stop-color:#e0e7ff;stop-opacity:0.2" />
+                        </linearGradient>
+                        <linearGradient id="centerGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#2563eb" />
+                            <stop offset="100%" style="stop-color:#7c3aed" />
+                        </linearGradient>
+                        <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0.1" />
+                        </radialGradient>
+                    </defs>
+                    
+                    <!-- Background circles -->
+                    <circle cx="400" cy="250" r="220" fill="url(#heroGradient)">
+                        <animate attributeName="r" values="220;230;220" dur="4s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="400" cy="250" r="180" fill="#dbeafe" opacity="0.3">
+                        <animate attributeName="r" values="180;190;180" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <!-- Central Hub -->
+                    <g transform="translate(400,250)">
+                        <!-- Main hub -->
+                        <circle cx="0" cy="0" r="40" fill="url(#centerGradient)">
+                            <animate attributeName="r" values="40;45;40" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="0" cy="0" r="30" fill="#ffffff" opacity="0.9"/>
+                        <text x="0" y="8" text-anchor="middle" font-size="16" fill="#2563eb" font-weight="bold">AB</text>
+                        
+                        <!-- Pulse rings -->
+                        <circle cx="0" cy="0" r="60" fill="none" stroke="#3b82f6" stroke-width="2" opacity="0.4">
+                            <animate attributeName="r" values="60;80;60" dur="3s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.4;0.1;0.4" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="0" cy="0" r="70" fill="none" stroke="#7c3aed" stroke-width="1.5" opacity="0.3">
+                            <animate attributeName="r" values="70;90;70" dur="4s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.3;0.05;0.3" dur="4s" repeatCount="indefinite"/>
+                        </circle>
+                    </g>
+                    
+                    <!-- Service Icons -->
+                    <!-- AI Workflow Automation -->
+                    <g transform="translate(200,150)">
+                        <circle cx="0" cy="0" r="25" fill="#3b82f6">
+                            <animate attributeName="fill" values="#3b82f6;#2563eb;#3b82f6" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="0" cy="0" r="18" fill="#dbeafe"/>
+                        <!-- AI brain icon -->
+                        <path d="M -8,-8 Q 0,-12 8,-8 Q 12,0 8,8 Q 0,12 -8,8 Q -12,0 -8,-8" fill="#2563eb"/>
+                        <circle cx="-4" cy="-4" r="2" fill="#ffffff"/>
+                        <circle cx="4" cy="-4" r="2" fill="#ffffff"/>
+                        <circle cx="0" cy="4" r="2" fill="#ffffff"/>
+                        <text x="0" y="-35" text-anchor="middle" font-size="10" fill="#374151" font-weight="bold">AI Workflow</text>
+                        <text x="0" y="-25" text-anchor="middle" font-size="10" fill="#374151" font-weight="bold">Automation</text>
+                        <!-- Data flow -->
+                        <circle cx="30" cy="15" r="3" fill="#3b82f6">
+                            <animateTransform attributeName="transform" type="translate" values="0,0;100,50;200,100" dur="4s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="1;0" dur="4s" repeatCount="indefinite"/>
+                        </circle>
+                    </g>
+                    
+                    <!-- Fractional CTO -->
+                    <g transform="translate(600,150)">
+                        <circle cx="0" cy="0" r="25" fill="#10b981">
+                            <animate attributeName="fill" values="#10b981;#059669;#10b981" dur="2.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="0" cy="0" r="18" fill="#d1fae5"/>
+                        <!-- CTO icon -->
+                        <rect x="-8" y="-8" width="16" height="16" rx="2" fill="#10b981"/>
+                        <circle cx="0" cy="-3" r="3" fill="#ffffff"/>
+                        <rect x="-4" y="2" width="8" height="6" rx="1" fill="#ffffff"/>
+                        <text x="0" y="-35" text-anchor="middle" font-size="10" fill="#374151" font-weight="bold">Fractional</text>
+                        <text x="0" y="-25" text-anchor="middle" font-size="10" fill="#374151" font-weight="bold">CTO</text>
+                        <!-- Data flow -->
+                        <circle cx="-30" cy="15" r="3" fill="#10b981">
+                            <animateTransform attributeName="transform" type="translate" values="0,0;-100,50;-200,100" dur="4s" repeatCount="indefinite" begin="1s"/>
+                            <animate attributeName="opacity" values="1;0" dur="4s" repeatCount="indefinite" begin="1s"/>
+                        </circle>
+                    </g>
+                    
+                    <!-- Digital Transformation -->
+                    <g transform="translate(200,350)">
+                        <circle cx="0" cy="0" r="25" fill="#f59e0b">
+                            <animate attributeName="fill" values="#f59e0b;#d97706;#f59e0b" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="0" cy="0" r="18" fill="#fef3c7"/>
+                        <!-- Digital transformation icon -->
+                        <rect x="-10" y="-6" width="20" height="12" rx="2" fill="#f59e0b"/>
+                        <rect x="-8" y="-4" width="6" height="2" fill="#ffffff"/>
+                        <rect x="-8" y="-1" width="8" height="2" fill="#ffffff"/>
+                        <rect x="-8" y="2" width="4" height="2" fill="#ffffff"/>
+                        <circle cx="6" cy="0" r="4" fill="#ffffff"/>
+                        <path d="M 4,-2 L 8,0 L 4,2" fill="#f59e0b"/>
+                        <text x="0" y="40" text-anchor="middle" font-size="10" fill="#374151" font-weight="bold">Digital</text>
+                        <text x="0" y="50" text-anchor="middle" font-size="10" fill="#374151" font-weight="bold">Transformation</text>
+                        <!-- Data flow -->
+                        <circle cx="30" cy="-15" r="3" fill="#f59e0b">
+                            <animateTransform attributeName="transform" type="translate" values="0,0;100,-50;200,-100" dur="4s" repeatCount="indefinite" begin="2s"/>
+                            <animate attributeName="opacity" values="1;0" dur="4s" repeatCount="indefinite" begin="2s"/>
+                        </circle>
+                    </g>
+                    
+                    <!-- IoT Infrastructure -->
+                    <g transform="translate(600,350)">
+                        <circle cx="0" cy="0" r="25" fill="#14b8a6">
+                            <animate attributeName="fill" values="#14b8a6;#0d9488;#14b8a6" dur="2.8s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="0" cy="0" r="18" fill="#ccfbf1"/>
+                        <!-- IoT icon -->
+                        <circle cx="0" cy="0" r="6" fill="#14b8a6"/>
+                        <circle cx="-8" cy="-8" r="3" fill="#14b8a6"/>
+                        <circle cx="8" cy="-8" r="3" fill="#14b8a6"/>
+                        <circle cx="-8" cy="8" r="3" fill="#14b8a6"/>
+                        <circle cx="8" cy="8" r="3" fill="#14b8a6"/>
+                        <line x1="-6" y1="-6" x2="-3" y2="-3" stroke="#14b8a6" stroke-width="1"/>
+                        <line x1="6" y1="-6" x2="3" y2="-3" stroke="#14b8a6" stroke-width="1"/>
+                        <line x1="-6" y1="6" x2="-3" y2="3" stroke="#14b8a6" stroke-width="1"/>
+                        <line x1="6" y1="6" x2="3" y2="3" stroke="#14b8a6" stroke-width="1"/>
+                        <text x="0" y="40" text-anchor="middle" font-size="10" fill="#374151" font-weight="bold">IoT</text>
+                        <text x="0" y="50" text-anchor="middle" font-size="10" fill="#374151" font-weight="bold">Infrastructure</text>
+                        <!-- Data flow -->
+                        <circle cx="-30" cy="-15" r="3" fill="#14b8a6">
+                            <animateTransform attributeName="transform" type="translate" values="0,0;-100,-50;-200,-100" dur="4s" repeatCount="indefinite" begin="3s"/>
+                            <animate attributeName="opacity" values="1;0" dur="4s" repeatCount="indefinite" begin="3s"/>
+                        </circle>
+                    </g>
+                    
+                    <!-- Data & AI Solutions -->
+                    <g transform="translate(400,100)">
+                        <circle cx="0" cy="0" r="25" fill="#8b5cf6">
+                            <animate attributeName="fill" values="#8b5cf6;#7c3aed;#8b5cf6" dur="2.2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="0" cy="0" r="18" fill="#ede9fe"/>
+                        <!-- Data & AI icon -->
+                        <rect x="-8" y="-8" width="16" height="16" rx="2" fill="#8b5cf6"/>
+                        <rect x="-6" y="-6" width="4" height="2" fill="#ffffff"/>
+                        <rect x="-6" y="-3" width="6" height="2" fill="#ffffff"/>
+                        <rect x="-6" y="0" width="3" height="2" fill="#ffffff"/>
+                        <rect x="-6" y="3" width="5" height="2" fill="#ffffff"/>
+                        <circle cx="4" cy="-2" r="3" fill="#ffffff"/>
+                        <circle cx="4" cy="-2" r="1" fill="#8b5cf6"/>
+                        <text x="0" y="-35" text-anchor="middle" font-size="10" fill="#374151" font-weight="bold">Data & AI</text>
+                        <text x="0" y="-25" text-anchor="middle" font-size="10" fill="#374151" font-weight="bold">Solutions</text>
+                        <!-- Data flow -->
+                        <circle cx="0" cy="25" r="3" fill="#8b5cf6">
+                            <animateTransform attributeName="transform" type="translate" values="0,0;0,75;0,150" dur="4s" repeatCount="indefinite" begin="0.5s"/>
+                            <animate attributeName="opacity" values="1;0" dur="4s" repeatCount="indefinite" begin="0.5s"/>
+                        </circle>
+                    </g>
+                    
+                    <!-- Connection lines -->
+                    <g stroke="#3b82f6" stroke-width="1" fill="none" opacity="0.3">
+                        <line x1="225" y1="175" x2="375" y2="225"/>
+                        <line x1="575" y1="175" x2="425" y2="225"/>
+                        <line x1="225" y1="325" x2="375" y2="275"/>
+                        <line x1="575" y1="325" x2="425" y2="275"/>
+                        <line x1="400" y1="125" x2="400" y2="210"/>
+                    </g>
+                    
+                    <!-- Floating particles -->
+                    <g>
+                        <circle cx="150" cy="100" r="4" fill="#3b82f6" opacity="0.6">
+                            <animate attributeName="cy" values="100;80;100" dur="3s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.6;0.2;0.6" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="650" cy="120" r="3" fill="#10b981" opacity="0.5">
+                            <animate attributeName="cy" values="120;100;120" dur="4s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.5;0.1;0.5" dur="4s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="100" cy="400" r="5" fill="#f59e0b" opacity="0.4">
+                            <animate attributeName="cy" values="400;380;400" dur="2.5s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.4;0.1;0.4" dur="2.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="700" cy="380" r="3" fill="#14b8a6" opacity="0.7">
+                            <animate attributeName="cy" values="380;360;380" dur="3.5s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.7;0.2;0.7" dur="3.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="450" cy="50" r="4" fill="#8b5cf6" opacity="0.5">
+                            <animate attributeName="cy" values="50;30;50" dur="4s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.5;0.1;0.5" dur="4s" repeatCount="indefinite"/>
+                        </circle>
+                    </g>
+                    
+                    <!-- Service integration indicators -->
+                    <g>
+                        <circle cx="300" cy="200" r="2" fill="#3b82f6" opacity="0.8">
+                            <animate attributeName="opacity" values="0.8;0.3;0.8" dur="1.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="500" cy="200" r="2" fill="#10b981" opacity="0.8">
+                            <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="300" cy="300" r="2" fill="#f59e0b" opacity="0.8">
+                            <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="500" cy="300" r="2" fill="#14b8a6" opacity="0.8">
+                            <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.8s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="400" cy="150" r="2" fill="#8b5cf6" opacity="0.8">
+                            <animate attributeName="opacity" values="0.8;0.3;0.8" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                    </g>
+                </svg>
             </div>
             
             <!-- Hero Text -->

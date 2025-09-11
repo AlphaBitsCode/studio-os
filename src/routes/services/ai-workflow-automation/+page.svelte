@@ -1,29 +1,227 @@
 <script>
-    import Hero from '$lib/components/Hero.svelte';
     import CTA from '$lib/components/CTA.svelte';
 </script>
 
 <svelte:head>
     <title>AI Workflow Automation - AlphaBits</title>
-    <meta name="description" content="Streamline your operations with intelligent AI agents and IoT workflow automation across all departments." />
+    <meta name="description" content="Transform your business operations with intelligent AI agents that automate complex workflows across all departments, reducing manual work by up to 80% while improving accuracy and response times." />
 </svelte:head>
 
-<Hero 
-    title="AI Workflow Automation" 
-    subtitle="Streamline your operations with intelligent AI agents and IoT workflow automation across all departments."
-    variant="services"
-/>
-
-<!-- CTA Buttons -->
-<section class="py-8 bg-white">
+<!-- Animated Hero Section -->
+<section class="py-20 bg-gradient-to-br from-blue-50 to-indigo-50 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors text-center">
-                Get Started
-            </a>
-            <a href="/case-studies/coffee-chain-transformation" class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors text-center">
-                View Case Study
-            </a>
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 text-gray-900">
+                    AI Workflow
+                    <span class="text-blue-600">Automation</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Transform your business operations with intelligent AI agents that automate complex workflows across all departments. Reduce manual work by up to 80% while improving accuracy and response times.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="/contact" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors text-center">
+                        Start Automation
+                    </a>
+                    <a href="/case-studies" class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors text-center">
+                        View AI Demos
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Animated SVG -->
+            <div class="flex justify-center">
+                <svg width="500" height="400" viewBox="0 0 500 400" class="w-full max-w-lg">
+                    <!-- Background gradient -->
+                    <defs>
+                        <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#dbeafe;stop-opacity:0.4" />
+                            <stop offset="100%" style="stop-color:#bfdbfe;stop-opacity:0.2" />
+                        </linearGradient>
+                        <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#2563eb" />
+                            <stop offset="100%" style="stop-color:#3b82f6" />
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge> 
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/> 
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Background circles -->
+                    <circle cx="250" cy="200" r="180" fill="url(#aiGradient)">
+                        <animate attributeName="r" values="180;190;180" dur="4s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="250" cy="200" r="140" fill="#dbeafe" opacity="0.5">
+                        <animate attributeName="r" values="140;150;140" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <!-- Central AI Brain -->
+                    <g transform="translate(250,200)">
+                        <!-- Main brain structure -->
+                        <ellipse cx="0" cy="-5" rx="40" ry="35" fill="url(#brainGradient)" filter="url(#glow)">
+                            <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+                        </ellipse>
+                        
+                        <!-- Brain neural network -->
+                        <g stroke="#60a5fa" stroke-width="1.5" fill="none" opacity="0.7">
+                            <!-- Neural connections -->
+                            <path d="M -20,-15 Q 0,-25 20,-15">
+                                <animate attributeName="stroke-dasharray" values="0,40;40,0" dur="2s" repeatCount="indefinite"/>
+                            </path>
+                            <path d="M -25,0 Q 0,-10 25,0">
+                                <animate attributeName="stroke-dasharray" values="0,50;50,0" dur="2.5s" repeatCount="indefinite"/>
+                            </path>
+                            <path d="M -20,15 Q 0,25 20,15">
+                                <animate attributeName="stroke-dasharray" values="0,40;40,0" dur="3s" repeatCount="indefinite"/>
+                            </path>
+                        </g>
+                        
+                        <!-- Neural nodes -->
+                        <circle cx="-20" cy="-15" r="3" fill="#60a5fa">
+                            <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="20" cy="-15" r="3" fill="#60a5fa">
+                            <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                        </circle>
+                        <circle cx="-25" cy="0" r="3" fill="#60a5fa">
+                            <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite" begin="1s"/>
+                        </circle>
+                        <circle cx="25" cy="0" r="3" fill="#60a5fa">
+                            <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite" begin="1.5s"/>
+                        </circle>
+                        <circle cx="-20" cy="15" r="3" fill="#60a5fa">
+                            <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+                        </circle>
+                        <circle cx="20" cy="15" r="3" fill="#60a5fa">
+                            <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite" begin="0.8s"/>
+                        </circle>
+                        
+                        <!-- AI processing indicator -->
+                        <text x="0" y="5" text-anchor="middle" font-size="12" fill="white" font-weight="bold">AI</text>
+                    </g>
+                    
+                    <!-- Department Workflows -->
+                    <!-- Sales Department -->
+                    <g transform="translate(120,120)">
+                        <rect x="-25" y="-15" width="50" height="30" rx="5" fill="#10b981">
+                            <animate attributeName="fill" values="#10b981;#059669;#10b981" dur="3s" repeatCount="indefinite"/>
+                        </rect>
+                        <text x="0" y="5" text-anchor="middle" font-size="10" fill="white">Sales</text>
+                        <!-- Data flow to AI -->
+                        <circle cx="30" cy="0" r="2" fill="#10b981">
+                            <animateTransform attributeName="transform" type="translate" values="0,0;60,40;120,80" dur="4s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="1;0" dur="4s" repeatCount="indefinite"/>
+                        </circle>
+                    </g>
+                    
+                    <!-- HR Department -->
+                    <g transform="translate(380,120)">
+                        <rect x="-25" y="-15" width="50" height="30" rx="5" fill="#8b5cf6">
+                            <animate attributeName="fill" values="#8b5cf6;#7c3aed;#8b5cf6" dur="3.5s" repeatCount="indefinite"/>
+                        </rect>
+                        <text x="0" y="5" text-anchor="middle" font-size="10" fill="white">HR</text>
+                        <!-- Data flow to AI -->
+                        <circle cx="-30" cy="0" r="2" fill="#8b5cf6">
+                            <animateTransform attributeName="transform" type="translate" values="0,0;-60,40;-120,80" dur="4s" repeatCount="indefinite" begin="1s"/>
+                            <animate attributeName="opacity" values="1;0" dur="4s" repeatCount="indefinite" begin="1s"/>
+                        </circle>
+                    </g>
+                    
+                    <!-- Finance Department -->
+                    <g transform="translate(120,280)">
+                        <rect x="-25" y="-15" width="50" height="30" rx="5" fill="#f59e0b">
+                            <animate attributeName="fill" values="#f59e0b;#d97706;#f59e0b" dur="2.5s" repeatCount="indefinite"/>
+                        </rect>
+                        <text x="0" y="5" text-anchor="middle" font-size="10" fill="white">Finance</text>
+                        <!-- Data flow to AI -->
+                        <circle cx="30" cy="0" r="2" fill="#f59e0b">
+                            <animateTransform attributeName="transform" type="translate" values="0,0;60,-40;120,-80" dur="4s" repeatCount="indefinite" begin="2s"/>
+                            <animate attributeName="opacity" values="1;0" dur="4s" repeatCount="indefinite" begin="2s"/>
+                        </circle>
+                    </g>
+                    
+                    <!-- Support Department -->
+                    <g transform="translate(380,280)">
+                        <rect x="-25" y="-15" width="50" height="30" rx="5" fill="#ef4444">
+                            <animate attributeName="fill" values="#ef4444;#dc2626;#ef4444" dur="4s" repeatCount="indefinite"/>
+                        </rect>
+                        <text x="0" y="5" text-anchor="middle" font-size="10" fill="white">Support</text>
+                        <!-- Data flow to AI -->
+                        <circle cx="-30" cy="0" r="2" fill="#ef4444">
+                            <animateTransform attributeName="transform" type="translate" values="0,0;-60,-40;-120,-80" dur="4s" repeatCount="indefinite" begin="3s"/>
+                            <animate attributeName="opacity" values="1;0" dur="4s" repeatCount="indefinite" begin="3s"/>
+                        </circle>
+                    </g>
+                    
+                    <!-- Automated Actions -->
+                    <!-- Email Automation -->
+                    <g transform="translate(150,50)">
+                        <rect x="-15" y="-8" width="30" height="16" rx="3" fill="#06b6d4"/>
+                        <text x="0" y="3" text-anchor="middle" font-size="8" fill="white">Email</text>
+                        <animateTransform attributeName="transform" type="translate" values="150,50;155,45;150,50" dur="2s" repeatCount="indefinite"/>
+                    </g>
+                    
+                    <!-- Report Generation -->
+                    <g transform="translate(350,50)">
+                        <rect x="-15" y="-8" width="30" height="16" rx="3" fill="#14b8a6"/>
+                        <text x="0" y="3" text-anchor="middle" font-size="8" fill="white">Reports</text>
+                        <animateTransform attributeName="transform" type="translate" values="350,50;345,45;350,50" dur="2.5s" repeatCount="indefinite"/>
+                    </g>
+                    
+                    <!-- Task Assignment -->
+                    <g transform="translate(150,350)">
+                        <rect x="-15" y="-8" width="30" height="16" rx="3" fill="#a855f7"/>
+                        <text x="0" y="3" text-anchor="middle" font-size="8" fill="white">Tasks</text>
+                        <animateTransform attributeName="transform" type="translate" values="150,350;155,355;150,350" dur="3s" repeatCount="indefinite"/>
+                    </g>
+                    
+                    <!-- Notifications -->
+                    <g transform="translate(350,350)">
+                        <rect x="-15" y="-8" width="30" height="16" rx="3" fill="#f97316"/>
+                        <text x="0" y="3" text-anchor="middle" font-size="8" fill="white">Alerts</text>
+                        <animateTransform attributeName="transform" type="translate" values="350,350;345,355;350,350" dur="1.5s" repeatCount="indefinite"/>
+                    </g>
+                    
+                    <!-- Connection lines from AI to actions -->
+                    <g stroke="#3b82f6" stroke-width="1" fill="none" opacity="0.4">
+                        <line x1="250" y1="165" x2="165" y2="58"/>
+                        <line x1="250" y1="165" x2="335" y2="58"/>
+                        <line x1="250" y1="235" x2="165" y2="342"/>
+                        <line x1="250" y1="235" x2="335" y2="342"/>
+                    </g>
+                    
+                    <!-- Efficiency indicators -->
+                    <g>
+                        <circle cx="80" cy="80" r="3" fill="#10b981" opacity="0.8">
+                            <animate attributeName="opacity" values="0.8;0.3;0.8" dur="1.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="420" cy="100" r="3" fill="#3b82f6" opacity="0.8">
+                            <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="100" cy="320" r="3" fill="#8b5cf6" opacity="0.8">
+                            <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="400" cy="300" r="3" fill="#f59e0b" opacity="0.8">
+                            <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.8s" repeatCount="indefinite"/>
+                        </circle>
+                    </g>
+                    
+                    <!-- Workflow arrows -->
+                    <g fill="#3b82f6" opacity="0.6">
+                        <!-- Curved arrows showing workflow -->
+                        <path d="M 180 140 Q 215 170 250 165">
+                            <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="3s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M 320 140 Q 285 170 250 165">
+                            <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="3s" repeatCount="indefinite" begin="1s"/>
+                        </path>
+                    </g>
+                </svg>
+            </div>
         </div>
     </div>
 </section>
@@ -33,28 +231,28 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">Transform Your Operations</h2>
-                <p class="text-lg text-gray-700 mb-6">
-                    Our AI Workflow Automation solutions combine intelligent AI agents with IoT integration to create seamless, automated processes that work across your entire organization. From customer support to financial operations, we help you eliminate manual tasks and focus on what matters most.
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Intelligent Workflow Automation</h2>
+                <p class="text-lg text-gray-600 mb-6">
+                    Revolutionize your business operations with AI-powered workflow automation that handles complex, multi-step processes across all departments. Our intelligent agents learn from your existing workflows and continuously optimize for maximum efficiency.
                 </p>
-                <p class="text-lg text-gray-700 mb-8">
-                    By leveraging cutting-edge technologies like Node-RED, intelligent decision trees, and real-time data processing, we create workflows that adapt to your business needs and scale with your growth.
+                <p class="text-lg text-gray-600 mb-8">
+                    From customer support and sales processes to HR management and financial operations, our AI solutions integrate seamlessly with your existing systems while providing unprecedented automation capabilities.
                 </p>
                 
                 <div class="grid grid-cols-2 gap-6">
                     <div class="text-center">
-                        <div class="text-3xl font-bold text-blue-600 mb-2">85%</div>
-                        <div class="text-sm text-gray-700">Average Efficiency Gain</div>
+                        <div class="text-3xl font-bold text-blue-600 mb-2">80%</div>
+                        <div class="text-sm text-gray-600">Reduction in Manual Work</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-3xl font-bold text-green-600 mb-2">60%</div>
-                        <div class="text-sm text-gray-700">Cost Reduction</div>
+                        <div class="text-3xl font-bold text-green-600 mb-2">24/7</div>
+                        <div class="text-sm text-gray-600">Automated Operations</div>
                     </div>
                 </div>
             </div>
             
-            <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-lg">
-                <h3 class="text-2xl font-bold mb-6">Key Benefits</h3>
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-lg">
+                <h3 class="text-2xl font-bold mb-6">Automation Benefits</h3>
                 <div class="space-y-4">
                     <div class="flex items-start space-x-3">
                         <div class="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
@@ -63,8 +261,8 @@
                             </svg>
                         </div>
                         <div>
-                            <h4 class="font-semibold mb-1">24/7 Automated Operations</h4>
-                            <p class="text-sm text-gray-700">Continuous workflow execution without human intervention</p>
+                            <h4 class="font-semibold mb-1">Cross-Department Integration</h4>
+                            <p class="text-sm text-gray-600">Seamless workflows connecting Sales, HR, Finance, and Support</p>
                         </div>
                     </div>
                     
@@ -76,7 +274,7 @@
                         </div>
                         <div>
                             <h4 class="font-semibold mb-1">Intelligent Decision Making</h4>
-                            <p class="text-sm text-gray-700">AI agents that learn and adapt to your business rules</p>
+                            <p class="text-sm text-gray-600">AI agents that learn and adapt to your business rules</p>
                         </div>
                     </div>
                     
@@ -87,8 +285,8 @@
                             </svg>
                         </div>
                         <div>
-                            <h4 class="font-semibold mb-1">Cross-Department Integration</h4>
-                            <p class="text-sm text-gray-700">Seamless workflows that span multiple departments</p>
+                            <h4 class="font-semibold mb-1">Real-time Processing</h4>
+                            <p class="text-sm text-gray-600">Instant responses and automated actions 24/7</p>
                         </div>
                     </div>
                     
@@ -99,8 +297,8 @@
                             </svg>
                         </div>
                         <div>
-                            <h4 class="font-semibold mb-1">Real-time Monitoring</h4>
-                            <p class="text-sm text-gray-700">Complete visibility into all automated processes</p>
+                            <h4 class="font-semibold mb-1">Scalable Solutions</h4>
+                            <p class="text-sm text-gray-600">Grows with your business without additional overhead</p>
                         </div>
                     </div>
                 </div>
@@ -109,307 +307,291 @@
     </div>
 </section>
 
-<!-- Core Technologies -->
+<!-- Core Services -->
 <section class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Core Technologies</h2>
-            <p class="text-lg text-gray-700 max-w-2xl mx-auto">
-                Powered by cutting-edge AI and automation technologies.
+            <h2 class="text-gray-900 text-3xl md:text-4xl font-bold mb-4">AI Automation Services</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Comprehensive AI-powered automation solutions for every aspect of your business.
             </p>
         </div>
         
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-white p-6 rounded-lg ">
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Customer Support Automation -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Customer Support Automation</h3>
+                <p class="text-gray-600 mb-4">
+                    Intelligent AI agents that handle customer inquiries, ticket routing, and resolution tracking with human-like understanding.
+                </p>
+                <ul class="text-sm text-gray-500 space-y-2">
+                    <li>• Multi-channel support (email, chat, phone)</li>
+                    <li>• Intelligent ticket classification and routing</li>
+                    <li>• Automated response generation</li>
+                    <li>• Escalation management and follow-ups</li>
+                    <li>• Customer satisfaction tracking</li>
+                    <li>• Knowledge base integration and updates</li>
+                </ul>
+            </div>
+            
+            <!-- Sales Process Automation -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Sales Process Automation</h3>
+                <p class="text-gray-600 mb-4">
+                    End-to-end sales automation from lead qualification to deal closure, with intelligent nurturing and follow-up sequences.
+                </p>
+                <ul class="text-sm text-gray-500 space-y-2">
+                    <li>• Lead scoring and qualification</li>
+                    <li>• Automated email sequences and nurturing</li>
+                    <li>• Meeting scheduling and calendar management</li>
+                    <li>• Proposal generation and contract processing</li>
+                    <li>• Pipeline management and forecasting</li>
+                    <li>• Performance analytics and reporting</li>
+                </ul>
+            </div>
+            
+            <!-- HR & Administrative Automation -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">HR & Administrative Automation</h3>
+                <p class="text-gray-600 mb-4">
+                    Streamline HR processes from recruitment to employee management with intelligent automation and decision support.
+                </p>
+                <ul class="text-sm text-gray-500 space-y-2">
+                    <li>• Resume screening and candidate matching</li>
+                    <li>• Interview scheduling and coordination</li>
+                    <li>• Employee onboarding workflows</li>
+                    <li>• Leave management and approvals</li>
+                    <li>• Performance review automation</li>
+                    <li>• Compliance tracking and reporting</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AI Platforms & Technologies -->
+<section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">AI Platforms & Technologies</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+                We leverage cutting-edge AI platforms and technologies to build robust, scalable automation solutions.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- MindStudio -->
+            <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
                 <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                     <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold mb-3">AI Agents</h3>
-                <p class="text-gray-700 mb-4">
-                    Intelligent agents that can understand context, make decisions, and execute complex workflows autonomously.
-                </p>
-                <ul class="text-sm text-gray-600 space-y-1">
-                    <li>• Natural language processing</li>
-                    <li>• Decision tree automation</li>
-                    <li>• Learning and adaptation</li>
-                    <li>• Multi-modal interactions</li>
+                <h3 class="text-lg font-semibold mb-2">MindStudio</h3>
+                <p class="text-sm text-gray-600 mb-4">Visual AI workflow builder for complex multi-step automations.</p>
+                <ul class="text-xs text-gray-500 space-y-1">
+                    <li>• Visual workflow design</li>
+                    <li>• Multi-model AI integration</li>
+                    <li>• Custom AI agents</li>
                 </ul>
             </div>
             
-            <div class="bg-white p-6 rounded-lg ">
+            <!-- Dify.ai -->
+            <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
                 <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
                     <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold mb-3">IoT Integration</h3>
-                <p class="text-gray-700 mb-4">
-                    Seamless integration with IoT devices and sensors to create responsive, data-driven workflows.
-                </p>
-                <ul class="text-sm text-gray-600 space-y-1">
-                    <li>• Sensor data processing</li>
-                    <li>• Device control automation</li>
-                    <li>• Real-time monitoring</li>
-                    <li>• Edge computing capabilities</li>
+                <h3 class="text-lg font-semibold mb-2">Dify.ai</h3>
+                <p class="text-sm text-gray-600 mb-4">Enterprise-grade LLM application development platform.</p>
+                <ul class="text-xs text-gray-500 space-y-1">
+                    <li>• LLM orchestration</li>
+                    <li>• RAG implementation</li>
+                    <li>• API integrations</li>
                 </ul>
             </div>
             
-            <div class="bg-white p-6 rounded-lg ">
+            <!-- Local LLM Deployment -->
+            <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
                 <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
                     <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold mb-3">Node-RED Workflows</h3>
-                <p class="text-gray-700 mb-4">
-                    Visual workflow programming that makes complex automation accessible and maintainable.
-                </p>
-                <ul class="text-sm text-gray-600 space-y-1">
-                    <li>• Visual flow programming</li>
-                    <li>• Drag-and-drop interface</li>
-                    <li>• Extensive node library</li>
-                    <li>• Custom node development</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Department Applications -->
-<section class="py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Department Applications</h2>
-            <p class="text-lg text-gray-700 max-w-2xl mx-auto">
-                Tailored automation solutions for every department in your organization.
-            </p>
-        </div>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Customer Support -->
-            <div class="bg-white p-6 rounded-lg  hover:shadow-xl transition-shadow">
-                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold mb-3">Customer Support</h3>
-                <p class="text-gray-700 mb-4">
-                    Intelligent ticket routing, automated responses, and escalation management.
-                </p>
-                <ul class="text-sm text-gray-600 space-y-2">
-                    <li>• Automated ticket classification</li>
-                    <li>• Intelligent response generation</li>
-                    <li>• Priority-based routing</li>
-                    <li>• Customer satisfaction tracking</li>
-                    <li>• Knowledge base integration</li>
+                <h3 class="text-lg font-semibold mb-2">Local LLM Deployment</h3>
+                <p class="text-sm text-gray-600 mb-4">On-premises AI models for maximum security and control.</p>
+                <ul class="text-xs text-gray-500 space-y-1">
+                    <li>• Data privacy protection</li>
+                    <li>• Custom model training</li>
+                    <li>• Offline capabilities</li>
                 </ul>
             </div>
             
-            <!-- Sales -->
-            <div class="bg-white p-6 rounded-lg  hover:shadow-xl transition-shadow">
-                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold mb-3">Sales</h3>
-                <p class="text-gray-700 mb-4">
-                    Lead qualification, pipeline management, and automated follow-up sequences.
-                </p>
-                <ul class="text-sm text-gray-600 space-y-2">
-                    <li>• Lead scoring and qualification</li>
-                    <li>• Automated follow-up campaigns</li>
-                    <li>• Pipeline stage automation</li>
-                    <li>• Quote generation and approval</li>
-                    <li>• Performance analytics</li>
-                </ul>
-            </div>
-            
-            <!-- Marketing -->
-            <div class="bg-white p-6 rounded-lg  hover:shadow-xl transition-shadow">
-                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold mb-3">Marketing</h3>
-                <p class="text-gray-700 mb-4">
-                    Campaign automation, content personalization, and performance optimization.
-                </p>
-                <ul class="text-sm text-gray-600 space-y-2">
-                    <li>• Multi-channel campaign automation</li>
-                    <li>• Dynamic content personalization</li>
-                    <li>• A/B testing automation</li>
-                    <li>• Social media scheduling</li>
-                    <li>• ROI tracking and optimization</li>
-                </ul>
-            </div>
-            
-            <!-- HR -->
-            <div class="bg-white p-6 rounded-lg  hover:shadow-xl transition-shadow">
+            <!-- Cloud AI Services -->
+            <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
                 <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
                     <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold mb-3">Human Resources</h3>
-                <p class="text-gray-700 mb-4">
-                    Recruitment automation, employee onboarding, and performance management.
-                </p>
-                <ul class="text-sm text-gray-600 space-y-2">
-                    <li>• Resume screening and ranking</li>
-                    <li>• Automated interview scheduling</li>
-                    <li>• Employee onboarding workflows</li>
-                    <li>• Performance review automation</li>
-                    <li>• Compliance tracking</li>
-                </ul>
-            </div>
-            
-            <!-- Financial/Accounting -->
-            <div class="bg-white p-6 rounded-lg  hover:shadow-xl transition-shadow">
-                <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold mb-3">Financial/Accounting</h3>
-                <p class="text-gray-700 mb-4">
-                    Invoice processing, expense management, and financial reporting automation.
-                </p>
-                <ul class="text-sm text-gray-600 space-y-2">
-                    <li>• Automated invoice processing</li>
-                    <li>• Expense report validation</li>
-                    <li>• Financial report generation</li>
-                    <li>• Budget monitoring and alerts</li>
-                    <li>• Compliance and audit trails</li>
-                </ul>
-            </div>
-            
-            <!-- Management -->
-            <div class="bg-white p-6 rounded-lg  hover:shadow-xl transition-shadow">
-                <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold mb-3">Management</h3>
-                <p class="text-gray-700 mb-4">
-                    Executive dashboards, KPI monitoring, and strategic decision support.
-                </p>
-                <ul class="text-sm text-gray-600 space-y-2">
-                    <li>• Real-time KPI dashboards</li>
-                    <li>• Automated reporting schedules</li>
-                    <li>• Performance trend analysis</li>
-                    <li>• Strategic alert systems</li>
-                    <li>• Decision support analytics</li>
+                <h3 class="text-lg font-semibold mb-2">Cloud AI Services</h3>
+                <p class="text-sm text-gray-600 mb-4">Integration with leading cloud AI platforms and APIs.</p>
+                <ul class="text-xs text-gray-500 space-y-1">
+                    <li>• OpenAI GPT integration</li>
+                    <li>• Azure Cognitive Services</li>
+                    <li>• Google Cloud AI</li>
                 </ul>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Implementation Process -->
-<section class="py-16 bg-gray-50 dark:bg-gray-800">
+<!-- Success Stories -->
+<section class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl text-white md:text-4xl font-bold mb-4">Implementation Process</h2>
-            <p class="text-lg text-gray-100 dark:text-gray-300 max-w-2xl mx-auto">
-                Our proven methodology ensures successful automation deployment.
+            <h2 class="text-gray-900 text-3xl md:text-4xl font-bold mb-4">Automation Success Stories</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Real results from our AI workflow automation implementations.
             </p>
         </div>
         
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="text-center">
-                <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span class="text-white font-bold text-xl">1</span>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-blue-600 font-bold">T</span>
+                    </div>
+                    <div>
+                        <h3 class="text-gray-900 font-bold">Tech Startup</h3>
+                        <p class="text-sm text-gray-600">SaaS Platform</p>
+                    </div>
                 </div>
-                <h3 class="text-white text-lg font-semibold mb-2">Discovery & Analysis</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300">
-                    Comprehensive assessment of current processes and automation opportunities
+                <p class="text-gray-600 mb-4">
+                    "AI workflow automation transformed our customer support operations. Response times improved by 500%, customer satisfaction increased to 95%, and our support team can now focus on complex issues while AI handles routine inquiries."
                 </p>
+                <div class="grid grid-cols-3 gap-4 text-center">
+                    <div>
+                        <div class="text-2xl font-bold text-blue-600">500%</div>
+                        <div class="text-xs text-gray-500">Faster Response</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-green-600">95%</div>
+                        <div class="text-xs text-gray-500">Satisfaction Rate</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-purple-600">75%</div>
+                        <div class="text-xs text-gray-500">Cost Reduction</div>
+                    </div>
+                </div>
             </div>
             
-            <div class="text-center">
-                <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span class="text-white font-bold text-xl">2</span>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-green-600 font-bold">E</span>
+                    </div>
+                    <div>
+                        <h3 class="text-gray-900 font-bold">E-commerce Company</h3>
+                        <p class="text-sm text-gray-600">Online Retail</p>
+                    </div>
                 </div>
-                <h3 class="text-white text-lg font-semibold mb-2">Design & Planning</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300">
-                    Custom workflow design and implementation roadmap creation
+                <p class="text-gray-600 mb-4">
+                    "Sales process automation increased our conversion rates by 300% and reduced sales cycle time by 60%. AI agents now handle lead qualification, follow-ups, and initial customer interactions, allowing our sales team to focus on closing deals."
                 </p>
-            </div>
-            
-            <div class="text-center">
-                <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span class="text-white font-bold text-xl">3</span>
+                <div class="grid grid-cols-3 gap-4 text-center">
+                    <div>
+                        <div class="text-2xl font-bold text-blue-600">300%</div>
+                        <div class="text-xs text-gray-500">Higher Conversion</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-green-600">60%</div>
+                        <div class="text-xs text-gray-500">Shorter Cycle</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-purple-600">24/7</div>
+                        <div class="text-xs text-gray-500">Availability</div>
+                    </div>
                 </div>
-                <h3 class="text-white text-lg font-semibold mb-2">Development & Testing</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300">
-                    AI agent development, workflow creation, and comprehensive testing
-                </p>
-            </div>
-            
-            <div class="text-center">
-                <div class="w-16 h-16 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span class="text-white font-bold text-xl">4</span>
-                </div>
-                <h3 class="text-white text-lg font-semibold mb-2">Deployment & Support</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300">
-                    Production deployment, team training, and ongoing optimization
-                </p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ROI Calculator -->
+<!-- Getting Started -->
 <section class="py-16">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 p-8 rounded-lg">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold mb-4">Calculate Your ROI</h2>
-                <p class="text-lg text-gray-600">
-                    See how much you could save with AI workflow automation.
-                </p>
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Start Your AI Automation Journey</h2>
+            <p class="text-lg text-gray-600">
+                Our proven methodology ensures successful AI implementation with measurable results.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-4 gap-6">
+            <div class="text-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-blue-600 font-bold">1</span>
+                </div>
+                <h3 class="font-semibold mb-2">Process Analysis</h3>
+                <p class="text-sm text-gray-600">Comprehensive evaluation of your current workflows and automation opportunities</p>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8 text-center">
-                <div>
-                    <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">40 hrs/week</div>
-                    <div class="text-sm text-gray-60">Average time saved per employee</div>
+            <div class="text-center">
+                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-green-600 font-bold">2</span>
                 </div>
-                <div>
-                    <div class="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">$50K/year</div>
-                    <div class="text-sm text-gray-600">Typical cost savings per department</div>
-                </div>
-                <div>
-                    <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">6 months</div>
-                    <div class="text-sm text-gray-600">Average payback period</div>
-                </div>
+                <h3 class="font-semibold mb-2">AI Strategy Design</h3>
+                <p class="text-sm text-gray-600">Custom automation strategy with AI agent design and integration planning</p>
             </div>
             
-            <div class="text-center mt-8">
-                <a href="/contact" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-                    Get Your Custom ROI Analysis
-                </a>
+            <div class="text-center">
+                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-purple-600 font-bold">3</span>
+                </div>
+                <h3 class="font-semibold mb-2">Implementation</h3>
+                <p class="text-sm text-gray-600">Phased deployment with testing, training, and continuous optimization</p>
+            </div>
+            
+            <div class="text-center">
+                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-orange-600 font-bold">4</span>
+                </div>
+                <h3 class="font-semibold mb-2">Optimization</h3>
+                <p class="text-sm text-gray-600">Ongoing monitoring, performance tuning, and expansion of automation capabilities</p>
             </div>
         </div>
     </div>
 </section>
 
 <CTA 
-    title="Ready to Automate Your Workflows?"
-    description="Let's discuss how AI workflow automation can transform your business operations."
+    title="Ready to Automate Your Workflows with AI?"
+    description="Let's discuss how AI workflow automation can transform your business operations and boost productivity."
     primaryButton={{
-        text: 'Schedule a Consultation',
-        href: '/contact'
+        text: 'Schedule AI Consultation',
+        href: 'http://cal.com/alphabits/mini',
+        variant: 'custom',
+        class: 'bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center'
     }}
     secondaryButton={{
-        text: 'View Success Story',
-        href: '/case-studies/coffee-chain-transformation'
+        text: 'View AI Demos',
+        href: '/case-studies'
     }}
     variant="gradient-blue"
 />
