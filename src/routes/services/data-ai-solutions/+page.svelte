@@ -21,7 +21,7 @@
             <a href="/contact" class="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors text-center">
                 Get Started
             </a>
-            <a href="/case-studies/maua-app" class="border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-600 hover:text-white transition-colors text-center">
+            <a href="/case-studies/coffee-chain-transformation" class="border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-600 hover:text-white transition-colors text-center">
                 View Implementation
             </a>
         </div>
@@ -492,7 +492,7 @@
     }}
     secondaryButton={{
         text: 'View Implementation',
-        href: '/case-studies/maua-app'
+        href: '/case-studies/coffee-chain-transformation'
     }}
     variant="gradient-blue"
 />

@@ -537,7 +537,7 @@
     }}
     secondaryButton={{
         text: 'See Implementation',
-        href: '/case-studies/maua-app'
+        href: '/case-studies/coffee-chain-transformation'
     }}
     variant="gradient-teal"
 />

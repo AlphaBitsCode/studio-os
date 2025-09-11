@@ -36,7 +36,7 @@
                             Featured Case Study
                         </div>
                         <h3 class="text-2xl md:text-3xl font-bold mb-4">
-                            MAUA.app Ecosystem
+                            Coffee Chain Digital Transformation
                         </h3>
                         <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
                             A comprehensive digital transformation project that integrated AI workflow automation, IoT infrastructure, and modern web applications to create a complete business ecosystem.
@@ -60,7 +60,7 @@
                             <span class="bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-3 py-1 rounded-full text-sm">Data Analytics</span>
                         </div>
                         
-                        <a href="/case-studies/maua-app" class="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                        <a href="/case-studies/coffee-chain-transformation" class="inline-flex items-center bg-amber-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-amber-700 transition-colors">
                             Read Full Case Study
                             <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>

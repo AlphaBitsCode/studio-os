@@ -21,7 +21,7 @@
             <a href="/contact" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors text-center">
                 Get Started
             </a>
-            <a href="/case-studies/maua-app" class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors text-center">
+            <a href="/case-studies/coffee-chain-transformation" class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors text-center">
                 View Case Study
             </a>
         </div>
@@ -409,7 +409,7 @@
     }}
     secondaryButton={{
         text: 'View Success Story',
-        href: '/case-studies/maua-app'
+        href: '/case-studies/coffee-chain-transformation'
     }}
     variant="gradient-blue"
 />
