@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Button from "$lib/components/ui/button.svelte";
 	import Card from "$lib/components/ui/card.svelte";
-	import Hero from '$lib/components/Hero.svelte';
 	import { onMount } from 'svelte';
 
 	// Current step in the assessment journey
@@ -80,14 +79,19 @@
 	<meta name="description" content="Start your AI automation journey with a quick 30-minute assessment. Book your consultation to discover how AI can transform your business processes." />
 </svelte:head>
 
-<Hero 
-	title="Start Your AI Journey" 
-	subtitle="Every transformation begins with understanding. Let's explore how AI can revolutionize your business processes in just 30 minutes."
-	variant="default"
-/>
 
-<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-	<div class="container mx-auto px-4 py-8 sm:py-12 lg:py-16">
+
+<div class="min-h-screen bg-white">
+	<div class="container mx-auto px-4 py-16 sm:py-20 lg:py-24">
+		<!-- Page Header -->
+		<div class="text-center mb-12">
+			<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+				Start Your AI Journey
+			</h1>
+			<p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+				Every transformation begins with understanding. Let's explore how AI can revolutionize your business processes in just 30 minutes.
+			</p>
+		</div>
 
 		<!-- Progress Steps -->
 		<div class="flex justify-center mb-8 sm:mb-12 px-4">
@@ -122,7 +126,7 @@
 		{#if currentStep === 1}
 			<!-- Step 1: Discovery -->
 			<div class="max-w-4xl mx-auto">
-				<Card class="p-8 mb-8">
+				<div class="bg-white rounded-xl border-2 border-gray-200 p-8 mb-8">
 				<div class="text-center mb-6">
 					<h2 class="text-2xl font-bold text-gray-900 mb-4">
 						🔍 Discovery Phase
@@ -167,13 +171,13 @@
 						Continue to Assessment
 					</Button>
 				</div>
-			</Card>
+			</div>
 			</div>
 
 		{:else if currentStep === 2}
 			<!-- Step 2: Assessment & Booking -->
 			<div class="max-w-4xl mx-auto">
-				<Card class="p-6 lg:p-8">
+				<div class="bg-white rounded-xl border-2 border-gray-200 p-6 lg:p-8">
 				<div class="text-center mb-8">
 					<h2 class="text-2xl font-bold text-gray-900 mb-4">
 						📅 Schedule Your Assessment
@@ -191,7 +195,7 @@
 								<div class="text-6xl mb-4">📅</div>
 								<h3 class="text-xl font-semibold text-gray-900 mb-3">Ready to Get Started?</h3>
 								<p class="text-gray-600 mb-6">Click below to open our booking calendar and select your preferred time slot.</p>
-								<Button href="http://cal.com/alphabits/mini" class="px-8 py-3 text-lg">
+								<Button href="http://cal.com/alphabits/mini" class="px-8 py-3 text-md text-white">
 									📅 Open Booking Calendar
 								</Button>
 							</div>
@@ -265,13 +269,13 @@
 						Next: Transformation →
 					</Button>
 				</div>
-			</Card>
+			</div>
 			</div>
 
 		{:else if currentStep === 3}
 			<!-- Step 3: Transformation -->
 			<div class="max-w-4xl mx-auto">
-				<Card class="p-8">
+				<div class="bg-white rounded-xl border-2 border-gray-200 p-8">
 				<div class="text-center mb-6">
 					<h2 class="text-2xl font-bold text-gray-900 mb-4">
 						🚀 Your Transformation Journey
@@ -312,7 +316,7 @@
 						Back to Booking
 					</Button>
 				</div>
-			</Card>
+			</div>
 			</div>
 		{/if}
 	</div>
@@ -363,13 +367,3 @@
 		</div>
 	</div>
 {/if}
-
-<style>
-	.no-scrollbar {
-		-ms-overflow-style: none;
-		scrollbar-width: none;
-	}
-	.no-scrollbar::-webkit-scrollbar {
-		display: none;
-	}
-</style>

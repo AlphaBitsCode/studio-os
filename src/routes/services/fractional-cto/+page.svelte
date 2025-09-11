@@ -34,17 +34,17 @@
         <div class="grid lg:grid-cols-2 gap-12 items-center">
             <div>
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">Strategic Technology Leadership</h2>
-                <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                <p class="text-lg text-gray-600 mb-6">
                     Whether you're a startup needing technical direction or an established company requiring strategic technology guidance, our fractional CTO services provide the expertise you need without the full-time commitment.
                 </p>
-                <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+                <p class="text-lg text-gray-600 mb-8">
                     We bring decades of experience in technology leadership, helping organizations make informed decisions about their technical infrastructure, team building, and strategic technology investments.
                 </p>
                 
                 <div class="grid grid-cols-2 gap-6">
                     <div class="text-center">
                         <div class="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">20+</div>
-                        <div class="text-sm text-gray-600 dark:text-gray-300">Years Combined Experience</div>
+                        <div class="text-sm text-gray-600">Years Combined Experience</div>
                     </div>
                     <div class="text-center">
                         <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">50+</div>
@@ -113,7 +113,7 @@
 <section class="py-16 bg-gray-50 dark:bg-gray-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Core Services</h2>
+            <h2 class="text-white text-3xl md:text-4xl font-bold mb-4">Core Services</h2>
             <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                 Comprehensive technical leadership services tailored to your needs.
             </p>
@@ -321,7 +321,7 @@
 <section class="py-16 bg-gray-50 dark:bg-gray-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Success Stories</h2>
+            <h2 class="text-white text-3xl md:text-4xl font-bold mb-4">Success Stories</h2>
             <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                 Real results from our fractional CTO engagements.
             </p>
@@ -334,7 +334,7 @@
                         <span class="text-green-600 dark:text-green-400 font-bold">S</span>
                     </div>
                     <div>
-                        <h3 class="font-semibold">SaaS Startup</h3>
+                        <h3 class="text-white font-bold">SaaS Startup</h3>
                         <p class="text-sm text-gray-600 dark:text-gray-300">Series A Company</p>
                     </div>
                 </div>
@@ -363,7 +363,7 @@
                         <span class="text-blue-600 dark:text-blue-400 font-bold">M</span>
                     </div>
                     <div>
-                        <h3 class="font-semibold">Manufacturing Company</h3>
+                        <h3 class="text-white font-bold">Manufacturing Company</h3>
                         <p class="text-sm text-gray-600 dark:text-gray-300">Mid-size Enterprise</p>
                     </div>
                 </div>
