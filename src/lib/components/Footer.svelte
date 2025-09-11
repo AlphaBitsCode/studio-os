@@ -50,9 +50,9 @@
 			<div>
 				<h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Services</h3>
 				<ul class="space-y-3">
+					<li><a href="/services/ai-workflow-automation" class="text-gray-700 hover:text-medium-teal text-bold transition-colors">AI Workflow Automation</a></li>
 					<li><a href="/services/digital-transformation" class="text-gray-700 hover:text-medium-teal transition-colors">Digital Transformation</a></li>
 					<li><a href="/services/fractional-cto" class="text-gray-700 hover:text-medium-teal transition-colors">Fractional CTO</a></li>
-					<li><a href="/services/ai-workflow-automation" class="text-gray-700 hover:text-medium-teal transition-colors">AI Workflow Automation</a></li>
 					<li><a href="/services/data-ai-solutions" class="text-gray-700 hover:text-medium-teal transition-colors">Data Analytics</a></li>
 					<li><a href="/services/iot-infrastructure" class="text-gray-700 hover:text-medium-teal transition-colors">IoT Energy Management</a></li>
 				</ul>

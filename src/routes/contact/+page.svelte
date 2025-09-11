@@ -200,8 +200,8 @@
                         </div>
                         <div>
                             <h3 class="text-lg font-semibold mb-1">Phone</h3>
-                            <p class="text-gray-600">+1 (555) 123-4567</p>
-                            <p class="text-sm text-gray-500">Monday - Friday, 9 AM - 6 PM EST</p>
+                            <p class="text-gray-600">+84 868 000 317</p>
+                            <p class="text-sm text-gray-500">Monday - Friday, 9 AM - 6 PM GMT+7</p>
                         </div>
                     </div>
                     
@@ -214,7 +214,7 @@
                         <div>
                             <h3 class="text-lg font-semibold mb-1">Schedule a Consultation</h3>
                             <p class="text-gray-600">Book a free 30-minute discovery call</p>
-                            <a href="#" class="text-blue-600 hover:underline text-sm">Schedule Now →</a>
+                            <a href="https://cal.com/alphabits/mini" target="_blank" class="text-blue-600 hover:underline text-sm">Schedule Now →</a>
                         </div>
                     </div>
                 </div>

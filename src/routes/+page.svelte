@@ -19,66 +19,79 @@
 <HeroWorkFlow />
 
 <!-- Services Overview -->
-<section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Core Services</h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                From AI automation to digital transformation, we provide comprehensive solutions for modern businesses.
+<section class="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] -z-10"></div>
+    <div class="absolute top-0 left-1/4 w-72 h-72 bg-blue-200/30 rounded-full blur-3xl -z-10"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-200/20 rounded-full blur-3xl -z-10"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm border-2 border-slate-200 rounded-full mb-6">
+                <span class="text-sm font-semibold text-slate-700 uppercase tracking-wide">Our Expertise</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent">
+                Core Services That Drive Results
+            </h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium">
+                From AI automation to digital transformation, we provide comprehensive solutions that modernize your business operations and accelerate growth.
             </p>
         </div>
         
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card class="p-6 hover:shadow-xl transition-shadow">
-                <div class="w-12 h-12 bg-light-mint/20 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-medium-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+            <Card class="group relative p-8 bg-white/90 backdrop-blur-sm border-4 border-blue-200 hover:border-blue-400 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-100/50 hover:-translate-y-2">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-indigo-50/30 rounded-lg -z-10"></div>
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                     </svg>
                 </div>
-                <div class="flex items-center gap-2 mb-3">
-                    <h3 class="text-xl font-semibold">AI Workflow Automation</h3>
-                    <Badge variant="secondary">Popular</Badge>
+                <div class="flex items-center gap-3 mb-4">
+                    <h3 class="text-2xl font-bold text-slate-900">AI Workflow Automation</h3>
+                    <Badge variant="secondary" class="bg-orange-100 text-orange-800 border-orange-200 font-bold">Popular</Badge>
                 </div>
-                <p class="text-gray-600 mb-4">
+                <p class="text-slate-600 mb-6 text-lg leading-relaxed">
                     Streamline your operations with intelligent AI agents and IoT workflow automation across all departments.
                 </p>
-                <Button href="/services/ai-workflow-automation" variant="link" class="p-0 h-auto font-medium">
+                <Button href="/services/ai-workflow-automation" variant="link" class="p-0 h-auto font-bold text-blue-600 hover:text-blue-800 text-lg group-hover:translate-x-2 transition-transform duration-300">
                     Learn More →
                 </Button>
             </Card>
             
-            <Card class="p-6 hover:shadow-xl transition-shadow">
-                <div class="w-12 h-12 bg-light-mint/20 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-dark-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            <Card class="group relative p-8 bg-white/90 backdrop-blur-sm border-4 border-emerald-200 hover:border-emerald-400 transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-100/50 hover:-translate-y-2">
+                <div class="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-teal-50/30 rounded-lg -z-10"></div>
+                <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                 </div>
-                <div class="flex items-center gap-2 mb-3">
-                    <h3 class="text-xl font-semibold">Fractional CTO & Tech Leadership</h3>
-                    <Badge variant="outline">Expert</Badge>
+                <div class="flex items-center gap-3 mb-4">
+                    <h3 class="text-2xl font-bold text-slate-900">Fractional CTO & Tech Leadership</h3>
+                    <Badge variant="outline" class="border-2 border-emerald-300 text-emerald-700 font-bold">Expert</Badge>
                 </div>
-                <p class="text-gray-600 mb-4">
+                <p class="text-slate-600 mb-6 text-lg leading-relaxed">
                     Get expert technical leadership with deep-dive assessments, infrastructure modernization, and strategic guidance.
                 </p>
-                <Button href="/services/fractional-cto" variant="link" class="p-0 h-auto font-medium">
+                <Button href="/services/fractional-cto" variant="link" class="p-0 h-auto font-bold text-emerald-600 hover:text-emerald-800 text-lg group-hover:translate-x-2 transition-transform duration-300">
                     Learn More →
                 </Button>
             </Card>
             
-            <Card class="p-6 hover:shadow-xl transition-shadow">
-                <div class="w-12 h-12 bg-cyan-accent/20 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-dark-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+            <Card class="group relative p-8 bg-white/90 backdrop-blur-sm border-4 border-purple-200 hover:border-purple-400 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-100/50 hover:-translate-y-2">
+                <div class="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-pink-50/30 rounded-lg -z-10"></div>
+                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                     </svg>
                 </div>
-                <div class="flex items-center gap-2 mb-3">
-                    <h3 class="text-xl font-semibold">Data & AI Solutions</h3>
-                    <Badge>New</Badge>
+                <div class="flex items-center gap-3 mb-4">
+                    <h3 class="text-2xl font-bold text-slate-900">Data & AI Solutions</h3>
+                    <Badge class="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 font-bold">New</Badge>
                 </div>
-                <p class="text-gray-600 mb-4">
+                <p class="text-slate-600 mb-6 text-lg leading-relaxed">
                     Harness the power of big data with analytics, AI infrastructure, and intelligent agent building platforms.
                 </p>
-                <Button href="/services/data-ai-solutions" variant="link" class="p-0 h-auto font-medium">
+                <Button href="/services/data-ai-solutions" variant="link" class="p-0 h-auto font-bold text-purple-600 hover:text-purple-800 text-lg group-hover:translate-x-2 transition-transform duration-300">
                     Learn More →
                 </Button>
             </Card>
