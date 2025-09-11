@@ -2,6 +2,8 @@
     import CTA from '$lib/components/CTA.svelte';
 </script>
 
+
+
 <svelte:head>
     <title>Fractional CTO & Tech Leadership - AlphaBits</title>
     <meta name="description" content="Expert technical leadership with comprehensive assessments, infrastructure modernization, and strategic guidance for your technology decisions." />

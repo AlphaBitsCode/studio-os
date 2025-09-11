@@ -185,7 +185,7 @@
                         </ul>
                     </div>
                     <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-teal-600 dark:text-teal-400">$899</span>
+                        <span class="text-2xl font-bold text-teal-600 dark:text-teal-400">$</span>
                         <button class="bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg text-sm font-medium cursor-not-allowed">
                             Coming Soon
                         </button>

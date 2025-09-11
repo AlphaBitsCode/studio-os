@@ -212,7 +212,7 @@
                             </div>
                             <div>
                                 <h3 class="text-2xl font-bold text-gray-900">Strategic Advisory</h3>
-                                <p class="text-blue-600 font-semibold">$8K - $15K per month</p>
+                                <p class="text-blue-600 font-semibold">$3K - $15K per month</p>
                             </div>
                         </div>
                         <p class="text-lg text-gray-600 mb-6">
@@ -263,11 +263,12 @@
                         </div>
                         <div>
                             <h3 class="text-2xl font-bold text-gray-900">Project + Rev Share</h3>
-                            <p class="text-purple-600 font-semibold">Reduced upfront + 2-5% revenue share</p>
+                            <p class="text-purple-600 font-semibold">Reduced upfront + 2-5% revenue share*</p>
+                            <p class="text-sm text-gray-500 mt-1">*Reference only - varies by complexity & jurisdiction</p>
                         </div>
                     </div>
                     <p class="text-lg text-gray-600 mb-6">
-                        Partnership model where we share in your success. Lower upfront costs in exchange for ongoing revenue participation.
+                        Partnership model where we share in your success. Lower upfront costs in exchange for ongoing revenue participation. Actual terms depend on project complexity, your country of tax, and other factors.
                     </p>
                     <div class="grid md:grid-cols-2 gap-4 mb-6">
                         <div>
@@ -509,9 +510,9 @@
                     <tr>
                         <td class="border border-gray-200 px-4 py-3 font-medium">Pricing Range</td>
                         <td class="border border-gray-200 px-4 py-3 text-center">$15K - $150K</td>
-                        <td class="border border-gray-200 px-4 py-3 text-center">$8K - $15K/mo</td>
-                        <td class="border border-gray-200 px-4 py-3 text-center">Reduced + 2-5%</td>
-                        <td class="border border-gray-200 px-4 py-3 text-center">$3K - $8K/dev/mo</td>
+                        <td class="border border-gray-200 px-4 py-3 text-center">$3K - $15K/mo</td>
+                        <td class="border border-gray-200 px-4 py-3 text-center">Reduced + 2-5%*</td>
+                        <td class="border border-gray-200 px-4 py-3 text-center">$2K - $5K/dev/mo</td>
                     </tr>
                     <tr class="bg-gray-25">
                         <td class="border border-gray-200 px-4 py-3 font-medium">Timeline</td>

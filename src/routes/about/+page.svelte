@@ -17,9 +17,33 @@
         '/office/teamwork_4.jpg'
     ];
     
-    onMount(() => {
-        mounted = true;
-    });
+    // Kent's profile images - randomized order
+    const kentProfileImages = [
+        '/profile/profile1.jpg',
+        '/profile/profile2.jpg',
+        '/profile/profile3.jpg',
+        '/profile/profile4.jpg',
+        '/profile/profile5.jpg',
+        '/profile/profile6.jpg',
+        '/profile/profile7.jpg',
+        '/profile/profile8.jpg',
+        '/profile/profile9.jpg',
+        '/profile/profile10.jpg'
+    ].sort(() => Math.random() - 0.5);
+    
+    let currentImageIndex = 0;
+    let imageElement;
+    
+    // Ken Burns effect slideshow
+     onMount(() => {
+         mounted = true;
+         
+         const interval = setInterval(() => {
+             currentImageIndex = (currentImageIndex + 1) % kentProfileImages.length;
+         }, 5000);
+         
+         return () => clearInterval(interval);
+     });
 </script>
 
 <svelte:head>
@@ -164,6 +188,45 @@
     .animate-fade-in-up-more-delayed {
         animation: fade-in-up 1s ease-out 0.6s forwards;
     }
+    
+    /* Ken Burns Effect */
+    @keyframes kenBurns {
+        0% {
+            transform: scale(1) translate(0, 0);
+        }
+        100% {
+            transform: scale(1.1) translate(-2%, -2%);
+        }
+    }
+    
+    .ken-burns-effect {
+        animation: kenBurns 5s ease-in-out infinite alternate;
+        transition: opacity 1s ease-in-out;
+    }
+    
+    .profile-slideshow {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        overflow: hidden;
+        border-radius: 1rem;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .profile-slideshow img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+    
+    .profile-slideshow img.active {
+        opacity: 1;
+    }
 </style>
 
 <!-- Mission & Vision -->
@@ -173,27 +236,108 @@
             <div>
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">Our Mission</h2>
                 <p class="text-lg text-gray-600 mb-6">
-                    To democratize access to cutting-edge AI and automation technologies, making them accessible and practical for businesses of all sizes. We believe that every organization should have the opportunity to leverage intelligent workflows and modern infrastructure to achieve their goals.
+                    To democratize access to cutting-edge AI and automation technologies, making them practical for businesses of all sizes.
                 </p>
                 <p class="text-lg text-gray-600">
-                    Through our comprehensive services—from AI workflow automation to fractional CTO leadership—we bridge the gap between complex technology and real-world business solutions.
+                    We bridge the gap between complex technology and real-world business solutions.
                 </p>
             </div>
             <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-lg">
                 <h3 class="text-2xl font-bold mb-4">Our Vision</h3>
-                <p class="text-gray-600 mb-4">
-                    A world where businesses operate with seamless efficiency through intelligent automation, where data drives decisions, and where technology serves as a catalyst for growth rather than a barrier.
-                </p>
                 <p class="text-gray-600">
-                    We envision organizations that are agile, data-driven, and equipped with the tools they need to thrive in an increasingly digital landscape.
+                    A world where businesses operate with seamless efficiency through intelligent automation, where data drives decisions, and technology serves as a catalyst for growth.
                 </p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Our Approach -->
+<!-- Founder Profile -->
 <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Meet Our Founder</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Leading innovation with over two decades of entrepreneurial and technical expertise.
+            </p>
+        </div>
+        
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Profile Image Slideshow -->
+            <div class="flex justify-center">
+                <div class="profile-slideshow max-w-md">
+                    {#each kentProfileImages as image, index}
+                        <img 
+                            src={image} 
+                            alt="Kent Nguyen - Founder of AlphaBits"
+                            class="ken-burns-effect {index === currentImageIndex ? 'active' : ''}"
+                            loading="lazy"
+                        />
+                    {/each}
+                </div>
+            </div>
+            
+            <!-- Bio Content -->
+            <div>
+                <div class="mb-6">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">
+                        <a href="https://www.kentnguyen.com/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors">
+                            Kent Nguyen
+                        </a>
+                    </h3>
+                    <p class="text-lg text-blue-600 font-semibold mb-4">Serial Tech Entrepreneur & Inventor of Alterno Sand Battery</p>
+                </div>
+                
+                <div class="prose prose-lg text-gray-600 mb-6">
+                    <p class="mb-4">
+                        Kent Nguyen is a seasoned tech entrepreneur and inventor with over 20 years of experience building startups, systems, and innovative solutions. As a Fractional CTO, he specializes in crafting technology strategies and leading software development teams across multiple countries.
+                    </p>
+                    <p class="mb-4">
+                        Based in Vietnam, Kent has a proven track record of creating complex software systems and driving energy-efficient breakthroughs, including pioneering work on thermal energy storage like the Sand Battery.
+                    </p>
+                    <p>
+                        His collaborative approach, strategic mindset, and ability to build trust with partners make him a respected leader in the tech industry.
+                    </p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a 
+                        href="https://www.kentnguyen.com/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                    >
+                        Learn More About Kent
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                    <a 
+                        href="/contact" 
+                        class="inline-flex items-center border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors"
+                    >
+                        Connect with Kent
+                    </a>
+                </div>
+                
+                <!-- Key Achievements -->
+                <div class="mt-8 grid grid-cols-2 gap-4">
+                    <div class="text-center p-4 bg-white rounded-lg">
+                        <div class="text-2xl font-bold text-blue-600 mb-1">20+</div>
+                        <div class="text-sm text-gray-600">Years Experience</div>
+                    </div>
+                    <div class="text-center p-4 bg-white rounded-lg">
+                        <div class="text-2xl font-bold text-green-600 mb-1">15+</div>
+                        <div class="text-sm text-gray-600">Startups Founded</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Approach -->
+<section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Approach</h2>
@@ -243,7 +387,7 @@
 </section>
 
 <!-- Our Expertise -->
-<section class="py-16">
+<section class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Expertise</h2>
