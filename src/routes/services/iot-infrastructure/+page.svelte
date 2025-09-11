@@ -1,11 +1,40 @@
 <script>
     import CTA from '$lib/components/CTA.svelte';
+    import SEOHead from '$lib/components/SEOHead.svelte';
+    
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "IoT Infrastructure Solutions",
+        "description": "Build comprehensive IoT ecosystems that connect, monitor, and control your physical assets. From sensor networks to real-time dashboards, we create intelligent infrastructure that drives operational efficiency.",
+        "provider": {
+            "@type": "Organization",
+            "name": "AlphaBits",
+            "url": "https://alphabits.team"
+        },
+        "serviceType": "IoT Infrastructure Development",
+        "category": "IoT & Infrastructure Services",
+        "offers": {
+            "@type": "Offer",
+            "description": "IoT sensor networks, device management, and real-time monitoring systems",
+            "seller": {
+                "@type": "Organization",
+                "name": "AlphaBits"
+            }
+        }
+    };
 </script>
 
-<svelte:head>
-    <title>IoT Infrastructure - AlphaBits</title>
-    <meta name="description" content="Build comprehensive IoT ecosystems that connect, monitor, and control your physical assets. From sensor networks to real-time dashboards, we create intelligent infrastructure that drives operational efficiency." />
-</svelte:head>
+<SEOHead 
+    title="IoT Infrastructure Solutions - AlphaBits | Smart Sensor Networks & Monitoring"
+    description="Build comprehensive IoT ecosystems that connect, monitor, and control your physical assets. From sensor networks to real-time dashboards, we create intelligent infrastructure that drives operational efficiency."
+    keywords="IoT infrastructure, sensor networks, IoT monitoring, smart devices, industrial IoT, IoT dashboard, device management, real-time monitoring, IoT analytics"
+    canonicalUrl="https://alphabits.team/services/iot-infrastructure"
+    ogImage="https://alphabits.team/alphabits_cover.png"
+    ogType="article"
+    articleSection="Services"
+    {structuredData}
+/>
 
 <!-- Animated Hero Section -->
 <section class="py-20 bg-gradient-to-br from-teal-50 to-cyan-50 overflow-hidden">

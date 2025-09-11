@@ -1,11 +1,40 @@
 <script>
     import CTA from '$lib/components/CTA.svelte';
+    import SEOHead from '$lib/components/SEOHead.svelte';
+    
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Data & AI Solutions",
+        "description": "Unlock the power of your data with comprehensive analytics, AI infrastructure, and intelligent agents. From data collection to actionable insights, we build scalable solutions that turn information into competitive advantage.",
+        "provider": {
+            "@type": "Organization",
+            "name": "AlphaBits",
+            "url": "https://alphabits.team"
+        },
+        "serviceType": "Data Analytics & AI Infrastructure",
+        "category": "Data & AI Services",
+        "offers": {
+            "@type": "Offer",
+            "description": "Big data infrastructure, AI analytics, and intelligent agent development",
+            "seller": {
+                "@type": "Organization",
+                "name": "AlphaBits"
+            }
+        }
+    };
 </script>
 
-<svelte:head>
-    <title>Data & AI Solutions - AlphaBits</title>
-    <meta name="description" content="Unlock the power of your data with comprehensive analytics, AI infrastructure, and intelligent agents. From data collection to actionable insights, we build scalable solutions that turn information into competitive advantage." />
-</svelte:head>
+<SEOHead 
+    title="Data & AI Solutions - AlphaBits | Big Data Analytics & AI Infrastructure"
+    description="Unlock the power of your data with comprehensive analytics, AI infrastructure, and intelligent agents. From data collection to actionable insights, we build scalable solutions that turn information into competitive advantage."
+    keywords="data analytics, AI solutions, big data infrastructure, machine learning, data warehouse, business intelligence, AI infrastructure, data science, predictive analytics"
+    canonicalUrl="https://alphabits.team/services/data-ai-solutions"
+    ogImage="https://alphabits.team/alphabits_cover.png"
+    ogType="article"
+    articleSection="Services"
+    {structuredData}
+/>
 
 <!-- Animated Hero Section -->
 <section class="py-20 bg-gradient-to-br from-purple-50 to-violet-50 overflow-hidden">
