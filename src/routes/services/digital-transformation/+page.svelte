@@ -1,11 +1,40 @@
 <script>
     import CTA from '$lib/components/CTA.svelte';
+    import SEOHead from '$lib/components/SEOHead.svelte';
+    
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Digital Transformation & Integration",
+        "description": "Comprehensive digital transformation services including ERP integration, legacy system migration, and modern infrastructure implementation for seamless business operations.",
+        "provider": {
+            "@type": "Organization",
+            "name": "AlphaBits",
+            "url": "https://alphabits.team"
+        },
+        "serviceType": "Digital Transformation Consulting",
+        "category": "Digital Transformation Services",
+        "offers": {
+            "@type": "Offer",
+            "description": "ERP integration, legacy system migration, and digital infrastructure modernization",
+            "seller": {
+                "@type": "Organization",
+                "name": "AlphaBits"
+            }
+        }
+    };
 </script>
 
-<svelte:head>
-    <title>Digital Transformation & Integration - AlphaBits</title>
-    <meta name="description" content="Comprehensive digital transformation services including ERP integration, legacy system migration, and modern infrastructure implementation for seamless business operations." />
-</svelte:head>
+<SEOHead 
+    title="Digital Transformation & Integration - AlphaBits | ERP & Legacy System Migration"
+    description="Comprehensive digital transformation services including ERP integration, legacy system migration, and modern infrastructure implementation for seamless business operations."
+    keywords="digital transformation, ERP integration, legacy system migration, business modernization, digital infrastructure, system integration, enterprise transformation"
+    canonicalUrl="https://alphabits.team/services/digital-transformation"
+    ogImage="https://alphabits.team/alphabits_cover.png"
+    ogType="article"
+    articleSection="Services"
+    {structuredData}
+/>
 
 <!-- Animated Hero Section -->
 <section class="py-20 bg-gradient-to-br from-orange-50 to-amber-50 overflow-hidden">

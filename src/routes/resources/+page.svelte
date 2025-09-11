@@ -1,7 +1,55 @@
-<svelte:head>
-    <title>Resources - AlphaBits</title>
-    <meta name="description" content="Access our comprehensive resources including the SecondBrains Framework, AI workflow automation courses, blog insights, and technical documentation." />
-</svelte:head>
+<script>
+    import SEOHead from '$lib/components/SEOHead.svelte';
+    
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "AlphaBits Resources",
+        "description": "Comprehensive resources including frameworks, courses, blog insights, and technical documentation for AI automation and digital transformation",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "CreativeWork",
+                    "name": "SecondBrains Framework",
+                    "url": "https://alphabits.team/resources/secondbrains-framework",
+                    "description": "Comprehensive architecture for intelligent automation systems"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "Course",
+                    "name": "AI Workflow Automation Courses",
+                    "url": "https://alphabits.team/resources/courses",
+                    "description": "Training programs in AI automation, Node-RED, and IoT integration"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                    "@type": "Blog",
+                    "name": "Blog & Insights",
+                    "url": "https://alphabits.team/resources/blog",
+                    "description": "Latest insights and tutorials on AI automation and digital transformation"
+                }
+            }
+        ]
+    };
+</script>
+
+<SEOHead 
+    title="Resources - AlphaBits | AI Automation Frameworks, Courses & Technical Documentation"
+    description="Access our comprehensive resources including the SecondBrains Framework, AI workflow automation courses, blog insights, and technical documentation. Free learning materials for business automation."
+    keywords="AI automation resources, SecondBrains Framework, Node-RED courses, automation training, technical documentation, AI learning materials, business automation guides"
+    canonicalUrl="https://alphabits.team/resources"
+    ogImage="https://alphabits.team/alphabits_cover.png"
+    ogType="website"
+    {structuredData}
+/>
 
 <!-- Hero Section -->
 <section class="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-800 text-white py-16">

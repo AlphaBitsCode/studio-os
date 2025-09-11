@@ -1,7 +1,49 @@
-<svelte:head>
-    <title>SENCAR Smoke Detection AIoT Prototype Case Study - AlphaBits</title>
-    <meta name="description" content="Detailed case study of developing an AI-powered smoke and odor detection prototype for SENCAR's rental car fleet - testing embedded AI chip performance for real-time detection within 15-30 seconds accuracy." />
-</svelte:head>
+<script>
+    import SEOHead from '$lib/components/SEOHead.svelte';
+    
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "SENCAR Smoke Detection AIoT Prototype Case Study",
+        "description": "Detailed case study of developing an AI-powered smoke and odor detection prototype for SENCAR's rental car fleet - testing embedded AI chip performance for real-time detection within 15-30 seconds accuracy.",
+        "author": {
+            "@type": "Organization",
+            "name": "AlphaBits",
+            "url": "https://alphabits.team"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "AlphaBits",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://alphabits.team/logos/logo_square.png"
+            }
+        },
+        "datePublished": "2024-02-01",
+        "dateModified": "2024-02-01",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://alphabits.team/case-studies/sencar-smoke-detection"
+        },
+        "image": "https://alphabits.team/case-studies/iot_security_station.gif",
+        "articleSection": "Case Studies",
+        "keywords": ["AIoT", "smoke detection", "embedded AI", "IoT sensors", "automotive technology", "prototype development"]
+    };
+</script>
+
+<SEOHead 
+    title="SENCAR Smoke Detection AIoT Prototype Case Study - AlphaBits | AI-Powered Fleet Monitoring"
+    description="Detailed case study of developing an AI-powered smoke and odor detection prototype for SENCAR's rental car fleet - testing embedded AI chip performance for real-time detection within 15-30 seconds accuracy."
+    keywords="AIoT prototype, smoke detection system, embedded AI chips, IoT sensors, automotive fleet monitoring, real-time detection, SENCAR partnership, AI automotive solutions"
+    canonicalUrl="https://alphabits.team/case-studies/sencar-smoke-detection"
+    ogImage="https://alphabits.team/case-studies/iot_security_station.gif"
+    ogType="article"
+    articleSection="Case Studies"
+    publishedTime="2024-02-01T00:00:00Z"
+    modifiedTime="2024-02-01T00:00:00Z"
+    articleTags={["AIoT", "Smoke Detection", "Embedded AI", "IoT Sensors", "Automotive Technology", "Prototype Development"]}
+    {structuredData}
+/>
 
 <style>
     .hero-background {

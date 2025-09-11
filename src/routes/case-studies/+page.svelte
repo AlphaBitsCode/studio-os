@@ -1,7 +1,45 @@
-<svelte:head>
-    <title>Case Studies - AlphaBits</title>
-    <meta name="description" content="Explore real-world examples of how AlphaBits has helped businesses transform through AI workflow automation and digital solutions." />
-</svelte:head>
+<script>
+    import SEOHead from '$lib/components/SEOHead.svelte';
+    
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "AlphaBits Case Studies",
+        "description": "Real-world examples of successful AI workflow automation and digital transformation projects",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "Article",
+                    "name": "Coffee Chain Digital Transformation",
+                    "url": "https://alphabits.team/case-studies/coffee-chain-transformation",
+                    "description": "Major Vietnamese coffee chain's digital transformation - consolidating 5 POS systems into unified BigQuery data warehouse"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "Article",
+                    "name": "SENCAR Smoke Detection AIoT Prototype",
+                    "url": "https://alphabits.team/case-studies/sencar-smoke-detection",
+                    "description": "AI-powered smoke and odor detection prototype for rental car fleet with 15-30 seconds accuracy"
+                }
+            }
+        ]
+    };
+</script>
+
+<SEOHead 
+    title="Case Studies - AlphaBits | Real-World AI Automation & Digital Transformation Success Stories"
+    description="Explore real-world examples of how AlphaBits has helped businesses transform through AI workflow automation and digital solutions. See measurable results and ROI from our implementations."
+    keywords="case studies, AI automation success stories, digital transformation examples, business automation results, IoT implementation, data analytics case studies"
+    canonicalUrl="https://alphabits.team/case-studies"
+    ogImage="https://alphabits.team/case-studies/coffee-background.jpg"
+    ogType="website"
+    {structuredData}
+/>
 
 <!-- Hero Section -->
 <section class="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-800 text-white py-16">

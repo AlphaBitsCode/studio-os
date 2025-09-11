@@ -1,18 +1,37 @@
 <script>
     import { onMount } from 'svelte';
     import CTA from '$lib/components/CTA.svelte';
+    import SEOHead from '$lib/components/SEOHead.svelte';
     
     let mounted = false;
     
     onMount(() => {
         mounted = true;
     });
+    
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "PriceSpecification",
+        "name": "AlphaBits Pricing & Engagement Models",
+        "description": "Flexible engagement models and transparent pricing for fractional CTO services, strategic advisory, project-based work, and offshore development teams",
+        "priceCurrency": "USD",
+        "seller": {
+            "@type": "Organization",
+            "name": "AlphaBits",
+            "url": "https://alphabits.team"
+        }
+    };
 </script>
 
-<svelte:head>
-    <title>Pricing & Engagement Models - AlphaBits</title>
-    <meta name="description" content="Flexible engagement models and transparent pricing for fractional CTO services, strategic advisory, project-based work, and offshore development teams." />
-</svelte:head>
+<SEOHead 
+    title="Pricing & Engagement Models - AlphaBits | Flexible CTO Services & Development Teams"
+    description="Flexible engagement models and transparent pricing for fractional CTO services, strategic advisory, project-based work, and offshore development teams. Choose the model that fits your business needs."
+    keywords="AlphaBits pricing, fractional CTO rates, engagement models, offshore development pricing, strategic advisory costs, project-based pricing, technology consulting rates"
+    canonicalUrl="https://alphabits.team/pricing"
+    ogImage="https://alphabits.team/alphabits_cover.png"
+    ogType="website"
+    {structuredData}
+/>
 
 <!-- Hero Section -->
 <section class="py-20 bg-gradient-to-br from-blue-50 to-purple-50">

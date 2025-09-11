@@ -13,7 +13,6 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href='https://alphabits.team/favicon.ico' type="image/x-icon" />
 	<script src="https://cdn.tailwindcss.com"></script>
 </svelte:head>
 

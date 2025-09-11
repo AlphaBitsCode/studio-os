@@ -1,4 +1,6 @@
 <script lang="ts">
+    import SEOHead from '$lib/components/SEOHead.svelte';
+    
     let isVideoPlaying = false;
     let videoElement: HTMLVideoElement;
 
@@ -18,12 +20,37 @@
         }
         isVideoPlaying = false;
     }
+    
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "mainEntity": {
+            "@type": "Organization",
+            "name": "AlphaBits",
+            "url": "https://alphabits.team",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "customer service",
+                "url": "https://alphabits.team/contact",
+                "availableLanguage": ["English", "Vietnamese"]
+            },
+            "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "VN"
+            }
+        }
+    };
 </script>
 
-<svelte:head>
-    <title>Contact Us - AlphaBits</title>
-    <meta name="description" content="Get in touch with AlphaBits for AI workflow automation, fractional CTO services, and digital transformation solutions." />
-</svelte:head>
+<SEOHead 
+    title="Contact Us - AlphaBits | Get Started with AI Automation & Digital Transformation"
+    description="Get in touch with AlphaBits for AI workflow automation, fractional CTO services, and digital transformation solutions. Schedule a consultation to discuss your business automation needs."
+    keywords="contact AlphaBits, AI automation consultation, digital transformation inquiry, fractional CTO services, business automation contact, technology consulting"
+    canonicalUrl="https://alphabits.team/contact"
+    ogImage="https://alphabits.team/alphabits_cover.png"
+    ogType="website"
+    {structuredData}
+/>
 
 <!-- Office Lobby Photos -->
 <section class="py-16">

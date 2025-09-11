@@ -1,6 +1,7 @@
 <script>
     import CTA from '$lib/components/CTA.svelte';
     import ImageSlideshow from '$lib/components/ImageSlideshow.svelte';
+    import SEOHead from '$lib/components/SEOHead.svelte';
     import { onMount } from 'svelte';
     
     let mounted = false;
@@ -44,12 +45,49 @@
          
          return () => clearInterval(interval);
      });
+     
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "mainEntity": {
+            "@type": "Organization",
+            "name": "AlphaBits",
+            "url": "https://alphabits.team",
+            "logo": "https://alphabits.team/logos/logo_square.png",
+            "description": "AI Workflow Automation & Digital Transformation Solutions",
+            "foundingDate": "2020",
+            "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "VN"
+            },
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "customer service",
+                "url": "https://alphabits.team/contact"
+            },
+            "sameAs": [
+                "https://www.linkedin.com/company/alphabits-team"
+            ],
+            "knowsAbout": [
+                "AI Workflow Automation",
+                "Digital Transformation",
+                "IoT Infrastructure",
+                "Data Analytics",
+                "Fractional CTO Services"
+            ]
+        }
+    };
 </script>
 
-<svelte:head>
-    <title>About Us - AlphaBits</title>
-    <meta name="description" content="Learn about AlphaBits' mission to transform businesses through AI workflow automation, digital transformation, and expert technical leadership." />
-</svelte:head>
+<SEOHead 
+    title="About Us - AlphaBits | AI Automation & Digital Transformation Experts"
+    description="Learn about AlphaBits' mission to transform businesses through AI workflow automation, digital transformation, and expert technical leadership. Discover our team, values, and approach to business innovation."
+    keywords="about AlphaBits, AI automation company, digital transformation experts, technology consulting team, business automation specialists, fractional CTO services"
+    canonicalUrl="https://alphabits.team/about"
+    ogImage="https://alphabits.team/office/office_front.jpg"
+    ogType="website"
+    {structuredData}
+/>
 
 <!-- Animated SVG Hero Section -->
 <section class="relative overflow-hidden bg-gradient-to-br from-cyan-400 via-blue-200 min-h-[600px] flex items-center justify-center">

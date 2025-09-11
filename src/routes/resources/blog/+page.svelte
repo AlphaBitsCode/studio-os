@@ -1,7 +1,36 @@
-<svelte:head>
-    <title>Blog & Insights - AlphaBits Resources</title>
-    <meta name="description" content="Latest insights, tutorials, and thought leadership articles on AI automation, digital transformation, and emerging technologies from AlphaBits experts." />
-</svelte:head>
+<script>
+    import SEOHead from '$lib/components/SEOHead.svelte';
+    
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "AlphaBits Blog & Insights",
+        "description": "Latest insights, tutorials, and thought leadership articles on AI automation, digital transformation, and emerging technologies",
+        "url": "https://alphabits.team/resources/blog",
+        "publisher": {
+            "@type": "Organization",
+            "name": "AlphaBits",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://alphabits.team/logos/logo_square.png"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://alphabits.team/resources/blog"
+        }
+    };
+</script>
+
+<SEOHead 
+    title="Blog & Insights - AlphaBits Resources | AI Automation & Digital Transformation Articles"
+    description="Latest insights, tutorials, and thought leadership articles on AI automation, digital transformation, and emerging technologies from AlphaBits experts. Learn from real-world implementations."
+    keywords="AI automation blog, digital transformation insights, Node-RED tutorials, IoT articles, business automation guides, technology thought leadership, AI implementation tips"
+    canonicalUrl="https://alphabits.team/resources/blog"
+    ogImage="https://alphabits.team/alphabits_cover.png"
+    ogType="website"
+    {structuredData}
+/>
 
 <!-- Hero Section -->
 <section class="bg-gradient-to-br from-purple-600 via-pink-600 to-red-800 text-white py-16">

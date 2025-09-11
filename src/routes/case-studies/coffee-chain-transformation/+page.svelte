@@ -1,7 +1,49 @@
-<svelte:head>
-    <title>Coffee Chain Digital Transformation Case Study - AlphaBits</title>
-    <meta name="description" content="Detailed case study of a major Vietnamese coffee chain's digital transformation - consolidating 5 POS systems, multiple databases, and marketing data into a unified BigQuery data warehouse with Looker Studio analytics." />
-</svelte:head>
+<script>
+    import SEOHead from '$lib/components/SEOHead.svelte';
+    
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Coffee Chain Digital Transformation Case Study",
+        "description": "Detailed case study of a major Vietnamese coffee chain's digital transformation - consolidating 5 POS systems, multiple databases, and marketing data into a unified BigQuery data warehouse with Looker Studio analytics.",
+        "author": {
+            "@type": "Organization",
+            "name": "AlphaBits",
+            "url": "https://alphabits.team"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "AlphaBits",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://alphabits.team/logos/logo_square.png"
+            }
+        },
+        "datePublished": "2024-01-15",
+        "dateModified": "2024-01-15",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://alphabits.team/case-studies/coffee-chain-transformation"
+        },
+        "image": "https://alphabits.team/case-studies/coffee-background.jpg",
+        "articleSection": "Case Studies",
+        "keywords": ["digital transformation", "BigQuery", "data warehouse", "POS integration", "coffee chain", "business intelligence"]
+    };
+</script>
+
+<SEOHead 
+    title="Coffee Chain Digital Transformation Case Study - AlphaBits | BigQuery Data Warehouse Implementation"
+    description="Detailed case study of a major Vietnamese coffee chain's digital transformation - consolidating 5 POS systems, multiple databases, and marketing data into a unified BigQuery data warehouse with Looker Studio analytics."
+    keywords="coffee chain digital transformation, BigQuery data warehouse, POS system integration, business intelligence, data consolidation, Looker Studio analytics, retail analytics"
+    canonicalUrl="https://alphabits.team/case-studies/coffee-chain-transformation"
+    ogImage="https://alphabits.team/case-studies/coffee-background.jpg"
+    ogType="article"
+    articleSection="Case Studies"
+    publishedTime="2024-01-15T00:00:00Z"
+    modifiedTime="2024-01-15T00:00:00Z"
+    articleTags={["Digital Transformation", "BigQuery", "Data Warehouse", "POS Integration", "Business Intelligence"]}
+    {structuredData}
+/>
 
 <style>
     .hero-background {

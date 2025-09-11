@@ -1,11 +1,76 @@
 <script>
     import CTA from '$lib/components/CTA.svelte';
+    import SEOHead from '$lib/components/SEOHead.svelte';
+    
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "AlphaBits Services",
+        "description": "Comprehensive technology services including AI workflow automation, fractional CTO services, data solutions, digital transformation, and IoT infrastructure.",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "Service",
+                    "name": "AI Workflow Automation",
+                    "url": "https://alphabits.team/services/ai-workflow-automation",
+                    "description": "Intelligent AI agents and IoT workflow automation across all departments"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "Service",
+                    "name": "Fractional CTO Services",
+                    "url": "https://alphabits.team/services/fractional-cto",
+                    "description": "Expert technical leadership and strategic guidance"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                    "@type": "Service",
+                    "name": "Data & AI Solutions",
+                    "url": "https://alphabits.team/services/data-ai-solutions",
+                    "description": "Big data analytics, AI infrastructure, and intelligent agents"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                    "@type": "Service",
+                    "name": "IoT Infrastructure",
+                    "url": "https://alphabits.team/services/iot-infrastructure",
+                    "description": "Smart sensor networks and IoT monitoring systems"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                    "@type": "Service",
+                    "name": "Digital Transformation",
+                    "url": "https://alphabits.team/services/digital-transformation",
+                    "description": "ERP integration and legacy system modernization"
+                }
+            }
+        ]
+    };
 </script>
 
-<svelte:head>
-    <title>Our Services - AlphaBits</title>
-    <meta name="description" content="Comprehensive AI workflow automation, fractional CTO services, data solutions, digital transformation, and IoT infrastructure services." />
-</svelte:head>
+<SEOHead 
+    title="Our Services - AlphaBits | AI Automation, CTO Services & Digital Transformation"
+    description="Comprehensive AI workflow automation, fractional CTO services, data solutions, digital transformation, and IoT infrastructure services. Transform your business with expert technology solutions."
+    keywords="AI services, fractional CTO, digital transformation services, IoT infrastructure, data analytics, business automation, technology consulting, AI implementation"
+    canonicalUrl="https://alphabits.team/services"
+    ogImage="https://alphabits.team/alphabits_cover.png"
+    ogType="website"
+    {structuredData}
+/>
 
 <!-- Hero Section with Large Vector Animation -->
 <section class="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 overflow-hidden">
