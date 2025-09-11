@@ -116,8 +116,20 @@
 						
 						<!-- AI Workflow -->
 						<NavigationMenu.Item>
+							<NavigationMenu.Link href="/services/ai-workflow-automation">
+								{#snippet child()}
+									<a href="/services/ai-workflow-automation" class="text-sm font-medium text-gray-700 hover:text-medium-teal transition-colors whitespace-nowrap">AI Workflow</a>
+								{/snippet}
+							</NavigationMenu.Link>
+						</NavigationMenu.Item>
+
+						<!-- AI Workflow Dropdown (keeping the dropdown functionality) -->
+						<NavigationMenu.Item>
 							<NavigationMenu.Trigger class="text-sm font-medium text-gray-700 hover:text-medium-teal transition-colors whitespace-nowrap flex items-center">
-							AI Workflow
+							<span class="sr-only">AI Workflow Menu</span>
+							<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+							</svg>
 						</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
 								<div class="grid w-[500px] gap-3 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
@@ -144,8 +156,20 @@
 
 						<!-- Services -->
 						<NavigationMenu.Item>
+							<NavigationMenu.Link href="/services">
+								{#snippet child()}
+									<a href="/services" class="text-sm font-medium text-gray-700 hover:text-medium-teal transition-colors whitespace-nowrap">Services</a>
+								{/snippet}
+							</NavigationMenu.Link>
+						</NavigationMenu.Item>
+
+						<!-- Services Dropdown (keeping the dropdown functionality) -->
+						<NavigationMenu.Item>
 							<NavigationMenu.Trigger class="text-sm font-medium text-gray-700 hover:text-medium-teal transition-colors whitespace-nowrap flex items-center">
-							Services
+							<span class="sr-only">Services Menu</span>
+							<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+							</svg>
 						</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
 								<div class="grid w-[600px] gap-3 p-4 md:grid-cols-2 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
@@ -172,8 +196,20 @@
 
 						<!-- Free Resources -->
 						<NavigationMenu.Item>
+							<NavigationMenu.Link href="/free-materials">
+								{#snippet child()}
+									<a href="/free-materials" class="text-sm font-medium text-gray-700 hover:text-medium-teal transition-colors whitespace-nowrap">Learning Materials</a>
+								{/snippet}
+							</NavigationMenu.Link>
+						</NavigationMenu.Item>
+
+						<!-- Free Materials Dropdown (keeping the dropdown functionality) -->
+						<NavigationMenu.Item>
 							<NavigationMenu.Trigger class="text-sm font-medium text-gray-700 hover:text-medium-teal transition-colors whitespace-nowrap flex items-center">
-							Free Resources
+							<span class="sr-only">Free Materials Menu</span>
+							<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+							</svg>
 						</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
 								<div class="grid w-[500px] gap-3 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
@@ -272,9 +308,9 @@
 					{/each}
 				</div>
 
-				<!-- Free Resources -->
+				<!-- Free Materials -->
 				<div class="space-y-2">
-					<div class="px-3 py-2 text-xs font-bold text-gray-900 uppercase tracking-wider border-b border-gray-100">Free Resources</div>
+					<div class="px-3 py-2 text-xs font-bold text-gray-900 uppercase tracking-wider border-b border-gray-100">Learning Materials</div>
 					{#each freeResourcesItems as resource}
 						<a href={resource.href} class="block px-6 py-2 text-sm font-medium text-gray-600 hover:text-medium-teal hover:bg-gray-50 transition-colors rounded-md" onclick={closeMobileMenu}>
 							{resource.title}

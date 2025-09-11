@@ -29,9 +29,9 @@
 <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Office</h1>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Lab Office</h1>
             <p class="text-lg text-gray-600">
-                Welcome to AlphaBits - where innovation meets collaboration in our modern workspace.
+                Welcome to AlphaBits - where the future is now.
             </p>
         </div>
         

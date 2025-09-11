@@ -464,6 +464,88 @@
     </div>
 </section>
 
+<!-- Success Stories -->
+<section class="py-16 bg-teal-50 dark:bg-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Success Stories</h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                Real-world IoT implementations delivering measurable results for our clients.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Coffee Chain Case Study -->
+            <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900 rounded-lg flex items-center justify-center mr-4">
+                        <svg class="w-6 h-6 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold">Coffee Chain Data Transformation</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">200+ outlets • BigQuery Analytics</p>
+                    </div>
+                </div>
+                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                    Unified data platform consolidating 5 POS systems, multiple databases, and marketing data into real-time BigQuery analytics with Looker Studio dashboards.
+                </p>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-amber-600 dark:text-amber-400">95%</div>
+                        <div class="text-xs text-gray-600 dark:text-gray-300">Data Accuracy</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-green-600 dark:text-green-400">70%</div>
+                        <div class="text-xs text-gray-600 dark:text-gray-300">Faster Reporting</div>
+                    </div>
+                </div>
+                <a href="/case-studies/coffee-chain-transformation" class="inline-flex items-center text-teal-600 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 font-semibold">
+                    Read Full Case Study
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+            
+            <!-- SENCAR AIoT Case Study -->
+            <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mr-4">
+                        <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold">SENCAR Smoke Detection AIoT</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Rental Fleet • AI Embedded Chips</p>
+                    </div>
+                </div>
+                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                    AI-powered smoke and odor detection prototype for rental car fleet using embedded AI chips with 15-30 second detection accuracy and 24-hour monitoring.
+                </p>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-blue-600 dark:text-blue-400">15-30s</div>
+                        <div class="text-xs text-gray-600 dark:text-gray-300">Detection Speed</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-green-600 dark:text-green-400">95%</div>
+                        <div class="text-xs text-gray-600 dark:text-gray-300">Accuracy Rate</div>
+                    </div>
+                </div>
+                <a href="/case-studies/sencar-smoke-detection" class="inline-flex items-center text-teal-600 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 font-semibold">
+                    Read Full Case Study
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Implementation Process -->
 <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -536,7 +618,7 @@
         href: '/contact'
     }}
     secondaryButton={{
-        text: 'See Implementation',
+        text: 'View Success Stories',
         href: '/case-studies/coffee-chain-transformation'
     }}
     variant="gradient-teal"

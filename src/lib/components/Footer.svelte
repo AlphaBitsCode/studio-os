@@ -11,7 +11,7 @@
 					<Logo size="medium" variant="default" alt="AlphaBits" />
 				</div>
 				<p class="text-gray-600 mb-4">
-					Building modern web applications with cutting-edge technology and exceptional user experiences.
+					AIoT Solutions for the modern businesses.
 				</p>
 				<div class="flex space-x-4">
 					<a href="https://github.com/AlphaBitsCode/" class="text-gray-600 hover:text-medium-teal transition-colors">
