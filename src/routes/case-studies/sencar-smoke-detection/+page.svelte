@@ -16,7 +16,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-image: url('/office/office_7.jpg');
+        background-image: url('/partners/sencar_slide1.jpg');
         background-size: cover;
         background-position: center;
         animation: kenBurns 20s ease-in-out infinite;
@@ -41,20 +41,24 @@
     
     @keyframes kenBurns {
         0% {
-            background-image: url('/office/office_7.jpg');
+            background-image: url('/partners/sencar_slide1.jpg');
             transform: scale(1);
         }
-        33.33% {
-            background-image: url('/office/office_7.jpg');
+        25% {
+            background-image: url('/partners/sencar_slide1.jpg');
             transform: scale(1.1);
         }
-        66.66% {
-            background-image: url('/office/office_aofarm2.jpg');
+        50% {
+            background-image: url('/partners/sencar_slide2.jpg');
             transform: scale(1);
+        }
+        75% {
+            background-image: url('/partners/sencar_slide2.jpg');
+            transform: scale(1.1);
         }
         100% {
-            background-image: url('/office/office_aofarm2.jpg');
-            transform: scale(1.1);
+            background-image: url('/partners/sencar_slide3.jpg');
+            transform: scale(1);
         }
     }
 </style>
@@ -315,15 +319,21 @@
         <div class="bg-green-50 border-4 border-green-300 p-8 rounded-lg">
             <h3 class="text-2xl font-bold mb-4">Client Testimonial</h3>
             <blockquote class="text-lg text-gray-700 italic mb-4">
-                "The AlphaBits team delivered an exceptional AIoT prototype that exceeded our expectations. The smoke detection system's accuracy and speed will revolutionize how we manage our rental fleet. The 15-30 second detection capability gives us the real-time monitoring we need to maintain our vehicle quality standards."
+                "Working with AlphaBits on this AIoT prototype has been transformative for our business. Their innovative approach to smoke and odor detection using embedded AI chips demonstrates the future of fleet management technology. The 15-30 second detection accuracy and continuous monitoring capabilities will help us maintain the highest standards of vehicle quality while ensuring customer satisfaction. This partnership showcases how Vietnamese companies can lead in automotive technology innovation."
             </blockquote>
             <div class="flex items-center">
-                <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                    SC
+                <div class="w-12 h-12 mr-4">
+                    <img src="/partners/sencar_founder_lam_nguyen.png" alt="Lam Nguyen" class="w-12 h-12 rounded-full object-cover">
                 </div>
                 <div>
-                    <div class="font-semibold">SENCAR Team</div>
-                    <div class="text-sm text-gray-700">Fleet Management, SENCAR Vietnam</div>
+                    <div class="font-semibold">Lam Nguyen</div>
+                    <div class="text-sm text-gray-700 mb-1">Founder & CEO, SENCAR Vietnam</div>
+                    <a href="https://www.linkedin.com/in/lamsencar/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium">
+                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        LinkedIn Profile
+                    </a>
                 </div>
             </div>
         </div>
@@ -397,7 +407,7 @@
 </section>
 
 <!-- CTA Section -->
-<section class="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+<section class="py-16 bg-gradient-to-r from-blue-600 to-purple-600">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl md:text-4xl font-bold mb-4">
             Ready for Your AIoT Innovation?
@@ -409,7 +419,7 @@
             <a href="/quick-assessment" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                 Start Your Project
             </a>
-            <a href="/services" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+            <a href="/services" class="border-2 border-whit px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
                 Explore AIoT Services
             </a>
         </div>

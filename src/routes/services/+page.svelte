@@ -22,7 +22,7 @@
             <!-- Hero Text -->
             <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 Transform Your Business with
-                <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-blue-700">
                     Expert Technology Solutions
                 </span>
             </h1>
@@ -33,11 +33,11 @@
             
             <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="http://cal.com/alphabits/mini" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    Book Free CTO Assessment
+                <a href="http://cal.com/alphabits/mini" class="bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-900 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Book Tech Assessment
                 </a>
-                <a href="/contact" class="border-2 border-gray-400 text-gray-700 px-8 py-4 rounded-lg font-semibold hover:bg-gray-400 hover:text-white transition-all duration-300">
-                    Get Started Today
+                <a href="/services" class="border-2 border-gray-400 text-gray-700 px-8 py-4 rounded-lg font-semibold hover:bg-gray-400 hover:text-white transition-all duration-300">
+                    Learn more
                 </a>
             </div>
         </div>
