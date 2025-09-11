@@ -253,22 +253,22 @@
         </div>
         
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+            <div class="bg-white p-6 rounded-lg text-center">
                 <h3 class="text-lg font-semibold mb-2">AI & Machine Learning</h3>
                 <p class="text-sm text-gray-600">Advanced AI agents, LLM integration, and intelligent automation systems</p>
             </div>
             
-            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+            <div class="bg-white p-6 rounded-lg text-center">
                 <h3 class="text-lg font-semibold mb-2">IoT & Automation</h3>
                 <p class="text-sm text-gray-600">Node-RED workflows, sensor integration, and real-time monitoring</p>
             </div>
             
-            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+            <div class="bg-white p-6 rounded-lg text-center">
                 <h3 class="text-lg font-semibold mb-2">Data Engineering</h3>
                 <p class="text-sm text-gray-600">BigQuery, ClickHouse, InfluxDB, and comprehensive data pipelines</p>
             </div>
             
-            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+            <div class="bg-white p-6 rounded-lg text-center">
                 <h3 class="text-lg font-semibold mb-2">Cloud Infrastructure</h3>
                 <p class="text-sm text-gray-600">Modern cloud architectures, network configuration, and scalable systems</p>
             </div>
@@ -309,7 +309,7 @@
         
         <div class="grid md:grid-cols-2 gap-12">
             <!-- Company Details -->
-            <div class="bg-white p-8 rounded-lg shadow-lg">
+            <div class="bg-white p-8 rounded-lg">
                 <h3 class="text-2xl font-semibold mb-6 text-gray-800">Company Details</h3>
                 
                 <div class="space-y-6">
@@ -366,7 +366,7 @@
             </div>
             
             <!-- Contact Methods -->
-            <div class="bg-white p-8 rounded-lg shadow-lg">
+            <div class="bg-white p-8 rounded-lg">
                 <h3 class="text-2xl font-semibold mb-6 text-gray-800">Get In Touch</h3>
                 
                 <div class="space-y-6">

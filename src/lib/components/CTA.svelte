@@ -64,7 +64,7 @@
 		<div class="flex flex-col sm:flex-row gap-4 justify-center">
 			{#if primaryButton}
 				{#if primaryButton.variant === 'custom'}
-					<a href={primaryButton.href} class={primaryButton.class || 'bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors'}>
+					<a href={primaryButton.href} class={primaryButton.class || 'bg-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors'}>
 						{primaryButton.text}
 					</a>
 				{:else}

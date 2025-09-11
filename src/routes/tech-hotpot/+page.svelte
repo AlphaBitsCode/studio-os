@@ -166,7 +166,7 @@
             </h1>
         </div>
         <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-            Where technology simmers and innovation bubbles up. Explore our curated blend of the latest tech trends, insights, and breakthroughs.
+            Some code, some insights, and some ideas.
         </p>
     </div>
 </header>

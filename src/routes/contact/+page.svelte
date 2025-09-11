@@ -80,7 +80,7 @@
                 {/if}
                 <div class="p-6 bg-white">
                     <h3 class="text-xl font-semibold mb-2">Office Tour</h3>
-                    <p class="text-gray-600 text-sm">{isVideoPlaying ? 'Watching our office walkthrough' : 'Click to watch our office walkthrough'}</p>
+                    <p class="text-gray-600 text-sm">{isVideoPlaying ? 'A walk through our office, July 2025' : 'Click to take a step into our office'}</p>
                 </div>
             </div>
             

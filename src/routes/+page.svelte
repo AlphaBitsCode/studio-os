@@ -170,6 +170,6 @@
         text: 'View Case Studies',
         href: '/case-studies',
         variant: 'custom',
-        class: 'border-2 border-white text-white hover:bg-white hover:text-medium-teal px-8 py-3 rounded-lg font-semibold transition-colors'
+        class: 'border-2 border-white hover:bg-white hover:text-medium-teal px-8 py-3 rounded-lg font-semibold transition-colors'
     }}
 />
