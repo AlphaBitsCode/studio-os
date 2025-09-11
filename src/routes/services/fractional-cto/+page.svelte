@@ -1,13 +1,42 @@
 <script>
     import CTA from '$lib/components/CTA.svelte';
+    import Card from '$lib/components/ui/card.svelte';
+    import Badge from '$lib/components/ui/badge.svelte';
+    import SEOHead from '$lib/components/SEOHead.svelte';
+    
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Fractional CTO & Tech Leadership",
+        "description": "Expert technical leadership with comprehensive assessments, infrastructure modernization, and strategic guidance for your technology decisions.",
+        "provider": {
+            "@type": "Organization",
+            "name": "AlphaBits",
+            "url": "https://alphabits.team"
+        },
+        "serviceType": "Technology Leadership Consulting",
+        "category": "CTO Services",
+        "offers": {
+            "@type": "Offer",
+            "description": "Fractional CTO services and technical leadership consulting",
+            "seller": {
+                "@type": "Organization",
+                "name": "AlphaBits"
+            }
+        }
+    };
 </script>
 
-
-
-<svelte:head>
-    <title>Fractional CTO & Tech Leadership - AlphaBits</title>
-    <meta name="description" content="Expert technical leadership with comprehensive assessments, infrastructure modernization, and strategic guidance for your technology decisions." />
-</svelte:head>
+<SEOHead 
+    title="Fractional CTO & Tech Leadership Services - AlphaBits | Expert Technical Guidance"
+    description="Expert technical leadership with comprehensive assessments, infrastructure modernization, and strategic guidance for your technology decisions. Get CTO-level expertise without full-time costs."
+    keywords="fractional CTO, technical leadership, CTO services, technology strategy, infrastructure modernization, tech consulting, startup CTO, technology assessment"
+    canonicalUrl="https://alphabits.team/services/fractional-cto"
+    ogImage="https://alphabits.team/alphabits_cover.png"
+    ogType="article"
+    articleSection="Services"
+    {structuredData}
+/>
 
 <!-- Animated Hero Section -->
 <section class="py-20 bg-gradient-to-br from-blue-50 to-green-50 overflow-hidden">
