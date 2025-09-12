@@ -313,7 +313,7 @@
             
             <div class="bg-white border-4 border-gray-300 p-4 rounded-lg">
                 <img src="/partners/sencar_website.png" alt="SENCAR Website Screenshot" class="w-full rounded-lg shadow-lg">
-                <p class="text-sm text-gray-600 mt-2 text-center">SENCAR's professional website showcasing their rental services</p>
+                <p class="text-sm text-gray-600 mt-2 text-center">SENCAR's Rental Services</p>
             </div>
         </div>
     </div>
@@ -343,7 +343,7 @@
                 </video>
             </div>
             <p class="text-center text-gray-600 mt-4">
-                Live demonstration of the AI-powered smoke detection system during field testing at SENCAR's Ho Chi Minh City headquarters.
+                Live demonstration of the AI-powered smoke detection system during field testing at SENCAR's Ho Chi Minh City HQ.
             </p>
         </div>
     </div>
@@ -456,7 +456,7 @@
         <div class="bg-green-50 border-4 border-green-300 p-8 rounded-lg">
             <h3 class="text-2xl font-bold mb-4">Client Testimonial</h3>
             <blockquote class="text-lg text-gray-700 italic mb-4">
-                "Working with AlphaBits on this AIoT prototype has been transformative for our business. Their innovative approach to smoke and odor detection using embedded AI chips demonstrates the future of fleet management technology. The 15-30 second detection accuracy and continuous monitoring capabilities will help us maintain the highest standards of vehicle quality while ensuring customer satisfaction. This partnership showcases how Vietnamese companies can lead in automotive technology innovation."
+                "Working with AlphaBits on this AIoT prototype has been transformative for our business. Their innovative approach to smoke and odor detection using embedded AI chips demonstrates the future of fleet management technology. The 15-30 second detection accuracy and continuous monitoring capabilities will help us maintain the highest standards of vehicle quality while ensuring customer satisfaction."
             </blockquote>
             <div class="flex items-center">
                 <div class="w-12 h-12 mr-4">

@@ -263,6 +263,7 @@
                 <!-- RDX -->
                 <div class="bg-white rounded-lg border border-slate-200 overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <div class="h-48 bg-gradient-to-br from-red-400 to-red-600 relative overflow-hidden">
+                        <img src="/case-studies/rdx.jpg" alt="Remote Driving eXperience" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-black bg-opacity-20"></div>
                         <div class="absolute bottom-4 left-4 text-white">
                             <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-2">
@@ -340,6 +341,7 @@
                 <!-- Other IoT Projects -->
                 <div class="bg-white rounded-lg border border-slate-200 overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <div class="h-48 bg-gradient-to-br from-indigo-400 to-purple-600 relative overflow-hidden">
+                        <img src="/office/office_2.jpg" alt="Alpha Bits IoT Hardware Projects" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-black bg-opacity-20"></div>
                         <div class="absolute bottom-4 left-4 text-white">
                             <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-2">

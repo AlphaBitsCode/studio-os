@@ -50,48 +50,12 @@
 			icon: "Code"
 		},
 		{
-			name: "Zapier",
-			category: "Workflow Automation",
-			description: "Connect your apps and automate workflows without coding.",
-			features: ["App integrations", "Automated workflows", "Trigger-based actions", "Multi-step automation"],
-			price: "Free tier available",
-			url: "https://zapier.com",
-			icon: "Workflow"
-		},
-		{
-			name: "n8n",
-			category: "Workflow Automation",
-			description: "Open-source workflow automation tool with visual editor and self-hosting options.",
-			features: ["Visual workflow builder", "Self-hosted option", "Custom nodes", "API integrations"],
-			price: "Free (open source)",
-			url: "https://n8n.io",
-			icon: "Workflow"
-		},
-		{
-			name: "Make (Integromat)",
-			category: "Workflow Automation",
-			description: "Visual platform for creating, building and automating anything.",
-			features: ["Visual automation builder", "Advanced logic", "Data transformation", "Real-time monitoring"],
-			price: "Free tier available",
-			url: "https://make.com",
-			icon: "Zap"
-		},
-		{
 			name: "Flowise",
 			category: "AI Development",
 			description: "Open-source low-code tool for building customized LLM orchestration flows and AI agents.",
 			features: ["Visual LLM builder", "Custom AI agents", "API integration", "Self-hosted"],
 			price: "Free (open source)",
 			url: "https://flowiseai.com",
-			icon: "Bot"
-		},
-		{
-			name: "Notion AI",
-			category: "Productivity",
-			description: "AI-powered writing assistant integrated into your workspace.",
-			features: ["Content generation", "Summarization", "Translation", "Brainstorming"],
-			price: "Paid add-on",
-			url: "https://notion.so",
 			icon: "Bot"
 		},
 		{
@@ -191,15 +155,6 @@
 			features: ["AI pair programming", "Code generation", "Natural language editing", "Codebase chat"],
 			price: "Free tier available",
 			url: "https://cursor.sh",
-			icon: "Code"
-		},
-		{
-			name: "Windsurf IDE",
-			category: "Development Tools",
-			description: "Modern IDE with AI-powered development features and collaborative tools.",
-			features: ["AI assistance", "Real-time collaboration", "Smart debugging", "Code analysis"],
-			price: "Free tier available",
-			url: "https://windsurf.ai",
 			icon: "Code"
 		},
 		{

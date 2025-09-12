@@ -235,33 +235,6 @@
 	</div>
 </section>
 
-<!-- Categories Overview -->
-<section class="py-20 bg-white">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="text-center mb-16">
-			<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Productivity Areas</h2>
-			<p class="text-lg text-gray-600 max-w-3xl mx-auto">
-				Explore different aspects of productivity to find strategies that work best for your situation.
-			</p>
-		</div>
-
-		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-			{#each categories as category}
-				<div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-6 hover:from-green-50 hover:to-blue-50 transition-all duration-300">
-					<h3 class="text-lg font-semibold text-gray-900 mb-2">{category}</h3>
-					<p class="text-gray-600 text-sm mb-4">
-						{productivityTips.filter(tip => tip.category === category).length} strategies available
-					</p>
-					<div class="flex items-center text-green-600 font-medium text-sm">
-						Explore strategies
-						<ArrowRight class="w-4 h-4 ml-1" />
-					</div>
-				</div>
-			{/each}
-		</div>
-	</div>
-</section>
-
 <!-- CTA Section -->
 <section class="py-20 bg-gradient-to-r from-green-600 to-blue-600">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

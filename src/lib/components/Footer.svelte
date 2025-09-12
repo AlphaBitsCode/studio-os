@@ -60,7 +60,6 @@
 					<li><a href="/resources/ai-tools" class="text-gray-700 hover:text-medium-teal transition-colors">AI Tools</a></li>
 					<li><a href="/resources/productivity-tips" class="text-gray-700 hover:text-medium-teal transition-colors">Productivity Tips</a></li>
 					<li><a href="/resources/nodered-learning" class="text-gray-700 hover:text-medium-teal transition-colors">NodeRED Learning</a></li>
-					<li><a href="/ai-workflow/getting-started" class="text-gray-700 hover:text-medium-teal transition-colors">Getting Started Guide</a></li>
 				</ul>
 			</div>
 		</div>
