@@ -1,12 +1,54 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
+	// Helper functions moved to client-side
+	function formatDate(dateString: string | null | undefined): string {
+		if (!dateString) return '';
+		const date = new Date(dateString);
+		return date.toLocaleDateString('en-US', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric'
+		});
+	}
+	
+	function getCategoryIcon(categoryTitle: string): string {
+		const iconMap: Record<string, string> = {
+			'Software': 'software',
+			'Software Dev': 'software',
+			'IoT News': 'iot',
+			'Data & Analytics': 'data',
+			'AI Workflow': 'ai',
+			'Digital Transformation': 'dx',
+			'AI in Education': 'education',
+			'AI in Agriculture': 'agriculture',
+			'AI in F&B': 'fb',
+			'AI in Manufacturing': 'manufacturing',
+			'Workflow Automation': 'ai'
+		};
+		return iconMap[categoryTitle] || 'software';
+	}
+	
+	function calculateReadTime(content: string | null | undefined): number {
+		if (!content) return 1;
+		const wordsPerMinute = 200;
+		const wordCount = content.split(/\s+/).length;
+		return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
+	}
+	
+	function getImageUrl(imageId: string | null | undefined): string {
+		if (!imageId) return '/placeholder-image.jpg';
+		// Use the public Directus URL for client-side image loading
+		const directusUrl = 'https://kore.alphabits.team';
+		return `${directusUrl}/assets/${imageId}?width=800&height=450&fit=cover&quality=80`;
+	}
 	import type { PageData } from './$types';
 	
 	export let data: PageData;
 	
 	let mounted = false;
 	let contentElement: HTMLElement;
+	let readingProgress = 0;
 	
 	$: post = data.post;
 	
@@ -16,6 +58,14 @@
 		setTimeout(() => {
 			setupExpandableCodeBlocks();
 		}, 100);
+		
+		// Setup reading progress tracking
+		const updateProgress = () => {
+			readingProgress = getReadingProgress();
+		};
+		
+		window.addEventListener('scroll', updateProgress);
+		return () => window.removeEventListener('scroll', updateProgress);
 	});
 	
 	// Also setup code blocks when content changes
@@ -44,15 +94,6 @@
 		});
 	}
 	
-	// Helper function to format date
-	function formatDate(dateString: string) {
-		return new Date(dateString).toLocaleDateString('en-US', {
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric'
-		});
-	}
-	
 	// Helper function to estimate reading progress
 	function getReadingProgress() {
 		if (!contentElement) return 0;
@@ -65,76 +106,46 @@
 		return Math.min(100, Math.max(0, scrollPercent * 100));
 	}
 	
-	let readingProgress = 0;
-	
-	onMount(() => {
-		const updateProgress = () => {
-			readingProgress = getReadingProgress();
+	// Helper function to get category icon path
+	function getCategoryIconPath(categoryTitle: string): string {
+		const iconType = getCategoryIcon(categoryTitle);
+		const iconMap: { [key: string]: string } = {
+			'software': '/icons/icon_software.png',
+			'iot': '/icons/icon_iot.png',
+			'data': '/icons/icon_data.png',
+			'ai': '/icons/icon_ai.png',
+			'dx': '/icons/icon_dx.png',
+			'education': '/icons/icon_ai.png',
+			'agriculture': '/icons/icon_ai.png',
+			'fb': '/icons/icon_ai.png',
+			'manufacturing': '/icons/icon_ai.png'
 		};
-		
-		window.addEventListener('scroll', updateProgress);
-		return () => window.removeEventListener('scroll', updateProgress);
-	});
+		return iconMap[iconType] || '/icons/icon_software.png';
+	}
 </script>
 
 <svelte:head>
 	<title>{post.title} - Tech Hotpot | AlphaBits</title>
-	<meta name="description" content={post.seo.metaDescription} />
-	<meta name="keywords" content={post.seo.keywords.join(', ')} />
-	<meta name="author" content={post.author} />
+	<meta name="description" content={post.summary || post.title} />
+	<meta name="author" content="Alpha Bits" />
 	
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content={post.title} />
-	<meta property="og:description" content={post.seo.metaDescription} />
-	<meta property="og:image" content={post.thumbnail} />
+	<meta property="og:description" content={post.summary || post.title} />
+	<meta property="og:image" content={getImageUrl(post.image)} />
 	<meta property="og:url" content="https://alphabits.team/tech-hotpot/{post.slug}" />
-	<meta property="article:author" content={post.author} />
-	<meta property="article:published_time" content={post.publishedAt} />
-	<meta property="article:section" content={post.category} />
-	{#each post.tags as tag}
-		<meta property="article:tag" content={tag} />
-	{/each}
+	<meta property="article:author" content="Alpha Bits" />
+	<meta property="article:published_time" content={post.date_published || post.date_created} />
+	{#if post.category}
+		<meta property="article:section" content={post.category.title} />
+	{/if}
 	
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={post.title} />
-	<meta name="twitter:description" content={post.seo.metaDescription} />
-	<meta name="twitter:image" content={post.thumbnail} />
-	
-	<!-- Canonical URL -->
-	<link rel="canonical" href="https://alphabits.team/tech-hotpot/{post.slug}" />
-	
-	<!-- JSON-LD Structured Data -->
-	<script type="application/ld+json">
-		{
-			"@context": "https://schema.org",
-			"@type": "BlogPosting",
-			"headline": "{post.title}",
-			"description": "{post.seo.metaDescription}",
-			"image": "{post.thumbnail}",
-			"author": {
-				"@type": "Person",
-				"name": "{post.author}"
-			},
-			"publisher": {
-				"@type": "Organization",
-				"name": "AlphaBits",
-				"logo": {
-					"@type": "ImageObject",
-					"url": "https://alphabits.team/logos/logo_square.png"
-				}
-			},
-			"datePublished": "{post.publishedAt}",
-			"dateModified": "{post.publishedAt}",
-			"mainEntityOfPage": {
-				"@type": "WebPage",
-				"@id": "https://alphabits.team/tech-hotpot/{post.slug}"
-			},
-			"articleSection": "{post.category}",
-			"keywords": "{post.seo.keywords.join(', ')}"
-		}
-	</script>
+	<meta name="twitter:description" content={post.summary || post.title} />
+	<meta name="twitter:image" content={getImageUrl(post.image)} />
 </svelte:head>
 
 <!-- Reading Progress Bar -->
@@ -150,9 +161,9 @@
 	<div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50"></div>
 	<!-- Floating particles -->
 	<div class="absolute inset-0">
-		{#each Array(15) as _, i}
+		{#each Array(10) as _, i}
 			<div 
-				class="absolute w-2 h-2 bg-blue-400 rounded-full opacity-10 animate-float"
+				class="absolute w-2 h-2 bg-blue-400 rounded-full opacity-20 animate-float"
 				style="
 					left: {Math.random() * 100}%;
 					top: {Math.random() * 100}%;
@@ -164,130 +175,196 @@
 	</div>
 </div>
 
-<!-- Navigation Breadcrumb -->
-<nav class="relative z-10 py-4 bg-white/70 backdrop-blur-sm border-b border-gray-200">
+<!-- Navigation -->
+<nav class="relative z-10 py-4 bg-white/80 backdrop-blur-sm border-b border-gray-200">
 	<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="flex items-center space-x-2 text-sm text-gray-600">
-			<a href="/" class="hover:text-blue-600 transition-colors">Home</a>
-			<span>/</span>
 			<a href="/tech-hotpot" class="hover:text-blue-600 transition-colors">Tech Hotpot</a>
-			<span>/</span>
-			<span class="text-gray-800 font-medium">{post.title}</span>
+			<span>›</span>
+			{#if post.category}
+				<a href="/tech-hotpot/all?category={encodeURIComponent(post.category.slug)}" class="hover:text-blue-600 transition-colors">
+					{post.category.title}
+				</a>
+				<span>›</span>
+			{/if}
+			<span class="text-gray-800 font-medium line-clamp-1">{post.title}</span>
 		</div>
 	</div>
 </nav>
 
 <!-- Main Content -->
 <main class="relative z-10 py-8">
-	<article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+	<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+		
 		<!-- Article Header -->
-		<header class="mb-8" in:fade={{ delay: 200, duration: 600 }}>
+		<header class="mb-12" in:fade={{ delay: 200, duration: 600 }}>
 			<!-- Category Badge -->
-			<div class="flex items-center space-x-4 mb-4">
-				<span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-					{post.category}
-				</span>
-				<span class="text-sm text-gray-500">
-					{post.readTime} min read
-				</span>
-			</div>
+			{#if post.category}
+				<div class="flex items-center mb-6">
+					<div class="w-6 h-6 mr-3">
+						<img src="{getCategoryIconPath(post.category.title)}" alt="{post.category.title}" class="w-full h-full opacity-70" />
+					</div>
+					<span 
+						class="inline-block px-4 py-2 text-sm font-medium rounded-full"
+						style="background-color: {post.category.color}20; color: {post.category.color};"
+					>
+						{post.category.title}
+					</span>
+				</div>
+			{/if}
 			
 			<!-- Title -->
-			<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+			<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
 				{post.title}
 			</h1>
 			
-			<!-- Excerpt -->
-			<p class="text-xl text-gray-600 mb-8 leading-relaxed">
-				{post.excerpt}
-			</p>
+			<!-- Summary -->
+			{#if post.summary}
+				<p class="text-xl text-gray-600 mb-8 leading-relaxed">
+					{post.summary}
+				</p>
+			{/if}
 			
-			<!-- Author and Date -->
-			<div class="flex items-center justify-between py-6 border-t border-b border-gray-200">
-				<div class="flex items-center space-x-4">
-					{#if post.author === 'Alpha Bits Engineering'}
-						<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center border-2 border-gray-400">
-							<img 
-								src="/logos/logo_black.png" 
-								alt="Alpha Bits Engineering" 
-								class="w-8 h-8 object-contain"
-							/>
-						</div>
-					{:else if post.author === 'Kent Nguyen'}
-						<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-400">
-							<img 
-								src="/profile/avatar1.jpg" 
-								alt="Kent Nguyen" 
-								class="w-full h-full object-cover"
-							/>
-						</div>
-					{:else}
-						<div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-							<span class="text-white font-semibold text-lg">
-								{post.author.split(' ').map((n: string) => n[0]).join('')}
-							</span>
-						</div>
-					{/if}
+			<!-- Meta Information -->
+			<div class="flex flex-wrap items-center gap-6 text-gray-500 mb-8">
+				<!-- Author -->
+				<div class="flex items-center space-x-3">
+					<div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+						<span class="text-white text-sm font-semibold">AB</span>
+					</div>
 					<div>
-						<p class="font-semibold text-gray-900">{post.author}</p>
-						<p class="text-sm text-gray-500">Published on {formatDate(post.publishedAt)}</p>
+						<p class="font-medium text-gray-900">Alpha Bits</p>
+						<p class="text-sm text-gray-500">Engineering Team</p>
 					</div>
 				</div>
-			</div>
-		</header>
-		
-		<!-- Featured Image -->
-		<div class="mb-8" in:fly={{ y: 50, delay: 400, duration: 600 }}>
-			<img 
-				src={post.thumbnail} 
-				alt={post.title}
-				class="w-full h-64 md:h-96 object-cover rounded-xl shadow-lg"
-				loading="eager"
-			/>
-		</div>
-		
-		<!-- Article Content -->
-		<div 
-			bind:this={contentElement}
-			class="article-content max-w-none"
-			in:fly={{ y: 50, delay: 600, duration: 600 }}
-		>
-			{@html post.content}
-		</div>
-		
-		<!-- Tags -->
-		{#if post.tags && post.tags.length > 0}
-			<div class="mt-12 pt-8 border-t border-gray-200" in:fade={{ delay: 800, duration: 600 }}>
-				<h3 class="text-lg font-semibold text-gray-900 mb-4">Tags</h3>
-				<div class="flex flex-wrap gap-2">
-					{#each post.tags as tag, index}
-						<span 
-							class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors cursor-pointer"
-							in:fly={{ x: -20, delay: 800 + (index * 100), duration: 400 }}
-						>
-							#{tag}
-						</span>
-					{/each}
+				
+				<!-- Publication Date -->
+				<div class="flex items-center space-x-2">
+					<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+					</svg>
+					<span>{formatDate(post.date_published || post.date_created)}</span>
+				</div>
+				
+				<!-- Reading Time -->
+				<div class="flex items-center space-x-2">
+					<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+					</svg>
+					<span>{calculateReadTime(post.content)} min read</span>
 				</div>
 			</div>
-		{/if}
+			
+			<!-- Featured Image -->
+			{#if post.image}
+				<div class="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl overflow-hidden mb-8">
+					<img 
+						src="{getImageUrl(post.image)}" 
+						alt="{post.title}" 
+						class="w-full h-full object-cover"
+						loading="lazy"
+					/>
+				</div>
+			{/if}
+		</header>
 		
-		<!-- Back to Blog -->
-		<div class="mt-12 pt-8 border-t border-gray-200 text-center" in:fade={{ delay: 1000, duration: 600 }}>
-			<a 
-				href="/tech-hotpot"
-				class="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium transition-colors group"
-			>
-				<svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-				</svg>
-				<span>Back to Tech Hotpot</span>
-			</a>
-		</div>
-	</article>
+		<!-- Article Content -->
+		<article 
+			class="prose prose-lg prose-gray max-w-none"
+			bind:this={contentElement}
+			in:fly={{ y: 50, delay: 400, duration: 600 }}
+		>
+			{#if post.content}
+				{@html post.content}
+			{:else}
+				<p class="text-gray-600 italic">Content not available.</p>
+			{/if}
+		</article>
+		
+		<!-- Article Footer -->
+		<footer class="mt-16 pt-8 border-t border-gray-200" in:fade={{ delay: 600, duration: 600 }}>
+			<!-- Share Buttons -->
+			<div class="mb-8">
+				<h3 class="text-lg font-semibold text-gray-900 mb-4">Share this article</h3>
+				<div class="flex items-center space-x-4">
+					<!-- Twitter -->
+					<a 
+						href="https://twitter.com/intent/tweet?text={encodeURIComponent(post.title)}&url={encodeURIComponent('https://alphabits.team/tech-hotpot/' + post.slug)}"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+					>
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+							<path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+						</svg>
+						<span>Twitter</span>
+					</a>
+					
+					<!-- LinkedIn -->
+					<a 
+						href="https://www.linkedin.com/sharing/share-offsite/?url={encodeURIComponent('https://alphabits.team/tech-hotpot/' + post.slug)}"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="flex items-center space-x-2 px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors"
+					>
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+							<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+						</svg>
+						<span>LinkedIn</span>
+					</a>
+					
+					<!-- Copy Link -->
+					<button 
+						on:click={() => {
+							navigator.clipboard.writeText('https://alphabits.team/tech-hotpot/' + post.slug);
+							// You could add a toast notification here
+						}}
+						class="flex items-center space-x-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+					>
+						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+						</svg>
+						<span>Copy Link</span>
+					</button>
+				</div>
+			</div>
+			
+			<!-- Navigation Links -->
+			<div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+				<a 
+					href="/tech-hotpot/all"
+					class="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium transition-colors group"
+				>
+					<svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+					</svg>
+					<span>All Posts</span>
+				</a>
+				
+				<a 
+					href="/tech-hotpot"
+					class="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium transition-colors group"
+				>
+					<span>Back to Tech Hotpot</span>
+					<svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+					</svg>
+				</a>
+			</div>
+		</footer>
+	</div>
 </main>
 
 <style>
+	@reference "tailwindcss";
+	
+	.line-clamp-1 {
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+	
 	@keyframes float {
 		0%, 100% { transform: translateY(0px) rotate(0deg); }
 		33% { transform: translateY(-10px) rotate(120deg); }
@@ -298,354 +375,91 @@
 		animation: float 6s ease-in-out infinite;
 	}
 	
-	/* Enhanced Article Content Styling */
-	:global(.article-content) {
-		font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-		line-height: 1.7;
-		color: #374151;
+	/* Prose styling for article content */
+	:global(.prose) {
+		@apply text-gray-800 leading-relaxed;
 	}
 	
-	/* Headings with custom font and spacing */
-	:global(.article-content h1) {
-		font-family: 'Inter', sans-serif;
-		font-size: 2.25rem;
-		font-weight: 700;
-		color: #111827;
-		margin-top: 3rem;
-		margin-bottom: 1.5rem;
-		line-height: 1.2;
-		scroll-margin-top: 5rem;
+	:global(.prose h1) {
+		@apply text-3xl font-bold text-gray-900 mt-8 mb-4;
 	}
 	
-	:global(.article-content h2) {
-		font-family: 'Inter', sans-serif;
-		font-size: 1.875rem;
-		font-weight: 600;
-		color: #1f2937;
-		margin-top: 2.5rem;
-		margin-bottom: 1.25rem;
-		line-height: 1.3;
-		scroll-margin-top: 5rem;
-		border-bottom: 2px solid #e5e7eb;
-		padding-bottom: 0.5rem;
+	:global(.prose h2) {
+		@apply text-2xl font-bold text-gray-900 mt-8 mb-4;
 	}
 	
-	:global(.article-content h3) {
-		font-family: 'Inter', sans-serif;
-		font-size: 1.5rem;
-		font-weight: 600;
-		color: #374151;
-		margin-top: 2rem;
-		margin-bottom: 1rem;
-		line-height: 1.4;
-		scroll-margin-top: 5rem;
+	:global(.prose h3) {
+		@apply text-xl font-bold text-gray-900 mt-6 mb-3;
 	}
 	
-	:global(.article-content h4) {
-		font-family: 'Inter', sans-serif;
-		font-size: 1.25rem;
-		font-weight: 600;
-		color: #4b5563;
-		margin-top: 1.75rem;
-		margin-bottom: 0.75rem;
-		scroll-margin-top: 5rem;
+	:global(.prose h4) {
+		@apply text-lg font-semibold text-gray-900 mt-6 mb-3;
 	}
 	
-	:global(.article-content h5, .article-content h6) {
-		font-family: 'Inter', sans-serif;
-		font-size: 1.125rem;
-		font-weight: 600;
-		color: #6b7280;
-		margin-top: 1.5rem;
-		margin-bottom: 0.5rem;
-		scroll-margin-top: 5rem;
+	:global(.prose p) {
+		@apply mb-4 leading-relaxed;
 	}
 	
-	/* Paragraphs with proper spacing */
-	:global(.article-content p) {
-		margin-bottom: 1.5rem;
-		text-align: justify;
-		text-indent: 0;
+	:global(.prose ul) {
+		@apply mb-4 pl-6;
 	}
 	
-	/* Links styling */
-	:global(.article-content a) {
-		color: #2563eb;
-		text-decoration: underline;
-		text-decoration-color: #93c5fd;
-		transition: all 0.2s ease;
+	:global(.prose ol) {
+		@apply mb-4 pl-6;
 	}
 	
-	:global(.article-content a:hover) {
-		color: #1d4ed8;
-		text-decoration-color: #2563eb;
+	:global(.prose li) {
+		@apply mb-2;
 	}
 	
-	/* Strong and emphasis */
-	:global(.article-content strong) {
-		font-weight: 600;
-		color: #111827;
+	:global(.prose a) {
+		@apply text-blue-600 hover:text-blue-800 underline;
 	}
 	
-	:global(.article-content em) {
-		font-style: italic;
-		color: #4b5563;
+	:global(.prose blockquote) {
+		@apply border-l-4 border-blue-500 pl-4 italic text-gray-700 my-6;
 	}
 	
-	/* Beautiful blockquotes */
-	:global(.article-content blockquote) {
-		border-left: 4px solid #3b82f6;
-		background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-		margin: 2rem 0;
-		padding: 1.5rem 2rem;
-		border-radius: 0 0.5rem 0.5rem 0;
-		position: relative;
-		font-style: italic;
-		color: #1e40af;
-		box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+	:global(.prose pre) {
+		@apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto my-6;
 	}
 	
-	:global(.article-content blockquote::before) {
-		content: '"';
-		font-size: 3rem;
-		color: #3b82f6;
-		position: absolute;
-		top: -0.5rem;
-		left: 0.5rem;
-		font-family: Georgia, serif;
-		opacity: 0.3;
+	:global(.prose code) {
+		@apply bg-gray-100 text-gray-800 px-2 py-1 rounded text-sm;
 	}
 	
-	/* Enhanced Lists */
-	:global(.article-content ul) {
-		margin: 1.5rem 0;
-		padding-left: 0;
-		list-style: none;
+	:global(.prose pre code) {
+		@apply bg-transparent text-gray-100 p-0;
 	}
 	
-	:global(.article-content ul li) {
-		position: relative;
-		padding-left: 2rem;
-		margin-bottom: 0.75rem;
-		line-height: 1.6;
+	:global(.prose img) {
+		@apply rounded-lg my-6 shadow-lg;
 	}
 	
-	:global(.article-content ul li::before) {
-		content: '•';
-		color: #3b82f6;
-		font-size: 1.2rem;
-		position: absolute;
-		left: 0.5rem;
-		top: 0;
-		font-weight: bold;
+	:global(.prose table) {
+		@apply w-full border-collapse border border-gray-300 my-6;
 	}
 	
-	:global(.article-content ol) {
-		margin: 1.5rem 0;
-		padding-left: 0;
-		counter-reset: list-counter;
-		list-style: none;
+	:global(.prose th) {
+		@apply border border-gray-300 px-4 py-2 bg-gray-100 font-semibold text-left;
 	}
 	
-	:global(.article-content ol li) {
-		position: relative;
-		padding-left: 2.5rem;
-		margin-bottom: 0.75rem;
-		line-height: 1.6;
-		counter-increment: list-counter;
+	:global(.prose td) {
+		@apply border border-gray-300 px-4 py-2;
 	}
 	
-	:global(.article-content ol li::before) {
-		content: counter(list-counter);
-		position: absolute;
-		left: 0;
-		top: 0;
-		background: #3b82f6;
-		color: white;
-		width: 1.5rem;
-		height: 1.5rem;
-		border-radius: 50%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 0.75rem;
-		font-weight: 600;
-	}
-	
-	/* Nested lists */
-	:global(.article-content ul ul, .article-content ol ol, .article-content ul ol, .article-content ol ul) {
-		margin: 0.5rem 0;
-		padding-left: 1.5rem;
-	}
-	
-	/* Inline code */
-	:global(.article-content code:not(pre code)) {
-		background: #f3f4f6;
-		color: #7c3aed;
-		padding: 0.25rem 0.5rem;
-		border-radius: 0.25rem;
-		font-size: 0.875rem;
-		font-family: 'Fira Code', 'Monaco', 'Cascadia Code', monospace;
-		border: 1px solid #e5e7eb;
-	}
-	
-	/* Enhanced Code blocks with syntax highlighting */
-	:global(.article-content pre) {
-		background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-		color: #f1f5f9;
-		padding: 1.5rem;
-		border-radius: 0.75rem;
-		margin: 2rem 0;
-		overflow-x: auto;
-		position: relative;
-		border: 1px solid #334155;
-		box-shadow: 0 8px 25px rgba(15, 23, 42, 0.3), 0 0 0 1px rgba(148, 163, 184, 0.1);
-		transition: all 0.3s ease;
-	}
-	
-	:global(.article-content pre.expandable) {
-		max-height: 300px;
-		overflow-y: hidden;
-	}
-	
-	:global(.article-content pre.expandable.expanded) {
-		max-height: none;
-		overflow-y: auto;
-	}
-	
-	:global(.article-content pre.expandable::after) {
-		content: 'Click to expand';
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		height: 3rem;
-		background: linear-gradient(transparent, #0f172a);
-		display: flex;
-		align-items: end;
-		justify-content: center;
-		padding-bottom: 0.5rem;
-		color: #94a3b8;
-		font-size: 0.75rem;
-		cursor: pointer;
-		transition: opacity 0.2s ease;
-	}
-	
-	:global(.article-content pre.expandable.expanded::after) {
-		display: none;
-	}
-	
-	:global(.article-content pre code) {
-		background: none;
-		color: inherit;
-		padding: 0;
-		border-radius: 0;
-		font-size: 0.875rem;
-		line-height: 1.6;
-		font-family: 'Fira Code', 'Monaco', 'Cascadia Code', monospace;
-		border: none;
-		display: block;
-	}
-	
-	/* Prism.js syntax highlighting theme */
-	:global(.article-content .token.comment),
-	:global(.article-content .token.prolog),
-	:global(.article-content .token.doctype),
-	:global(.article-content .token.cdata) {
-		color: #64748b;
-		font-style: italic;
-	}
-	
-	:global(.article-content .token.punctuation) {
-		color: #cbd5e1;
-	}
-	
-	:global(.article-content .token.property),
-	:global(.article-content .token.tag),
-	:global(.article-content .token.boolean),
-	:global(.article-content .token.number),
-	:global(.article-content .token.constant),
-	:global(.article-content .token.symbol),
-	:global(.article-content .token.deleted) {
-		color: #f87171;
-	}
-	
-	:global(.article-content .token.selector),
-	:global(.article-content .token.attr-name),
-	:global(.article-content .token.string),
-	:global(.article-content .token.char),
-	:global(.article-content .token.builtin),
-	:global(.article-content .token.inserted) {
-		color: #34d399;
-	}
-	
-	:global(.article-content .token.operator),
-	:global(.article-content .token.entity),
-	:global(.article-content .token.url),
-	:global(.article-content .language-css .token.string),
-	:global(.article-content .style .token.string) {
-		color: #60a5fa;
-	}
-	
-	:global(.article-content .token.atrule),
-	:global(.article-content .token.attr-value),
-	:global(.article-content .token.keyword) {
-		color: #a78bfa;
-	}
-	
-	:global(.article-content .token.function),
-	:global(.article-content .token.class-name) {
-		color: #fbbf24;
-	}
-	
-	:global(.article-content .token.regex),
-	:global(.article-content .token.important),
-	:global(.article-content .token.variable) {
-		color: #fb7185;
-	}
-	
-	/* Tables */
-	:global(.article-content table) {
-		width: 100%;
-		border-collapse: collapse;
-		margin: 2rem 0;
-		border-radius: 0.5rem;
+	/* Expandable code blocks */
+	:global(.prose pre.expandable) {
+		@apply max-h-72 cursor-pointer relative;
 		overflow: hidden;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 	}
 	
-	:global(.article-content th) {
-		background: #f8fafc;
-		padding: 1rem;
-		text-align: left;
-		font-weight: 600;
-		color: #374151;
-		border-bottom: 2px solid #e5e7eb;
+	:global(.prose pre.expandable:not(.expanded)::after) {
+		content: 'Click to expand...';
+		@apply absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent text-center py-2 text-gray-400 text-sm;
 	}
 	
-	:global(.article-content td) {
-		padding: 0.75rem 1rem;
-		border-bottom: 1px solid #f3f4f6;
-	}
-	
-	:global(.article-content tr:hover) {
-		background: #f9fafb;
-	}
-	
-	/* Horizontal rules */
-	:global(.article-content hr) {
-		border: none;
-		height: 2px;
-		background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
-		margin: 3rem 0;
-	}
-	
-	/* Images */
-	:global(.article-content img) {
-		max-width: 100%;
-		height: auto;
-		border-radius: 0.5rem;
-		margin: 1.5rem 0;
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	:global(.prose pre.expandable.expanded) {
+		@apply max-h-none;
 	}
 </style>

@@ -1,30 +1,43 @@
+import { getAllBlogPosts, getBlogPostsByCategory, getBlogCategories } from '$lib/server/blog';
 import type { PageServerLoad } from './$types';
-import { error } from '@sveltejs/kit';
 
-export const load: PageServerLoad = async ({ fetch }) => {
+export const load: PageServerLoad = async ({ url }) => {
 	try {
-		// Fetch all blog posts without category filtering
-		const response = await fetch('/api/blog-posts');
+		const categorySlug = url.searchParams.get('category');
 		
-		if (!response.ok) {
-			throw error(500, 'Failed to load blog posts');
+		// Fetch categories for navigation
+		const categories = await getBlogCategories();
+		
+		// Fetch posts based on category filter
+		let posts;
+		let selectedCategory = null;
+		
+		if (categorySlug) {
+			// Find the selected category
+			selectedCategory = categories.find(cat => cat.slug === categorySlug) || null;
+			posts = await getBlogPostsByCategory(categorySlug);
+		} else {
+			// Get all posts if no category filter
+			posts = await getAllBlogPosts();
 		}
-		
-		const data = await response.json();
-		
+
 		return {
-			posts: data.posts || [],
-			total: data.total || 0
+			posts,
+			categories,
+			selectedCategory,
+			categorySlug,
+			loading: false,
+			error: ''
 		};
-		
-	} catch (err) {
-		console.error('Error loading all blog posts:', err);
-		
-		// Re-throw SvelteKit errors
-		if (err && typeof err === 'object' && 'status' in err) {
-			throw err;
-		}
-		
-		throw error(500, 'Failed to load blog posts');
+	} catch (error) {
+		console.error('Error loading tech-hotpot/all data:', error);
+		return {
+			posts: [],
+			categories: [],
+			selectedCategory: null,
+			categorySlug: null,
+			loading: false,
+			error: 'Failed to load blog posts. Please try again later.'
+		};
 	}
 };

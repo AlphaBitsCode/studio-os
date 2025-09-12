@@ -1,28 +1,27 @@
-import type { PageServerLoad } from './$types';
+import { getBlogPostBySlug } from '$lib/server/blog';
 import { error } from '@sveltejs/kit';
+import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ params, fetch }) => {
+export const load: PageServerLoad = async ({ params }) => {
 	try {
-		// Fetch the blog post by slug
-		const response = await fetch(`/api/blog-posts?slug=${params.slug}`);
+		const { slug } = params;
 		
-		if (!response.ok) {
-			if (response.status === 404) {
-				throw error(404, 'Blog post not found');
-			}
-			throw error(500, 'Failed to load blog post');
+		if (!slug) {
+			throw error(400, 'Blog post slug is required');
 		}
 		
-		const data = await response.json();
+		// Fetch the blog post by slug
+		const post = await getBlogPostBySlug(slug);
 		
-		if (!data.post) {
+		if (!post) {
 			throw error(404, 'Blog post not found');
 		}
-		
+
 		return {
-			post: data.post
+			post,
+			loading: false,
+			error: ''
 		};
-		
 	} catch (err) {
 		console.error('Error loading blog post:', err);
 		

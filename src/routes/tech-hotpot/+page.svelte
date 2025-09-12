@@ -1,12 +1,54 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
     import { fade, fly } from 'svelte/transition';
+    // Helper functions moved to client-side
+    function formatDate(dateString: string | null | undefined): string {
+        if (!dateString) return '';
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        });
+    }
+    
+    function getCategoryIcon(categoryTitle: string): string {
+        const iconMap: Record<string, string> = {
+            'Software': 'software',
+            'Software Dev': 'software',
+            'IoT News': 'iot',
+            'Data & Analytics': 'data',
+            'AI Workflow': 'ai',
+            'Digital Transformation': 'dx',
+            'AI in Education': 'education',
+            'AI in Agriculture': 'agriculture',
+            'AI in F&B': 'fb',
+            'AI in Manufacturing': 'manufacturing',
+            'Workflow Automation': 'ai'
+        };
+        return iconMap[categoryTitle] || 'software';
+    }
+    
+    function calculateReadTime(content: string | null | undefined): number {
+        if (!content) return 1;
+        const wordsPerMinute = 200;
+        const wordCount = content.split(/\s+/).length;
+        return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
+    }
+    
+    function getImageUrl(imageId: string | null | undefined): string {
+        if (!imageId) return '/placeholder-image.jpg';
+        // Use the public Directus URL for client-side image loading
+        const directusUrl = 'https://kore.alphabits.team';
+        return `${directusUrl}/assets/${imageId}?width=600&height=400&fit=cover&quality=80`;
+    }
+    import type { PageData } from './$types';
+    
+    export let data: PageData;
     
     let mounted = false;
-    let blogPostsByCategory: { [key: string]: any[] } = {};
-    let categories: any[] = [];
-    let loading = true;
-    let error = '';
+    
+    // Use server-side data
+    $: ({ categories, blogPostsByCategory, loading, error } = data);
     
     // Tech words for random display
     const techWords = ['Bits', 'Bytes', 'API', 'SaaS', 'A.I', 'Data', 'Code', 'IoT', 'DX', 'React', 'GCP', 'Docker', 'NodeRED', 'DB', 'SQL', 'GraphQL', 'Rust'];
@@ -31,90 +73,27 @@
         featured: boolean;
     }
     
-    // Fetch categories from API
-    async function fetchCategories() {
-        try {
-            const response = await fetch('/api/blog-categories');
-            
-            if (!response.ok) {
-                throw new Error('Failed to fetch categories');
-            }
-            
-            categories = await response.json();
-        } catch (err) {
-            console.error('Error fetching categories:', err);
-            // Fallback to empty categories
-            categories = [];
-        }
-    }
-
-    // Fetch blog posts from API
-    async function fetchBlogPosts() {
-        try {
-            loading = true;
-            
-            // Wait for categories to be loaded first
-            if (categories.length === 0) {
-                await fetchCategories();
-            }
-            
-            const categoryNames = categories.map(cat => cat.name);
-            
-            const response = await fetch('/api/blog-posts', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ categories: categoryNames })
-            });
-            
-            if (!response.ok) {
-                throw new Error('Failed to fetch blog posts');
-            }
-            
-            blogPostsByCategory = await response.json();
-            error = '';
-        } catch (err) {
-            console.error('Error fetching blog posts:', err);
-            error = 'Failed to load blog posts. Please try again later.';
-            // Fallback to empty data
-            blogPostsByCategory = {};
-        } finally {
-            loading = false;
-        }
-    }
+    import { onMount } from 'svelte';
     
-    // Categories will be loaded dynamically from API
-    
-    onMount(async () => {
+    onMount(() => {
         mounted = true;
-        await fetchCategories();
-        await fetchBlogPosts();
     });
     
-    // Helper function to get category icon
-    function getCategoryIcon(category: string) {
+    // Helper function to get category icon path
+    function getCategoryIconPath(categoryTitle: string): string {
+        const iconType = getCategoryIcon(categoryTitle);
         const iconMap: { [key: string]: string } = {
-            'Software': '/icons/icon_software.png',
-            'IoT News': '/icons/icon_iot.png',
-            'Data & Analytics': '/icons/icon_data.png',
-            'AI Workflow': '/icons/icon_ai.png',
-            'Digital Transformation': '/icons/icon_dx.png',
-            'AI in Education': '/icons/icon_ai.png',
-            'AI in Agriculture': '/icons/icon_ai.png',
-            'AI in F&B': '/icons/icon_ai.png',
-            'AI in Manufacturing': '/icons/icon_ai.png'
+            'software': '/icons/icon_software.png',
+            'iot': '/icons/icon_iot.png',
+            'data': '/icons/icon_data.png',
+            'ai': '/icons/icon_ai.png',
+            'dx': '/icons/icon_dx.png',
+            'education': '/icons/icon_ai.png',
+            'agriculture': '/icons/icon_ai.png',
+            'fb': '/icons/icon_ai.png',
+            'manufacturing': '/icons/icon_ai.png'
         };
-        return iconMap[category] || '/icons/icon_software.png';
-    }
-    
-    // Helper function to format date
-    function formatDate(dateString: string) {
-        return new Date(dateString).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric'
-        });
+        return iconMap[iconType] || '/icons/icon_software.png';
     }
 </script>
 
@@ -258,19 +237,19 @@
             <div class="flex items-center space-x-4 sm:space-x-6 md:space-x-8">
                 {#each categories as category, index}
                     <a 
-                        href="/tech-hotpot/all?category={encodeURIComponent(category.name)}"
+                        href="/tech-hotpot/all?category={encodeURIComponent(category.slug)}"
                         class="group flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105"
                         in:fly={{ y: -20, delay: index * 50, duration: 400 }}
                     >
                         <!-- Compact Category Icon -->
                         <div class="w-8 h-8 sm:w-10 sm:h-10 mb-1">
-                            {#if category.icon === 'software'}
+                            {#if getCategoryIcon(category.title) === 'software'}
                                 <svg class="w-full h-full text-blue-500 group-hover:text-blue-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
                                     <rect x="8" y="12" width="48" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
                                     <path d="M16 20 L20 24 L16 28" fill="none" stroke="currentColor" stroke-width="2"/>
                                     <line x1="24" y1="28" x2="32" y2="28" stroke="currentColor" stroke-width="2"/>
                                 </svg>
-                            {:else if category.icon === 'iot'}
+                            {:else if getCategoryIcon(category.title) === 'iot'}
                                 <svg class="w-full h-full text-green-500 group-hover:text-green-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
                                     <circle cx="32" cy="20" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
                                     <circle cx="16" cy="40" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
@@ -278,14 +257,14 @@
                                     <circle cx="32" cy="52" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
                                     <path d="M32 26 L32 32 M26 20 L20 36 M38 20 L44 36 M32 32 L16 40 M32 32 L48 40 M32 32 L32 48" stroke="currentColor" stroke-width="2"/>
                                 </svg>
-                            {:else if category.icon === 'data'}
+                            {:else if getCategoryIcon(category.title) === 'data'}
                                 <svg class="w-full h-full text-purple-500 group-hover:text-purple-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
                                     <rect x="8" y="32" width="8" height="24" rx="2"/>
                                     <rect x="20" y="24" width="8" height="32" rx="2"/>
                                     <rect x="32" y="16" width="8" height="40" rx="2"/>
                                     <rect x="44" y="28" width="8" height="28" rx="2"/>
                                 </svg>
-                            {:else if category.icon === 'ai'}
+                            {:else if getCategoryIcon(category.title) === 'ai'}
                                 <svg class="w-full h-full text-red-500 group-hover:text-red-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
                                     <circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="2"/>
                                     <circle cx="24" cy="24" r="3"/>
@@ -295,7 +274,7 @@
                                     <circle cx="32" cy="44" r="2"/>
                                     <path d="M24 24 L20 36 M40 24 L44 36 M24 24 L32 44 M40 24 L32 44 M20 36 L32 44 M44 36 L32 44" stroke="currentColor" stroke-width="1"/>
                                 </svg>
-                            {:else if category.icon === 'dx'}
+                            {:else if getCategoryIcon(category.title) === 'dx'}
                                 <svg class="w-full h-full text-orange-500 group-hover:text-orange-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
                                     <circle cx="20" cy="32" r="12" fill="none" stroke="currentColor" stroke-width="2"/>
                                     <path d="M14 26 L26 38 M26 26 L14 38" stroke="currentColor" stroke-width="2"/>
@@ -304,13 +283,13 @@
                                     <circle cx="52" cy="28" r="1"/>
                                     <path d="M44 36 Q48 32 52 36" fill="none" stroke="currentColor" stroke-width="2"/>
                                 </svg>
-                            {:else if category.icon === 'education'}
+                            {:else if getCategoryIcon(category.title) === 'education'}
                                 <svg class="w-full h-full text-blue-500 group-hover:text-blue-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
                                     <path d="M32 8 L56 20 L32 32 L8 20 Z" fill="none" stroke="currentColor" stroke-width="2"/>
                                     <path d="M8 20 L8 44 L32 56 L56 44 L56 20" fill="none" stroke="currentColor" stroke-width="2"/>
                                     <path d="M16 24 L16 40 L32 48 L48 40 L48 24" fill="none" stroke="currentColor" stroke-width="2"/>
                                 </svg>
-                            {:else if category.icon === 'agriculture'}
+                            {:else if getCategoryIcon(category.title) === 'agriculture'}
                                 <svg class="w-full h-full text-green-500 group-hover:text-green-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
                                     <path d="M32 8 Q24 16 24 24 Q24 32 32 32 Q40 32 40 24 Q40 16 32 8" fill="none" stroke="currentColor" stroke-width="2"/>
                                     <line x1="32" y1="32" x2="32" y2="56" stroke="currentColor" stroke-width="2"/>
@@ -318,7 +297,7 @@
                                     <circle cx="16" cy="48" r="2"/>
                                     <circle cx="48" cy="48" r="2"/>
                                 </svg>
-                            {:else if category.icon === 'fb'}
+                            {:else if getCategoryIcon(category.title) === 'fb'}
                                 <svg class="w-full h-full text-orange-500 group-hover:text-orange-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
                                     <path d="M16 24 L48 24 L46 48 C46 50 44 52 42 52 L22 52 C20 52 18 50 18 48 Z" fill="none" stroke="currentColor" stroke-width="2"/>
                                     <path d="M12 20 C12 18 14 16 16 16 L16 24 L12 24 Z" fill="none" stroke="currentColor" stroke-width="2"/>
@@ -327,7 +306,7 @@
                                     <path d="M32 20 Q34 16 32 12" fill="none" stroke="currentColor" stroke-width="2"/>
                                     <path d="M40 20 Q42 16 40 12" fill="none" stroke="currentColor" stroke-width="2"/>
                                 </svg>
-                            {:else if category.icon === 'manufacturing'}
+                            {:else if getCategoryIcon(category.title) === 'manufacturing'}
                                 <svg class="w-full h-full text-purple-500 group-hover:text-purple-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
                                     <rect x="8" y="32" width="48" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
                                     <circle cx="20" cy="44" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
@@ -341,7 +320,7 @@
                         
                         <!-- Compact Category Name -->
                         <span class="text-xs sm:text-sm font-medium text-gray-700 group-hover:text-gray-900 transition-colors text-center leading-tight">
-                            {category.name.replace(' & ', '\n&\n').replace(' ', '\n')}
+                            {category.title.replace(' & ', '\n&\n').replace(' ', '\n')}
                         </span>
                     </a>
                 {/each}
@@ -371,27 +350,27 @@
                     </svg>
                 </div>
                 <p class="text-gray-600">{error}</p>
-                <button 
-                    class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors"
-                    on:click={fetchBlogPosts}
+                <a 
+                    href="/tech-hotpot"
+                    class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors inline-block"
                 >
-                    Try Again
-                </button>
+                    Refresh Page
+                </a>
             </div>
         {:else}
             <!-- Blog Posts Grid by Category - 5 Columns Layout -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                 {#each categories as category, categoryIndex}
-                    {@const categoryPosts = blogPostsByCategory[category.name] || []}
+                    {@const categoryPosts = blogPostsByCategory[category.title] || []}
                     {#if categoryPosts.length > 0}
                         <div class="category-column" in:fly={{ x: -50, delay: categoryIndex * 100, duration: 600 }}>
                             <!-- Category Header -->
                             <div class="flex items-center mb-4">
                                 <div class="w-8 h-8 mr-2">
-                                    <img src="{getCategoryIcon(category.name)}" alt="{category.name}" class="w-full h-full opacity-70" />
+                                    <img src="{getCategoryIconPath(category.title)}" alt="{category.title}" class="w-full h-full opacity-70" />
                                 </div>
                                 <div>
-                                    <h3 class="text-lg font-bold text-gray-800">{category.name}</h3>
+                                    <h3 class="text-lg font-bold text-gray-800">{category.title}</h3>
                                 </div>
                             </div>
                             
@@ -406,7 +385,7 @@
                                          <!-- Post Thumbnail -->
                                          <div class="h-32 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
                                              <img 
-                                                 src="{post.thumbnail}" 
+                                                 src="{getImageUrl(post.image)}" 
                                                  alt="{post.title}" 
                                                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                                                  loading="lazy"
@@ -418,10 +397,10 @@
                                              <!-- Meta Information -->
                                              <div class="flex items-center justify-between mb-2">
                                                  <span class="text-xs text-gray-500">
-                                                     {post.readTime} min read
+                                                     {calculateReadTime(post.content)} min read
                                                  </span>
                                                  <span class="text-xs text-gray-500">
-                                                     {formatDate(post.publishedAt)}
+                                                     {formatDate(post.date_published || post.date_created)}
                                                  </span>
                                              </div>
                                              
@@ -432,36 +411,18 @@
                                              
                                              <!-- Post Excerpt -->
                                              <p class="text-gray-600 text-xs mb-3 line-clamp-2">
-                                                 {post.excerpt}
+                                                 {post.summary || ''}
                                              </p>
                                             
                                             <!-- Author -->
                                               <div class="flex items-center justify-between">
                                                   <div class="flex items-center space-x-1">
-                                                      {#if post.author === 'Alpha Bits Engineering'}
-                                                           <div class="w-5 h-5 bg-white rounded-full flex items-center justify-center border border-gray-300">
-                                                               <img 
-                                                                   src="/logos/logo_black.png" 
-                                                                   alt="Alpha Bits Engineering" 
-                                                                   class="w-3 h-3 object-contain"
-                                                               />
-                                                           </div>
-                                                       {:else if post.author === 'Kent Nguyen'}
-                                                           <div class="w-5 h-5 rounded-full overflow-hidden border border-gray-300">
-                                                               <img 
-                                                                   src="/profile/avatar1.jpg" 
-                                                                   alt="Kent Nguyen" 
-                                                                   class="w-full h-full object-cover"
-                                                               />
-                                                           </div>
-                                                       {:else}
-                                                           <div class="w-5 h-5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                                                               <span class="text-white text-xs font-semibold">
-                                                                    {post.author.split(' ').map((n: string) => n[0]).join('')}
-                                                                </span>
-                                                           </div>
-                                                       {/if}
-                                                      <span class="text-xs text-gray-600">{post.author}</span>
+                                                      <div class="w-5 h-5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                                                          <span class="text-white text-xs font-semibold">
+                                                               AB
+                                                           </span>
+                                                      </div>
+                                                      <span class="text-xs text-gray-600">Alpha Bits</span>
                                                   </div>
                                                  
                                                  <span class="text-blue-600 font-medium text-xs flex items-center space-x-1">
