@@ -194,6 +194,31 @@
 							</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
 								<div class="grid w-[600px] gap-4 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
+									<!-- Main Case Studies Link -->
+									<NavigationMenu.Link href="/case-studies">
+										{#snippet child()}
+											<a
+												href="/case-studies"
+												class="flex items-center space-x-3 select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 border-2 border-blue-200 bg-blue-50/50"
+											>
+												<div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+													<svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+													</svg>
+												</div>
+												<div class="flex-1 space-y-1">
+													<div class="text-sm font-bold leading-none text-blue-900">
+														View All Case Studies
+													</div>
+													<p class="text-sm leading-snug text-blue-700">
+														Explore our complete portfolio including IoT projects and digital transformations
+													</p>
+												</div>
+											</a>
+										{/snippet}
+									</NavigationMenu.Link>
+									
+									<!-- Individual Case Studies -->
 									{#each caseStudyItems as caseStudy}
 										<NavigationMenu.Link href={caseStudy.href}>
 											{#snippet child()}

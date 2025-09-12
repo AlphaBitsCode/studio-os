@@ -123,7 +123,7 @@
         
         <!-- Featured Case Study -->
         <div class="mb-16">
-            <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg overflow-hidden shadow-xl border border-slate-200">
+            <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg overflow-hidden border border-slate-200">
                 <div class="grid lg:grid-cols-2 gap-0">
                     <div class="p-8 lg:p-12">
                         <div class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mb-4">
@@ -154,7 +154,7 @@
                             <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">Data Analytics</span>
                         </div>
                         
-                        <a href="/case-studies/coffee-chain-transformation" class="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl">
+                        <a href="/case-studies/coffee-chain-transformation" class="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors  hover:shadow-xl">
                             Read Full Case Study
                             <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -171,6 +171,171 @@
                             </div>
                             <h4 class="text-xl font-bold mb-2">Complete Digital Ecosystem</h4>
                             <p class="text-blue-100">End-to-end solution integrating multiple technologies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- IoT Projects Section -->
+        <div class="mb-16">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold mb-4 text-slate-900">IoT Projects Showcase</h3>
+                <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+                    Explore our innovative IoT solutions that demonstrate our expertise in hardware integration, 
+                    real-time data processing, and intelligent automation systems.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mb-12">
+                <!-- Alpha Block -->
+                <div class="bg-white rounded-lg border border-slate-200 overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="h-48 relative overflow-hidden">
+                        <img src="/alphablock/mushroombox1.png" alt="Alpha Block Mushroom Growing System" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-2">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold">Alpha Block</h4>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-3 text-slate-900">Mushroom Growing in a Box</h4>
+                        <p class="text-slate-600 mb-4">
+                            Automated mushroom cultivation system with IoT sensors for temperature, humidity, and CO2 monitoring. 
+                            Features automated watering, climate control, and mobile app integration for remote monitoring.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">IoT Sensors</span>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Automation</span>
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Mobile App</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <div class="font-semibold text-slate-900">Technologies:</div>
+                                <div class="text-slate-600">ESP32, Sensors, NodeRED</div>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-slate-900">Features:</div>
+                                <div class="text-slate-600">Climate Control, Monitoring</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- RDX -->
+                <div class="bg-white rounded-lg border border-slate-200 overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="h-48 bg-gradient-to-br from-red-400 to-red-600 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-2">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold">RDX</h4>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-3 text-slate-900">Remote Driving Experience</h4>
+                        <p class="text-slate-600 mb-4">
+                            Advanced RC car system with long-range real-time video streaming at ultra-low latency. 
+                            Features include remote control interface, live video feed, and telemetry data transmission.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium">Real-time Video</span>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Low Latency</span>
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Remote Control</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <div class="font-semibold text-slate-900">Technologies:</div>
+                                <div class="text-slate-600">WebRTC, Raspberry Pi</div>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-slate-900">Features:</div>
+                                <div class="text-slate-600">Live Stream, Telemetry</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <!-- Energy Management Platform -->
+                <div class="bg-white rounded-lg border border-slate-200 overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="h-48 relative overflow-hidden">
+                        <img src="/aiot/energytwin_ss1.jpg" alt="Energy Management Platform Dashboard" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-2">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold">Energy Platform</h4>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-3 text-slate-900">Energy Management Platform</h4>
+                        <p class="text-slate-600 mb-4">
+                            Comprehensive energy monitoring and management system built on NodeRED and SecondBrains architecture. 
+                            Provides real-time energy consumption tracking, optimization recommendations, and automated control.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">NodeRED</span>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">SecondBrains</span>
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Energy Monitoring</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <div class="font-semibold text-slate-900">Technologies:</div>
+                                <div class="text-slate-600">NodeRED, InfluxDB</div>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-slate-900">Features:</div>
+                                <div class="text-slate-600">Real-time Monitoring</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Other IoT Projects -->
+                <div class="bg-white rounded-lg border border-slate-200 overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="h-48 bg-gradient-to-br from-indigo-400 to-purple-600 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-2">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold">IoT Ecosystem</h4>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-3 text-slate-900">IoT Hardware Projects</h4>
+                        <p class="text-slate-600 mb-4">
+                            Collection of IoT projects using various hardware platforms including Raspberry Pi, OrangePi, ESP32, 
+                            and WiFi Mesh networks for smart home automation, environmental monitoring, and industrial applications.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">Raspberry Pi</span>
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">ESP32</span>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">WiFi Mesh</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <div class="font-semibold text-slate-900">Platforms:</div>
+                                <div class="text-slate-600">Pi, ESP32, OrangePi</div>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-slate-900">Applications:</div>
+                                <div class="text-slate-600">Smart Home, Industrial</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -253,7 +418,7 @@
             </div>
             
             <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-lg shadow-lg border-2 border-dashed border-slate-300 hover:border-blue-400 transition-colors">
+                <div class="bg-white p-6 rounded-lg  border-2 border-dashed border-slate-300 hover:border-blue-400 transition-colors">
                     <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                         <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
@@ -266,7 +431,7 @@
                     <div class="text-sm text-slate-500">Coming Q2 2024</div>
                 </div>
                 
-                <div class="bg-white p-6 rounded-lg shadow-lg border-2 border-dashed border-slate-300 hover:border-green-400 transition-colors">
+                <div class="bg-white p-6 rounded-lg  border-2 border-dashed border-slate-300 hover:border-green-400 transition-colors">
                     <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                         <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
@@ -279,7 +444,7 @@
                     <div class="text-sm text-slate-500">Coming Q2 2024</div>
                 </div>
                 
-                <div class="bg-white p-6 rounded-lg shadow-lg border-2 border-dashed border-slate-300 hover:border-purple-400 transition-colors">
+                <div class="bg-white p-6 rounded-lg  border-2 border-dashed border-slate-300 hover:border-purple-400 transition-colors">
                     <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                         <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path>
@@ -307,25 +472,25 @@
         </div>
         
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="text-center bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+            <div class="text-center bg-white p-6 rounded-lg  hover:transition-shadow">
                 <div class="text-4xl font-bold text-blue-600 mb-2">85%</div>
                 <div class="text-lg font-semibold mb-1 text-slate-900">Average Efficiency Gain</div>
                 <div class="text-sm text-slate-600">Process automation improvements</div>
             </div>
             
-            <div class="text-center bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+            <div class="text-center bg-white p-6 rounded-lg  hover:transition-shadow">
                 <div class="text-4xl font-bold text-green-600 mb-2">60%</div>
                 <div class="text-lg font-semibold mb-1 text-slate-900">Cost Reduction</div>
                 <div class="text-sm text-slate-600">Operational expense savings</div>
             </div>
             
-            <div class="text-center bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+            <div class="text-center bg-white p-6 rounded-lg  hover:transition-shadow">
                 <div class="text-4xl font-bold text-purple-600 mb-2">3x</div>
                 <div class="text-lg font-semibold mb-1 text-slate-900">Faster Processing</div>
                 <div class="text-sm text-slate-600">Data processing speed improvements</div>
             </div>
             
-            <div class="text-center bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+            <div class="text-center bg-white p-6 rounded-lg  hover:transition-shadow">
                 <div class="text-4xl font-bold text-orange-600 mb-2">24/7</div>
                 <div class="text-lg font-semibold mb-1 text-slate-900">Automated Monitoring</div>
                 <div class="text-sm text-slate-600">Continuous system oversight</div>
@@ -344,7 +509,7 @@
             Let's discuss how we can help you achieve similar results with our proven methodologies and cutting-edge solutions.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl">
+            <a href="/contact" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors  hover:shadow-xl">
                 Start Your Project
             </a>
             <a href="/services" class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors">
