@@ -4,6 +4,7 @@
     
     let mounted = false;
     let blogPostsByCategory: { [key: string]: any[] } = {};
+    let categories: any[] = [];
     let loading = true;
     let error = '';
     
@@ -20,18 +21,41 @@
         featured: boolean;
     }
     
+    // Fetch categories from API
+    async function fetchCategories() {
+        try {
+            const response = await fetch('/api/blog-categories');
+            
+            if (!response.ok) {
+                throw new Error('Failed to fetch categories');
+            }
+            
+            categories = await response.json();
+        } catch (err) {
+            console.error('Error fetching categories:', err);
+            // Fallback to empty categories
+            categories = [];
+        }
+    }
+
     // Fetch blog posts from API
     async function fetchBlogPosts() {
         try {
             loading = true;
-            const categories = ['Software', 'IoT News', 'Data & Analytics', 'AI Workflow', 'Digital Transformation'];
+            
+            // Wait for categories to be loaded first
+            if (categories.length === 0) {
+                await fetchCategories();
+            }
+            
+            const categoryNames = categories.map(cat => cat.name);
             
             const response = await fetch('/api/blog-posts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ categories })
+                body: JSON.stringify({ categories: categoryNames })
             });
             
             if (!response.ok) {
@@ -50,42 +74,12 @@
         }
     }
     
-    const categories = [
-        {
-            name: "Software",
-            description: "Dive into the world of coding, frameworks, and innovative applications.",
-            icon: "software",
-            color: "blue"
-        },
-        {
-            name: "IoT News",
-            description: "Stay updated with the latest in Internet of Things and connected devices.",
-            icon: "iot",
-            color: "green"
-        },
-        {
-            name: "Data & Analytics",
-            description: "Explore data science, analytics, and business intelligence insights.",
-            icon: "data",
-            color: "purple"
-        },
-        {
-            name: "AI Workflow",
-            description: "Discover artificial intelligence and automated workflow solutions.",
-            icon: "ai",
-            color: "red"
-        },
-        {
-            name: "Digital Transformation",
-            description: "Learn about modernizing businesses through digital innovation.",
-            icon: "dx",
-            color: "orange"
-        }
-    ];
+    // Categories will be loaded dynamically from API
     
-    onMount(() => {
+    onMount(async () => {
         mounted = true;
-        fetchBlogPosts();
+        await fetchCategories();
+        await fetchBlogPosts();
     });
     
     // Helper function to get category icon
@@ -95,9 +89,13 @@
             'IoT News': '/icons/icon_iot.png',
             'Data & Analytics': '/icons/icon_data.png',
             'AI Workflow': '/icons/icon_ai.png',
-            'Digital Transformation': '/icons/icon_dx.png'
+            'Digital Transformation': '/icons/icon_dx.png',
+            'AI in Education': '/icons/icon_ai.png',
+            'AI in Agriculture': '/icons/icon_ai.png',
+            'AI in F&B': '/icons/icon_ai.png',
+            'AI in Manufacturing': '/icons/icon_ai.png'
         };
-        return iconMap[category] || '/icons/icon_software.png';
+        return iconMap[category] || '/icons/icon_ai.png';
     }
     
     // Helper function to format date
@@ -214,6 +212,38 @@
                                     <circle cx="44" cy="28" r="1"/>
                                     <circle cx="52" cy="28" r="1"/>
                                     <path d="M44 36 Q48 32 52 36" fill="none" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            {:else if category.icon === 'education'}
+                                <svg class="w-full h-full text-blue-500 group-hover:text-blue-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
+                                    <path d="M32 8 L56 20 L32 32 L8 20 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M8 20 L8 44 L32 56 L56 44 L56 20" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M16 24 L16 40 L32 48 L48 40 L48 24" fill="none" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            {:else if category.icon === 'agriculture'}
+                                <svg class="w-full h-full text-green-500 group-hover:text-green-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
+                                    <path d="M32 8 Q24 16 24 24 Q24 32 32 32 Q40 32 40 24 Q40 16 32 8" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="32" y1="32" x2="32" y2="56" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M20 40 Q26 36 32 40 Q38 36 44 40" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="16" cy="48" r="2"/>
+                                    <circle cx="48" cy="48" r="2"/>
+                                </svg>
+                            {:else if category.icon === 'fb'}
+                                <svg class="w-full h-full text-orange-500 group-hover:text-orange-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
+                                    <path d="M16 24 L48 24 L46 48 C46 50 44 52 42 52 L22 52 C20 52 18 50 18 48 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M12 20 C12 18 14 16 16 16 L16 24 L12 24 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M52 20 C52 18 50 16 48 16 L48 24 L52 24 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M24 20 Q26 16 24 12" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M32 20 Q34 16 32 12" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M40 20 Q42 16 40 12" fill="none" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            {:else if category.icon === 'manufacturing'}
+                                <svg class="w-full h-full text-purple-500 group-hover:text-purple-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
+                                    <rect x="8" y="32" width="48" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="20" cy="44" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="44" cy="44" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M32 8 L32 32" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M24 16 L40 16" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M28 12 L36 12" stroke="currentColor" stroke-width="2"/>
                                 </svg>
                             {/if}
                         </div>

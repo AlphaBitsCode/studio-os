@@ -18,6 +18,14 @@
 		featured: boolean;
 	}
 
+	interface CategoryInfo {
+		name: string;
+		description: string;
+		icon: string;
+		color: string;
+		postCount: number;
+	}
+
 	export let data: PageData;
 
 	let mounted = false;
@@ -26,44 +34,28 @@
 	let selectedAuthor = '';
 	let sortBy = 'publishedAt';
 	let sortOrder: 'asc' | 'desc' = 'desc';
+	let categoryDefinitions: CategoryInfo[] = [];
 
 	$: posts = data.posts as BlogPost[];
-	$: categories = [...new Set(posts.map((post: BlogPost) => post.category))];
+	$: categories = categoryDefinitions.map(cat => cat.name);
 	$: authors = [...new Set(posts.map((post: BlogPost) => post.author))];
 
-	// Category definitions with icons (same as main page)
-	const categoryDefinitions = [
-		{
-			name: "Software",
-			description: "Dive into the world of coding, frameworks, and innovative applications.",
-			icon: "software",
-			color: "blue"
-		},
-		{
-			name: "IoT News",
-			description: "Stay updated with the latest in Internet of Things and connected devices.",
-			icon: "iot",
-			color: "green"
-		},
-		{
-			name: "Data & Analytics",
-			description: "Explore data science, analytics, and business intelligence insights.",
-			icon: "data",
-			color: "purple"
-		},
-		{
-			name: "AI Workflow",
-			description: "Discover artificial intelligence and automated workflow solutions.",
-			icon: "ai",
-			color: "red"
-		},
-		{
-			name: "Digital Transformation",
-			description: "Learn about modernizing businesses through digital innovation.",
-			icon: "dx",
-			color: "orange"
+	// Fetch categories from API
+	async function fetchCategories() {
+		try {
+			const response = await fetch('/api/blog-categories');
+			
+			if (!response.ok) {
+				throw new Error('Failed to fetch categories');
+			}
+			
+			categoryDefinitions = await response.json();
+		} catch (err) {
+			console.error('Error fetching categories:', err);
+			// Fallback to empty categories
+			categoryDefinitions = [];
 		}
-	];
+	}
 
 	// Filter and sort posts
 	$: filteredPosts = posts
@@ -135,8 +127,10 @@
 		selectedAuthor = '';
 	}
 
-	onMount(() => {
+	onMount(async () => {
 		mounted = true;
+		// Fetch categories first
+		await fetchCategories();
 		// Check for category parameter in URL
 		const categoryParam = $page.url.searchParams.get('category');
 		if (categoryParam) {
