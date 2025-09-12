@@ -64,6 +64,7 @@
 		"embla-carousel-react": "^8.6.0",
 		"lucide-react": "^0.543.0",
 		"lucide-svelte": "^0.543.0",
+		"prismjs": "^1.30.0",
 		"remark": "^15.0.1",
 		"remark-gfm": "^4.0.1",
 		"remark-html": "^16.0.1",

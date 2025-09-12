@@ -350,20 +350,28 @@
                                              <div class="flex items-center justify-between">
                                                  <div class="flex items-center space-x-2">
                                                      {#if post.author === 'Alpha Bits Engineering'}
-                                                         <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center border-2 border-gray-400">
-                                                             <img 
-                                                                 src="/logos/logo_black.png" 
-                                                                 alt="Alpha Bits Engineering" 
-                                                                 class="w-5 h-5 object-contain"
-                                                             />
-                                                         </div>
-                                                     {:else}
-                                                         <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                                                             <span class="text-white text-xs font-semibold">
-                                                                  {post.author.split(' ').map((n: string) => n[0]).join('')}
-                                                              </span>
-                                                         </div>
-                                                     {/if}
+                                                          <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center border-2 border-gray-400">
+                                                              <img 
+                                                                  src="/logos/logo_black.png" 
+                                                                  alt="Alpha Bits Engineering" 
+                                                                  class="w-5 h-5 object-contain"
+                                                              />
+                                                          </div>
+                                                      {:else if post.author === 'Kent Nguyen'}
+                                                          <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-gray-400">
+                                                              <img 
+                                                                  src="/profile/avatar1.jpg" 
+                                                                  alt="Kent Nguyen" 
+                                                                  class="w-full h-full object-cover"
+                                                              />
+                                                          </div>
+                                                      {:else}
+                                                          <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                                                              <span class="text-white text-xs font-semibold">
+                                                                   {post.author.split(' ').map((n: string) => n[0]).join('')}
+                                                               </span>
+                                                          </div>
+                                                      {/if}
                                                      <span class="text-sm text-gray-600">{post.author}</span>
                                                  </div>
                                                 
@@ -397,12 +405,6 @@
                 {/each}
             </div>
             
-            <!-- View All Posts Button -->
-            <div class="text-center mt-12">
-                <button class="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg">
-                    View All Blog Posts
-                </button>
-            </div>
         {/if}
     </div>
 </section>
