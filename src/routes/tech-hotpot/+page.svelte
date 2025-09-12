@@ -272,122 +272,105 @@
                 </button>
             </div>
         {:else}
-            <!-- Blog Posts Grid by Category -->
-            <div class="space-y-12">
+            <!-- Blog Posts Grid by Category - 5 Columns Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                 {#each categories as category, categoryIndex}
                     {@const categoryPosts = blogPostsByCategory[category.name] || []}
                     {#if categoryPosts.length > 0}
-                        <div class="category-section" in:fly={{ y: 50, delay: categoryIndex * 200, duration: 600 }}>
+                        <div class="category-column" in:fly={{ x: -50, delay: categoryIndex * 100, duration: 600 }}>
                             <!-- Category Header -->
-                            <div class="flex items-center mb-6">
-                                <div class="w-12 h-12 mr-4">
+                            <div class="flex items-center mb-4">
+                                <div class="w-8 h-8 mr-2">
                                     <img src="{getCategoryIcon(category.name)}" alt="{category.name}" class="w-full h-full opacity-70" />
                                 </div>
                                 <div>
-                                    <h3 class="text-2xl font-bold text-gray-800">{category.name}</h3>
-                                    <p class="text-gray-600 text-sm">{category.description}</p>
+                                    <h3 class="text-lg font-bold text-gray-800">{category.name}</h3>
                                 </div>
                             </div>
                             
-                            <!-- Posts Grid (2 posts per category) -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                {#each categoryPosts as post, postIndex}
-                                    <article 
-                                        class="bg-white rounded-xl border border-gray-200 overflow-hidden hover: transition-shadow duration-300"
-                                        in:fly={{ x: postIndex % 2 === 0 ? -50 : 50, delay: (categoryIndex * 200) + (postIndex * 100), duration: 600 }}
-                                    >
-                                        <!-- Post Thumbnail -->
-                                        <div class="h-48 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
-                                            <img 
-                                                src="{post.thumbnail}" 
-                                                alt="{post.title}" 
-                                                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                                                loading="lazy"
-                                            />
-                                        </div>
+                            <!-- Posts in Column (2 posts per category) -->
+                            <div class="space-y-4">
+                                {#each categoryPosts.slice(0, 2) as post, postIndex}
+                                     <article 
+                                         class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-300"
+                                         in:fly={{ y: 20, delay: (categoryIndex * 100) + (postIndex * 50), duration: 400 }}
+                                     >
+                                         <!-- Post Thumbnail -->
+                                         <div class="h-32 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+                                             <img 
+                                                 src="{post.thumbnail}" 
+                                                 alt="{post.title}" 
+                                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                                 loading="lazy"
+                                             />
+                                         </div>
                                         
                                         <!-- Post Content -->
-                                        <div class="p-6">
-                                            <!-- Meta Information -->
-                                            <div class="flex items-center justify-between mb-3">
-                                                <div class="flex items-center space-x-2">
-                                                    <span class="text-xs font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded-full">
-                                                        {post.category}
-                                                    </span>
-                                                    <span class="text-xs text-gray-500">
-                                                        {post.readTime} min read
-                                                    </span>
-                                                </div>
-                                                <span class="text-sm text-gray-500">
-                                                    {formatDate(post.publishedAt)}
-                                                </span>
-                                            </div>
+                                         <div class="p-4">
+                                             <!-- Meta Information -->
+                                             <div class="flex items-center justify-between mb-2">
+                                                 <span class="text-xs text-gray-500">
+                                                     {post.readTime} min read
+                                                 </span>
+                                                 <span class="text-xs text-gray-500">
+                                                     {formatDate(post.publishedAt)}
+                                                 </span>
+                                             </div>
+                                             
+                                             <!-- Post Title -->
+                                              <h4 class="text-sm font-semibold mb-2 line-clamp-2">
+                                                  <a 
+                                                      href="/tech-hotpot/{post.slug}"
+                                                      class="text-gray-800 hover:text-blue-600 transition-colors"
+                                                  >
+                                                      {post.title}
+                                                  </a>
+                                              </h4>
+                                             
+                                             <!-- Post Excerpt -->
+                                             <p class="text-gray-600 text-xs mb-3 line-clamp-2">
+                                                 {post.excerpt}
+                                             </p>
                                             
-                                            <!-- Post Title -->
-                                             <h4 class="text-xl font-semibold mb-3 line-clamp-2">
+                                            <!-- Author -->
+                                              <div class="flex items-center justify-between">
+                                                  <div class="flex items-center space-x-1">
+                                                      {#if post.author === 'Alpha Bits Engineering'}
+                                                           <div class="w-5 h-5 bg-white rounded-full flex items-center justify-center border border-gray-300">
+                                                               <img 
+                                                                   src="/logos/logo_black.png" 
+                                                                   alt="Alpha Bits Engineering" 
+                                                                   class="w-3 h-3 object-contain"
+                                                               />
+                                                           </div>
+                                                       {:else if post.author === 'Kent Nguyen'}
+                                                           <div class="w-5 h-5 rounded-full overflow-hidden border border-gray-300">
+                                                               <img 
+                                                                   src="/profile/avatar1.jpg" 
+                                                                   alt="Kent Nguyen" 
+                                                                   class="w-full h-full object-cover"
+                                                               />
+                                                           </div>
+                                                       {:else}
+                                                           <div class="w-5 h-5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                                                               <span class="text-white text-xs font-semibold">
+                                                                    {post.author.split(' ').map((n: string) => n[0]).join('')}
+                                                                </span>
+                                                           </div>
+                                                       {/if}
+                                                      <span class="text-xs text-gray-600">{post.author}</span>
+                                                  </div>
+                                                 
                                                  <a 
-                                                     href="/tech-hotpot/{post.slug}"
-                                                     class="text-gray-800 hover:text-blue-600 transition-colors"
-                                                 >
-                                                     {post.title}
-                                                 </a>
-                                             </h4>
-                                            
-                                            <!-- Post Excerpt -->
-                                            <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-                                                {post.excerpt}
-                                            </p>
-                                            
-                                            <!-- Author and Tags -->
-                                             <div class="flex items-center justify-between">
-                                                 <div class="flex items-center space-x-2">
-                                                     {#if post.author === 'Alpha Bits Engineering'}
-                                                          <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center border-2 border-gray-400">
-                                                              <img 
-                                                                  src="/logos/logo_black.png" 
-                                                                  alt="Alpha Bits Engineering" 
-                                                                  class="w-5 h-5 object-contain"
-                                                              />
-                                                          </div>
-                                                      {:else if post.author === 'Kent Nguyen'}
-                                                          <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-gray-400">
-                                                              <img 
-                                                                  src="/profile/avatar1.jpg" 
-                                                                  alt="Kent Nguyen" 
-                                                                  class="w-full h-full object-cover"
-                                                              />
-                                                          </div>
-                                                      {:else}
-                                                          <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                                                              <span class="text-white text-xs font-semibold">
-                                                                   {post.author.split(' ').map((n: string) => n[0]).join('')}
-                                                               </span>
-                                                          </div>
-                                                      {/if}
-                                                     <span class="text-sm text-gray-600">{post.author}</span>
-                                                 </div>
-                                                
-                                                <a 
-                                                     href="/tech-hotpot/{post.slug}"
-                                                     class="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center space-x-1 transition-colors group"
-                                                 >
-                                                     <span>Read More</span>
-                                                     <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                                     </svg>
-                                                 </a>
-                                            </div>
-                                            
-                                            <!-- Tags -->
-                                            {#if post.tags && post.tags.length > 0}
-                                                <div class="flex flex-wrap gap-2 mt-4">
-                                                    {#each post.tags.slice(0, 3) as tag}
-                                                        <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
-                                                            #{tag}
-                                                        </span>
-                                                    {/each}
-                                                </div>
-                                            {/if}
+                                                      href="/tech-hotpot/{post.slug}"
+                                                      class="text-blue-600 hover:text-blue-700 font-medium text-xs flex items-center space-x-1 transition-colors group"
+                                                  >
+                                                      <span>Read</span>
+                                                      <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                                      </svg>
+                                                  </a>
+                                             </div>
                                         </div>
                                     </article>
                                 {/each}
