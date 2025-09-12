@@ -25,7 +25,7 @@
             "@type": "WebPage",
             "@id": "https://alphabits.team/case-studies/sencar-smoke-detection"
         },
-        "image": "https://alphabits.team/case-studies/iot_security_station.gif",
+        "image": "https://alphabits.team/partners/sencar_website.png",
         "articleSection": "Case Studies",
         "keywords": ["AIoT", "smoke detection", "embedded AI", "IoT sensors", "automotive technology", "prototype development"]
     };
