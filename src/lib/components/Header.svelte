@@ -446,22 +446,70 @@
 
 				<!-- Case Studies -->
 				<div class="space-y-2">
-					<div class="px-3 py-2 text-xs font-bold text-gray-900 uppercase tracking-wider border-b border-gray-100">Case Studies</div>
-					{#each caseStudyItems as caseStudy}
-						<a href={caseStudy.href} class="flex items-start space-x-3 px-3 py-3 text-sm font-medium text-gray-600 hover:text-medium-teal hover:bg-gray-50 transition-colors rounded-md" onclick={closeMobileMenu}>
-							<div class="w-12 h-10 rounded overflow-hidden flex-shrink-0">
-								<img 
-									src={caseStudy.thumbnail} 
-									alt={caseStudy.title}
-									class="w-full h-full object-cover"
-								/>
+					<a href="/case-studies" class="block px-3 py-2 text-xs font-bold text-gray-900 uppercase tracking-wider border-b border-gray-100 hover:text-medium-teal transition-colors" onclick={closeMobileMenu}>Case Studies</a>
+					
+					<!-- Technology Consulting Section -->
+					<div class="px-3 py-2">
+						<div class="text-xs font-semibold text-blue-700 mb-2">Technology Consulting</div>
+						<div class="space-y-2">
+							<a href="/case-studies/coffee-chain-transformation" class="flex items-start space-x-3 px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-700 hover:bg-blue-50 transition-colors rounded-md" onclick={closeMobileMenu}>
+								<div class="w-10 h-8 rounded overflow-hidden flex-shrink-0">
+									<img 
+										src="/case-studies/coffee-background.jpg" 
+										alt="Coffee Chain"
+										class="w-full h-full object-cover"
+									/>
+								</div>
+								<div class="flex-1">
+									<div class="font-medium text-gray-900 text-sm">Coffee Chain Digital Transformation</div>
+									<div class="text-xs text-gray-500 mt-1">Unifying 200+ outlets with BigQuery analytics</div>
+								</div>
+							</a>
+							
+							<a href="/case-studies/sencar-smoke-detection" class="flex items-start space-x-3 px-3 py-2 text-sm font-medium text-gray-600 hover:text-red-700 hover:bg-red-50 transition-colors rounded-md" onclick={closeMobileMenu}>
+								<div class="w-10 h-8 rounded overflow-hidden flex-shrink-0">
+									<img 
+										src="/partners/sencar_slide1.jpg" 
+										alt="SENCAR"
+										class="w-full h-full object-cover"
+									/>
+								</div>
+								<div class="flex-1">
+									<div class="font-medium text-gray-900 text-sm">SENCAR Smoke Detection AIoT</div>
+									<div class="text-xs text-gray-500 mt-1">AI-powered detection for rental car fleets</div>
+								</div>
+							</a>
+						</div>
+					</div>
+					
+					<!-- IoT Solutions Section -->
+					<div class="px-3 py-2">
+						<div class="text-xs font-semibold text-green-700 mb-2">IoT Solutions</div>
+						<div class="space-y-2">
+							<a href="/case-studies#iot-projects" class="flex items-start space-x-3 px-3 py-2 text-sm font-medium text-gray-600 hover:text-green-700 hover:bg-green-50 transition-colors rounded-md" onclick={closeMobileMenu}>
+								<div class="w-10 h-8 rounded overflow-hidden flex-shrink-0">
+									<img 
+										src="/alphablock/mushroombox1.png" 
+										alt="Alpha Block"
+										class="w-full h-full object-cover"
+									/>
+								</div>
+								<div class="flex-1">
+									<div class="font-medium text-gray-900 text-sm">Alpha Block</div>
+									<div class="text-xs text-gray-500 mt-1">Mushroom growing automation system</div>
+								</div>
+							</a>
+							
+							<div class="px-3 py-1">
+								<div class="text-xs font-medium text-gray-600 mb-1">Other Projects:</div>
+								<div class="space-y-1 pl-2">
+									<a href="/case-studies#iot-projects" class="block text-xs text-gray-500 hover:text-green-600 transition-colors py-1" onclick={closeMobileMenu}>• RDX - Remote Driving Experience</a>
+									<a href="/case-studies#iot-projects" class="block text-xs text-gray-500 hover:text-green-600 transition-colors py-1" onclick={closeMobileMenu}>• Energy Management Platform</a>
+									<a href="/case-studies#iot-projects" class="block text-xs text-gray-500 hover:text-green-600 transition-colors py-1" onclick={closeMobileMenu}>• Raspberry Pi & ESP32 Projects</a>
+								</div>
 							</div>
-							<div class="flex-1">
-								<div class="font-medium text-gray-900">{caseStudy.title}</div>
-								<div class="text-xs text-gray-500 mt-1 line-clamp-2">{caseStudy.description}</div>
-							</div>
-						</a>
-					{/each}
+						</div>
+					</div>
 				</div>
 
 				<!-- Learning Materials -->

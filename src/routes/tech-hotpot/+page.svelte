@@ -165,15 +165,6 @@
 <!-- Hero Section -->
 <section class="relative py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
-                OUR FOCUS AREAS
-            </h2>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                Discover the five key technology domains we're passionate about. Each area represents cutting-edge innovations that are shaping the future of business and technology.
-            </p>
-        </div>
-        
         <!-- Category Icons Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-16">
             {#each categories as category, index}
@@ -251,12 +242,6 @@
 <section class="py-16 bg-white/50 backdrop-blur-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
-                LATEST INSIGHTS
-            </h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
-                Discover the latest trends and insights from our tech experts across all focus areas.
-            </p>
             <a 
                 href="/tech-hotpot/all"
                 class="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
