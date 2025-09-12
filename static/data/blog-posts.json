@@ -117,6 +117,7 @@
     {
       "id": 7,
       "title": "Edge Computing in IoT: Reducing Latency and Costs",
+      "slug": "edge-computing-iot-reducing-latency-costs",
       "excerpt": "Exploring edge computing benefits for IoT applications, including reduced bandwidth usage and improved response times.",
       "content": "Full article content would go here...",
       "category": "IoT News",
@@ -135,6 +136,7 @@
     {
       "id": 8,
       "title": "MQTT vs CoAP: IoT Communication Protocols Compared",
+      "slug": "mqtt-vs-coap-iot-communication-protocols-compared",
       "excerpt": "Understanding the differences between MQTT and CoAP protocols for IoT device communication and when to use each.",
       "content": "Full article content would go here...",
       "category": "IoT News",
@@ -153,6 +155,7 @@
     {
       "id": 9,
       "title": "Real-time Analytics with Apache Kafka and Spark",
+      "slug": "real-time-analytics-apache-kafka-spark",
       "excerpt": "Building scalable real-time data processing pipelines using Apache Kafka for streaming and Spark for analytics.",
       "content": "Full article content would go here...",
       "category": "Data & Analytics",
@@ -171,6 +174,7 @@
     {
       "id": 10,
       "title": "Data Warehouse vs Data Lake: Architecture Decisions",
+      "slug": "data-warehouse-vs-data-lake-architecture-decisions",
       "excerpt": "Comparing data warehouse and data lake architectures to help you choose the right approach for your organization.",
       "content": "Full article content would go here...",
       "category": "Data & Analytics",
@@ -189,6 +193,7 @@
     {
       "id": 11,
       "title": "Machine Learning Model Deployment with MLOps",
+      "slug": "machine-learning-model-deployment-mlops",
       "excerpt": "Best practices for deploying and monitoring ML models in production using MLOps principles and tools.",
       "content": "Full article content would go here...",
       "category": "Data & Analytics",
@@ -207,6 +212,7 @@
     {
       "id": 12,
       "title": "Time Series Forecasting with Python and Prophet",
+      "slug": "time-series-forecasting-python-prophet",
       "excerpt": "Learn to build accurate time series forecasting models using Facebook's Prophet library for business analytics.",
       "content": "Full article content would go here...",
       "category": "Data & Analytics",
@@ -225,6 +231,7 @@
     {
       "id": 13,
       "title": "Building Intelligent Chatbots with LangChain",
+      "slug": "building-intelligent-chatbots-langchain",
       "excerpt": "Create sophisticated AI-powered chatbots using LangChain framework for natural language processing and conversation.",
       "content": "Full article content would go here...",
       "category": "AI Workflow",
@@ -243,6 +250,7 @@
     {
       "id": 14,
       "title": "Computer Vision for Quality Control in Manufacturing",
+      "slug": "computer-vision-quality-control-manufacturing",
       "excerpt": "Implementing AI-powered visual inspection systems to automate quality control processes in manufacturing.",
       "content": "Full article content would go here...",
       "category": "AI Workflow",
@@ -261,6 +269,7 @@
     {
       "id": 15,
       "title": "Automated Document Processing with OCR and NLP",
+      "slug": "automated-document-processing-ocr-nlp",
       "excerpt": "Streamline document workflows using OCR technology and natural language processing for intelligent data extraction.",
       "content": "Full article content would go here...",
       "category": "AI Workflow",
@@ -279,6 +288,7 @@
     {
       "id": 16,
       "title": "Predictive Analytics for Business Intelligence",
+      "slug": "predictive-analytics-business-intelligence",
       "excerpt": "Leverage machine learning algorithms to build predictive models that drive data-driven business decisions.",
       "content": "Full article content would go here...",
       "category": "AI Workflow",
@@ -297,6 +307,7 @@
     {
       "id": 17,
       "title": "Cloud-First Strategy: Migrating Legacy Systems",
+      "slug": "cloud-first-strategy-migrating-legacy-systems",
       "excerpt": "A comprehensive guide to migrating legacy applications to the cloud while minimizing risks and downtime.",
       "content": "Full article content would go here...",
       "category": "Digital Transformation",
@@ -315,6 +326,7 @@
     {
       "id": 18,
       "title": "DevOps Culture: Breaking Down Silos",
+      "slug": "devops-culture-breaking-down-silos",
       "excerpt": "Implementing DevOps practices to improve collaboration between development and operations teams for faster delivery.",
       "content": "Full article content would go here...",
       "category": "Digital Transformation",
@@ -333,6 +345,7 @@
     {
       "id": 19,
       "title": "API-First Architecture for Modern Applications",
+      "slug": "api-first-architecture-modern-applications",
       "excerpt": "Designing scalable applications with API-first principles to enable better integration and microservices architecture.",
       "content": "Full article content would go here...",
       "category": "Digital Transformation",
@@ -351,6 +364,7 @@
     {
       "id": 20,
       "title": "Agile Transformation: From Waterfall to Scrum",
+      "slug": "agile-transformation-waterfall-to-scrum",
       "excerpt": "Successfully transitioning from traditional waterfall methodology to agile practices for improved project delivery.",
       "content": "Full article content would go here...",
       "category": "Digital Transformation",

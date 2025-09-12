@@ -38,15 +38,15 @@ interface CategoryInfo {
 // Helper function to get category icon based on category name
 function getCategoryIcon(category: string): string {
   const iconMap: { [key: string]: string } = {
-    'AI Workflow': 'ai',
-    'AI in Education': 'education',
-    'AI in Agriculture': 'agriculture', 
-    'AI in F&B': 'fb',
-    'AI in Manufacturing': 'manufacturing',
     'Software': 'software',
     'IoT News': 'iot',
     'Data & Analytics': 'data',
-    'Digital Transformation': 'dx'
+    'AI Workflow': 'ai',
+    'Digital Transformation': 'dx',
+    'AI in Education': 'education',
+    'AI in Agriculture': 'agriculture', 
+    'AI in F&B': 'fb',
+    'AI in Manufacturing': 'manufacturing'
   };
   return iconMap[category] || 'software';
 }
@@ -54,15 +54,15 @@ function getCategoryIcon(category: string): string {
 // Helper function to get category color
 function getCategoryColor(category: string): string {
   const colorMap: { [key: string]: string } = {
-    'AI Workflow': 'red',
-    'AI in Education': 'blue',
-    'AI in Agriculture': 'green',
-    'AI in F&B': 'orange',
-    'AI in Manufacturing': 'purple',
     'Software': 'blue',
     'IoT News': 'green',
     'Data & Analytics': 'purple',
-    'Digital Transformation': 'orange'
+    'AI Workflow': 'red',
+    'Digital Transformation': 'orange',
+    'AI in Education': 'blue',
+    'AI in Agriculture': 'green',
+    'AI in F&B': 'orange',
+    'AI in Manufacturing': 'purple'
   };
   return colorMap[category] || 'blue';
 }
@@ -70,15 +70,15 @@ function getCategoryColor(category: string): string {
 // Helper function to get category description
 function getCategoryDescription(category: string): string {
   const descriptionMap: { [key: string]: string } = {
-    'AI Workflow': 'Discover artificial intelligence and automated workflow solutions.',
-    'AI in Education': 'Explore AI applications in educational technology and learning.',
-    'AI in Agriculture': 'Learn about AI innovations in farming and agricultural technology.',
-    'AI in F&B': 'Discover AI solutions for food and beverage industry operations.',
-    'AI in Manufacturing': 'Explore AI applications in manufacturing and industrial processes.',
     'Software': 'Dive into the world of coding, frameworks, and innovative applications.',
     'IoT News': 'Stay updated with the latest in Internet of Things and connected devices.',
     'Data & Analytics': 'Explore data science, analytics, and business intelligence insights.',
-    'Digital Transformation': 'Learn about modernizing businesses through digital innovation.'
+    'AI Workflow': 'Discover artificial intelligence and automated workflow solutions.',
+    'Digital Transformation': 'Learn about modernizing businesses through digital innovation.',
+    'AI in Education': 'Explore AI applications in educational technology and learning.',
+    'AI in Agriculture': 'Learn about AI innovations in farming and agricultural technology.',
+    'AI in F&B': 'Discover AI solutions for food and beverage industry operations.',
+    'AI in Manufacturing': 'Explore AI applications in manufacturing and industrial processes.'
   };
   return descriptionMap[category] || 'Explore the latest technology insights and innovations.';
 }

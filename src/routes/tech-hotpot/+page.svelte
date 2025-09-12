@@ -95,7 +95,7 @@
             'AI in F&B': '/icons/icon_ai.png',
             'AI in Manufacturing': '/icons/icon_ai.png'
         };
-        return iconMap[category] || '/icons/icon_ai.png';
+        return iconMap[category] || '/icons/icon_software.png';
     }
     
     // Helper function to format date
@@ -150,12 +150,12 @@
                     <path d="M44 24 Q46 20 44 16 Q42 12 44 8" fill="none" stroke="currentColor" stroke-width="2" class="animate-bounce" style="animation-delay: 1s"/>
                 </svg>
             </div>
-            <h1 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent">
+            <h1 class="text-5xl md:text-6xl font-bold text-orange-600">
                 TECH HOTPOT
             </h1>
         </div>
         <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-            Some code, some insights, and some ideas.
+            Some code, some insights, and some before-time ideas.
         </p>
     </div>
 </header>

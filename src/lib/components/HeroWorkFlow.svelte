@@ -253,8 +253,7 @@
 				<div class="mb-8 animate-in fade-in slide-in-from-bottom-4 duration-600 delay-200">
 					<div class="inline-flex items-center px-4 py-2 rounded-full bg-[#2A4A6B]/50 border border-[#57DCCD]/30 text-sm">
 						<Zap class="w-4 h-4 text-[#57DCCD] mr-2" />
-						<span class="text-[#57DCCD]">New:</span>
-						<span class="ml-1 text-gray-300">Advanced AI Automation Platform</span>
+						<span class="ml-1 text-gray-300">AI Workflow Automation Solutions</span>
 					</div>
 				</div>
 

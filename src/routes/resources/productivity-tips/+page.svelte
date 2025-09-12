@@ -265,17 +265,17 @@
 <!-- CTA Section -->
 <section class="py-20 bg-gradient-to-r from-green-600 to-blue-600">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-		<h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+		<h2 class="text-3xl md:text-4xl font-bold mb-6">
 			Ready to Transform Your Productivity?
 		</h2>
-		<p class="text-xl text-green-100 mb-8 max-w-3xl mx-auto">
+		<p class="text-xl text-green-600 mb-8 max-w-3xl mx-auto">
 			Let us help you implement these strategies and create custom productivity solutions for your business.
 		</p>
 		<div class="flex flex-col sm:flex-row gap-4 justify-center">
 			<a href="/services/ai-workflow-automation" class="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
 				Explore AI Automation
 			</a>
-			<a href="/contact" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors">
+			<a href="/contact" class="border-2 border-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors">
 				Get Consultation
 			</a>
 		</div>
