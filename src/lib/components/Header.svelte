@@ -4,6 +4,7 @@
 	import * as NavigationMenu from './ui/navigation-menu/index.js';
 	import { BookOpen, Zap } from 'lucide-svelte';
 
+	let { user = null }: { user?: any } = $props();
 	let mobileMenuOpen = $state(false);
 
 	async function handleLogout() {

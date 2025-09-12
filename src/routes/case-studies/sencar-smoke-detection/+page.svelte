@@ -106,18 +106,113 @@
 </style>
 
 <!-- Hero Section -->
-<section class="hero-background text-white py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hero-content">
-        <div class="text-center">
-            <div class="inline-block bg-white bg-opacity-20 text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
-                Case Study
+<section class="py-20 bg-gradient-to-br from-slate-50 via-red-50 to-orange-50 relative overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] -z-10"></div>
+    <div class="absolute top-0 left-1/4 w-72 h-72 bg-red-200/30 rounded-full blur-3xl -z-10"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-200/20 rounded-full blur-3xl -z-10"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm border-2 border-red-200 rounded-full mb-6">
+                <span class="text-sm font-semibold text-red-700 uppercase tracking-wide">AIoT Case Study</span>
             </div>
-            <h1 class="text-4xl md:text-5xl font-bold mb-6">
-                SENCAR Smoke Detection AIoT Prototype
+            <h1 class="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-slate-900 via-red-800 to-orange-800 bg-clip-text text-transparent">
+                SENCAR Smoke Detection Prototype
             </h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-                Developing an AI-powered smoke and odor detection system for rental car fleets using embedded AI chips with 15-30 second detection accuracy and continuous 24-hour monitoring capabilities.
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium">
+                Developing an AI-powered smoke and odor detection system for rental car fleets using embedded AI chips and IoT sensors with 15-30 seconds detection accuracy.
             </p>
+        </div>
+        
+        <!-- AIoT Detection System SVG Animation -->
+        <div class="flex justify-center mb-8">
+            <svg width="600" height="300" viewBox="0 0 600 300" class="">
+                <defs>
+                    <linearGradient id="smokeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#DC2626;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#EF4444;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#F97316;stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#7C3AED;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#A855F7;stop-opacity:1" />
+                    </linearGradient>
+                    <radialGradient id="alertGradient" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" style="stop-color:#FEF3C7;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:0.3" />
+                    </radialGradient>
+                </defs>
+                
+                <!-- Car with Sensors -->
+                <g>
+                    <!-- Car Body -->
+                    <rect x="50" y="150" width="120" height="60" rx="15" fill="#64748B" opacity="0.8"/>
+                    <rect x="60" y="140" width="100" height="20" rx="10" fill="#475569" opacity="0.9"/>
+                    <!-- Wheels -->
+                    <circle cx="80" cy="220" r="15" fill="#1F2937"/>
+                    <circle cx="140" cy="220" r="15" fill="#1F2937"/>
+                    
+                    <!-- Smoke Detection Sensors -->
+                    <circle cx="90" cy="130" r="8" fill="#DC2626" opacity="0.8">
+                        <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="130" cy="130" r="8" fill="#DC2626" opacity="0.8">
+                        <animate attributeName="opacity" values="0.8;1;0.8" dur="1.7s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="110" y="115" text-anchor="middle" class="text-xs fill-slate-600">IoT Sensors</text>
+                </g>
+                
+                <!-- Smoke Particles Animation -->
+                <g>
+                    <circle cx="100" cy="100" r="3" fill="url(#smokeGradient)" opacity="0.6">
+                        <animate attributeName="cy" values="100;80;60;40" dur="3s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.6;0.8;0.4;0" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="120" cy="110" r="4" fill="url(#smokeGradient)" opacity="0.5">
+                        <animate attributeName="cy" values="110;90;70;50" dur="3.5s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.5;0.7;0.3;0" dur="3.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="110" cy="105" r="2" fill="url(#smokeGradient)" opacity="0.7">
+                        <animate attributeName="cy" values="105;85;65;45" dur="2.8s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.7;0.9;0.5;0" dur="2.8s" repeatCount="indefinite"/>
+                    </circle>
+                </g>
+                
+                <!-- AI Processing Unit -->
+                <g>
+                    <rect x="250" y="140" width="80" height="80" rx="15" fill="url(#aiGradient)" opacity="0.9">
+                        <animate attributeName="opacity" values="0.9;1;0.9" dur="2s" repeatCount="indefinite"/>
+                    </rect>
+                    <text x="290" y="175" text-anchor="middle" class="text-sm fill-white font-semibold">AI Chip</text>
+                    <text x="290" y="190" text-anchor="middle" class="text-sm fill-white font-semibold">Processing</text>
+                    <text x="290" y="240" text-anchor="middle" class="text-xs fill-slate-600">15-30s Detection</text>
+                </g>
+                
+                <!-- Alert System -->
+                <g>
+                    <circle cx="450" cy="180" r="40" fill="url(#alertGradient)" opacity="0.8">
+                        <animate attributeName="r" values="40;45;40" dur="2s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <polygon points="450,160 460,180 450,200 440,180" fill="#DC2626">
+                        <animate attributeName="opacity" values="1;0.5;1" dur="1s" repeatCount="indefinite"/>
+                    </polygon>
+                    <text x="450" y="235" text-anchor="middle" class="text-xs fill-slate-600">Alert System</text>
+                </g>
+                
+                <!-- Data Flow Lines -->
+                <path d="M 175 180 L 245 180" stroke="url(#smokeGradient)" stroke-width="3" opacity="0.6">
+                    <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
+                </path>
+                <path d="M 335 180 L 405 180" stroke="url(#aiGradient)" stroke-width="4" opacity="0.7">
+                    <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
+                </path>
+                
+                <!-- Detection Timeline -->
+                <text x="300" y="280" text-anchor="middle" class="text-sm fill-slate-700 font-semibold">Real-time Detection: Smoke → AI Analysis → Alert (15-30 seconds)</text>
+            </svg>
         </div>
     </div>
 </section>

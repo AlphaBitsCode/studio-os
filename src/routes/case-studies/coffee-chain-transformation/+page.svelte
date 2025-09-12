@@ -114,18 +114,112 @@
 </style>
 
 <!-- Hero Section -->
-<section class="hero-background text-white py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hero-content">
-        <div class="text-center">
-            <div class="inline-block bg-white bg-opacity-20 text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
-                Case Study
+<section class="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] -z-10"></div>
+    <div class="absolute top-0 left-1/4 w-72 h-72 bg-amber-200/30 rounded-full blur-3xl -z-10"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-200/20 rounded-full blur-3xl -z-10"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm border-2 border-amber-200 rounded-full mb-6">
+                <span class="text-sm font-semibold text-amber-700 uppercase tracking-wide">Case Study</span>
             </div>
-            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+            <h1 class="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-slate-900 via-amber-800 to-orange-800 bg-clip-text text-transparent">
                 Coffee Chain Digital Transformation
             </h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium">
                 Unifying operations across 200+ outlets by consolidating 5 different POS systems, multiple accounting databases, and marketing data into a single BigQuery data warehouse with advanced Looker Studio analytics.
             </p>
+        </div>
+        
+        <!-- Coffee Chain Data Flow SVG Animation -->
+        <div class="flex justify-center mb-8">
+            <svg width="600" height="250" viewBox="0 0 600 250" class="">
+                <defs>
+                    <linearGradient id="coffeeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#D97706;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#F59E0B;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#FBBF24;stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="dataGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#1D4ED8;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#1E40AF;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                
+                <!-- Multiple POS Systems -->
+                <g>
+                    <rect x="20" y="30" width="40" height="30" rx="5" fill="#F59E0B" opacity="0.8">
+                        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+                    </rect>
+                    <text x="40" y="75" text-anchor="middle" class="text-xs fill-slate-600">POS 1</text>
+                    
+                    <rect x="20" y="90" width="40" height="30" rx="5" fill="#F59E0B" opacity="0.8">
+                        <animate attributeName="opacity" values="0.8;1;0.8" dur="2.2s" repeatCount="indefinite"/>
+                    </rect>
+                    <text x="40" y="135" text-anchor="middle" class="text-xs fill-slate-600">POS 2</text>
+                    
+                    <rect x="20" y="150" width="40" height="30" rx="5" fill="#F59E0B" opacity="0.8">
+                        <animate attributeName="opacity" values="0.8;1;0.8" dur="2.4s" repeatCount="indefinite"/>
+                    </rect>
+                    <text x="40" y="195" text-anchor="middle" class="text-xs fill-slate-600">POS 3-5</text>
+                </g>
+                
+                <!-- Accounting Databases -->
+                <g>
+                    <circle cx="150" cy="60" r="25" fill="#10B981" opacity="0.8">
+                        <animate attributeName="opacity" values="0.8;1;0.8" dur="1.8s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="150" y="100" text-anchor="middle" class="text-xs fill-slate-600">Accounting</text>
+                    
+                    <circle cx="150" cy="140" r="25" fill="#8B5CF6" opacity="0.8">
+                        <animate attributeName="opacity" values="0.8;1;0.8" dur="2.6s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="150" y="180" text-anchor="middle" class="text-xs fill-slate-600">Marketing</text>
+                </g>
+                
+                <!-- BigQuery Data Warehouse -->
+                <g>
+                    <rect x="300" y="80" width="80" height="80" rx="15" fill="url(#dataGradient)" opacity="0.9">
+                        <animate attributeName="opacity" values="0.9;1;0.9" dur="1.5s" repeatCount="indefinite"/>
+                    </rect>
+                    <text x="340" y="115" text-anchor="middle" class="text-sm fill-white font-semibold">BigQuery</text>
+                    <text x="340" y="130" text-anchor="middle" class="text-sm fill-white font-semibold">Warehouse</text>
+                    <text x="340" y="185" text-anchor="middle" class="text-xs fill-slate-600">Unified Data</text>
+                </g>
+                
+                <!-- Looker Studio Analytics -->
+                <g>
+                    <ellipse cx="500" cy="120" rx="40" ry="30" fill="#EC4899" opacity="0.8">
+                        <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite"/>
+                    </ellipse>
+                    <text x="500" y="125" text-anchor="middle" class="text-sm fill-white font-semibold">Looker</text>
+                    <text x="500" y="140" text-anchor="middle" class="text-sm fill-white font-semibold">Studio</text>
+                    <text x="500" y="165" text-anchor="middle" class="text-xs fill-slate-600">Analytics</text>
+                </g>
+                
+                <!-- Data Flow Lines -->
+                <path d="M 65 45 L 290 100" stroke="url(#coffeeGradient)" stroke-width="3" opacity="0.6">
+                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+                </path>
+                <path d="M 65 105 L 290 110" stroke="url(#coffeeGradient)" stroke-width="3" opacity="0.6">
+                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2.2s" repeatCount="indefinite"/>
+                </path>
+                <path d="M 65 165 L 290 140" stroke="url(#coffeeGradient)" stroke-width="3" opacity="0.6">
+                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2.4s" repeatCount="indefinite"/>
+                </path>
+                <path d="M 175 75 L 290 110" stroke="#10B981" stroke-width="3" opacity="0.6">
+                    <animate attributeName="opacity" values="0.6;1;0.6" dur="1.8s" repeatCount="indefinite"/>
+                </path>
+                <path d="M 175 155 L 290 130" stroke="#8B5CF6" stroke-width="3" opacity="0.6">
+                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2.6s" repeatCount="indefinite"/>
+                </path>
+                <path d="M 385 120 L 455 120" stroke="url(#dataGradient)" stroke-width="4" opacity="0.7">
+                    <animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" repeatCount="indefinite"/>
+                </path>
+            </svg>
         </div>
     </div>
 </section>
