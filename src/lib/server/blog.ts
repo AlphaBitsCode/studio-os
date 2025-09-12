@@ -9,7 +9,13 @@ export interface BlogPost {
 	date_published?: string;
 	date_created?: string;
 	image?: string;
-	author?: string;
+	author?: {
+		id: string;
+		name: string;
+		job_title?: string;
+		image?: string;
+		bio?: string;
+	} | string;
 	category?: {
 		id: string;
 		title: string;
@@ -48,7 +54,11 @@ export async function getAllBlogPosts(limit?: number): Promise<BlogPost[]> {
 			'date_published',
 			'date_created',
 			'image',
-			'author',
+			'author.id',
+			'author.name',
+			'author.job_title',
+			'author.image',
+			'author.bio',
 			'status',
 			'type',
 			'category.id',
@@ -97,7 +107,11 @@ export async function getBlogPostsByCategory(categorySlug?: string, limit?: numb
 			'date_published',
 			'date_created',
 			'image',
-			'author',
+			'author.id',
+			'author.name',
+			'author.job_title',
+			'author.image',
+			'author.bio',
 			'status',
 			'type',
 			'category.id',
@@ -144,7 +158,11 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
 			'date_published',
 			'date_created',
 			'image',
-			'author',
+			'author.id',
+			'author.name',
+			'author.job_title',
+			'author.image',
+			'author.bio',
 			'status',
 			'type',
 			'category.id',
@@ -268,10 +286,40 @@ export function formatDate(dateString: string | null | undefined): string {
  * Get image URL from Directus
  */
 export function getImageUrl(imageId: string | null | undefined, width: number = 600, height: number = 400): string {
-	if (!imageId) return '/placeholder-image.jpg';
+	if (!imageId) return '/placeholder-image.svg';
 	// Use the Directus URL to construct proper asset URLs
 	const directusUrl = env.DIRECTUS_URL || 'http://localhost:8055';
 	return `${directusUrl}/assets/${imageId}?width=${width}&height=${height}&fit=cover&quality=80`;
+}
+
+/**
+ * Get avatar URL from Directus
+ */
+export function getAvatarUrl(avatarId: string | null | undefined, size: number = 40): string {
+	if (!avatarId) return '/placeholder-avatar.svg';
+	// Use the hardcoded Directus URL for client-side compatibility
+	const directusUrl = 'https://kore.alphabits.team';
+	return `${directusUrl}/assets/${avatarId}?width=${size}&height=${size}&fit=cover&quality=80`;
+}
+
+/**
+ * Get author display name
+ */
+export function getAuthorName(author: BlogPost['author']): string {
+	if (!author) return 'AlphaBits';
+	if (typeof author === 'string') return author;
+	return author.name || 'AlphaBits';
+}
+
+/**
+ * Get author initials for fallback avatar
+ */
+export function getAuthorInitials(author: BlogPost['author']): string {
+	if (!author) return 'AB';
+	const name = typeof author === 'string' ? author : author.name;
+	if (!name) return 'AB';
+	const words = name.split(' ');
+	return words.length > 1 ? `${words[0][0]}${words[1][0]}`.toUpperCase() : name.substring(0, 2).toUpperCase();
 }
 
 /**

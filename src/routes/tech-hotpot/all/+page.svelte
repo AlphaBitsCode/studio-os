@@ -38,10 +38,31 @@
 	}
 	
 	function getImageUrl(imageId: string | null | undefined): string {
-		if (!imageId) return '/placeholder-image.jpg';
+		if (!imageId) return '/placeholder-image.svg';
 		// Use the public Directus URL for client-side image loading
 		const directusUrl = 'https://kore.alphabits.team';
 		return `${directusUrl}/assets/${imageId}?width=600&height=400&fit=cover&quality=80`;
+	}
+	
+	function getAvatarUrl(avatarId: string | null | undefined, size: number = 40): string {
+		if (!avatarId) return '/placeholder-avatar.svg';
+		// Use the hardcoded Directus URL for client-side compatibility
+		const directusUrl = 'https://kore.alphabits.team';
+		return `${directusUrl}/assets/${avatarId}?width=${size}&height=${size}&fit=cover&quality=80`;
+	}
+	
+	function getAuthorName(author: any): string {
+		if (!author) return 'AlphaBits';
+		if (typeof author === 'string') return author;
+		return author.name || 'AlphaBits';
+	}
+	
+	function getAuthorInitials(author: any): string {
+		if (!author) return 'AB';
+		const name = typeof author === 'string' ? author : author.name;
+		if (!name) return 'AB';
+		const words = name.split(' ');
+		return words.length > 1 ? `${words[0][0]}${words[1][0]}`.toUpperCase() : name.substring(0, 2).toUpperCase();
 	}
 	import type { PageData } from './$types';
 
@@ -383,11 +404,20 @@
 										<span>{calculateReadTime(post.content)} min read</span>
 									</div>
 									<div class="flex items-center space-x-1">
-										<div class="w-5 h-5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-											<span class="text-white text-xs font-semibold">AB</span>
-										</div>
-										<span>Alpha Bits</span>
+								{#if typeof post.author === 'object' && post.author?.image}
+									<img 
+										src="{getAvatarUrl(post.author.image, 20)}" 
+										alt="{getAuthorName(post.author)}" 
+										class="w-5 h-5 rounded-full object-cover"
+										loading="lazy"
+									/>
+								{:else}
+									<div class="w-5 h-5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+										<span class="text-white text-xs font-semibold">{getAuthorInitials(post.author)}</span>
 									</div>
+								{/if}
+								<span>{getAuthorName(post.author)}</span>
+							</div>
 								</div>
 							</div>
 						</a>

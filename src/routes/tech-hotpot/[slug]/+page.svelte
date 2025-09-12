@@ -37,10 +37,31 @@
 	}
 	
 	function getImageUrl(imageId: string | null | undefined): string {
-		if (!imageId) return '/placeholder-image.jpg';
+		if (!imageId) return '/placeholder-image.svg';
 		// Use the public Directus URL for client-side image loading
 		const directusUrl = 'https://kore.alphabits.team';
 		return `${directusUrl}/assets/${imageId}?width=800&height=450&fit=cover&quality=80`;
+	}
+	
+	function getAvatarUrl(avatarId: string | null | undefined, size: number = 40): string {
+		if (!avatarId) return '/placeholder-avatar.svg';
+		// Use the hardcoded Directus URL for client-side compatibility
+		const directusUrl = 'https://kore.alphabits.team';
+		return `${directusUrl}/assets/${avatarId}?width=${size}&height=${size}&fit=cover&quality=80`;
+	}
+	
+	function getAuthorName(author: any): string {
+		if (!author) return 'AlphaBits';
+		if (typeof author === 'string') return author;
+		return author.name || 'AlphaBits';
+	}
+	
+	function getAuthorInitials(author: any): string {
+		if (!author) return 'AB';
+		const name = typeof author === 'string' ? author : author.name;
+		if (!name) return 'AB';
+		const words = name.split(' ');
+		return words.length > 1 ? `${words[0][0]}${words[1][0]}`.toUpperCase() : name.substring(0, 2).toUpperCase();
 	}
 	import type { PageData } from './$types';
 	
@@ -228,15 +249,24 @@
 			<!-- Meta Information -->
 			<div class="flex flex-wrap items-center gap-6 text-gray-500 mb-8">
 				<!-- Author -->
-				<div class="flex items-center space-x-3">
-					<div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-						<span class="text-white text-sm font-semibold">AB</span>
-					</div>
-					<div>
-						<p class="font-medium text-gray-900">Alpha Bits</p>
-						<p class="text-sm text-gray-500">Engineering Team</p>
-					</div>
+			<div class="flex items-center space-x-3">
+				{#if typeof post.author === 'object' && post.author?.image}
+				<img 
+					src="{getAvatarUrl(post.author.image, 40)}" 
+					alt="{getAuthorName(post.author)}" 
+					class="w-10 h-10 rounded-full object-cover"
+					loading="lazy"
+				/>
+			{:else}
+				<div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+					<span class="text-white text-sm font-semibold">{getAuthorInitials(post.author)}</span>
 				</div>
+			{/if}
+				<div>
+					<p class="font-medium text-gray-900">{getAuthorName(post.author)}</p>
+					<p class="text-sm text-gray-500">Engineering Team</p>
+				</div>
+			</div>
 				
 				<!-- Publication Date -->
 				<div class="flex items-center space-x-2">
