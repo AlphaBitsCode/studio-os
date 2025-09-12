@@ -36,7 +36,7 @@
     description="Detailed case study of developing an AI-powered smoke and odor detection prototype for SENCAR's rental car fleet - testing embedded AI chip performance for real-time detection within 15-30 seconds accuracy."
     keywords="AIoT prototype, smoke detection system, embedded AI chips, IoT sensors, automotive fleet monitoring, real-time detection, SENCAR partnership, AI automotive solutions"
     canonicalUrl="https://alphabits.team/case-studies/sencar-smoke-detection"
-    ogImage="https://alphabits.team/case-studies/iot_security_station.gif"
+    ogImage="https://alphabits.team/partners/sencar_website.png"
     ogType="article"
     articleSection="Case Studies"
     publishedTime="2024-02-01T00:00:00Z"
