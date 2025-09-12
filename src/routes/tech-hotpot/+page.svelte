@@ -8,6 +8,16 @@
     let loading = true;
     let error = '';
     
+    // Tech words for random display
+    const techWords = ['Bits', 'Bytes', 'API', 'SaaS', 'A.I', 'Data', 'Code', 'IoT', 'DX', 'React', 'GCP', 'Docker', 'NodeRED', 'DB', 'SQL', 'GraphQL', 'Rust'];
+    
+    function getRandomWords(arr: string[], count: number) {
+        const shuffled = [...arr].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
+    }
+    
+    $: randomTechWords = getRandomWords(techWords, 5).join(', ');
+    
     interface BlogPost {
         id: number;
         title: string;
@@ -136,26 +146,107 @@
 <header class="relative z-10 py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div class="flex items-center justify-center space-x-4 mb-4">
-            <!-- Tech Hotpot Logo -->
+            <!-- Tech Hotpot Logo - Intricate Design -->
             <div class="relative">
-                <svg class="w-16 h-16 text-orange-500 animate-pulse" viewBox="0 0 64 64" fill="currentColor">
-                    <!-- Pot base -->
-                    <path d="M12 32 L52 32 L50 52 C50 54 48 56 46 56 L18 56 C16 56 14 54 14 52 Z" />
-                    <!-- Pot handles -->
-                    <path d="M8 28 C8 26 10 24 12 24 L12 32 L8 32 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-                    <path d="M56 28 C56 26 54 24 52 24 L52 32 L56 32 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-                    <!-- Steam/Circuit lines -->
-                    <path d="M20 24 Q22 20 20 16 Q18 12 20 8" fill="none" stroke="currentColor" stroke-width="2" class="animate-bounce"/>
-                    <path d="M32 24 Q34 20 32 16 Q30 12 32 8" fill="none" stroke="currentColor" stroke-width="2" class="animate-bounce" style="animation-delay: 0.5s"/>
-                    <path d="M44 24 Q46 20 44 16 Q42 12 44 8" fill="none" stroke="currentColor" stroke-width="2" class="animate-bounce" style="animation-delay: 1s"/>
+                <svg class="w-20 h-20" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Gradient Definitions -->
+                    <defs>
+                        <linearGradient id="potGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#f7931e;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#ff4500;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="steamGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                            <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.8" />
+                            <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:0.6" />
+                            <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:0.4" />
+                        </linearGradient>
+                        <radialGradient id="circuitGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#059669;stop-opacity:0.3" />
+                        </radialGradient>
+                    </defs>
+                    
+                    <!-- Pot Shadow -->
+                    <ellipse cx="50" cy="85" rx="25" ry="4" fill="#000000" opacity="0.2"/>
+                    
+                    <!-- Main Pot Body -->
+                    <path d="M20 45 L80 45 L78 75 C78 78 75 80 72 80 L28 80 C25 80 22 78 22 75 Z" 
+                          fill="url(#potGradient)" stroke="#d97706" stroke-width="1.5"/>
+                    
+                    <!-- Pot Rim -->
+                    <ellipse cx="50" cy="45" rx="30" ry="3" fill="#ea580c" stroke="#9a3412" stroke-width="1"/>
+                    
+                    <!-- Left Handle -->
+                    <path d="M15 40 C12 40 10 42 10 45 C10 48 12 50 15 50 L20 50 L20 45 L20 40 Z" 
+                          fill="#92400e" stroke="#451a03" stroke-width="1.5"/>
+                    
+                    <!-- Right Handle -->
+                    <path d="M85 40 C88 40 90 42 90 45 C90 48 88 50 85 50 L80 50 L80 45 L80 40 Z" 
+                          fill="#92400e" stroke="#451a03" stroke-width="1.5"/>
+                    
+                    <!-- Tech Circuit Pattern Inside Pot -->
+                    <g opacity="0.6">
+                        <!-- Circuit Board Lines -->
+                        <path d="M30 55 L35 55 L35 60 L40 60" stroke="url(#circuitGlow)" stroke-width="2" fill="none"/>
+                        <path d="M60 55 L65 55 L65 60 L70 60" stroke="url(#circuitGlow)" stroke-width="2" fill="none"/>
+                        <path d="M45 65 L55 65" stroke="url(#circuitGlow)" stroke-width="2" fill="none"/>
+                        
+                        <!-- Circuit Nodes -->
+                        <circle cx="35" cy="55" r="2" fill="#10b981"/>
+                        <circle cx="40" cy="60" r="2" fill="#10b981"/>
+                        <circle cx="65" cy="55" r="2" fill="#10b981"/>
+                        <circle cx="70" cy="60" r="2" fill="#10b981"/>
+                        <circle cx="50" cy="65" r="2" fill="#10b981"/>
+                        
+                        <!-- Microchip Symbol -->
+                        <rect x="47" y="57" width="6" height="6" fill="#374151" stroke="#10b981" stroke-width="1"/>
+                        <rect x="48.5" y="58.5" width="3" height="3" fill="#10b981"/>
+                    </g>
+                    
+                    <!-- Steam/Data Streams -->
+                    <g class="animate-pulse">
+                        <!-- Left Steam -->
+                        <path d="M35 40 Q37 35 35 30 Q33 25 35 20 Q37 15 35 10" 
+                              stroke="url(#steamGradient)" stroke-width="2.5" fill="none" 
+                              class="animate-bounce" style="animation-delay: 0s"/>
+                        
+                        <!-- Center Steam -->
+                        <path d="M50 40 Q52 35 50 30 Q48 25 50 20 Q52 15 50 10" 
+                              stroke="url(#steamGradient)" stroke-width="3" fill="none" 
+                              class="animate-bounce" style="animation-delay: 0.3s"/>
+                        
+                        <!-- Right Steam -->
+                        <path d="M65 40 Q67 35 65 30 Q63 25 65 20 Q67 15 65 10" 
+                              stroke="url(#steamGradient)" stroke-width="2.5" fill="none" 
+                              class="animate-bounce" style="animation-delay: 0.6s"/>
+                    </g>
+                    
+                    <!-- Digital Particles -->
+                    <g class="animate-ping" style="animation-delay: 1s">
+                        <circle cx="42" cy="25" r="1" fill="#3b82f6" opacity="0.8"/>
+                        <circle cx="58" cy="18" r="1" fill="#10b981" opacity="0.8"/>
+                        <circle cx="48" cy="12" r="1" fill="#f59e0b" opacity="0.8"/>
+                    </g>
+                    
+                    <!-- Binary Code Floating -->
+                    <g class="animate-pulse" style="animation-delay: 0.5s">
+                        <text x="25" y="15" font-family="monospace" font-size="4" fill="#6b7280" opacity="0.7">101</text>
+                        <text x="70" y="25" font-family="monospace" font-size="4" fill="#6b7280" opacity="0.7">010</text>
+                        <text x="55" y="8" font-family="monospace" font-size="4" fill="#6b7280" opacity="0.7">110</text>
+                    </g>
+                    
+                    <!-- Pot Lid (Optional Tech Element) -->
+                    <ellipse cx="50" cy="42" rx="28" ry="2" fill="#dc2626" opacity="0.3"/>
                 </svg>
             </div>
             <h1 class="text-5xl md:text-6xl font-bold text-orange-600">
                 TECH HOTPOT
             </h1>
         </div>
+
         <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-            Some code, some insights, and some before-time ideas.
+            {randomTechWords}
         </p>
     </div>
 </header>
