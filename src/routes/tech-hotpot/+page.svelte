@@ -259,15 +259,6 @@
 <!-- Latest Blog Posts Section -->
 <section class="py-16 bg-white/50 backdrop-blur-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
-                Latest Blog Posts
-            </h2>
-            <p class="text-lg text-gray-600">
-                Stay updated with our latest insights and discoveries in technology
-            </p>
-        </div>
-        
         <!-- Blog Posts Carousel -->
         <div class="relative">
             <!-- Navigation Arrows -->
