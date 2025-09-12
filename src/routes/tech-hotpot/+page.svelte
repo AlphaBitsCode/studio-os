@@ -347,15 +347,25 @@
                                             </p>
                                             
                                             <!-- Author and Tags -->
-                                            <div class="flex items-center justify-between">
-                                                <div class="flex items-center space-x-2">
-                                                    <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                                                        <span class="text-white text-xs font-semibold">
-                                                             {post.author.split(' ').map((n: string) => n[0]).join('')}
-                                                         </span>
-                                                    </div>
-                                                    <span class="text-sm text-gray-600">{post.author}</span>
-                                                </div>
+                                             <div class="flex items-center justify-between">
+                                                 <div class="flex items-center space-x-2">
+                                                     {#if post.author === 'Alpha Bits Engineering'}
+                                                         <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center border-2 border-gray-400">
+                                                             <img 
+                                                                 src="/logos/logo_black.png" 
+                                                                 alt="Alpha Bits Engineering" 
+                                                                 class="w-5 h-5 object-contain"
+                                                             />
+                                                         </div>
+                                                     {:else}
+                                                         <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                                                             <span class="text-white text-xs font-semibold">
+                                                                  {post.author.split(' ').map((n: string) => n[0]).join('')}
+                                                              </span>
+                                                         </div>
+                                                     {/if}
+                                                     <span class="text-sm text-gray-600">{post.author}</span>
+                                                 </div>
                                                 
                                                 <a 
                                                      href="/tech-hotpot/{post.slug}"

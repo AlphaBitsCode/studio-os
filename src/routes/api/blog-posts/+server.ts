@@ -2,6 +2,9 @@ import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { remark } from 'remark';
+import remarkHtml from 'remark-html';
+import remarkGfm from 'remark-gfm';
 
 interface BlogPost {
   id: number;
@@ -27,6 +30,22 @@ interface BlogData {
   posts: BlogPost[];
 }
 
+// Function to process markdown content to HTML
+async function processMarkdownToHtml(markdown: string): Promise<string> {
+  try {
+    const result = await remark()
+      .use(remarkGfm) // GitHub Flavored Markdown support
+      .use(remarkHtml, { sanitize: false }) // Allow HTML in markdown
+      .process(markdown);
+    
+    return String(result);
+  } catch (error) {
+    console.error('Error processing markdown:', error);
+    // Fallback to original content with basic line breaks
+    return markdown.replace(/\n/g, '<br>');
+  }
+}
+
 export const GET: RequestHandler = async ({ url }) => {
   try {
     // Read the blog posts JSON file
@@ -40,7 +59,7 @@ export const GET: RequestHandler = async ({ url }) => {
     const featured = url.searchParams.get('featured');
     const slug = url.searchParams.get('slug');
     
-    // If slug is provided, return single post
+    // If slug is provided, return single post with processed content
     if (slug) {
       const post = blogData.posts.find(p => p.slug === slug);
       if (!post) {
@@ -49,7 +68,17 @@ export const GET: RequestHandler = async ({ url }) => {
           { status: 404 }
         );
       }
-      return json({ post });
+      
+      // Process markdown content to HTML
+      const processedContent = await processMarkdownToHtml(post.content);
+      
+      return json({ 
+        post: {
+          ...post,
+          content: processedContent,
+          rawContent: post.content // Keep original for editing purposes
+        }
+      });
     }
     
     let filteredPosts = [...blogData.posts];
