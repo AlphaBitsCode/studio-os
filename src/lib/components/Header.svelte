@@ -193,7 +193,7 @@
 								Case Studies
 							</NavigationMenu.Trigger>
 							<NavigationMenu.Content>
-								<div class="grid w-[600px] gap-4 p-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
+								<div class="grid w-[700px] gap-6 p-6 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-md shadow-lg">
 									<!-- Main Case Studies Link -->
 									<NavigationMenu.Link href="/case-studies">
 										{#snippet child()}
@@ -218,33 +218,103 @@
 										{/snippet}
 									</NavigationMenu.Link>
 									
-									<!-- Individual Case Studies -->
-									{#each caseStudyItems as caseStudy}
-										<NavigationMenu.Link href={caseStudy.href}>
-											{#snippet child()}
-												<a
-													href={caseStudy.href}
-													class="flex items-start space-x-4 select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 hover:text-medium-teal focus:bg-gray-100 focus:text-medium-teal"
-												>
-													<div class="w-20 h-16 rounded-md overflow-hidden flex-shrink-0">
-														<img 
-															src={caseStudy.thumbnail} 
-															alt={caseStudy.title}
-															class="w-full h-full object-cover"
-														/>
+									<div class="grid md:grid-cols-2 gap-6">
+										<!-- Technology Consulting Section -->
+										<div>
+											<h4 class="text-sm font-bold text-gray-900 mb-3 px-3">Technology Consulting</h4>
+											<div class="space-y-2">
+												<NavigationMenu.Link href="/case-studies/coffee-chain-transformation">
+													{#snippet child()}
+														<a
+															href="/case-studies/coffee-chain-transformation"
+															class="flex items-start space-x-3 select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700"
+														>
+															<div class="w-12 h-10 rounded-md overflow-hidden flex-shrink-0">
+																<img 
+																	src="/case-studies/coffee-background.jpg" 
+																	alt="Coffee Chain"
+																	class="w-full h-full object-cover"
+																/>
+															</div>
+															<div class="flex-1">
+																<div class="text-sm font-medium leading-tight text-gray-900">
+																	Coffee Chain Digital Transformation
+																</div>
+																<p class="text-xs leading-snug text-gray-600 mt-1">
+																	Unifying 200+ outlets with BigQuery analytics
+																</p>
+															</div>
+														</a>
+													{/snippet}
+												</NavigationMenu.Link>
+												
+												<NavigationMenu.Link href="/case-studies/sencar-smoke-detection">
+													{#snippet child()}
+														<a
+															href="/case-studies/sencar-smoke-detection"
+															class="flex items-start space-x-3 select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-red-50 hover:text-red-700 focus:bg-red-50 focus:text-red-700"
+														>
+															<div class="w-12 h-10 rounded-md overflow-hidden flex-shrink-0">
+																<img 
+																	src="/partners/sencar_slide1.jpg" 
+																	alt="SENCAR"
+																	class="w-full h-full object-cover"
+																/>
+															</div>
+															<div class="flex-1">
+																<div class="text-sm font-medium leading-tight text-gray-900">
+																	SENCAR Smoke Detection AIoT
+																</div>
+																<p class="text-xs leading-snug text-gray-600 mt-1">
+																	AI-powered detection for rental car fleets
+																</p>
+															</div>
+														</a>
+													{/snippet}
+												</NavigationMenu.Link>
+											</div>
+										</div>
+										
+										<!-- IoT Solutions Section -->
+										<div>
+											<h4 class="text-sm font-bold text-gray-900 mb-3 px-3">IoT Solutions</h4>
+											<div class="space-y-2">
+												<NavigationMenu.Link href="/case-studies#iot-projects">
+													{#snippet child()}
+														<a
+															href="/case-studies#iot-projects"
+															class="flex items-start space-x-3 select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-green-50 hover:text-green-700 focus:bg-green-50 focus:text-green-700"
+														>
+															<div class="w-12 h-10 rounded-md overflow-hidden flex-shrink-0">
+																<img 
+																	src="/alphablock/mushroombox1.png" 
+																	alt="Alpha Block"
+																	class="w-full h-full object-cover"
+																/>
+															</div>
+															<div class="flex-1">
+																<div class="text-sm font-medium leading-tight text-gray-900">
+																	Alpha Block
+																</div>
+																<p class="text-xs leading-snug text-gray-600 mt-1">
+																	Mushroom growing automation system
+																</p>
+															</div>
+														</a>
+													{/snippet}
+												</NavigationMenu.Link>
+												
+												<div class="px-3 py-2">
+													<div class="text-xs font-medium text-gray-700 mb-2">Other Projects:</div>
+													<div class="space-y-1">
+														<a href="/case-studies#iot-projects" class="block text-xs text-gray-600 hover:text-green-600 transition-colors">• RDX - Remote Driving Experience</a>
+														<a href="/case-studies#iot-projects" class="block text-xs text-gray-600 hover:text-green-600 transition-colors">• Energy Management Platform</a>
+														<a href="/case-studies#iot-projects" class="block text-xs text-gray-600 hover:text-green-600 transition-colors">• Raspberry Pi & ESP32 Projects</a>
 													</div>
-													<div class="flex-1 space-y-1">
-														<div class="text-sm font-medium leading-none text-gray-900">
-															{caseStudy.title}
-														</div>
-														<p class="line-clamp-2 text-sm leading-snug text-gray-600">
-															{caseStudy.description}
-														</p>
-													</div>
-												</a>
-											{/snippet}
-										</NavigationMenu.Link>
-									{/each}
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</NavigationMenu.Content>
 						</NavigationMenu.Item>

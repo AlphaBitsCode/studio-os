@@ -121,64 +121,98 @@
             </p>
         </div>
         
-        <!-- Featured Case Study -->
+        <!-- Technology Consulting Case Studies -->
         <div class="mb-16">
-            <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg overflow-hidden border border-slate-200">
-                <div class="grid lg:grid-cols-2 gap-0">
-                    <div class="p-8 lg:p-12">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl md:text-3xl font-bold mb-4 text-slate-900">Technology Consulting</h3>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                    Strategic technology leadership and digital transformation projects.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Coffee Chain Digital Transformation -->
+                <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg overflow-hidden shadow-xl border border-slate-200">
+                    <div class="p-6 lg:p-8">
                         <div class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mb-4">
                             Featured Case Study
                         </div>
-                        <h3 class="text-2xl md:text-3xl font-bold mb-4 text-slate-900">
+                        <h4 class="text-xl md:text-2xl font-bold mb-4 text-slate-900">
                             Coffee Chain Digital Transformation
-                        </h3>
-                        <p class="text-lg text-slate-600 mb-6">
-                            A comprehensive digital transformation project that integrated AI workflow automation, IoT infrastructure, and modern web applications to create a complete business ecosystem.
+                        </h4>
+                        <p class="text-slate-600 mb-4">
+                            Comprehensive digital transformation integrating AI workflow automation, IoT infrastructure, and modern web applications.
                         </p>
                         
-                        <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="grid grid-cols-2 gap-4 mb-4">
                             <div>
-                                <div class="text-2xl font-bold text-blue-600">85%</div>
-                                <div class="text-sm text-slate-600">Process Efficiency Gain</div>
+                                <div class="text-xl font-bold text-blue-600">85%</div>
+                                <div class="text-xs text-slate-600">Process Efficiency</div>
                             </div>
                             <div>
-                                <div class="text-2xl font-bold text-green-600">60%</div>
-                                <div class="text-sm text-slate-600">Cost Reduction</div>
+                                <div class="text-xl font-bold text-green-600">60%</div>
+                                <div class="text-xs text-slate-600">Cost Reduction</div>
                             </div>
                         </div>
                         
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">AI Automation</span>
-                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">IoT Integration</span>
-                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Web Development</span>
-                            <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">Data Analytics</span>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">AI Automation</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">IoT Integration</span>
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs font-medium">Web Development</span>
                         </div>
                         
-                        <a href="/case-studies/coffee-chain-transformation" class="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors  hover:shadow-xl">
+                        <a href="/case-studies/coffee-chain-transformation" class="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors text-sm">
                             Read Full Case Study
                             <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                             </svg>
                         </a>
                     </div>
-                    
-                    <div class="bg-gradient-to-br from-blue-600 to-purple-600 p-8 lg:p-12 flex items-center justify-center">
-                        <div class="text-center text-white">
-                            <div class="w-24 h-24 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                                </svg>
-                            </div>
-                            <h4 class="text-xl font-bold mb-2">Complete Digital Ecosystem</h4>
-                            <p class="text-blue-100">End-to-end solution integrating multiple technologies</p>
+                </div>
+                
+                <!-- SENCAR Smoke Detection -->
+                <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-lg overflow-hidden shadow-xl border border-slate-200">
+                    <div class="p-6 lg:p-8">
+                        <div class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium mb-4">
+                            AIoT Innovation
                         </div>
+                        <h4 class="text-xl md:text-2xl font-bold mb-4 text-slate-900">
+                            SENCAR Smoke Detection AIoT
+                        </h4>
+                        <p class="text-slate-600 mb-4">
+                            AI-powered smoke and odor detection prototype for rental car fleets with 15-30 second detection accuracy using advanced sensor fusion.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <div class="text-xl font-bold text-red-600">15-30s</div>
+                                <div class="text-xs text-slate-600">Detection Time</div>
+                            </div>
+                            <div>
+                                <div class="text-xl font-bold text-orange-600">95%</div>
+                                <div class="text-xs text-slate-600">Accuracy Rate</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-medium">AI Detection</span>
+                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs font-medium">IoT Sensors</span>
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">Real-time</span>
+                        </div>
+                        
+                        <a href="/case-studies/sencar-smoke-detection" class="inline-flex items-center bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors text-sm">
+                            Read Full Case Study
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
         
         <!-- IoT Projects Section -->
-        <div class="mb-16">
+        <div id="iot-projects" class="mb-16">
             <div class="text-center mb-12">
                 <h3 class="text-3xl md:text-4xl font-bold mb-4 text-slate-900">IoT Projects Showcase</h3>
                 <p class="text-lg text-slate-600 max-w-3xl mx-auto">
