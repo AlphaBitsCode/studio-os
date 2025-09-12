@@ -11,23 +11,6 @@
         });
     }
     
-    function getCategoryIcon(categoryTitle: string): string {
-        const iconMap: Record<string, string> = {
-            'Software': 'software',
-            'Software Dev': 'software',
-            'IoT News': 'iot',
-            'Data & Analytics': 'data',
-            'AI Workflow': 'ai',
-            'Digital Transformation': 'dx',
-            'AI in Education': 'education',
-            'AI in Agriculture': 'agriculture',
-            'AI in F&B': 'fb',
-            'AI in Manufacturing': 'manufacturing',
-            'Workflow Automation': 'ai'
-        };
-        return iconMap[categoryTitle] || 'software';
-    }
-    
     function calculateReadTime(content: string | null | undefined): number {
         if (!content) return 1;
         const wordsPerMinute = 200;
@@ -79,7 +62,7 @@
         mounted = true;
     });
     
-    // Helper function to get category icon path
+    // Helper function to get category icon path - now dynamic based on actual categories
     function getCategoryIconPath(categoryTitle: string): string {
         const iconType = getCategoryIcon(categoryTitle);
         const iconMap: { [key: string]: string } = {
@@ -88,12 +71,22 @@
             'data': '/icons/icon_data.png',
             'ai': '/icons/icon_ai.png',
             'dx': '/icons/icon_dx.png',
-            'education': '/icons/icon_ai.png',
-            'agriculture': '/icons/icon_ai.png',
-            'fb': '/icons/icon_ai.png',
-            'manufacturing': '/icons/icon_ai.png'
+            'analytics': '/icons/icon_analytics.png',
+            'workflow': '/icons/icon_workflow.png'
         };
         return iconMap[iconType] || '/icons/icon_software.png';
+    }
+    
+    // Updated category icon mapping to match actual Directus categories
+    function getCategoryIcon(categoryTitle: string): string {
+        const iconMap: Record<string, string> = {
+            'Software Dev': 'software',
+            'IoT News': 'iot',
+            'Data & Analytics': 'analytics',
+            'Workflow Automation': 'workflow',
+            'Digital Transformation': 'dx'
+        };
+        return iconMap[categoryTitle] || 'software';
     }
 </script>
 
@@ -257,22 +250,20 @@
                                     <circle cx="32" cy="52" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
                                     <path d="M32 26 L32 32 M26 20 L20 36 M38 20 L44 36 M32 32 L16 40 M32 32 L48 40 M32 32 L32 48" stroke="currentColor" stroke-width="2"/>
                                 </svg>
-                            {:else if getCategoryIcon(category.title) === 'data'}
+                            {:else if getCategoryIcon(category.title) === 'analytics'}
                                 <svg class="w-full h-full text-purple-500 group-hover:text-purple-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
                                     <rect x="8" y="32" width="8" height="24" rx="2"/>
                                     <rect x="20" y="24" width="8" height="32" rx="2"/>
                                     <rect x="32" y="16" width="8" height="40" rx="2"/>
                                     <rect x="44" y="28" width="8" height="28" rx="2"/>
                                 </svg>
-                            {:else if getCategoryIcon(category.title) === 'ai'}
-                                <svg class="w-full h-full text-red-500 group-hover:text-red-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
-                                    <circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <circle cx="24" cy="24" r="3"/>
-                                    <circle cx="40" cy="24" r="3"/>
-                                    <circle cx="20" cy="36" r="2"/>
-                                    <circle cx="44" cy="36" r="2"/>
-                                    <circle cx="32" cy="44" r="2"/>
-                                    <path d="M24 24 L20 36 M40 24 L44 36 M24 24 L32 44 M40 24 L32 44 M20 36 L32 44 M44 36 L32 44" stroke="currentColor" stroke-width="1"/>
+                            {:else if getCategoryIcon(category.title) === 'workflow'}
+                                <svg class="w-full h-full text-teal-500 group-hover:text-teal-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
+                                    <circle cx="16" cy="16" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="48" cy="16" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="32" cy="48" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M24 16 L40 16 M24 22 L26 40 M40 22 L38 40" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M16 24 L16 32 L24 40 M48 24 L48 32 L40 40" stroke="currentColor" stroke-width="2"/>
                                 </svg>
                             {:else if getCategoryIcon(category.title) === 'dx'}
                                 <svg class="w-full h-full text-orange-500 group-hover:text-orange-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
@@ -282,38 +273,6 @@
                                     <circle cx="44" cy="28" r="1"/>
                                     <circle cx="52" cy="28" r="1"/>
                                     <path d="M44 36 Q48 32 52 36" fill="none" stroke="currentColor" stroke-width="2"/>
-                                </svg>
-                            {:else if getCategoryIcon(category.title) === 'education'}
-                                <svg class="w-full h-full text-blue-500 group-hover:text-blue-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
-                                    <path d="M32 8 L56 20 L32 32 L8 20 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <path d="M8 20 L8 44 L32 56 L56 44 L56 20" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <path d="M16 24 L16 40 L32 48 L48 40 L48 24" fill="none" stroke="currentColor" stroke-width="2"/>
-                                </svg>
-                            {:else if getCategoryIcon(category.title) === 'agriculture'}
-                                <svg class="w-full h-full text-green-500 group-hover:text-green-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
-                                    <path d="M32 8 Q24 16 24 24 Q24 32 32 32 Q40 32 40 24 Q40 16 32 8" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <line x1="32" y1="32" x2="32" y2="56" stroke="currentColor" stroke-width="2"/>
-                                    <path d="M20 40 Q26 36 32 40 Q38 36 44 40" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <circle cx="16" cy="48" r="2"/>
-                                    <circle cx="48" cy="48" r="2"/>
-                                </svg>
-                            {:else if getCategoryIcon(category.title) === 'fb'}
-                                <svg class="w-full h-full text-orange-500 group-hover:text-orange-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
-                                    <path d="M16 24 L48 24 L46 48 C46 50 44 52 42 52 L22 52 C20 52 18 50 18 48 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <path d="M12 20 C12 18 14 16 16 16 L16 24 L12 24 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <path d="M52 20 C52 18 50 16 48 16 L48 24 L52 24 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <path d="M24 20 Q26 16 24 12" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <path d="M32 20 Q34 16 32 12" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <path d="M40 20 Q42 16 40 12" fill="none" stroke="currentColor" stroke-width="2"/>
-                                </svg>
-                            {:else if getCategoryIcon(category.title) === 'manufacturing'}
-                                <svg class="w-full h-full text-purple-500 group-hover:text-purple-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
-                                    <rect x="8" y="32" width="48" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <circle cx="20" cy="44" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <circle cx="44" cy="44" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <path d="M32 8 L32 32" stroke="currentColor" stroke-width="2"/>
-                                    <path d="M24 16 L40 16" stroke="currentColor" stroke-width="2"/>
-                                    <path d="M28 12 L36 12" stroke="currentColor" stroke-width="2"/>
                                 </svg>
                             {/if}
                         </div>
@@ -362,8 +321,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                 {#each categories as category, categoryIndex}
                     {@const categoryPosts = blogPostsByCategory[category.title] || []}
-                    {#if categoryPosts.length > 0}
-                        <div class="category-column" in:fly={{ x: -50, delay: categoryIndex * 100, duration: 600 }}>
+                    <div class="category-column" in:fly={{ x: -50, delay: categoryIndex * 100, duration: 600 }}>
                             <!-- Category Header -->
                             <div class="flex items-center mb-4">
                                 <div class="w-8 h-8 mr-2">
@@ -376,7 +334,19 @@
                             
                             <!-- Posts in Column (2 posts per category) -->
                             <div class="space-y-4">
-                                {#each categoryPosts.slice(0, 2) as post, postIndex}
+                                {#if categoryPosts.length === 0}
+                                    <!-- Empty category message -->
+                                    <div class="bg-gray-50 rounded-lg border-2 border-dashed border-gray-200 p-4 text-center">
+                                        <div class="text-gray-400 mb-2">
+                                            <svg class="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <p class="text-xs text-gray-500">No posts yet</p>
+                                        <p class="text-xs text-gray-400 mt-1">Coming soon!</p>
+                                    </div>
+                                {:else}
+                                    {#each categoryPosts.slice(0, 2) as post, postIndex}
                                       <a 
                                           href="/tech-hotpot/{post.slug}"
                                           class="block bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-md hover:border-blue-300 transition-all duration-300 cursor-pointer"
@@ -422,7 +392,7 @@
                                                                AB
                                                            </span>
                                                       </div>
-                                                      <span class="text-xs text-gray-600">Alpha Bits</span>
+                                                      <span class="text-xs text-gray-600">AlphaBits</span>
                                                   </div>
                                                  
                                                  <span class="text-blue-600 font-medium text-xs flex items-center space-x-1">
@@ -434,10 +404,10 @@
                                              </div>
                                         </div>
                                     </a>
-                                {/each}
+                                     {/each}
+                                 {/if}
                             </div>
                         </div>
-                    {/if}
                 {/each}
             </div>
             
@@ -467,12 +437,7 @@
         overflow: hidden;
     }
     
-    .line-clamp-3 {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
+
     
     @keyframes float {
         0%, 100% { transform: translateY(0px) rotate(0deg); }

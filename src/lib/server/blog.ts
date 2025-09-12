@@ -210,18 +210,18 @@ export async function getBlogCategories(): Promise<BlogCategory[]> {
 /**
  * Fetch blog posts grouped by category
  * Returns an object with category names as keys and arrays of posts as values
+ * Now includes all categories, even those without posts
  */
 export async function getBlogPostsGroupedByCategory(postsPerCategory: number = 2): Promise<Record<string, BlogPost[]>> {
 	try {
 		const categories = await getBlogCategories();
 		const result: Record<string, BlogPost[]> = {};
 
-		// Fetch posts for each category
+		// Fetch posts for each category, including empty categories
 		for (const category of categories) {
 			const posts = await getBlogPostsByCategory(category.slug, postsPerCategory);
-			if (posts.length > 0) {
-				result[category.title] = posts;
-			}
+			// Always include the category, even if it has no posts
+			result[category.title] = posts;
 		}
 
 		return result;
