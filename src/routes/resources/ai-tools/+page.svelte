@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Bot, Zap, Brain, Workflow, ArrowRight, ExternalLink, Server, Code, Globe, Shield, Cloud, Terminal, Cpu, Database } from 'lucide-svelte';
+	import { Bot, Zap, Brain, Workflow, ArrowRight, ExternalLink, Server, Code, Globe, Shield, Cloud, Terminal, Cpu, Database, Grid, List, Github } from 'lucide-svelte';
 
 	let mounted = false;
 	let selectedCategory = 'All';
 	let searchTerm = '';
+	let viewMode: 'grid' | 'list' = 'grid';
 
 	onMount(() => {
 		mounted = true;
@@ -238,6 +239,41 @@
 	});
 
 	$: categories = ['All', ...new Set(toolsData.map(tool => tool.category))];
+
+	// FOSS Tools data
+	const fossTools = [
+		{
+			name: "MedusaJS 2.0 - eKommerce MCP",
+			description: "Model Context Protocol (MCP) server for Medusa JavaScript SDK integration with AI automation and orchestration capabilities.",
+			url: "https://github.com/AlphaBitsCode/medusa-mcp",
+			features: ["MCP Support", "Scalable Infrastructure", "AI-Ready Interfaces", "Extensible Architecture"]
+		},
+		{
+			name: "Studio OS",
+			description: "Our very own website built with Svelte 5 + Directus in Docker - a complete studio management platform.",
+			url: "https://github.com/AlphaBitsCode/studio-os",
+			features: ["Svelte 5", "Directus CMS", "Docker Setup", "Studio Management"]
+		},
+		{
+			name: "SecondBrains Architecture Framework",
+			description: "Open-source framework for SMEs and Startups with advanced workflow automation, data analytics, and AI agent building capabilities.",
+			url: "https://github.com/AlphaBitsCode/second.brains",
+			features: ["Workflow Automation", "Data Analytics", "AI Agent Builder", "Low-Code Tools"]
+		},
+		{
+			name: "Productivity Tips",
+			description: "Comprehensive collection of productivity strategies and techniques to maximize efficiency and manage time better.",
+			url: "https://alphabits.team/resources/productivity-tips",
+			features: ["Time Management", "Task Prioritization", "Focus Techniques", "Workflow Optimization"]
+		},
+		{
+			name: "Node-RED Learning Materials",
+			description: "Comprehensive learning resources for Node-RED workflow automation and IoT development.",
+			url: "#",
+			features: ["Flow Programming", "IoT Integration", "Automation Workflows", "Community Support"],
+			comingSoon: true
+		}
+	];
 </script>
 
 <svelte:head>
@@ -282,15 +318,33 @@
 <!-- Search and Filter Section -->
 <section class="py-12 bg-gray-50">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+		<div class="flex flex-col lg:flex-row gap-4 items-center justify-between">
 			<!-- Search Bar -->
-			<div class="w-full md:w-1/2">
+			<div class="w-full lg:w-1/3">
 				<input 
 					bind:value={searchTerm}
 					type="text" 
 					placeholder="Search tools, categories, or features..."
 					class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
 				/>
+			</div>
+			
+			<!-- View Toggle -->
+			<div class="flex items-center gap-2 bg-white rounded-lg border border-gray-300 p-1">
+				<button 
+					on:click={() => viewMode = 'grid'}
+					class="p-2 rounded-md transition-colors {viewMode === 'grid' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'}"
+					title="Grid View"
+				>
+					<Grid class="w-4 h-4" />
+				</button>
+				<button 
+					on:click={() => viewMode = 'list'}
+					class="p-2 rounded-md transition-colors {viewMode === 'list' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'}"
+					title="List View"
+				>
+					<List class="w-4 h-4" />
+				</button>
 			</div>
 			
 			<!-- Category Filter -->
@@ -323,48 +377,88 @@
 			</p>
 		</div>
 
-		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-			{#each filteredTools as tool}
-				<div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-					<div class="flex items-start justify-between mb-4">
-						<div class="flex items-center">
-							<div class="p-3 bg-blue-100 rounded-lg mr-4">
-								<svelte:component this={iconMap[tool.icon]} class="w-6 h-6 text-blue-600" />
+		<!-- Grid View -->
+		{#if viewMode === 'grid'}
+			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+				{#each filteredTools as tool}
+					<div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+						<div class="flex items-start justify-between mb-4">
+							<div class="flex items-center">
+								<div class="p-3 bg-blue-100 rounded-lg mr-4">
+									<svelte:component this={iconMap[tool.icon]} class="w-6 h-6 text-blue-600" />
+								</div>
+								<div>
+									<h3 class="text-xl font-semibold text-gray-900 mb-1">{tool.name}</h3>
+									<span class="text-sm text-blue-600 font-medium">{tool.category}</span>
+								</div>
 							</div>
-							<div>
-								<h3 class="text-xl font-semibold text-gray-900 mb-1">{tool.name}</h3>
-								<span class="text-sm text-blue-600 font-medium">{tool.category}</span>
+							<a href={tool.url} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-blue-600 transition-colors">
+								<ExternalLink class="w-5 h-5" />
+							</a>
+						</div>
+						
+						<p class="text-gray-600 mb-4 leading-relaxed">{tool.description}</p>
+						
+						<div class="mb-4">
+							<h4 class="text-sm font-semibold text-gray-900 mb-2">Key Features:</h4>
+							<ul class="text-sm text-gray-600 space-y-1">
+								{#each tool.features as feature}
+									<li class="flex items-center">
+										<div class="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2"></div>
+										{feature}
+									</li>
+								{/each}
+							</ul>
+						</div>
+						
+						<div class="flex items-center justify-between pt-4 border-t border-gray-100">
+							<span class="text-sm font-medium text-green-600">{tool.price}</span>
+							<a href={tool.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors">
+								Try Now
+								<ArrowRight class="w-4 h-4 ml-1" />
+							</a>
+						</div>
+					</div>
+				{/each}
+			</div>
+		{:else}
+			<!-- List View -->
+			<div class="space-y-4">
+				{#each filteredTools as tool}
+					<div class="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-all duration-300">
+						<div class="flex items-start justify-between">
+							<div class="flex items-start space-x-4 flex-1">
+								<div class="p-2 bg-blue-100 rounded-lg">
+									<svelte:component this={iconMap[tool.icon]} class="w-5 h-5 text-blue-600" />
+								</div>
+								<div class="flex-1">
+									<div class="flex items-center gap-3 mb-2">
+										<h3 class="text-lg font-semibold text-gray-900">{tool.name}</h3>
+										<span class="text-xs text-blue-600 font-medium bg-blue-50 px-2 py-1 rounded">{tool.category}</span>
+										<span class="text-xs font-medium text-green-600">{tool.price}</span>
+									</div>
+									<p class="text-gray-600 mb-3">{tool.description}</p>
+									<div class="flex flex-wrap gap-2">
+										{#each tool.features as feature}
+											<span class="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{feature}</span>
+										{/each}
+									</div>
+								</div>
+							</div>
+							<div class="flex items-center gap-2">
+								<a href={tool.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors">
+									Try Now
+									<ArrowRight class="w-4 h-4 ml-1" />
+								</a>
+								<a href={tool.url} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-blue-600 transition-colors">
+									<ExternalLink class="w-4 h-4" />
+								</a>
 							</div>
 						</div>
-						<a href={tool.url} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-blue-600 transition-colors">
-							<ExternalLink class="w-5 h-5" />
-						</a>
 					</div>
-					
-					<p class="text-gray-600 mb-4 leading-relaxed">{tool.description}</p>
-					
-					<div class="mb-4">
-						<h4 class="text-sm font-semibold text-gray-900 mb-2">Key Features:</h4>
-						<ul class="text-sm text-gray-600 space-y-1">
-							{#each tool.features as feature}
-								<li class="flex items-center">
-									<div class="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2"></div>
-									{feature}
-								</li>
-							{/each}
-						</ul>
-					</div>
-					
-					<div class="flex items-center justify-between pt-4 border-t border-gray-100">
-						<span class="text-sm font-medium text-green-600">{tool.price}</span>
-						<a href={tool.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors">
-							Try Now
-							<ArrowRight class="w-4 h-4 ml-1" />
-						</a>
-					</div>
-				</div>
-			{/each}
-		</div>
+				{/each}
+			</div>
+		{/if}
 		
 		{#if filteredTools.length === 0}
 			<div class="text-center py-12">
@@ -380,6 +474,76 @@
 	</div>
 </section>
 
+<!-- FOSS Tools Section -->
+<section class="py-20 bg-gradient-to-br from-green-50 to-emerald-50">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="text-center mb-16">
+			<div class="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium mb-6">
+				<Github class="w-4 h-4 mr-2" />
+				Open Source Tools
+			</div>
+			<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our FOSS Tools</h2>
+			<p class="text-lg text-gray-600 max-w-3xl mx-auto">
+				Explore our collection of free and open-source tools, frameworks, and resources that we use and develop in production.
+			</p>
+		</div>
+
+		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+			{#each fossTools as tool}
+				<div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 {tool.comingSoon ? 'opacity-75' : ''}">
+					<div class="flex items-start justify-between mb-4">
+						<div class="flex items-center">
+							<div class="p-3 bg-green-100 rounded-lg mr-4">
+								<Github class="w-6 h-6 text-green-600" />
+							</div>
+							<div>
+								<h3 class="text-xl font-semibold text-gray-900 mb-1">{tool.name}</h3>
+								{#if tool.comingSoon}
+									<span class="text-sm text-orange-600 font-medium bg-orange-50 px-2 py-1 rounded">Coming Soon</span>
+								{:else}
+									<span class="text-sm text-green-600 font-medium bg-green-50 px-2 py-1 rounded">Open Source</span>
+								{/if}
+							</div>
+						</div>
+						{#if !tool.comingSoon}
+							<a href={tool.url} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-green-600 transition-colors">
+								<ExternalLink class="w-5 h-5" />
+							</a>
+						{/if}
+					</div>
+					
+					<p class="text-gray-600 mb-4 leading-relaxed">{tool.description}</p>
+					
+					<div class="mb-4">
+						<h4 class="text-sm font-semibold text-gray-900 mb-2">Key Features:</h4>
+						<ul class="text-sm text-gray-600 space-y-1">
+							{#each tool.features as feature}
+								<li class="flex items-center">
+									<div class="w-1.5 h-1.5 bg-green-600 rounded-full mr-2"></div>
+									{feature}
+								</li>
+							{/each}
+						</ul>
+					</div>
+					
+					<div class="flex items-center justify-between pt-4 border-t border-gray-100">
+						<span class="text-sm font-medium text-green-600">Free & Open Source</span>
+						{#if tool.comingSoon}
+							<span class="inline-flex items-center text-orange-600 font-medium">
+								Coming Soon
+							</span>
+						{:else}
+							<a href={tool.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-green-600 font-medium hover:text-green-700 transition-colors">
+								Explore
+								<ArrowRight class="w-4 h-4 ml-1" />
+							</a>
+						{/if}
+					</div>
+				</div>
+			{/each}
+		</div>
+	</div>
+</section>
 
 <!-- CTA Section -->
 <section class="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
