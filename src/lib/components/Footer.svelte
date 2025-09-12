@@ -37,6 +37,7 @@
 					<li><a href="/tech-hotpot" class="text-gray-700 hover:text-medium-teal transition-colors">Tech Hotpot</a></li>
 					<li><a href="/contact" class="text-gray-700 hover:text-medium-teal transition-colors">Contact Us</a></li>
 					<li><a href="/privacy-policy" class="text-gray-700 hover:text-medium-teal transition-colors">Privacy Policy</a></li>
+					<li><a href="/pricing" class="text-gray-700 hover:text-medium-teal transition-colors">Engagement Models</a></li>
 				</ul>
 			</div>
 
@@ -49,7 +50,6 @@
 					<li><a href="/services/fractional-cto" class="text-gray-700 hover:text-medium-teal transition-colors">Fractional CTO</a></li>
 					<li><a href="/services/data-ai-solutions" class="text-gray-700 hover:text-medium-teal transition-colors">Data Analytics</a></li>
 					<li><a href="/services/iot-infrastructure" class="text-gray-700 hover:text-medium-teal transition-colors">IoT Energy Management</a></li>
-					<li><a href="/pricing" class="text-gray-700 hover:text-medium-teal transition-colors">Engagement Models</a></li>
 				</ul>
 			</div>
 

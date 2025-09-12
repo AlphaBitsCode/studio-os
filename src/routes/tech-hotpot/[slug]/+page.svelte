@@ -452,15 +452,37 @@
 	}
 	
 	:global(.prose h1) {
-		@apply text-3xl font-bold text-gray-900 mt-8 mb-4;
+		@apply text-2xl font-bold text-gray-900 mt-8 mb-6 px-4 py-2 relative;
+		border-left: 2px solid #1e40af;
+		border-top: 2px solid #1e40af;
+		transform: translateX(-4px);
+		transition: all 0.3s ease;
+	}
+	
+	:global(.prose h1:hover) {
+		transform: translateX(0);
 	}
 	
 	:global(.prose h2) {
-		@apply text-2xl font-bold text-gray-900 mt-8 mb-4;
+		@apply text-xl font-bold mt-8 mb-4 px-2 py-2 relative;
+		color: #1e3a8a;
+		background: rgba(30, 58, 138, 0.03);
+		transition: all 0.3s ease;
+	}
+	
+	:global(.prose h2:hover) {
+		background: rgba(30, 58, 138, 0.06);
 	}
 	
 	:global(.prose h3) {
-		@apply text-xl font-bold text-gray-900 mt-6 mb-3;
+		@apply text-lg font-bold mt-6 mb-3 px-2 py-2 relative;
+		color: #1e40af;
+		transition: all 0.3s ease;
+	}
+	
+	:global(.prose h3:hover) {
+		background: rgba(30, 64, 175, 0.05);
+		transform: translateX(1px);
 	}
 	
 	:global(.prose h4) {
@@ -468,19 +490,20 @@
 	}
 	
 	:global(.prose p) {
-		@apply mb-4 leading-relaxed;
+		@apply mb-4 leading-relaxed ml-4;
 	}
 	
 	:global(.prose ul) {
-		@apply mb-4 pl-6;
+		@apply mb-4 pl-10;
 	}
 	
 	:global(.prose ol) {
-		@apply mb-4 pl-6;
+		@apply mb-4 pl-10;
 	}
 	
 	:global(.prose li) {
-		@apply mb-2;
+		@apply mb-2 pl-2;
+		list-style-type:circle;
 	}
 	
 	:global(.prose a) {
