@@ -3,53 +3,52 @@
     import { fade, fly } from 'svelte/transition';
     
     let mounted = false;
-    let currentBlogIndex = 0;
-    let blogCarousel: HTMLElement;
-    let autoScrollInterval: NodeJS.Timeout;
+    let blogPostsByCategory: { [key: string]: any[] } = {};
+    let loading = true;
+    let error = '';
     
-    // Mock blog posts data - replace with actual data from your CMS
-    const blogPosts = [
-        {
-            id: 1,
-            title: "New Python Framework's ML Capabilities",
-            excerpt: "Exploring the latest machine learning features in modern Python frameworks...",
-            date: "2024-01-15",
-            category: "Software",
-            image: "/icons/icon_software.png"
-        },
-        {
-            id: 2,
-            title: "Smart Home Security Trends",
-            excerpt: "Latest developments in IoT security for connected homes...",
-            date: "2024-01-12",
-            category: "IoT News",
-            image: "/icons/icon_iot.png"
-        },
-        {
-            id: 3,
-            title: "Cloud Computing Triads",
-            excerpt: "Understanding the three pillars of modern cloud architecture...",
-            date: "2024-01-10",
-            category: "Data & Analytics",
-            image: "/icons/icon_data.png"
-        },
-        {
-            id: 4,
-            title: "AI Workflow Automation",
-            excerpt: "Streamlining business processes with intelligent automation...",
-            date: "2024-01-08",
-            category: "AI Workflow",
-            image: "/icons/icon_ai.png"
-        },
-        {
-            id: 5,
-            title: "Digital Transformation Guide",
-            excerpt: "A comprehensive approach to modernizing your business...",
-            date: "2024-01-05",
-            category: "Digital Transformation",
-            image: "/icons/icon_dx.png"
+    interface BlogPost {
+        id: number;
+        title: string;
+        excerpt: string;
+        category: string;
+        tags: string[];
+        author: string;
+        readTime: number;
+        publishedAt: string;
+        thumbnail: string;
+        featured: boolean;
+    }
+    
+    // Fetch blog posts from API
+    async function fetchBlogPosts() {
+        try {
+            loading = true;
+            const categories = ['Software', 'IoT News', 'Data & Analytics', 'AI Workflow', 'Digital Transformation'];
+            
+            const response = await fetch('/api/blog-posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ categories })
+            });
+            
+            if (!response.ok) {
+                throw new Error('Failed to fetch blog posts');
+            }
+            
+            blogPostsByCategory = await response.json();
+            error = '';
+        } catch (err) {
+            console.error('Error fetching blog posts:', err);
+            error = 'Failed to load blog posts. Please try again later.';
+            // Fallback to empty data
+            blogPostsByCategory = {};
+        } finally {
+            loading = false;
         }
-    ];
+    }
     
     const categories = [
         {
@@ -86,36 +85,28 @@
     
     onMount(() => {
         mounted = true;
-        startAutoScroll();
-        return () => {
-            if (autoScrollInterval) {
-                clearInterval(autoScrollInterval);
-            }
-        };
+        fetchBlogPosts();
     });
     
-    function startAutoScroll() {
-        autoScrollInterval = setInterval(() => {
-            if (blogCarousel) {
-                const cardWidth = 320; // Width of each blog card + gap
-                const maxScroll = (blogPosts.length - 1) * cardWidth;
-                const currentScroll = blogCarousel.scrollLeft;
-                
-                if (currentScroll >= maxScroll) {
-                    blogCarousel.scrollTo({ left: 0, behavior: 'smooth' });
-                } else {
-                    blogCarousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
-                }
-            }
-        }, 4000);
+    // Helper function to get category icon
+    function getCategoryIcon(category: string) {
+        const iconMap: { [key: string]: string } = {
+            'Software': '/icons/icon_software.png',
+            'IoT News': '/icons/icon_iot.png',
+            'Data & Analytics': '/icons/icon_data.png',
+            'AI Workflow': '/icons/icon_ai.png',
+            'Digital Transformation': '/icons/icon_dx.png'
+        };
+        return iconMap[category] || '/icons/icon_software.png';
     }
     
-    function scrollBlog(direction: 'left' | 'right') {
-        if (blogCarousel) {
-            const cardWidth = 320;
-            const scrollAmount = direction === 'left' ? -cardWidth : cardWidth;
-            blogCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        }
+    // Helper function to format date
+    function formatDate(dateString: string) {
+        return new Date(dateString).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        });
     }
 </script>
 
@@ -259,85 +250,154 @@
 <!-- Latest Blog Posts Section -->
 <section class="py-16 bg-white/50 backdrop-blur-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Blog Posts Carousel -->
-        <div class="relative">
-            <!-- Navigation Arrows -->
-            <button 
-                class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110"
-                on:click={() => scrollBlog('left')}
-            >
-                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-            </button>
-            
-            <button 
-                class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110"
-                on:click={() => scrollBlog('right')}
-            >
-                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-            </button>
-            
-            <!-- Blog Cards Container -->
-            <div 
-                bind:this={blogCarousel}
-                class="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth px-12"
-                style="scrollbar-width: none; -ms-overflow-style: none;"
-            >
-                {#each blogPosts as post, index}
-                    <div 
-                        class="flex-none w-80 bg-white rounded-xl transition-shadow duration-300 overflow-hidden"
-                        in:fly={{ x: 100, delay: index * 100, duration: 600 }}
-                    >
-                        <!-- Post Image -->
-                        <div class="h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
-                            <img src="{post.image}" alt="{post.category}" class="w-16 h-16 opacity-60" />
-                        </div>
-                        
-                        <!-- Post Content -->
-                        <div class="p-6">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-xs font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded-full">
-                                    {post.category}
-                                </span>
-                                <span class="text-sm text-gray-500">
-                                    {new Date(post.date).toLocaleDateString()}
-                                </span>
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
+                LATEST INSIGHTS
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Discover the latest trends and insights from our tech experts across all focus areas.
+            </p>
+        </div>
+        
+        {#if loading}
+            <div class="flex justify-center items-center py-16">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+                <span class="ml-3 text-gray-600">Loading blog posts...</span>
+            </div>
+        {:else if error}
+            <div class="text-center py-16">
+                <div class="text-red-500 mb-4">
+                    <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                    </svg>
+                </div>
+                <p class="text-gray-600">{error}</p>
+                <button 
+                    class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors"
+                    on:click={fetchBlogPosts}
+                >
+                    Try Again
+                </button>
+            </div>
+        {:else}
+            <!-- Blog Posts Grid by Category -->
+            <div class="space-y-12">
+                {#each categories as category, categoryIndex}
+                    {@const categoryPosts = blogPostsByCategory[category.name] || []}
+                    {#if categoryPosts.length > 0}
+                        <div class="category-section" in:fly={{ y: 50, delay: categoryIndex * 200, duration: 600 }}>
+                            <!-- Category Header -->
+                            <div class="flex items-center mb-6">
+                                <div class="w-12 h-12 mr-4">
+                                    <img src="{getCategoryIcon(category.name)}" alt="{category.name}" class="w-full h-full opacity-70" />
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-800">{category.name}</h3>
+                                    <p class="text-gray-600 text-sm">{category.description}</p>
+                                </div>
                             </div>
                             
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">
-                                {post.title}
-                            </h3>
-                            
-                            <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-                                {post.excerpt}
-                            </p>
-                            
-                            <button class="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center space-x-1 transition-colors">
-                                <span>Read More</span>
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                            </button>
+                            <!-- Posts Grid (2 posts per category) -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {#each categoryPosts as post, postIndex}
+                                    <article 
+                                        class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                                        in:fly={{ x: postIndex % 2 === 0 ? -50 : 50, delay: (categoryIndex * 200) + (postIndex * 100), duration: 600 }}
+                                    >
+                                        <!-- Post Thumbnail -->
+                                        <div class="h-48 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+                                            <img 
+                                                src="{post.thumbnail}" 
+                                                alt="{post.title}" 
+                                                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                                loading="lazy"
+                                            />
+                                        </div>
+                                        
+                                        <!-- Post Content -->
+                                        <div class="p-6">
+                                            <!-- Meta Information -->
+                                            <div class="flex items-center justify-between mb-3">
+                                                <div class="flex items-center space-x-2">
+                                                    <span class="text-xs font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded-full">
+                                                        {post.category}
+                                                    </span>
+                                                    <span class="text-xs text-gray-500">
+                                                        {post.readTime} min read
+                                                    </span>
+                                                </div>
+                                                <span class="text-sm text-gray-500">
+                                                    {formatDate(post.publishedAt)}
+                                                </span>
+                                            </div>
+                                            
+                                            <!-- Post Title -->
+                                             <h4 class="text-xl font-semibold mb-3 line-clamp-2">
+                                                 <a 
+                                                     href="/tech-hotpot/{post.slug}"
+                                                     class="text-gray-800 hover:text-blue-600 transition-colors"
+                                                 >
+                                                     {post.title}
+                                                 </a>
+                                             </h4>
+                                            
+                                            <!-- Post Excerpt -->
+                                            <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                                                {post.excerpt}
+                                            </p>
+                                            
+                                            <!-- Author and Tags -->
+                                            <div class="flex items-center justify-between">
+                                                <div class="flex items-center space-x-2">
+                                                    <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                                                        <span class="text-white text-xs font-semibold">
+                                                             {post.author.split(' ').map((n: string) => n[0]).join('')}
+                                                         </span>
+                                                    </div>
+                                                    <span class="text-sm text-gray-600">{post.author}</span>
+                                                </div>
+                                                
+                                                <a 
+                                                     href="/tech-hotpot/{post.slug}"
+                                                     class="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center space-x-1 transition-colors group"
+                                                 >
+                                                     <span>Read More</span>
+                                                     <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                                     </svg>
+                                                 </a>
+                                            </div>
+                                            
+                                            <!-- Tags -->
+                                            {#if post.tags && post.tags.length > 0}
+                                                <div class="flex flex-wrap gap-2 mt-4">
+                                                    {#each post.tags.slice(0, 3) as tag}
+                                                        <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
+                                                            #{tag}
+                                                        </span>
+                                                    {/each}
+                                                </div>
+                                            {/if}
+                                        </div>
+                                    </article>
+                                {/each}
+                            </div>
                         </div>
-                    </div>
+                    {/if}
                 {/each}
             </div>
-        </div>
+            
+            <!-- View All Posts Button -->
+            <div class="text-center mt-12">
+                <button class="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg">
+                    View All Blog Posts
+                </button>
+            </div>
+        {/if}
     </div>
 </section>
 
 <style>
-    .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-    .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-    }
-    
     .line-clamp-2 {
         display: -webkit-box;
         -webkit-line-clamp: 2;
