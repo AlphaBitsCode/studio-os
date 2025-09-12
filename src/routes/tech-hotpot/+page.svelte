@@ -236,20 +236,6 @@
 <!-- Latest Blog Posts Section -->
 <section class="pb-16 bg-white/50 backdrop-blur-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <a 
-                href="/tech-hotpot/all"
-                class="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
-            >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                </svg>
-                <span>View All Posts</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-            </a>
-        </div>
         
         {#if loading}
             <div class="flex justify-center items-center py-16">
@@ -291,10 +277,11 @@
                             <!-- Posts in Column (2 posts per category) -->
                             <div class="space-y-4">
                                 {#each categoryPosts.slice(0, 2) as post, postIndex}
-                                     <article 
-                                         class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-300"
-                                         in:fly={{ y: 20, delay: (categoryIndex * 100) + (postIndex * 50), duration: 400 }}
-                                     >
+                                      <a 
+                                          href="/tech-hotpot/{post.slug}"
+                                          class="block bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-md hover:border-blue-300 transition-all duration-300 cursor-pointer"
+                                          in:fly={{ y: 20, delay: (categoryIndex * 100) + (postIndex * 50), duration: 400 }}
+                                      >
                                          <!-- Post Thumbnail -->
                                          <div class="h-32 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
                                              <img 
@@ -318,14 +305,9 @@
                                              </div>
                                              
                                              <!-- Post Title -->
-                                              <h4 class="text-sm font-semibold mb-2 line-clamp-2">
-                                                  <a 
-                                                      href="/tech-hotpot/{post.slug}"
-                                                      class="text-gray-800 hover:text-blue-600 transition-colors"
-                                                  >
-                                                      {post.title}
-                                                  </a>
-                                              </h4>
+                                               <h4 class="text-sm font-semibold mb-2 line-clamp-2 text-gray-800">
+                                                   {post.title}
+                                               </h4>
                                              
                                              <!-- Post Excerpt -->
                                              <p class="text-gray-600 text-xs mb-3 line-clamp-2">
@@ -361,18 +343,15 @@
                                                       <span class="text-xs text-gray-600">{post.author}</span>
                                                   </div>
                                                  
-                                                 <a 
-                                                      href="/tech-hotpot/{post.slug}"
-                                                      class="text-blue-600 hover:text-blue-700 font-medium text-xs flex items-center space-x-1 transition-colors group"
-                                                  >
-                                                      <span>Read</span>
-                                                      <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                                      </svg>
-                                                  </a>
+                                                 <span class="text-blue-600 font-medium text-xs flex items-center space-x-1">
+                                                       <span>Read</span>
+                                                       <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                                       </svg>
+                                                   </span>
                                              </div>
                                         </div>
-                                    </article>
+                                    </a>
                                 {/each}
                             </div>
                         </div>
@@ -380,6 +359,20 @@
                 {/each}
             </div>
             
+            <div class="text-center mt-12">
+                <a 
+                    href="/tech-hotpot/all"
+                    class="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
+                >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span>View All Posts</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
         {/if}
     </div>
 </section>
