@@ -162,89 +162,84 @@
     </div>
 </header>
 
-<!-- Hero Section -->
-<section class="relative py-16">
+<!-- Sticky Category Navigation -->
+<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Category Icons Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-16">
-            {#each categories as category, index}
-                <div 
-                    class="group relative flex flex-col items-center p-6 rounded-2xl bg-white/70 backdrop-blur-sm transition-all duration-300 hover:scale-105 cursor-pointer"
-                    in:fly={{ y: 50, delay: index * 100, duration: 600 }}
-                >
-                    <!-- Category Icon -->
-                    <div class="w-20 h-20 mb-4 relative">
-                        {#if category.icon === 'software'}
-                            <svg class="w-full h-full text-blue-500 group-hover:text-blue-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
-                                <rect x="8" y="12" width="48" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
-                                <path d="M16 20 L20 24 L16 28" fill="none" stroke="currentColor" stroke-width="2"/>
-                                <line x1="24" y1="28" x2="32" y2="28" stroke="currentColor" stroke-width="2"/>
-                                <circle cx="32" cy="52" r="3" class="animate-pulse"/>
-                            </svg>
-                        {:else if category.icon === 'iot'}
-                            <svg class="w-full h-full text-green-500 group-hover:text-green-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
-                                <circle cx="32" cy="20" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
-                                <circle cx="16" cy="40" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
-                                <circle cx="48" cy="40" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
-                                <circle cx="32" cy="52" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
-                                <path d="M32 26 L32 32 M26 20 L20 36 M38 20 L44 36 M32 32 L16 40 M32 32 L48 40 M32 32 L32 48" stroke="currentColor" stroke-width="2" class="animate-pulse"/>
-                            </svg>
-                        {:else if category.icon === 'data'}
-                            <svg class="w-full h-full text-purple-500 group-hover:text-purple-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
-                                <rect x="8" y="32" width="8" height="24" rx="2" class="animate-bounce" style="animation-delay: 0s"/>
-                                <rect x="20" y="24" width="8" height="32" rx="2" class="animate-bounce" style="animation-delay: 0.2s"/>
-                                <rect x="32" y="16" width="8" height="40" rx="2" class="animate-bounce" style="animation-delay: 0.4s"/>
-                                <rect x="44" y="28" width="8" height="28" rx="2" class="animate-bounce" style="animation-delay: 0.6s"/>
-                                <circle cx="32" cy="8" r="3" class="animate-ping"/>
-                            </svg>
-                        {:else if category.icon === 'ai'}
-                            <svg class="w-full h-full text-red-500 group-hover:text-red-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
-                                <circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="2"/>
-                                <circle cx="24" cy="24" r="3"/>
-                                <circle cx="40" cy="24" r="3"/>
-                                <circle cx="20" cy="36" r="2"/>
-                                <circle cx="44" cy="36" r="2"/>
-                                <circle cx="32" cy="44" r="2"/>
-                                <path d="M24 24 L20 36 M40 24 L44 36 M24 24 L32 44 M40 24 L32 44 M20 36 L32 44 M44 36 L32 44" stroke="currentColor" stroke-width="1" class="animate-pulse"/>
-                            </svg>
-                        {:else if category.icon === 'dx'}
-                            <svg class="w-full h-full text-orange-500 group-hover:text-orange-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
-                                <circle cx="20" cy="32" r="12" fill="none" stroke="currentColor" stroke-width="2"/>
-                                <path d="M14 26 L26 38 M26 26 L14 38" stroke="currentColor" stroke-width="2"/>
-                                <rect x="40" y="20" width="16" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2" class="animate-pulse"/>
-                                <circle cx="44" cy="28" r="1"/>
-                                <circle cx="52" cy="28" r="1"/>
-                                <path d="M44 36 Q48 32 52 36" fill="none" stroke="currentColor" stroke-width="2"/>
-                            </svg>
-                        {/if}
-                    </div>
-                    
-                    <!-- Category Name -->
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2 text-center">
-                        {category.name}
-                    </h3>
-                    
-                    <!-- Hover Tooltip -->
-                    <div class="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 w-64 p-4 bg-white rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none group-hover:pointer-events-auto">
-                        <h4 class="font-semibold text-gray-800 mb-2">{category.name}</h4>
-                        <p class="text-sm text-gray-600 mb-3">{category.description}</p>
-                        <button class="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 px-4 rounded-lg text-sm font-medium hover:from-blue-600 hover:to-purple-600 transition-colors">
-                            Explore Category
-                        </button>
-                    </div>
-                </div>
-            {/each}
+        <div class="flex items-center justify-center py-3">
+            <div class="flex items-center space-x-4 sm:space-x-6 md:space-x-8">
+                {#each categories as category, index}
+                    <a 
+                        href="/tech-hotpot/all?category={encodeURIComponent(category.name)}"
+                        class="group flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105"
+                        in:fly={{ y: -20, delay: index * 50, duration: 400 }}
+                    >
+                        <!-- Compact Category Icon -->
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 mb-1">
+                            {#if category.icon === 'software'}
+                                <svg class="w-full h-full text-blue-500 group-hover:text-blue-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
+                                    <rect x="8" y="12" width="48" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M16 20 L20 24 L16 28" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="24" y1="28" x2="32" y2="28" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            {:else if category.icon === 'iot'}
+                                <svg class="w-full h-full text-green-500 group-hover:text-green-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
+                                    <circle cx="32" cy="20" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="16" cy="40" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="48" cy="40" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="32" cy="52" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M32 26 L32 32 M26 20 L20 36 M38 20 L44 36 M32 32 L16 40 M32 32 L48 40 M32 32 L32 48" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            {:else if category.icon === 'data'}
+                                <svg class="w-full h-full text-purple-500 group-hover:text-purple-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
+                                    <rect x="8" y="32" width="8" height="24" rx="2"/>
+                                    <rect x="20" y="24" width="8" height="32" rx="2"/>
+                                    <rect x="32" y="16" width="8" height="40" rx="2"/>
+                                    <rect x="44" y="28" width="8" height="28" rx="2"/>
+                                </svg>
+                            {:else if category.icon === 'ai'}
+                                <svg class="w-full h-full text-red-500 group-hover:text-red-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
+                                    <circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="24" cy="24" r="3"/>
+                                    <circle cx="40" cy="24" r="3"/>
+                                    <circle cx="20" cy="36" r="2"/>
+                                    <circle cx="44" cy="36" r="2"/>
+                                    <circle cx="32" cy="44" r="2"/>
+                                    <path d="M24 24 L20 36 M40 24 L44 36 M24 24 L32 44 M40 24 L32 44 M20 36 L32 44 M44 36 L32 44" stroke="currentColor" stroke-width="1"/>
+                                </svg>
+                            {:else if category.icon === 'dx'}
+                                <svg class="w-full h-full text-orange-500 group-hover:text-orange-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
+                                    <circle cx="20" cy="32" r="12" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M14 26 L26 38 M26 26 L14 38" stroke="currentColor" stroke-width="2"/>
+                                    <rect x="40" y="20" width="16" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="44" cy="28" r="1"/>
+                                    <circle cx="52" cy="28" r="1"/>
+                                    <path d="M44 36 Q48 32 52 36" fill="none" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            {/if}
+                        </div>
+                        
+                        <!-- Compact Category Name -->
+                        <span class="text-xs sm:text-sm font-medium text-gray-700 group-hover:text-gray-900 transition-colors text-center leading-tight">
+                            {category.name.replace(' & ', '\n&\n').replace(' ', '\n')}
+                        </span>
+                    </a>
+                {/each}
+            </div>
         </div>
     </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="relative py-8">
 </section>
 
 <!-- Latest Blog Posts Section -->
-<section class="py-16 bg-white/50 backdrop-blur-sm">
+<section class="pb-16 bg-white/50 backdrop-blur-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <a 
                 href="/tech-hotpot/all"
-                class="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                class="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
             >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
@@ -298,7 +293,7 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {#each categoryPosts as post, postIndex}
                                     <article 
-                                        class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                                        class="bg-white rounded-xl border border-gray-200 overflow-hidden hover: transition-shadow duration-300"
                                         in:fly={{ x: postIndex % 2 === 0 ? -50 : 50, delay: (categoryIndex * 200) + (postIndex * 100), duration: 600 }}
                                     >
                                         <!-- Post Thumbnail -->

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
+	import { page } from '$app/stores';
 	import type { PageData } from './$types';
 
 	interface BlogPost {
@@ -29,6 +30,40 @@
 	$: posts = data.posts as BlogPost[];
 	$: categories = [...new Set(posts.map((post: BlogPost) => post.category))];
 	$: authors = [...new Set(posts.map((post: BlogPost) => post.author))];
+
+	// Category definitions with icons (same as main page)
+	const categoryDefinitions = [
+		{
+			name: "Software",
+			description: "Dive into the world of coding, frameworks, and innovative applications.",
+			icon: "software",
+			color: "blue"
+		},
+		{
+			name: "IoT News",
+			description: "Stay updated with the latest in Internet of Things and connected devices.",
+			icon: "iot",
+			color: "green"
+		},
+		{
+			name: "Data & Analytics",
+			description: "Explore data science, analytics, and business intelligence insights.",
+			icon: "data",
+			color: "purple"
+		},
+		{
+			name: "AI Workflow",
+			description: "Discover artificial intelligence and automated workflow solutions.",
+			icon: "ai",
+			color: "red"
+		},
+		{
+			name: "Digital Transformation",
+			description: "Learn about modernizing businesses through digital innovation.",
+			icon: "dx",
+			color: "orange"
+		}
+	];
 
 	// Filter and sort posts
 	$: filteredPosts = posts
@@ -102,6 +137,11 @@
 
 	onMount(() => {
 		mounted = true;
+		// Check for category parameter in URL
+		const categoryParam = $page.url.searchParams.get('category');
+		if (categoryParam) {
+			selectedCategory = categoryParam;
+		}
 	});
 </script>
 
@@ -159,22 +199,83 @@
 					<path d="M32 24 Q34 20 32 16 Q30 12 32 8" fill="none" stroke="currentColor" stroke-width="2" class="animate-bounce" style="animation-delay: 0.5s"/>
 					<path d="M44 24 Q46 20 44 16 Q42 12 44 8" fill="none" stroke="currentColor" stroke-width="2" class="animate-bounce" style="animation-delay: 1s"/>
 				</svg>
-			</div>
-			<div>
-				<h1 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent mb-2">
-					All Blog Posts
-				</h1>
-				<p class="text-lg text-gray-600">Browse all {data.total} articles from our tech experts</p>
-			</div>
+			</div>			
 		</div>
 	</div>
 </header>
+
+<!-- Sticky Category Navigation -->
+<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="flex items-center justify-center py-3">
+			<div class="flex items-center space-x-4 sm:space-x-6 md:space-x-8">
+				{#each categoryDefinitions as category, index}
+					<button 
+						class="group flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105 {selectedCategory === category.name ? 'opacity-100' : 'opacity-70 hover:opacity-100'}"
+						on:click={() => selectedCategory = selectedCategory === category.name ? '' : category.name}
+						in:fly={{ y: -20, delay: index * 50, duration: 400 }}
+					>
+						<!-- Compact Category Icon -->
+						<div class="w-8 h-8 sm:w-10 sm:h-10 mb-1">
+							{#if category.icon === 'software'}
+								<svg class="w-full h-full text-blue-500 group-hover:text-blue-600 transition-colors {selectedCategory === category.name ? 'text-blue-600' : ''}" viewBox="0 0 64 64" fill="currentColor">
+									<rect x="8" y="12" width="48" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
+									<path d="M16 20 L20 24 L16 28" fill="none" stroke="currentColor" stroke-width="2"/>
+									<line x1="24" y1="28" x2="32" y2="28" stroke="currentColor" stroke-width="2"/>
+								</svg>
+							{:else if category.icon === 'iot'}
+								<svg class="w-full h-full text-green-500 group-hover:text-green-600 transition-colors {selectedCategory === category.name ? 'text-green-600' : ''}" viewBox="0 0 64 64" fill="currentColor">
+									<circle cx="32" cy="20" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+									<circle cx="16" cy="40" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+									<circle cx="48" cy="40" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+									<circle cx="32" cy="52" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+									<path d="M32 26 L32 32 M26 20 L20 36 M38 20 L44 36 M32 32 L16 40 M32 32 L48 40 M32 32 L32 48" stroke="currentColor" stroke-width="2"/>
+								</svg>
+							{:else if category.icon === 'data'}
+								<svg class="w-full h-full text-purple-500 group-hover:text-purple-600 transition-colors {selectedCategory === category.name ? 'text-purple-600' : ''}" viewBox="0 0 64 64" fill="currentColor">
+									<rect x="8" y="32" width="8" height="24" rx="2"/>
+									<rect x="20" y="24" width="8" height="32" rx="2"/>
+									<rect x="32" y="16" width="8" height="40" rx="2"/>
+									<rect x="44" y="28" width="8" height="28" rx="2"/>
+								</svg>
+							{:else if category.icon === 'ai'}
+								<svg class="w-full h-full text-red-500 group-hover:text-red-600 transition-colors {selectedCategory === category.name ? 'text-red-600' : ''}" viewBox="0 0 64 64" fill="currentColor">
+									<circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="2"/>
+									<circle cx="24" cy="24" r="3"/>
+									<circle cx="40" cy="24" r="3"/>
+									<circle cx="20" cy="36" r="2"/>
+									<circle cx="44" cy="36" r="2"/>
+									<circle cx="32" cy="44" r="2"/>
+									<path d="M24 24 L20 36 M40 24 L44 36 M24 24 L32 44 M40 24 L32 44 M20 36 L32 44 M44 36 L32 44" stroke="currentColor" stroke-width="1"/>
+								</svg>
+							{:else if category.icon === 'dx'}
+								<svg class="w-full h-full text-orange-500 group-hover:text-orange-600 transition-colors {selectedCategory === category.name ? 'text-orange-600' : ''}" viewBox="0 0 64 64" fill="currentColor">
+									<circle cx="20" cy="32" r="12" fill="none" stroke="currentColor" stroke-width="2"/>
+									<path d="M14 26 L26 38 M26 26 L14 38" stroke="currentColor" stroke-width="2"/>
+									<rect x="40" y="20" width="16" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+									<circle cx="44" cy="28" r="1"/>
+									<circle cx="52" cy="28" r="1"/>
+									<path d="M44 36 Q48 32 52 36" fill="none" stroke="currentColor" stroke-width="2"/>
+								</svg>
+							{/if}
+						</div>
+						
+						<!-- Compact Category Name -->
+						<span class="text-xs sm:text-sm font-medium text-gray-700 group-hover:text-gray-900 transition-colors text-center leading-tight {selectedCategory === category.name ? 'text-gray-900 font-semibold' : ''}">
+							{category.name.replace(' & ', '\n&\n').replace(' ', '\n')}
+						</span>
+					</button>
+				{/each}
+			</div>
+		</div>
+	</div>
+</nav>
 
 <!-- Main Content -->
 <main class="relative z-10 py-8">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<!-- Filters and Search -->
-		<div class="bg-white/70 backdrop-blur-sm rounded-xl p-6 mb-8 shadow-lg" in:fade={{ delay: 200, duration: 600 }}>
+		<div class="bg-white/70 rounded-xl p-6 mb-8" in:fade={{ delay: 200, duration: 600 }}>
 			<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
 				<!-- Search -->
 				<div class="md:col-span-2">
@@ -236,7 +337,7 @@
 		</div>
 
 		<!-- Table -->
-		<div class="bg-white/70 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden" in:fly={{ y: 50, delay: 400, duration: 600 }}>
+		<div class="bg-white/70 border border-gray-200 rounded-xl overflow-hidden" in:fly={{ y: 50, delay: 400, duration: 600 }}>
 			<div class="overflow-x-auto">
 				<table class="w-full">
 					<thead class="bg-gray-50/80">
