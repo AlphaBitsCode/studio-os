@@ -22,6 +22,16 @@ export interface BlogPost {
 		slug: string;
 		color?: string;
 	};
+	seo?: {
+		id: string;
+		title?: string;
+		meta_description?: string;
+		canonical_url?: string;
+		no_index?: boolean;
+		no_follow?: boolean;
+		sitemap_priority?: number;
+		sitemap_change_frequency?: string;
+	};
 	status: 'published' | 'draft' | 'archived';
 	type: 'blog' | 'project';
 }
@@ -64,7 +74,15 @@ export async function getAllBlogPosts(limit?: number): Promise<BlogPost[]> {
 			'category.id',
 			'category.title',
 			'category.slug',
-			'category.color'
+			'category.color',
+			'seo.id',
+			'seo.title',
+			'seo.meta_description',
+			'seo.canonical_url',
+			'seo.no_index',
+			'seo.no_follow',
+			'seo.sitemap_priority',
+			'seo.sitemap_change_frequency'
 		].join(','));
 
 		const response = await fetch(url.toString(), {
@@ -117,7 +135,15 @@ export async function getBlogPostsByCategory(categorySlug?: string, limit?: numb
 			'category.id',
 			'category.title',
 			'category.slug',
-			'category.color'
+			'category.color',
+			'seo.id',
+			'seo.title',
+			'seo.meta_description',
+			'seo.canonical_url',
+			'seo.no_index',
+			'seo.no_follow',
+			'seo.sitemap_priority',
+			'seo.sitemap_change_frequency'
 		].join(','));
 
 		const response = await fetch(url.toString(), {
@@ -168,7 +194,15 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
 			'category.id',
 			'category.title',
 			'category.slug',
-			'category.color'
+			'category.color',
+			'seo.id',
+			'seo.title',
+			'seo.meta_description',
+			'seo.canonical_url',
+			'seo.no_index',
+			'seo.no_follow',
+			'seo.sitemap_priority',
+			'seo.sitemap_change_frequency'
 		].join(','));
 
 		const response = await fetch(url.toString(), {

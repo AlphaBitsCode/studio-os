@@ -112,8 +112,57 @@
 </script>
 
 <svelte:head>
-    <title>Tech Hotpot - AlphaBits Technology Hub</title>
-    <meta name="description" content="Explore the latest in technology, AI, IoT, and digital transformation with AlphaBits Tech Hotpot." />
+    <title>Tech Hotpot - AlphaBits Technology Hub | Latest Tech Insights & Tutorials</title>
+    <meta name="description" content="Explore cutting-edge technology insights, AI developments, IoT innovations, and digital transformation strategies with AlphaBits Tech Hotpot. Expert tutorials, industry analysis, and practical guides for developers and tech leaders." />
+    <meta name="keywords" content="technology blog, AI, IoT, digital transformation, software development, tech tutorials, AlphaBits, programming, automation, data analytics" />
+    <meta name="author" content="AlphaBits Team" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://alphabits.team/tech-hotpot" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Tech Hotpot - AlphaBits Technology Hub" />
+    <meta property="og:description" content="Explore cutting-edge technology insights, AI developments, IoT innovations, and digital transformation strategies with AlphaBits Tech Hotpot." />
+    <meta property="og:image" content="https://alphabits.team/logos/logo_square.png" />
+    <meta property="og:url" content="https://alphabits.team/tech-hotpot" />
+    <meta property="og:site_name" content="AlphaBits" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tech Hotpot - AlphaBits Technology Hub" />
+    <meta name="twitter:description" content="Explore cutting-edge technology insights, AI developments, IoT innovations, and digital transformation strategies." />
+    <meta name="twitter:image" content="https://alphabits.team/logos/logo_square.png" />
+    
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Tech Hotpot",
+        "description": "AlphaBits Technology Hub featuring the latest insights in AI, IoT, and digital transformation",
+        "url": "https://alphabits.team/tech-hotpot",
+        "publisher": {
+            "@type": "Organization",
+            "name": "AlphaBits",
+            "url": "https://alphabits.team",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://alphabits.team/logos/logo_square.png"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://alphabits.team/tech-hotpot"
+        }
+    }
+    </script>
 </svelte:head>
 
 <!-- Animated Background -->

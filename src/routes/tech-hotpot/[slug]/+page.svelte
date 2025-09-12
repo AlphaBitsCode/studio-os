@@ -146,27 +146,81 @@
 </script>
 
 <svelte:head>
-	<title>{post.title} - Tech Hotpot | AlphaBits</title>
-	<meta name="description" content={post.summary || post.title} />
-	<meta name="author" content="Alpha Bits" />
+	<title>{post.seo?.title || post.title} - Tech Hotpot | AlphaBits</title>
+	<meta name="description" content={post.seo?.meta_description || post.summary || post.title} />
+	<meta name="author" content={getAuthorName(post.author)} />
+	
+	<!-- Canonical URL -->
+	{#if post.seo?.canonical_url}
+		<link rel="canonical" href={post.seo.canonical_url} />
+	{:else}
+		<link rel="canonical" href="https://alphabits.team/tech-hotpot/{post.slug}" />
+	{/if}
+	
+	<!-- Robots meta tags -->
+	{#if post.seo?.no_index || post.seo?.no_follow}
+		<meta name="robots" content="{post.seo.no_index ? 'noindex' : 'index'},{post.seo.no_follow ? 'nofollow' : 'follow'}" />
+	{/if}
 	
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="article" />
-	<meta property="og:title" content={post.title} />
-	<meta property="og:description" content={post.summary || post.title} />
+	<meta property="og:title" content={post.seo?.title || post.title} />
+	<meta property="og:description" content={post.seo?.meta_description || post.summary || post.title} />
 	<meta property="og:image" content={getImageUrl(post.image)} />
-	<meta property="og:url" content="https://alphabits.team/tech-hotpot/{post.slug}" />
-	<meta property="article:author" content="Alpha Bits" />
+	<meta property="og:url" content={post.seo?.canonical_url || `https://alphabits.team/tech-hotpot/${post.slug}`} />
+	<meta property="article:author" content={getAuthorName(post.author)} />
 	<meta property="article:published_time" content={post.date_published || post.date_created} />
+	{#if post.date_published !== post.date_created}
+		<meta property="article:modified_time" content={post.date_created} />
+	{/if}
 	{#if post.category}
 		<meta property="article:section" content={post.category.title} />
 	{/if}
 	
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content={post.title} />
-	<meta name="twitter:description" content={post.summary || post.title} />
+	<meta name="twitter:title" content={post.seo?.title || post.title} />
+	<meta name="twitter:description" content={post.seo?.meta_description || post.summary || post.title} />
 	<meta name="twitter:image" content={getImageUrl(post.image)} />
+	
+	<!-- Additional SEO -->
+	<meta name="keywords" content="{post.category?.title || ''}, tech blog, AlphaBits, technology, {post.title.toLowerCase().split(' ').join(', ')}" />
+	<meta name="article:tag" content={post.category?.title || 'Technology'} />
+	
+	<!-- Schema.org structured data -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": "{post.seo?.title || post.title}",
+		"description": "{post.seo?.meta_description || post.summary || post.title}",
+		"image": "{getImageUrl(post.image)}",
+		"author": {
+			"@type": "Person",
+			"name": "{getAuthorName(post.author)}"
+		},
+		"publisher": {
+			"@type": "Organization",
+			"name": "AlphaBits",
+			"url": "https://alphabits.team",
+			"logo": {
+				"@type": "ImageObject",
+				"url": "https://alphabits.team/logos/logo_square.png"
+			}
+		},
+		"datePublished": "{post.date_published || post.date_created}",
+		"dateModified": "{post.date_created}",
+		"mainEntityOfPage": {
+			"@type": "WebPage",
+			"@id": "{post.seo?.canonical_url || `https://alphabits.team/tech-hotpot/${post.slug}`}"
+		},
+		"url": "{post.seo?.canonical_url || `https://alphabits.team/tech-hotpot/${post.slug}`}",
+		"articleSection": "{post.category?.title || 'Technology'}",
+		"wordCount": "{calculateReadTime(post.content) * 200}",
+		"timeRequired": "PT{calculateReadTime(post.content)}M",
+		"inLanguage": "en-US"
+	}
+	</script>
 </svelte:head>
 
 <!-- Reading Progress Bar -->

@@ -154,8 +154,31 @@
 </script>
 
 <svelte:head>
-	<title>All Blog Posts - Tech Hotpot | AlphaBits</title>
-	<meta name="description" content="Browse all blog posts from AlphaBits Tech Hotpot. Filter and sort by category, author, and publication date." />
+	<title>{selectedCategory ? `${selectedCategory.title} Posts` : 'All Blog Posts'} - Tech Hotpot | AlphaBits</title>
+	<meta name="description" content="{selectedCategory ? `Browse ${selectedCategory.title.toLowerCase()} posts` : 'Browse all blog posts'} from AlphaBits Tech Hotpot. Expert insights on technology, AI, IoT, digital transformation, and software development. Filter and sort by category, author, and publication date." />
+	<meta name="keywords" content="{selectedCategory ? `${selectedCategory.title.toLowerCase()}, ` : ''}technology blog, tech posts, AlphaBits, programming tutorials, AI insights, IoT guides, digital transformation" />
+	<meta name="author" content="AlphaBits Team" />
+	
+	<!-- Canonical URL -->
+	<link rel="canonical" href="https://alphabits.team/tech-hotpot/all{selectedCategory ? `?category=${selectedCategory.slug}` : ''}" />
+	
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="{selectedCategory ? `${selectedCategory.title} Posts` : 'All Blog Posts'} - Tech Hotpot | AlphaBits" />
+	<meta property="og:description" content="{selectedCategory ? `Browse ${selectedCategory.title.toLowerCase()} posts` : 'Browse all blog posts'} from AlphaBits Tech Hotpot. Expert insights on technology and innovation." />
+	<meta property="og:image" content="https://alphabits.team/logos/logo_square.png" />
+	<meta property="og:url" content="https://alphabits.team/tech-hotpot/all{selectedCategory ? `?category=${selectedCategory.slug}` : ''}" />
+	<meta property="og:site_name" content="AlphaBits" />
+	
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="{selectedCategory ? `${selectedCategory.title} Posts` : 'All Blog Posts'} - Tech Hotpot" />
+	<meta name="twitter:description" content="{selectedCategory ? `Browse ${selectedCategory.title.toLowerCase()} posts` : 'Browse all blog posts'} from AlphaBits Tech Hotpot." />
+	<meta name="twitter:image" content="https://alphabits.team/logos/logo_square.png" />
+	
+	<!-- Additional SEO -->
+	<meta name="robots" content="index, follow" />
+	<meta name="googlebot" content="index, follow" />
 </svelte:head>
 
 <!-- Animated Background -->
