@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
+	import ArticleContent from '$lib/components/ArticleContent.svelte';
 	// Helper functions moved to client-side
 	function formatDate(dateString: string | null | undefined): string {
 		if (!dateString) return '';
@@ -327,17 +328,12 @@
 		</header>
 		
 		<!-- Article Content -->
-		<article 
-			class="prose prose-lg prose-gray max-w-none"
-			bind:this={contentElement}
-			in:fly={{ y: 50, delay: 400, duration: 600 }}
-		>
-			{#if post.content}
-				{@html post.content}
-			{:else}
-				<p class="text-gray-600 italic">Content not available.</p>
-			{/if}
-		</article>
+		<ArticleContent 
+			content={post.content}
+			bind:contentElement
+			delay={400}
+			duration={600}
+		/>
 		
 		<!-- Article Footer -->
 		<footer class="mt-16 pt-8 border-t border-gray-200" in:fade={{ delay: 600, duration: 600 }}>
