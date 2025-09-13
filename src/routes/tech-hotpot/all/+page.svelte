@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
 	import { page } from '$app/stores';
+	import { setLoading } from '$lib/stores/loading';
 	// Helper functions moved to client-side
 	function formatDate(dateString: string | null | undefined): string {
 		if (!dateString) return '';
@@ -66,7 +67,7 @@
 	}
 	import type { PageData } from './$types';
 
-	export let data: PageData;
+	let { data }: { data: PageData } = $props();
 
 	let mounted = false;
 	let searchTerm = '';
@@ -79,11 +80,21 @@
 	let sortNewest = true; // Toggle for newest vs oldest
 
 	// Use server-side data
-	$: ({ posts, categories, selectedCategory, categorySlug, loading, error } = data);
-	$: authors = [...new Set(posts.map(post => 'Alpha Bits'))];
+	let posts = $derived(data.posts);
+	let categories = $derived(data.categories);
+	let selectedCategory = $derived(data.selectedCategory);
+	let categorySlug = $derived(data.categorySlug);
+	let loading = $derived(data.loading);
+	let error = $derived(data.error);
+	let authors = $derived([...new Set(posts.map(post => 'Alpha Bits'))]);
+	
+	// Update global loading state
+	$effect(() => {
+		setLoading(loading);
+	});
 
 	// Filter and sort posts
-	$: filteredPosts = posts
+	let filteredPosts = $derived(posts
 		.filter(post => {
 			const matchesSearch = searchTerm === '' || 
 				post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -117,13 +128,13 @@
 			} else {
 				return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
 			}
-		});
+		}));
 
 	// Update sortBy and sortOrder based on toggles
-	$: {
+	$effect(() => {
 		sortBy = sortByDate ? 'date_published' : 'title';
 		sortOrder = sortNewest ? 'desc' : 'asc';
-	}
+	});
 
 	function toggleSearch() {
 		showSearch = !showSearch;
@@ -167,6 +178,11 @@
 
 	onMount(() => {
 		mounted = true;
+	});
+	
+	onDestroy(() => {
+		// Clean up loading state when component is unmounted
+		setLoading(false);
 	});
 </script>
 

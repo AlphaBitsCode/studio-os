@@ -3,6 +3,7 @@
 	import Logo from './Logo.svelte';
 	import * as NavigationMenu from './ui/navigation-menu/index.js';
 	import { BookOpen, Zap } from 'lucide-svelte';
+	import { isLoading } from '$lib/stores/loading';
 
 	let { user = null }: { user?: any } = $props();
 	let mobileMenuOpen = $state(false);
@@ -109,12 +110,23 @@
 </script>
 
 <header class="fixed top-0 left-0 right-0 z-90 border-b border-gray-200  bg-white/95 backdrop-blur-sm">
+	<!-- Loading Bar -->
+	{#if $isLoading}
+		<div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-300 via-blue-600 to-teal-700 animate-pulse">
+			<div class="h-full bg-gradient-to-r from-blue-300 via-blue-600 to-teal-600 animate-bounce" style="animation-duration: 1.5s;"></div>
+		</div>
+	{/if}
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
 		<div class="flex justify-between items-center h-14 ">
 			<!-- Logo -->
 			<div class="flex-shrink-0">
-				<a href="/" class="flex items-center">
+				<a href="/" class="flex items-center space-x-2">
 					<Logo size="header" variant="default" alt="AlphaBits" />
+					{#if $isLoading}
+						<div class="flex items-center space-x-1">
+							<div class="animate-spin rounded-full h-4 w-4 border-2 border-blue-300 border-t-transparent"></div>
+						</div>
+					{/if}
 				</a>
 			</div>
 

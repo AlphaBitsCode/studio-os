@@ -1,15 +1,21 @@
 <script lang="ts">
 	import '../app.css';
-	import { page } from '$app/stores';
+	import { page, navigating } from '$app/stores';
 	import Header from '$lib/components/Header.svelte';
 	import BlogHeader from '$lib/components/BlogHeader.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import { setLoading } from '$lib/stores/loading';
 	import type { LayoutData } from './$types';
 
 	let { children, data }: { children: any; data: LayoutData } = $props();
 
 	// Check if we're on a blog route
 	let isBlogRoute = $derived($page.route.id?.startsWith('/(blog)'));
+	
+	// Show loading indicator during navigation
+	$effect(() => {
+		setLoading(!!$navigating);
+	});
 </script>
 
 <svelte:head>
