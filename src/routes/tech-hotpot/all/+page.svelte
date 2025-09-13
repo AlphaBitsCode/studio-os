@@ -73,6 +73,7 @@
 	let selectedAuthor = '';
 	let sortBy = 'date_published';
 	let sortOrder: 'asc' | 'desc' = 'desc';
+	let viewMode: 'grid' | 'list' = 'grid'; // New view mode toggle
 
 	// Use server-side data
 	$: ({ posts, categories, selectedCategory, categorySlug, loading, error } = data);
@@ -200,91 +201,122 @@
 	</div>
 </div>
 
-<!-- Header -->
-<header class="relative z-10 py-8">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="text-center mb-8">
-			<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-				{#if selectedCategory}
-					{selectedCategory.title} Posts
-				{:else}
-					All Blog Posts
-				{/if}
-			</h1>
-			<p class="text-xl text-gray-600 max-w-2xl mx-auto">
-				{#if selectedCategory}
-					Explore our latest insights in {selectedCategory.title.toLowerCase()}
-				{:else}
-					Explore our complete collection of tech insights and innovations
-				{/if}
-			</p>
+<!-- Enhanced Sticky Category Navigation + Filters -->
+<section class="sticky top-14 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
+	<!-- Category Navigation -->
+	<div class="border-b border-gray-100">
+		<div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+			<div class="flex items-center justify-between sm:justify-center py-3">
+				<div class="flex items-center justify-between sm:justify-center w-full sm:w-auto space-x-1 sm:space-x-4 md:space-x-6 lg:space-x-8">
+					<!-- All Categories Button -->
+					<a 
+						href="/tech-hotpot/all"
+						class="group flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105 {!categorySlug ? 'opacity-100' : 'opacity-70 hover:opacity-100'}"
+					>
+						<div class="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 mb-1">
+							<svg class="w-full h-full {!categorySlug ? 'text-blue-600' : 'text-gray-500 group-hover:text-gray-700'} transition-colors" viewBox="0 0 64 64" fill="currentColor">
+								<rect x="8" y="8" width="48" height="48" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+								<rect x="16" y="16" width="12" height="12" rx="2"/>
+								<rect x="36" y="16" width="12" height="12" rx="2"/>
+								<rect x="16" y="36" width="12" height="12" rx="2"/>
+								<rect x="36" y="36" width="12" height="12" rx="2"/>
+							</svg>
+						</div>
+						<span class="text-xs sm:text-sm font-medium {!categorySlug ? 'text-blue-600' : 'text-gray-700 group-hover:text-gray-900'} transition-colors text-center leading-tight max-w-16 sm:max-w-none">
+							<span class="hidden sm:inline">All</span>
+							<span class="sm:hidden">All</span>
+						</span>
+					</a>
+					
+					{#each categories as category, index}
+						<a 
+							href="/tech-hotpot/all?category={encodeURIComponent(category.slug)}"
+							class="group flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105 {categorySlug === category.slug ? 'opacity-100' : 'opacity-70 hover:opacity-100'}"
+							in:fly={{ y: -20, delay: index * 50, duration: 400 }}
+						>
+							<!-- Category Icon -->
+							<div class="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 mb-1">
+								{#if getCategoryIcon(category.title) === 'software'}
+									<svg class="w-full h-full {categorySlug === category.slug ? 'text-blue-600' : 'text-blue-500 group-hover:text-blue-600'} transition-colors" viewBox="0 0 64 64" fill="currentColor">
+										<rect x="8" y="12" width="48" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
+										<path d="M16 20 L20 24 L16 28" fill="none" stroke="currentColor" stroke-width="2"/>
+										<line x1="24" y1="28" x2="32" y2="28" stroke="currentColor" stroke-width="2"/>
+									</svg>
+								{:else if getCategoryIcon(category.title) === 'iot'}
+									<svg class="w-full h-full {categorySlug === category.slug ? 'text-green-600' : 'text-green-500 group-hover:text-green-600'} transition-colors" viewBox="0 0 64 64" fill="currentColor">
+										<circle cx="32" cy="20" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+										<circle cx="16" cy="40" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+										<circle cx="48" cy="40" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+										<circle cx="32" cy="52" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+										<path d="M32 26 L32 32 M26 20 L20 36 M38 20 L44 36 M32 32 L16 40 M32 32 L48 40 M32 32 L32 48" stroke="currentColor" stroke-width="2"/>
+									</svg>
+								{:else if getCategoryIcon(category.title) === 'data' || getCategoryIcon(category.title) === 'analytics'}
+									<svg class="w-full h-full {categorySlug === category.slug ? 'text-purple-600' : 'text-purple-500 group-hover:text-purple-600'} transition-colors" viewBox="0 0 64 64" fill="currentColor">
+										<rect x="8" y="32" width="8" height="24" rx="2"/>
+										<rect x="20" y="24" width="8" height="32" rx="2"/>
+										<rect x="32" y="16" width="8" height="40" rx="2"/>
+										<rect x="44" y="28" width="8" height="28" rx="2"/>
+									</svg>
+								{:else if getCategoryIcon(category.title) === 'ai'}
+									<svg class="w-full h-full {categorySlug === category.slug ? 'text-teal-600' : 'text-teal-500 group-hover:text-teal-600'} transition-colors" viewBox="0 0 64 64" fill="currentColor">
+										<circle cx="16" cy="16" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+										<circle cx="48" cy="16" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+										<circle cx="32" cy="48" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+										<path d="M24 16 L40 16 M24 22 L26 40 M40 22 L38 40" stroke="currentColor" stroke-width="2"/>
+										<path d="M16 24 L16 32 L24 40 M48 24 L48 32 L40 40" stroke="currentColor" stroke-width="2"/>
+									</svg>
+								{:else if getCategoryIcon(category.title) === 'dx'}
+									<svg class="w-full h-full {categorySlug === category.slug ? 'text-orange-600' : 'text-orange-500 group-hover:text-orange-600'} transition-colors" viewBox="0 0 64 64" fill="currentColor">
+										<circle cx="20" cy="32" r="12" fill="none" stroke="currentColor" stroke-width="2"/>
+										<path d="M14 26 L26 38 M26 26 L14 38" stroke="currentColor" stroke-width="2"/>
+										<rect x="40" y="20" width="16" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+										<circle cx="44" cy="28" r="1"/>
+										<circle cx="52" cy="28" r="1"/>
+										<path d="M44 36 Q48 32 52 36" fill="none" stroke="currentColor" stroke-width="2"/>
+									</svg>
+								{:else}
+									<svg class="w-full h-full {categorySlug === category.slug ? 'text-gray-600' : 'text-gray-500 group-hover:text-gray-600'} transition-colors" viewBox="0 0 64 64" fill="currentColor">
+										<rect x="8" y="12" width="48" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
+										<circle cx="32" cy="28" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+									</svg>
+								{/if}
+							</div>
+							
+							<!-- Category Name -->
+							<span class="text-xs sm:text-sm font-medium {categorySlug === category.slug ? 'text-blue-600' : 'text-gray-700 group-hover:text-gray-900'} transition-colors text-center leading-tight max-w-16 sm:max-w-none">
+								<span class="hidden sm:inline">{category.title.replace(' & ', '\n&\n').replace(' ', '\n')}</span>
+								<span class="sm:hidden">{category.title.split(' ')[0]}</span>
+							</span>
+						</a>
+					{/each}
+				</div>
+			</div>
 		</div>
-
-		<!-- Breadcrumb -->
-		<nav class="flex items-center space-x-2 text-sm text-gray-500 mb-8 justify-center">
-			<a href="/tech-hotpot" class="hover:text-gray-700 transition-colors">Tech Hotpot</a>
-			<span>›</span>
-			<span class="text-gray-900 font-medium">
-				{#if selectedCategory}
-					{selectedCategory.title}
-				{:else}
-					All Posts
-				{/if}
-			</span>
-		</nav>
 	</div>
-</header>
-
-<!-- Category Filter Navigation -->
-<section class="relative z-10 py-4 bg-white/80 backdrop-blur-sm border-y border-gray-200">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="flex flex-wrap items-center justify-center gap-4">
-			<a 
-				href="/tech-hotpot/all"
-				class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 {!categorySlug ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}"
-			>
-				All Categories
-			</a>
-			{#each categories as category}
-				<a 
-					href="/tech-hotpot/all?category={encodeURIComponent(category.slug)}"
-					class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 {categorySlug === category.slug ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}"
-				>
-					{category.title}
-				</a>
-			{/each}
-		</div>
-	</div>
-</section>
-
-<!-- Main Content -->
-<main class="relative z-10 py-12">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		
-		<!-- Search and Filter Controls -->
-		<div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
-			<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+	
+	<!-- Filter Controls -->
+	<div class="py-4">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
 				<!-- Search -->
-				<div class="md:col-span-2">
-					<label for="search" class="block text-sm font-medium text-gray-700 mb-2">Search Posts</label>
+				<div class="lg:col-span-2">
 					<input
 						id="search"
 						type="text"
 						bind:value={searchTerm}
-						placeholder="Search by title or content..."
-						class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+						placeholder="Search posts..."
+						class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm"
 					/>
 				</div>
 				
 				<!-- Sort By -->
 				<div>
-					<label for="sort" class="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
 					<select
 						id="sort"
 						bind:value={sortBy}
-						class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+						class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm"
 					>
-						<option value="date_published">Publication Date</option>
+						<option value="date_published">Date</option>
 						<option value="title">Title</option>
 						<option value="category">Category</option>
 					</select>
@@ -292,40 +324,64 @@
 				
 				<!-- Sort Order -->
 				<div>
-					<label for="order" class="block text-sm font-medium text-gray-700 mb-2">Order</label>
 					<select
 						id="order"
 						bind:value={sortOrder}
-						class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+						class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm"
 					>
-						<option value="desc">Newest First</option>
-						<option value="asc">Oldest First</option>
+						<option value="desc">Newest</option>
+						<option value="asc">Oldest</option>
 					</select>
+				</div>
+				
+				<!-- View Mode Toggle -->
+				<div>
+					<div class="flex rounded-lg border border-gray-300 bg-white/80 backdrop-blur-sm overflow-hidden">
+						<button
+							on:click={() => viewMode = 'grid'}
+							class="flex-1 px-3 py-2 text-sm font-medium transition-colors {viewMode === 'grid' ? 'bg-blue-500 text-white' : 'text-gray-700 hover:bg-gray-100'}"
+						>
+							<svg class="w-4 h-4 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+								<path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+							</svg>
+						</button>
+						<button
+							on:click={() => viewMode = 'list'}
+							class="flex-1 px-3 py-2 text-sm font-medium transition-colors {viewMode === 'list' ? 'bg-blue-500 text-white' : 'text-gray-700 hover:bg-gray-100'}"
+						>
+							<svg class="w-4 h-4 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+								<path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
+							</svg>
+						</button>
+					</div>
 				</div>
 			</div>
 			
-			<!-- Clear Filters -->
-			{#if searchTerm || selectedAuthor || categorySlug}
-				<div class="mt-4 pt-4 border-t border-gray-200">
+			<!-- Clear Filters & Results Summary -->
+			<div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
+				<p class="text-sm text-gray-600">
+					Showing {filteredPosts.length} of {posts.length} posts
+					{#if selectedCategory}
+						in {selectedCategory.title}
+					{/if}
+				</p>
+				
+				{#if searchTerm || selectedAuthor || categorySlug}
 					<button
 						on:click={clearFilters}
-						class="text-blue-600 hover:text-blue-800 text-sm font-medium"
+						class="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors"
 					>
-						Clear all filters
+						Clear filters
 					</button>
-				</div>
-			{/if}
-		</div>
-
-		<!-- Results Summary -->
-		<div class="mb-6">
-			<p class="text-gray-600">
-				Showing {filteredPosts.length} of {posts.length} posts
-				{#if selectedCategory}
-					in {selectedCategory.title}
 				{/if}
-			</p>
+			</div>
 		</div>
+	</div>
+</section>
+
+<!-- Main Content -->
+<main class="relative z-10 py-8">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
 		{#if loading}
 			<div class="flex justify-center items-center py-16">
@@ -372,81 +428,164 @@
 				</div>
 			</div>
 		{:else}
-			<!-- Blog Posts Grid -->
-			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-				{#each filteredPosts as post, index}
-					<article 
-						class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md hover:border-blue-300 transition-all duration-300 cursor-pointer group"
-						in:fly={{ y: 20, delay: index * 50, duration: 400 }}
-					>
-						<a href="/tech-hotpot/{post.slug}" class="block">
-							<!-- Post Thumbnail -->
-							<div class="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
-								<img 
-									src="{getImageUrl(post.image)}" 
-									alt="{post.title}" 
-									class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-									loading="lazy"
-								/>
-							</div>
-							
-							<!-- Post Content -->
-							<div class="p-6">
-								<!-- Category Badge -->
-								{#if post.category}
-									<div class="flex items-center mb-3">
-										<div class="w-4 h-4 mr-2">
-											<img src="{getCategoryIconPath(post.category.title)}" alt="{post.category.title}" class="w-full h-full opacity-70" />
-										</div>
-										<span 
-											class="inline-block px-3 py-1 text-xs font-medium rounded-full"
-											style="background-color: {post.category.color}20; color: {post.category.color};"
-										>
-											{post.category.title}
-										</span>
-									</div>
-								{/if}
-								
-								<!-- Post Title -->
-								<h2 class="text-xl font-bold mb-3 text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
-									{post.title}
-								</h2>
-								
-								<!-- Post Excerpt -->
-								{#if post.summary}
-									<p class="text-gray-600 mb-4 line-clamp-3">
-										{post.summary}
-									</p>
-								{/if}
-								
-								<!-- Post Meta -->
-								<div class="flex items-center justify-between text-sm text-gray-500">
-									<div class="flex items-center space-x-4">
-										<span>{formatDate(post.date_published || post.date_created)}</span>
-										<span>•</span>
-										<span>{calculateReadTime(post.content)} min read</span>
-									</div>
-									<div class="flex items-center space-x-1">
-								{#if typeof post.author === 'object' && post.author?.image}
+			<!-- Blog Posts Display -->
+			{#if viewMode === 'grid'}
+				<!-- Masonry Grid Layout - 6 Columns -->
+				<div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5 2xl:columns-6 gap-6 space-y-6">
+					{#each filteredPosts as post, index}
+						<article 
+							class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md hover:border-blue-300 transition-all duration-300 cursor-pointer group break-inside-avoid mb-6"
+							in:fly={{ y: 20, delay: index * 30, duration: 400 }}
+						>
+							<a href="/tech-hotpot/{post.slug}" class="block">
+								<!-- Post Thumbnail -->
+								<div class="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
 									<img 
-										src="{getAvatarUrl(post.author.image, 20)}" 
-										alt="{getAuthorName(post.author)}" 
-										class="w-5 h-5 rounded-full object-cover"
+										src="{getImageUrl(post.image)}" 
+										alt="{post.title}" 
+										class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
 										loading="lazy"
 									/>
-								{:else}
-									<div class="w-5 h-5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-										<span class="text-white text-xs font-semibold">{getAuthorInitials(post.author)}</span>
-									</div>
-								{/if}
-								<span>{getAuthorName(post.author)}</span>
-							</div>
 								</div>
-							</div>
-						</a>
-					</article>
-				{/each}
-			</div>
+								
+								<!-- Post Content -->
+								<div class="p-4">
+									<!-- Category Badge -->
+									{#if post.category}
+										<div class="flex items-center mb-3">
+											<div class="w-4 h-4 mr-2">
+												<img src="{getCategoryIconPath(post.category.title)}" alt="{post.category.title}" class="w-full h-full opacity-70" />
+											</div>
+											<span 
+												class="inline-block px-2 py-1 text-xs font-medium rounded-full"
+												style="background-color: {post.category.color}20; color: {post.category.color};"
+											>
+												{post.category.title}
+											</span>
+										</div>
+									{/if}
+									
+									<!-- Post Title -->
+									<h2 class="text-lg font-bold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
+										{post.title}
+									</h2>
+									
+									<!-- Post Excerpt -->
+									{#if post.summary}
+										<p class="text-gray-600 text-sm mb-3 line-clamp-3">
+											{post.summary}
+										</p>
+									{/if}
+									
+									<!-- Post Meta -->
+									<div class="flex items-center justify-between text-xs text-gray-500">
+										<div class="flex items-center space-x-2">
+											<span>{formatDate(post.date_published || post.date_created)}</span>
+											<span>•</span>
+											<span>{calculateReadTime(post.content)} min</span>
+										</div>
+										<div class="flex items-center space-x-1">
+											{#if typeof post.author === 'object' && post.author?.image}
+												<img 
+													src="{getAvatarUrl(post.author.image, 16)}" 
+													alt="{getAuthorName(post.author)}" 
+													class="w-4 h-4 rounded-full object-cover"
+													loading="lazy"
+												/>
+											{:else}
+												<div class="w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+													<span class="text-white text-xs font-semibold">{getAuthorInitials(post.author)}</span>
+												</div>
+											{/if}
+											<span class="text-xs">{getAuthorName(post.author)}</span>
+										</div>
+									</div>
+								</div>
+							</a>
+						</article>
+					{/each}
+				</div>
+			{:else}
+				<!-- List View Layout -->
+				<div class="space-y-4">
+					{#each filteredPosts as post, index}
+						<article 
+							class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md hover:border-blue-300 transition-all duration-300 cursor-pointer group"
+							in:fly={{ x: -20, delay: index * 30, duration: 400 }}
+						>
+							<a href="/tech-hotpot/{post.slug}" class="block">
+								<div class="flex flex-col sm:flex-row">
+									<!-- Post Thumbnail -->
+									<div class="sm:w-64 sm:flex-shrink-0">
+										<div class="aspect-video sm:aspect-square bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+											<img 
+												src="{getImageUrl(post.image)}" 
+												alt="{post.title}" 
+												class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+												loading="lazy"
+											/>
+										</div>
+									</div>
+									
+									<!-- Post Content -->
+									<div class="flex-1 p-6">
+										<!-- Category Badge -->
+										{#if post.category}
+											<div class="flex items-center mb-3">
+												<div class="w-4 h-4 mr-2">
+													<img src="{getCategoryIconPath(post.category.title)}" alt="{post.category.title}" class="w-full h-full opacity-70" />
+												</div>
+												<span 
+													class="inline-block px-3 py-1 text-xs font-medium rounded-full"
+													style="background-color: {post.category.color}20; color: {post.category.color};"
+												>
+													{post.category.title}
+												</span>
+											</div>
+										{/if}
+										
+										<!-- Post Title -->
+										<h2 class="text-xl font-bold mb-3 text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
+											{post.title}
+										</h2>
+										
+										<!-- Post Excerpt -->
+										{#if post.summary}
+											<p class="text-gray-600 mb-4 line-clamp-2">
+												{post.summary}
+											</p>
+										{/if}
+										
+										<!-- Post Meta -->
+										<div class="flex items-center justify-between text-sm text-gray-500">
+											<div class="flex items-center space-x-4">
+												<span>{formatDate(post.date_published || post.date_created)}</span>
+												<span>•</span>
+												<span>{calculateReadTime(post.content)} min read</span>
+											</div>
+											<div class="flex items-center space-x-2">
+												{#if typeof post.author === 'object' && post.author?.image}
+													<img 
+														src="{getAvatarUrl(post.author.image, 20)}" 
+														alt="{getAuthorName(post.author)}" 
+														class="w-5 h-5 rounded-full object-cover"
+														loading="lazy"
+													/>
+												{:else}
+													<div class="w-5 h-5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+														<span class="text-white text-xs font-semibold">{getAuthorInitials(post.author)}</span>
+													</div>
+												{/if}
+												<span>{getAuthorName(post.author)}</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</a>
+						</article>
+					{/each}
+				</div>
+			{/if}
 		{/if}
 	</div>
 </main>
@@ -464,6 +603,74 @@
 		-webkit-line-clamp: 3;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
+	}
+	
+	/* Masonry layout improvements */
+	.break-inside-avoid {
+		break-inside: avoid;
+		page-break-inside: avoid;
+	}
+	
+	/* Ensure proper spacing in masonry layout */
+	.columns-1 > * {
+		margin-bottom: 1.5rem;
+	}
+	
+	.columns-2 > * {
+		margin-bottom: 1.5rem;
+	}
+	
+	.columns-3 > * {
+		margin-bottom: 1.5rem;
+	}
+	
+	.columns-4 > * {
+		margin-bottom: 1.5rem;
+	}
+	
+	.columns-5 > * {
+		margin-bottom: 1.5rem;
+	}
+	
+	.columns-6 > * {
+		margin-bottom: 1.5rem;
+	}
+	
+	/* Responsive masonry adjustments */
+	@media (max-width: 640px) {
+		.columns-1 {
+			column-gap: 1rem;
+		}
+	}
+	
+	@media (min-width: 641px) and (max-width: 768px) {
+		.columns-2 {
+			column-gap: 1.25rem;
+		}
+	}
+	
+	@media (min-width: 769px) and (max-width: 1024px) {
+		.columns-3 {
+			column-gap: 1.5rem;
+		}
+	}
+	
+	@media (min-width: 1025px) and (max-width: 1280px) {
+		.columns-4 {
+			column-gap: 1.5rem;
+		}
+	}
+	
+	@media (min-width: 1281px) and (max-width: 1536px) {
+		.columns-5 {
+			column-gap: 1.5rem;
+		}
+	}
+	
+	@media (min-width: 1537px) {
+		.columns-6 {
+			column-gap: 1.5rem;
+		}
 	}
 	
 	@keyframes float {

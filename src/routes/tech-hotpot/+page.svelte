@@ -294,7 +294,7 @@
 </header>
 
 <!-- Sticky Category Navigation -->
-<nav class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
+<nav class="sticky top-14 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
     <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         <div class="flex items-center justify-between sm:justify-center py-3">
             <div class="flex items-center justify-between sm:justify-center w-full sm:w-auto space-x-1 sm:space-x-4 md:space-x-6 lg:space-x-8">
