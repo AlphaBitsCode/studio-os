@@ -108,9 +108,9 @@
 	}
 </script>
 
-<header class="fixed top-0 left-0 right-0 z-90 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-200">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="flex justify-between items-center h-14">
+<header class="fixed top-0 left-0 right-0 z-90 border-b border-gray-200  bg-white/95 backdrop-blur-sm">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+		<div class="flex justify-between items-center h-14 ">
 			<!-- Logo -->
 			<div class="flex-shrink-0">
 				<a href="/" class="flex items-center">
@@ -352,27 +352,89 @@
 							<NavigationMenu.Link href="/tech-hotpot">
 								{#snippet child()}
 									<a href="/tech-hotpot" class="p-2 rounded-md text-gray-700 hover:text-medium-teal hover:bg-gray-100 transition-colors inline-flex items-center justify-center" title="Tech Hotpot">
-										<!-- Custom Tech Hotpot Icon with Steam Animation -->
-										<div class="relative w-5 h-5">
-											<svg viewBox="0 0 24 24" class="w-5 h-5 fill-current">
-												<!-- Pot/Bowl -->
-												<path d="M4 10c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v6c0 2.2-1.8 4-4 4H8c-2.2 0-4-1.8-4-4v-6z" fill="#6B7280"/>
-												<!-- Tech Circuit Pattern -->
-												<circle cx="8" cy="13" r="1" fill="#10B981"/>
-												<circle cx="12" cy="15" r="1" fill="#3B82F6"/>
-												<circle cx="16" cy="13" r="1" fill="#F59E0B"/>
-												<path d="M8 13h4m0 0h4" stroke="#9CA3AF" stroke-width="0.5"/>
+										<!-- Detailed Tech Hotpot Logo from tech-hotpot page -->
+										<div class="relative w-6 h-6">
+											<svg viewBox="0 0 100 100" class="w-6 h-6" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<!-- Gradient Definitions -->
+												<defs>
+													<linearGradient id="potGradientNav" x1="0%" y1="0%" x2="100%" y2="100%">
+														<stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+														<stop offset="50%" style="stop-color:#f7931e;stop-opacity:1" />
+														<stop offset="100%" style="stop-color:#ff4500;stop-opacity:1" />
+													</linearGradient>
+													<linearGradient id="steamGradientNav" x1="0%" y1="100%" x2="0%" y2="0%">
+														<stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.8" />
+														<stop offset="50%" style="stop-color:#3b82f6;stop-opacity:0.6" />
+														<stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:0.4" />
+													</linearGradient>
+													<radialGradient id="circuitGlowNav" cx="50%" cy="50%" r="50%">
+														<stop offset="0%" style="stop-color:#10b981;stop-opacity:0.8" />
+														<stop offset="100%" style="stop-color:#059669;stop-opacity:0.3" />
+													</radialGradient>
+												</defs>
+												
+												<!-- Pot Shadow -->
+												<ellipse cx="50" cy="85" rx="25" ry="4" fill="#000000" opacity="0.2"/>
+												
+												<!-- Main Pot Body -->
+												<path d="M20 45 L80 45 L78 75 C78 78 75 80 72 80 L28 80 C25 80 22 78 22 75 Z" 
+													  fill="url(#potGradientNav)" stroke="#d97706" stroke-width="1.5"/>
+												
+												<!-- Pot Rim -->
+												<ellipse cx="50" cy="45" rx="30" ry="3" fill="#ea580c" stroke="#9a3412" stroke-width="1"/>
+												
+												<!-- Left Handle -->
+												<path d="M15 40 C12 40 10 42 10 45 C10 48 12 50 15 50 L20 50 L20 45 L20 40 Z" 
+													  fill="#92400e" stroke="#451a03" stroke-width="1.5"/>
+												
+												<!-- Right Handle -->
+												<path d="M85 40 C88 40 90 42 90 45 C90 48 88 50 85 50 L80 50 L80 45 L80 40 Z" 
+													  fill="#92400e" stroke="#451a03" stroke-width="1.5"/>
+												
+												<!-- Tech Circuit Pattern Inside Pot -->
+												<g opacity="0.6">
+													<!-- Circuit Board Lines -->
+													<path d="M30 55 L35 55 L35 60 L40 60" stroke="url(#circuitGlowNav)" stroke-width="2" fill="none"/>
+													<path d="M60 55 L65 55 L65 60 L70 60" stroke="url(#circuitGlowNav)" stroke-width="2" fill="none"/>
+													<path d="M45 65 L55 65" stroke="url(#circuitGlowNav)" stroke-width="2" fill="none"/>
+													
+													<!-- Circuit Nodes -->
+													<circle cx="35" cy="55" r="2" fill="#10b981"/>
+													<circle cx="40" cy="60" r="2" fill="#10b981"/>
+													<circle cx="65" cy="55" r="2" fill="#10b981"/>
+													<circle cx="70" cy="60" r="2" fill="#10b981"/>
+													<circle cx="50" cy="65" r="2" fill="#10b981"/>
+													
+													<!-- Microchip Symbol -->
+													<rect x="47" y="57" width="6" height="6" fill="#374151" stroke="#10b981" stroke-width="1"/>
+													<rect x="48.5" y="58.5" width="3" height="3" fill="#10b981"/>
+												</g>
+												
+												<!-- Steam/Data Streams -->
+												<g class="animate-pulse">
+													<!-- Left Steam -->
+													<path d="M35 40 Q37 35 35 30 Q33 25 35 20 Q37 15 35 10" 
+														  stroke="url(#steamGradientNav)" stroke-width="2.5" fill="none" 
+														  class="animate-bounce" style="animation-delay: 0s"/>
+													
+													<!-- Center Steam -->
+													<path d="M50 40 Q52 35 50 30 Q48 25 50 20 Q52 15 50 10" 
+														  stroke="url(#steamGradientNav)" stroke-width="3" fill="none" 
+														  class="animate-bounce" style="animation-delay: 0.3s"/>
+													
+													<!-- Right Steam -->
+													<path d="M65 40 Q67 35 65 30 Q63 25 65 20 Q67 15 65 10" 
+														  stroke="url(#steamGradientNav)" stroke-width="2.5" fill="none" 
+														  class="animate-bounce" style="animation-delay: 0.6s"/>
+												</g>
+												
+												<!-- Digital Particles -->
+												<g class="animate-ping" style="animation-delay: 1s">
+													<circle cx="42" cy="25" r="1" fill="#3b82f6" opacity="0.8"/>
+													<circle cx="58" cy="18" r="1" fill="#10b981" opacity="0.8"/>
+													<circle cx="48" cy="12" r="1" fill="#f59e0b" opacity="0.8"/>
+												</g>
 											</svg>
-											<!-- Animated Steam -->
-											<div class="absolute -top-1 left-1/2 transform -translate-x-1/2">
-												<div class="w-0.5 h-2 bg-gray-400 rounded-full opacity-60 animate-pulse" style="animation-delay: 0s;"></div>
-											</div>
-											<div class="absolute -top-1 left-1/2 transform -translate-x-1/2 -translate-x-1">
-												<div class="w-0.5 h-1.5 bg-gray-400 rounded-full opacity-40 animate-pulse" style="animation-delay: 0.3s;"></div>
-											</div>
-											<div class="absolute -top-1 left-1/2 transform -translate-x-1/2 translate-x-1">
-												<div class="w-0.5 h-1.5 bg-gray-400 rounded-full opacity-40 animate-pulse" style="animation-delay: 0.6s;"></div>
-											</div>
 										</div>
 									</a>
 								{/snippet}
@@ -384,15 +446,6 @@
 
 			<!-- Right side actions -->
 			<div class="flex items-center space-x-2">
-				<a
-					href="/quick-assessment"
-					class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-medium-teal text-white hover:bg-dark-teal transition-colors"
-					title="Start Quick Assessment"
-				>
-					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-					</svg>
-				</a>
 
 				<!-- Mobile menu button -->
 				<button
@@ -418,15 +471,109 @@
 	<!-- Mobile menu -->
 	{#if mobileMenuOpen}
 		<div class="lg:hidden">
-			<div class="px-4 pt-4 pb-6 space-y-3 bg-white border-t border-gray-200 shadow-lg max-h-[calc(100vh-4rem)] overflow-y-auto">
+			<div class="px-4 pt-4 pb-6 space-y-3 max-h-[calc(100vh-4rem)] overflow-y-auto">
+				<!-- Tech Hotpot - Featured First -->
+				<a href="/tech-hotpot" class="flex items-center px-4 py-4 rounded-lg text-base font-semibold text-orange-600 bg-gradient-to-r from-orange-50 to-red-50 border-2 border-orange-200 hover:border-orange-300 hover:bg-gradient-to-r hover:from-orange-100 hover:to-red-100 transition-all duration-200 shadow-sm" onclick={closeMobileMenu}>
+					<div class="relative w-8 h-8 mr-3 flex-shrink-0">
+						<svg viewBox="0 0 100 100" class="w-8 h-8" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<!-- Gradient Definitions -->
+							<defs>
+								<linearGradient id="potGradientMobile" x1="0%" y1="0%" x2="100%" y2="100%">
+									<stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+									<stop offset="50%" style="stop-color:#f7931e;stop-opacity:1" />
+									<stop offset="100%" style="stop-color:#ff4500;stop-opacity:1" />
+								</linearGradient>
+								<linearGradient id="steamGradientMobile" x1="0%" y1="100%" x2="0%" y2="0%">
+									<stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.8" />
+									<stop offset="50%" style="stop-color:#3b82f6;stop-opacity:0.6" />
+									<stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:0.4" />
+								</linearGradient>
+								<radialGradient id="circuitGlowMobile" cx="50%" cy="50%" r="50%">
+									<stop offset="0%" style="stop-color:#10b981;stop-opacity:0.8" />
+									<stop offset="100%" style="stop-color:#059669;stop-opacity:0.3" />
+								</radialGradient>
+							</defs>
+							
+							<!-- Pot Shadow -->
+							<ellipse cx="50" cy="85" rx="25" ry="4" fill="#000000" opacity="0.2"/>
+							
+							<!-- Main Pot Body -->
+							<path d="M20 45 L80 45 L78 75 C78 78 75 80 72 80 L28 80 C25 80 22 78 22 75 Z" 
+								  fill="url(#potGradientMobile)" stroke="#d97706" stroke-width="1.5"/>
+							
+							<!-- Pot Rim -->
+							<ellipse cx="50" cy="45" rx="30" ry="3" fill="#ea580c" stroke="#9a3412" stroke-width="1"/>
+							
+							<!-- Left Handle -->
+							<path d="M15 40 C12 40 10 42 10 45 C10 48 12 50 15 50 L20 50 L20 45 L20 40 Z" 
+								  fill="#92400e" stroke="#451a03" stroke-width="1.5"/>
+							
+							<!-- Right Handle -->
+							<path d="M85 40 C88 40 90 42 90 45 C90 48 88 50 85 50 L80 50 L80 45 L80 40 Z" 
+								  fill="#92400e" stroke="#451a03" stroke-width="1.5"/>
+							
+							<!-- Tech Circuit Pattern Inside Pot -->
+							<g opacity="0.6">
+								<!-- Circuit Board Lines -->
+								<path d="M30 55 L35 55 L35 60 L40 60" stroke="url(#circuitGlowMobile)" stroke-width="2" fill="none"/>
+								<path d="M60 55 L65 55 L65 60 L70 60" stroke="url(#circuitGlowMobile)" stroke-width="2" fill="none"/>
+								<path d="M45 65 L55 65" stroke="url(#circuitGlowMobile)" stroke-width="2" fill="none"/>
+								
+								<!-- Circuit Nodes -->
+								<circle cx="35" cy="55" r="2" fill="#10b981"/>
+								<circle cx="40" cy="60" r="2" fill="#10b981"/>
+								<circle cx="65" cy="55" r="2" fill="#10b981"/>
+								<circle cx="70" cy="60" r="2" fill="#10b981"/>
+								<circle cx="50" cy="65" r="2" fill="#10b981"/>
+								
+								<!-- Microchip Symbol -->
+								<rect x="47" y="57" width="6" height="6" fill="#374151" stroke="#10b981" stroke-width="1"/>
+								<rect x="48.5" y="58.5" width="3" height="3" fill="#10b981"/>
+							</g>
+							
+							<!-- Steam/Data Streams -->
+							<g class="animate-pulse">
+								<!-- Left Steam -->
+								<path d="M35 40 Q37 35 35 30 Q33 25 35 20 Q37 15 35 10" 
+									  stroke="url(#steamGradientMobile)" stroke-width="2.5" fill="none" 
+									  class="animate-bounce" style="animation-delay: 0s"/>
+								
+								<!-- Center Steam -->
+								<path d="M50 40 Q52 35 50 30 Q48 25 50 20 Q52 15 50 10" 
+									  stroke="url(#steamGradientMobile)" stroke-width="3" fill="none" 
+									  class="animate-bounce" style="animation-delay: 0.3s"/>
+								
+								<!-- Right Steam -->
+								<path d="M65 40 Q67 35 65 30 Q63 25 65 20 Q67 15 65 10" 
+									  stroke="url(#steamGradientMobile)" stroke-width="2.5" fill="none" 
+									  class="animate-bounce" style="animation-delay: 0.6s"/>
+							</g>
+							
+							<!-- Digital Particles -->
+							<g class="animate-ping" style="animation-delay: 1s">
+								<circle cx="42" cy="25" r="1" fill="#3b82f6" opacity="0.8"/>
+								<circle cx="58" cy="18" r="1" fill="#10b981" opacity="0.8"/>
+								<circle cx="48" cy="12" r="1" fill="#f59e0b" opacity="0.8"/>
+							</g>
+						</svg>
+					</div>
+					<div class="flex-1">
+						<div class="font-bold text-orange-700">Tech Hotpot</div>
+						<div class="text-xs text-orange-600 mt-1">Latest Tech Insights & Tutorials</div>
+					</div>
+					<svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+					</svg>
+				</a>
+
 				<!-- Team -->
-				<a href="/about" class="block px-3 py-3 rounded-md text-sm font-medium text-gray-700 hover:text-medium-teal hover:bg-gray-50 transition-colors" onclick={closeMobileMenu}>
-					Team
+				<a href="/about" class="block px-3 py-3 rounded-md text-sm font-medium text-blue-900 hover:text-medium-teal hover:bg-gray-50 transition-colors" onclick={closeMobileMenu}>
+					TEAM
 				</a>
 
 				<!-- AI Workflow -->
 				<div class="space-y-2">
-					<a href="/services/ai-workflow-automation" class="block px-3 py-2 text-xs font-bold text-gray-900 uppercase tracking-wider border-b border-gray-100 hover:text-medium-teal transition-colors" onclick={closeMobileMenu}>AI Workflow</a>
+					<a href="/services/ai-workflow-automation" class="block px-3 py-2 text-xs font-bold text-blue-900 uppercase tracking-wider border-b border-gray-250 hover:text-medium-teal transition-colors" onclick={closeMobileMenu}>AI Workflow</a>
 					{#each aiWorkflowItems as item}
 						<a href={item.href} class="block px-6 py-2 text-sm font-medium text-gray-600 hover:text-medium-teal hover:bg-gray-50 transition-colors rounded-md" onclick={closeMobileMenu}>
 							{item.title}
@@ -436,9 +583,9 @@
 
 				<!-- Services -->
 				<div class="space-y-2">
-					<a href="/services" class="block px-3 py-2 text-xs font-bold text-gray-900 uppercase tracking-wider border-b border-gray-100 hover:text-medium-teal transition-colors" onclick={closeMobileMenu}>Services</a>
+					<a href="/services" class="block px-3 py-2 text-xs font-bold text-blue-900 uppercase tracking-wider border-b border-gray-250 hover:text-medium-teal transition-colors" onclick={closeMobileMenu}>Services</a>
 					{#each servicesItems as service}
-						<a href={service.href} class="block px-6 py-2 text-sm font-medium text-gray-600 hover:text-medium-teal hover:bg-gray-50 transition-colors rounded-md" onclick={closeMobileMenu}>
+						<a href={service.href} class="block px-6 py-2 text-sm font-semibold text-gray-600 hover:text-medium-teal hover:bg-gray-50 transition-colors rounded-md" onclick={closeMobileMenu}>
 							{service.title}
 						</a>
 					{/each}
@@ -446,7 +593,7 @@
 
 				<!-- Case Studies -->
 				<div class="space-y-2">
-					<a href="/case-studies" class="block px-3 py-2 text-xs font-bold text-gray-900 uppercase tracking-wider border-b border-gray-100 hover:text-medium-teal transition-colors" onclick={closeMobileMenu}>Case Studies</a>
+					<a href="/case-studies" class="block px-3 py-2 text-xs font-bold text-blue-900 uppercase tracking-wider border-b border-gray-250 hover:text-medium-teal transition-colors" onclick={closeMobileMenu}>Case Studies</a>
 					
 					<!-- Technology Consulting Section -->
 					<div class="px-3 py-2">
@@ -514,7 +661,7 @@
 
 				<!-- Learning Materials -->
 				<div class="space-y-2">
-					<div class="flex items-center px-3 py-2 text-xs font-bold text-gray-900 uppercase tracking-wider border-b border-gray-100">
+					<div class="flex items-center px-3 py-2 text-xs font-bold text-blue-900 uppercase tracking-wider border-b border-gray-250">
 						<BookOpen class="w-4 h-4 mr-2" />
 						Learning Materials
 					</div>
@@ -525,31 +672,7 @@
 					{/each}
 				</div>
 
-				<!-- Tech Hotpot -->
-				<a href="/tech-hotpot" class="flex items-center px-3 py-3 rounded-md text-sm font-medium text-gray-700 hover:text-medium-teal hover:bg-gray-50 transition-colors" onclick={closeMobileMenu}>
-					<div class="relative w-5 h-5 mr-2">
-						<svg viewBox="0 0 24 24" class="w-5 h-5 fill-current">
-							<!-- Pot/Bowl -->
-							<path d="M4 10c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v6c0 2.2-1.8 4-4 4H8c-2.2 0-4-1.8-4-4v-6z" fill="#6B7280"/>
-							<!-- Tech Circuit Pattern -->
-							<circle cx="8" cy="13" r="1" fill="#10B981"/>
-							<circle cx="12" cy="15" r="1" fill="#3B82F6"/>
-							<circle cx="16" cy="13" r="1" fill="#F59E0B"/>
-							<path d="M8 13h4m0 0h4" stroke="#9CA3AF" stroke-width="0.5"/>
-						</svg>
-						<!-- Animated Steam -->
-						<div class="absolute -top-1 left-1/2 transform -translate-x-1/2">
-							<div class="w-0.5 h-2 bg-gray-400 rounded-full opacity-60 animate-pulse" style="animation-delay: 0s;"></div>
-						</div>
-						<div class="absolute -top-1 left-1/2 transform -translate-x-1/2 -translate-x-1">
-							<div class="w-0.5 h-1.5 bg-gray-400 rounded-full opacity-40 animate-pulse" style="animation-delay: 0.3s;"></div>
-						</div>
-						<div class="absolute -top-1 left-1/2 transform -translate-x-1/2 translate-x-1">
-							<div class="w-0.5 h-1.5 bg-gray-400 rounded-full opacity-40 animate-pulse" style="animation-delay: 0.6s;"></div>
-						</div>
-					</div>
-					Tech Hotpot
-				</a>
+
 			</div>
 		</div>
 	{/if}
