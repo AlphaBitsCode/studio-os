@@ -223,35 +223,9 @@
 	</script>
 </svelte:head>
 
-<!-- Reading Progress Bar -->
-<div class="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
-	<div 
-		class="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 ease-out"
-		style="width: {readingProgress}%"
-	></div>
-</div>
-
-<!-- Animated Background -->
-<div class="fixed inset-0 -z-10 overflow-hidden">
-	<div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50"></div>
-	<!-- Floating particles -->
-	<div class="absolute inset-0">
-		{#each Array(10) as _, i}
-			<div 
-				class="absolute w-2 h-2 bg-blue-400 rounded-full opacity-20 animate-float"
-				style="
-					left: {Math.random() * 100}%;
-					top: {Math.random() * 100}%;
-					animation-delay: {Math.random() * 5}s;
-					animation-duration: {3 + Math.random() * 4}s;
-				"
-			></div>
-		{/each}
-	</div>
-</div>
 
 <!-- Navigation -->
-<nav class="relative z-10 py-4 bg-white/80 backdrop-blur-sm border-b border-gray-200">
+<nav class="fixed top-14 left-0 right-0 z-80 py-4 bg-white/80 backdrop-blur-md border-t border-b border-gray-200">
 	<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="flex items-center space-x-2 text-sm text-gray-600">
 			<a href="/tech-hotpot" class="hover:text-blue-600 transition-colors">Tech Hotpot</a>
@@ -268,7 +242,7 @@
 </nav>
 
 <!-- Main Content -->
-<main class="relative z-10 py-8">
+<main class="relative z-10 pt-20 pb-8">
 	<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 		
 		<!-- Article Header -->
