@@ -295,9 +295,9 @@
 
 <!-- Sticky Category Navigation -->
 <nav class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-center py-3">
-            <div class="flex items-center space-x-4 sm:space-x-6 md:space-x-8">
+    <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+        <div class="flex items-center justify-between sm:justify-center py-3">
+            <div class="flex items-center justify-between sm:justify-center w-full sm:w-auto space-x-1 sm:space-x-4 md:space-x-6 lg:space-x-8">
                 {#each categories as category, index}
                     <a 
                         href="/tech-hotpot/all?category={encodeURIComponent(category.slug)}"
@@ -305,7 +305,7 @@
                         in:fly={{ y: -20, delay: index * 50, duration: 400 }}
                     >
                         <!-- Compact Category Icon -->
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 mb-1">
+                        <div class="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 mb-1">
                             {#if getCategoryIcon(category.title) === 'software'}
                                 <svg class="w-full h-full text-blue-500 group-hover:text-blue-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
                                     <rect x="8" y="12" width="48" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
@@ -348,8 +348,9 @@
                         </div>
                         
                         <!-- Compact Category Name -->
-                        <span class="text-xs sm:text-sm font-medium text-gray-700 group-hover:text-gray-900 transition-colors text-center leading-tight">
-                            {category.title.replace(' & ', '\n&\n').replace(' ', '\n')}
+                        <span class="text-xs sm:text-sm font-medium text-gray-700 group-hover:text-gray-900 transition-colors text-center leading-tight max-w-16 sm:max-w-none">
+                            <span class="hidden sm:inline">{category.title.replace(' & ', '\n&\n').replace(' ', '\n')}</span>
+                            <span class="sm:hidden">{category.title.split(' ')[0]}</span>
                         </span>
                     </a>
                 {/each}
