@@ -108,7 +108,7 @@
 	}
 </script>
 
-<header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-200">
+<header class="fixed top-0 left-0 right-0 z-90 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-200">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="flex justify-between items-center h-14">
 			<!-- Logo -->

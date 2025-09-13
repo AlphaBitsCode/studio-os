@@ -229,15 +229,13 @@
 <nav class="fixed top-14 left-0 right-0 z-80 py-4 bg-white/80 backdrop-blur-md border-t border-b border-gray-200">
 	<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="flex items-center space-x-2 text-sm text-gray-600">
-			<a href="/tech-hotpot" class="hover:text-blue-600 transition-colors">Tech Hotpot</a>
-			<span>›</span>
 			{#if post.category}
-				<a href="/tech-hotpot/all?category={encodeURIComponent(post.category.slug)}" class="hover:text-blue-600 transition-colors">
+				<a href="/tech-hotpot/all?category={encodeURIComponent(post.category.slug)}" class="hover:text-blue-600 truncate transition-colors">
 					{post.category.title}
 				</a>
 				<span>›</span>
 			{/if}
-			<span class="text-gray-800 font-medium line-clamp-1">{post.title}</span>
+			<span class="text-gray-800 font-medium line-clamp-1 truncate">{post.title}</span>
 		</div>
 	</div>
 </nav>
