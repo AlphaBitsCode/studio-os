@@ -94,30 +94,78 @@
 		</div>
 
 		<!-- Progress Steps -->
-		<div class="flex justify-center mb-8 sm:mb-12 px-4">
-			<div class="flex items-center space-x-2 sm:space-x-4 max-w-full overflow-x-auto">
-				<div class="flex items-center flex-shrink-0">
-					<div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full {currentStep >= 1 ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-600'} flex items-center justify-center text-sm font-medium">
-						1
+		<div class="mb-8 sm:mb-12 px-4">
+			<!-- Mobile: Vertical Layout -->
+			<div class="sm:hidden">
+				<div class="max-w-xs mx-auto space-y-4">
+					<div class="flex items-center space-x-3">
+						<div class="w-8 h-8 rounded-full {currentStep >= 1 ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-600'} flex items-center justify-center text-sm font-medium flex-shrink-0">
+							1
+						</div>
+						<div class="flex-1">
+							<p class="text-sm font-medium {currentStep >= 1 ? 'text-blue-600' : 'text-gray-500'}">Discovery</p>
+							<p class="text-xs text-gray-500">Understand your needs</p>
+						</div>
 					</div>
-					<span class="ml-2 text-xs sm:text-sm font-medium text-gray-700 hidden sm:inline">Discovery</span>
-					<span class="ml-1 text-xs font-medium text-gray-700 sm:hidden">Discovery</span>
+					{#if currentStep >= 2 || currentStep === 1}
+						<div class="ml-4 w-0.5 h-4 {currentStep >= 2 ? 'bg-blue-600' : 'bg-gray-200'}"></div>
+					{/if}
+					<div class="flex items-center space-x-3">
+						<div class="w-8 h-8 rounded-full {currentStep >= 2 ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-600'} flex items-center justify-center text-sm font-medium flex-shrink-0">
+							2
+						</div>
+						<div class="flex-1">
+							<p class="text-sm font-medium {currentStep >= 2 ? 'text-blue-600' : 'text-gray-500'}">Assessment</p>
+							<p class="text-xs text-gray-500">Book consultation</p>
+						</div>
+					</div>
+					{#if currentStep >= 3 || currentStep <= 2}
+						<div class="ml-4 w-0.5 h-4 {currentStep >= 3 ? 'bg-blue-600' : 'bg-gray-200'}"></div>
+					{/if}
+					<div class="flex items-center space-x-3">
+						<div class="w-8 h-8 rounded-full {currentStep >= 3 ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-600'} flex items-center justify-center text-sm font-medium flex-shrink-0">
+							3
+						</div>
+						<div class="flex-1">
+							<p class="text-sm font-medium {currentStep >= 3 ? 'text-blue-600' : 'text-gray-500'}">Transformation</p>
+							<p class="text-xs text-gray-500">Your AI journey</p>
+						</div>
+					</div>
 				</div>
-				<div class="w-8 sm:w-16 h-0.5 {currentStep >= 2 ? 'bg-blue-600' : 'bg-gray-200'} flex-shrink-0"></div>
-				<div class="flex items-center flex-shrink-0">
-					<div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full {currentStep >= 2 ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-600'} flex items-center justify-center text-sm font-medium">
-						2
+			</div>
+			
+			<!-- Desktop: Horizontal Layout -->
+			<div class="hidden sm:flex justify-center">
+				<div class="flex items-center space-x-4 md:space-x-8">
+					<div class="flex items-center flex-shrink-0">
+						<div class="w-10 h-10 md:w-12 md:h-12 rounded-full {currentStep >= 1 ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-600'} flex items-center justify-center text-sm font-medium">
+							1
+						</div>
+						<div class="ml-3">
+							<p class="text-sm font-medium text-gray-700">Discovery</p>
+							<p class="text-xs text-gray-500">Understand needs</p>
+						</div>
 					</div>
-					<span class="ml-2 text-xs sm:text-sm font-medium text-gray-700 hidden sm:inline">Assessment</span>
-					<span class="ml-1 text-xs font-medium text-gray-700 sm:hidden">Assessment</span>
-				</div>
-				<div class="w-8 sm:w-16 h-0.5 {currentStep >= 3 ? 'bg-blue-600' : 'bg-gray-200'} flex-shrink-0"></div>
-				<div class="flex items-center flex-shrink-0">
-					<div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full {currentStep >= 3 ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-600'} flex items-center justify-center text-sm font-medium">
-						3
+					<div class="w-12 md:w-20 h-0.5 {currentStep >= 2 ? 'bg-blue-600' : 'bg-gray-200'} flex-shrink-0"></div>
+					<div class="flex items-center flex-shrink-0">
+						<div class="w-10 h-10 md:w-12 md:h-12 rounded-full {currentStep >= 2 ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-600'} flex items-center justify-center text-sm font-medium">
+							2
+						</div>
+						<div class="ml-3">
+							<p class="text-sm font-medium text-gray-700">Assessment</p>
+							<p class="text-xs text-gray-500">Book consultation</p>
+						</div>
 					</div>
-					<span class="ml-2 text-xs sm:text-sm font-medium text-gray-700 hidden sm:inline">Transformation</span>
-					<span class="ml-1 text-xs font-medium text-gray-700 sm:hidden">Transform</span>
+					<div class="w-12 md:w-20 h-0.5 {currentStep >= 3 ? 'bg-blue-600' : 'bg-gray-200'} flex-shrink-0"></div>
+					<div class="flex items-center flex-shrink-0">
+						<div class="w-10 h-10 md:w-12 md:h-12 rounded-full {currentStep >= 3 ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-600'} flex items-center justify-center text-sm font-medium">
+							3
+						</div>
+						<div class="ml-3">
+							<p class="text-sm font-medium text-gray-700">Transformation</p>
+							<p class="text-xs text-gray-500">Your AI journey</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -167,7 +215,7 @@
 						</div>
 					</div>
 				<div class="flex justify-center">
-					<Button onclick={nextStep} class="px-8 py-3">
+					<Button onclick={nextStep} class="px-8 py-3 text-blue-800">
 						Continue to Assessment
 					</Button>
 				</div>
