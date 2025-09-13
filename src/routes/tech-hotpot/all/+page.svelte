@@ -73,7 +73,10 @@
 	let selectedAuthor = '';
 	let sortBy = 'date_published';
 	let sortOrder: 'asc' | 'desc' = 'desc';
-	let viewMode: 'grid' | 'list' = 'grid'; // New view mode toggle
+	let viewMode: 'grid' | 'list' = 'grid';
+	let showSearch = false; // Toggle for search input visibility
+	let sortByDate = true; // Toggle for date vs title sorting
+	let sortNewest = true; // Toggle for newest vs oldest
 
 	// Use server-side data
 	$: ({ posts, categories, selectedCategory, categorySlug, loading, error } = data);
@@ -116,18 +119,31 @@
 			}
 		});
 
-	function handleSort(column: string) {
-		if (sortBy === column) {
-			sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
-		} else {
-			sortBy = column;
-			sortOrder = 'desc';
+	// Update sortBy and sortOrder based on toggles
+	$: {
+		sortBy = sortByDate ? 'date_published' : 'title';
+		sortOrder = sortNewest ? 'desc' : 'asc';
+	}
+
+	function toggleSearch() {
+		showSearch = !showSearch;
+		if (!showSearch) {
+			searchTerm = '';
 		}
+	}
+
+	function toggleSortBy() {
+		sortByDate = !sortByDate;
+	}
+
+	function toggleSortOrder() {
+		sortNewest = !sortNewest;
 	}
 
 	function clearFilters() {
 		searchTerm = '';
 		selectedAuthor = '';
+		showSearch = false;
 		// Navigate to all posts without category filter
 		window.location.href = '/tech-hotpot/all';
 	}
@@ -294,86 +310,133 @@
 		</div>
 	</div>
 	
-	<!-- Filter Controls -->
-	<div class="py-4">
+	<!-- Modern Icon Toolbar -->
+	<div class="py-3">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
-				<!-- Search -->
-				<div class="lg:col-span-2">
-					<input
-						id="search"
-						type="text"
-						bind:value={searchTerm}
-						placeholder="Search posts..."
-						class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm"
-					/>
-				</div>
-				
-				<!-- Sort By -->
-				<div>
-					<select
-						id="sort"
-						bind:value={sortBy}
-						class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm"
+			<div class="flex items-center justify-between">
+				<!-- Left Side: Search & Filters -->
+				<div class="flex items-center space-x-4">
+					<!-- Search Toggle & Input -->
+					<div class="flex items-center space-x-2">
+						<button
+							on:click={toggleSearch}
+							class="p-2 rounded-lg transition-colors {showSearch ? 'bg-blue-100 text-blue-600' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'}"
+							title="Search posts"
+						>
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+							</svg>
+						</button>
+						
+						{#if showSearch}
+							<div class="flex items-center space-x-2" in:fly={{ x: -20, duration: 200 }}>
+								<input
+									type="text"
+									bind:value={searchTerm}
+									placeholder="Search..."
+									class="w-48 px-3 py-1.5 text-sm bg-gray-50 border-0 rounded-lg focus:ring-2 focus:ring-blue-500 focus:bg-white transition-colors"
+									autofocus
+								/>
+								{#if searchTerm}
+									<button
+										on:click={() => searchTerm = ''}
+										class="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+									>
+										<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+										</svg>
+									</button>
+								{/if}
+							</div>
+						{/if}
+					</div>
+					
+					<!-- Divider -->
+					<div class="w-px h-6 bg-gray-300"></div>
+					
+					<!-- Sort By Toggle (Date/Title) -->
+					<button
+						on:click={toggleSortBy}
+						class="p-2 rounded-lg transition-colors {sortByDate ? 'bg-blue-100 text-blue-600' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'}"
+						title={sortByDate ? 'Sort by date' : 'Sort by title'}
 					>
-						<option value="date_published">Date</option>
-						<option value="title">Title</option>
-						<option value="category">Category</option>
-					</select>
-				</div>
-				
-				<!-- Sort Order -->
-				<div>
-					<select
-						id="order"
-						bind:value={sortOrder}
-						class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm"
+						{#if sortByDate}
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+							</svg>
+						{:else}
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+							</svg>
+						{/if}
+					</button>
+					
+					<!-- Sort Order Toggle (Newest/Oldest) -->
+					<button
+						on:click={toggleSortOrder}
+						class="p-2 rounded-lg transition-colors {sortNewest ? 'bg-blue-100 text-blue-600' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'}"
+						title={sortNewest ? 'Newest first' : 'Oldest first'}
 					>
-						<option value="desc">Newest</option>
-						<option value="asc">Oldest</option>
-					</select>
-				</div>
-				
-				<!-- View Mode Toggle -->
-				<div>
-					<div class="flex rounded-lg border border-gray-300 bg-white/80 backdrop-blur-sm overflow-hidden">
+						{#if sortNewest}
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4"/>
+							</svg>
+						{:else}
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v18"/>
+							</svg>
+						{/if}
+					</button>
+					
+					<!-- Divider -->
+					<div class="w-px h-6 bg-gray-300"></div>
+					
+					<!-- View Mode Toggle -->
+					<div class="flex items-center space-x-1">
 						<button
 							on:click={() => viewMode = 'grid'}
-							class="flex-1 px-3 py-2 text-sm font-medium transition-colors {viewMode === 'grid' ? 'bg-blue-500 text-white' : 'text-gray-700 hover:bg-gray-100'}"
+							class="p-2 rounded-lg transition-colors {viewMode === 'grid' ? 'bg-blue-100 text-blue-600' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'}"
+							title="Grid view"
 						>
-							<svg class="w-4 h-4 mx-auto" fill="currentColor" viewBox="0 0 20 20">
-								<path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
 							</svg>
 						</button>
 						<button
 							on:click={() => viewMode = 'list'}
-							class="flex-1 px-3 py-2 text-sm font-medium transition-colors {viewMode === 'list' ? 'bg-blue-500 text-white' : 'text-gray-700 hover:bg-gray-100'}"
+							class="p-2 rounded-lg transition-colors {viewMode === 'list' ? 'bg-blue-100 text-blue-600' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'}"
+							title="List view"
 						>
-							<svg class="w-4 h-4 mx-auto" fill="currentColor" viewBox="0 0 20 20">
-								<path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
 							</svg>
 						</button>
 					</div>
 				</div>
-			</div>
-			
-			<!-- Clear Filters & Results Summary -->
-			<div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
-				<p class="text-sm text-gray-600">
-					Showing {filteredPosts.length} of {posts.length} posts
-					{#if selectedCategory}
-						in {selectedCategory.title}
-					{/if}
-				</p>
 				
-				{#if searchTerm || selectedAuthor || categorySlug}
-					<button
-						on:click={clearFilters}
-						class="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors"
-					>
-						Clear filters
-					</button>
-				{/if}
+				<!-- Right Side: Post Count & Clear -->
+				<div class="flex items-center space-x-4">
+					<!-- Post Count -->
+					<div class="flex items-center space-x-2 text-gray-600">
+						<span class="text-lg font-semibold">{filteredPosts.length}</span>
+						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+						</svg>
+					</div>
+					
+					<!-- Clear Filters -->
+					{#if searchTerm || categorySlug}
+						<button
+							on:click={clearFilters}
+							class="p-2 rounded-lg text-gray-500 hover:text-red-600 hover:bg-red-50 transition-colors"
+							title="Clear all filters"
+						>
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+							</svg>
+						</button>
+					{/if}
+				</div>
 			</div>
 		</div>
 	</div>
