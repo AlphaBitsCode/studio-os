@@ -54,23 +54,31 @@
 </script>
 
 <section class={sectionClasses}>
-	<div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-		<h2 class="text-3xl md:text-4xl font-bold mb-4 {variant === 'default' ? 'text-gray-900' : 'text-gray-800'}">
+	<div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+		<h2
+			class="mb-4 text-3xl font-bold md:text-4xl {variant === 'default'
+				? 'text-gray-900'
+				: 'text-gray-800'}"
+		>
 			{title}
 		</h2>
 		<p class={descriptionClasses}>
 			{description}
 		</p>
-		<div class="flex flex-col sm:flex-row gap-4 justify-center">
+		<div class="flex flex-col justify-center gap-4 sm:flex-row">
 			{#if primaryButton}
 				{#if primaryButton.variant === 'custom'}
-					<a href={primaryButton.href} class={primaryButton.class || 'bg-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors'}>
+					<a
+						href={primaryButton.href}
+						class={primaryButton.class ||
+							'rounded-lg bg-blue-600 px-8 py-3 font-semibold transition-colors hover:bg-blue-700'}
+					>
 						{primaryButton.text}
 					</a>
 				{:else}
-					<Button 
-						href={primaryButton.href} 
-						size="lg" 
+					<Button
+						href={primaryButton.href}
+						size="lg"
 						variant={primaryButton.variant || 'default'}
 						class={primaryButton.class || ''}
 					>
@@ -78,16 +86,20 @@
 					</Button>
 				{/if}
 			{/if}
-			
+
 			{#if secondaryButton}
 				{#if secondaryButton.variant === 'custom'}
-					<a href={secondaryButton.href} class={secondaryButton.class || 'border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors'}>
+					<a
+						href={secondaryButton.href}
+						class={secondaryButton.class ||
+							'rounded-lg border-2 border-blue-600 px-8 py-3 font-semibold text-blue-600 transition-colors hover:bg-blue-600 hover:text-white'}
+					>
 						{secondaryButton.text}
 					</a>
 				{:else}
-					<Button 
-						href={secondaryButton.href} 
-						size="lg" 
+					<Button
+						href={secondaryButton.href}
+						size="lg"
 						variant={secondaryButton.variant || 'outline'}
 						class={secondaryButton.class || ''}
 					>

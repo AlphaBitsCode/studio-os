@@ -1,5 +1,5 @@
-import { Calendar as CalendarPrimitive } from "bits-ui";
-import Root from "./calendar.svelte";
+import { Calendar as CalendarPrimitive } from 'bits-ui';
+import Root from './calendar.svelte';
 
 const Header = CalendarPrimitive.Header;
 const Grid = CalendarPrimitive.Grid;
@@ -16,10 +16,10 @@ const MonthSelect = CalendarPrimitive.MonthSelect;
 const YearSelect = CalendarPrimitive.YearSelect;
 
 // Create composite components for easier usage
-const Months = "div";
-const Month = "div";
-const Caption = "div";
-const Nav = "div";
+const Months = 'div';
+const Month = 'div';
+const Caption = 'div';
+const Nav = 'div';
 
 export {
 	Root,
@@ -41,5 +41,5 @@ export {
 	MonthSelect,
 	YearSelect,
 	//
-	Root as Calendar,
+	Root as Calendar
 };

@@ -1,76 +1,52 @@
 <script lang="ts">
 	import Logo from './Logo.svelte';
+	import SocialIcon from './SocialIcon.svelte';
+	import { footerSections, socialLinks } from '$lib/data/navigation';
 </script>
 
-<footer class="bg-gray-50 border-t border-gray-200">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-		<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<footer class="border-t border-gray-200 bg-gray-50" role="contentinfo">
+	<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+		<div class="grid grid-cols-1 gap-8 md:grid-cols-4">
 			<!-- Company Info -->
 			<div class="col-span-1 md:col-span-1">
 				<div class="mb-4">
 					<Logo size="medium" variant="default" alt="AlphaBits" />
 				</div>
-				<p class="text-gray-600 mb-4">
-					AIoT Solutions for the modern businesses.
-				</p>
+				<p class="mb-4 text-gray-600">AIoT Solutions for the modern businesses.</p>
 				<div class="flex space-x-4">
-					<a href="https://github.com/AlphaBitsCode/" class="text-gray-600 hover:text-medium-teal transition-colors">
-						<span class="sr-only">GitHub</span>
-						<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-							<path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"/>
-						</svg>
-					</a>
-					<a href="https://www.linkedin.com/company/alpha-bits-consulting/" class="text-gray-600 hover:text-medium-teal transition-colors">
-						<span class="sr-only">LinkedIn</span>
-						<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-							<path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clip-rule="evenodd"/>
-						</svg>
-					</a>
+					{#each socialLinks as social}
+						<SocialIcon {...social} size="medium" />
+					{/each}
 				</div>
 			</div>
 
-			<!-- Company -->
-			<div>
-				<h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Company</h3>
-				<ul class="space-y-3">
-					<li><a href="/about" class="text-gray-700 hover:text-medium-teal transition-colors">About Us</a></li>
-					<li><a href="/tech-hotpot" class="text-gray-700 hover:text-medium-teal transition-colors">Tech Hotpot</a></li>
-					<li><a href="/contact" class="text-gray-700 hover:text-medium-teal transition-colors">Contact Us</a></li>
-					<li><a href="/privacy-policy" class="text-gray-700 hover:text-medium-teal transition-colors">Privacy Policy</a></li>
-					<li><a href="/pricing" class="text-gray-700 hover:text-medium-teal transition-colors">Engagement Models</a></li>
-				</ul>
-			</div>
-
-			<!-- Services -->
-			<div>
-				<h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Services</h3>
-				<ul class="space-y-3">
-					<li><a href="/services/ai-workflow-automation" class="text-gray-700 hover:text-medium-teal text-bold transition-colors">AI Workflow Automation</a></li>
-					<li><a href="/services/digital-transformation" class="text-gray-700 hover:text-medium-teal transition-colors">Digital Transformation</a></li>
-					<li><a href="/services/fractional-cto" class="text-gray-700 hover:text-medium-teal transition-colors">Fractional CTO</a></li>
-					<li><a href="/services/data-ai-solutions" class="text-gray-700 hover:text-medium-teal transition-colors">Data Analytics</a></li>
-					<li><a href="/services/iot-infrastructure" class="text-gray-700 hover:text-medium-teal transition-colors">IoT Energy Management</a></li>
-				</ul>
-			</div>
-
-			<!-- Free Resources -->
-			<div>
-				<h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Free Resources</h3>
-				<ul class="space-y-3">
-					<li><a href="/resources/ai-tools" class="text-gray-700 hover:text-medium-teal transition-colors">AI Tools</a></li>
-					<li><a href="/resources/productivity-tips" class="text-gray-700 hover:text-medium-teal transition-colors">Productivity Tips</a></li>
-					<li><a href="/resources/nodered-learning" class="text-gray-700 hover:text-medium-teal transition-colors">NodeRED Learning</a></li>
-				</ul>
-			</div>
+			{#each footerSections as section}
+				<div>
+					<h3 class="mb-4 text-sm font-semibold tracking-wider text-gray-900 uppercase">
+						{section.title}
+					</h3>
+					<ul class="space-y-3">
+						{#each section.links as link}
+							<li>
+								<a
+									href={link.href}
+									class="hover:text-medium-teal text-gray-700 transition-colors"
+									aria-label="{link.title} - {section.title}"
+								>
+									{link.title}
+								</a>
+							</li>
+						{/each}
+					</ul>
+				</div>
+			{/each}
 		</div>
 
-		<div class="mt-8 pt-8 border-t border-gray-200">
-			<div class="flex flex-col sm:flex-row justify-between items-center">
-				<p class="text-center text-gray-500 text-sm mb-4 sm:mb-0">
+		<div class="mt-8 border-t border-gray-200 pt-8">
+			<div class="flex flex-col items-center justify-between sm:flex-row">
+				<p class="mb-4 text-center text-sm text-gray-500 sm:mb-0">
 					© {new Date().getFullYear()} AlphaBits. All rights reserved.
 				</p>
-				
-
 			</div>
 		</div>
 	</div>

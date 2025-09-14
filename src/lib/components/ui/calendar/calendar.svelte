@@ -1,22 +1,21 @@
 <script lang="ts">
-	import { Calendar as CalendarPrimitive } from "bits-ui";
-	import { cn } from "$lib/utils.js";
-	import type { DateValue } from "@internationalized/date";
+	import { Calendar as CalendarPrimitive } from 'bits-ui';
+	import { cn } from '$lib/utils.js';
+	import type { DateValue } from '@internationalized/date';
 
 	let {
 		ref = $bindable(null),
 		value = $bindable(),
 		placeholder = $bindable(),
 		class: className,
-		weekdayFormat = "short" as "short" | "long" | "narrow",
-		locale = "en-US",
+		weekdayFormat = 'short' as 'short' | 'long' | 'narrow',
+		locale = 'en-US',
 		disableDaysOutsideMonth = false,
 		isDateUnavailable,
 		isDateDisabled,
-		type = "single",
+		type = 'single',
 		...restProps
 	} = $props();
-
 </script>
 
 <CalendarPrimitive.Root
@@ -28,24 +27,21 @@
 	{disableDaysOutsideMonth}
 	{isDateUnavailable}
 	{isDateDisabled}
-	class={cn(
-		"p-3 bg-background [--cell-size:theme(spacing.10)]",
-		className
-	)}
+	class={cn('bg-background p-3 [--cell-size:theme(spacing.10)]', className)}
 	{locale}
 	{...restProps}
 >
 	{#snippet children({ months, weekdays })}
-		<div class="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+		<div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
 			{#each months as month}
 				<div class="space-y-4">
-					<CalendarPrimitive.Header class="flex justify-center pt-1 relative items-center">
+					<CalendarPrimitive.Header class="relative flex items-center justify-center pt-1">
 						<CalendarPrimitive.PrevButton
-							class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 absolute left-1"
+							class="absolute left-1 inline-flex h-7 w-7 items-center justify-center rounded-md border border-input bg-background bg-transparent p-0 text-sm font-medium whitespace-nowrap opacity-50 shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground hover:opacity-100 focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
 						/>
 						<CalendarPrimitive.Heading class="text-sm font-medium" />
 						<CalendarPrimitive.NextButton
-							class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 absolute right-1"
+							class="absolute right-1 inline-flex h-7 w-7 items-center justify-center rounded-md border border-input bg-background bg-transparent p-0 text-sm font-medium whitespace-nowrap opacity-50 shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground hover:opacity-100 focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
 						/>
 					</CalendarPrimitive.Header>
 					<CalendarPrimitive.Grid class="w-full border-collapse space-y-1">
@@ -53,7 +49,7 @@
 							<CalendarPrimitive.GridRow class="flex">
 								{#each weekdays as weekday}
 									<CalendarPrimitive.HeadCell
-										class="text-muted-foreground rounded-md w-8 font-normal text-[0.8rem] flex-1 flex items-center justify-center"
+										class="flex w-8 flex-1 items-center justify-center rounded-md text-[0.8rem] font-normal text-muted-foreground"
 									>
 										{weekday.slice(0, 2)}
 									</CalendarPrimitive.HeadCell>
@@ -62,11 +58,15 @@
 						</CalendarPrimitive.GridHead>
 						<CalendarPrimitive.GridBody>
 							{#each month.weeks as weekDates}
-								<CalendarPrimitive.GridRow class="flex w-full mt-2">
+								<CalendarPrimitive.GridRow class="mt-2 flex w-full">
 									{#each weekDates as date}
-										<CalendarPrimitive.Cell {date} month={month.value} class="relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([data-outside-month])]:text-muted-foreground flex-1 flex items-center justify-center">
+										<CalendarPrimitive.Cell
+											{date}
+											month={month.value}
+											class="relative flex flex-1 items-center justify-center p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([data-outside-month])]:text-muted-foreground"
+										>
 											<CalendarPrimitive.Day
-												class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0 font-normal aria-selected:opacity-100 data-[outside-month]:text-muted-foreground data-[outside-month]:opacity-50 [&[aria-selected]]:bg-primary [&[aria-selected]]:text-primary-foreground data-[unavailable]:line-through data-[unavailable]:opacity-30"
+												class="inline-flex h-8 w-8 items-center justify-center rounded-md p-0 text-sm font-medium font-normal whitespace-nowrap transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 aria-selected:opacity-100 data-[outside-month]:text-muted-foreground data-[outside-month]:opacity-50 data-[unavailable]:line-through data-[unavailable]:opacity-30 [&[aria-selected]]:bg-primary [&[aria-selected]]:text-primary-foreground"
 											/>
 										</CalendarPrimitive.Cell>
 									{/each}

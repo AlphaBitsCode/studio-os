@@ -1,531 +1,787 @@
 <script lang="ts">
-    import { fade, fly } from 'svelte/transition';
-    // Helper functions moved to client-side
-    function formatDate(dateString: string | null | undefined): string {
-        if (!dateString) return '';
-        const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric'
-        });
-    }
-    
-    function calculateReadTime(content: string | null | undefined): number {
-        if (!content) return 1;
-        const wordsPerMinute = 200;
-        const wordCount = content.split(/\s+/).length;
-        return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
-    }
-    
-    function getImageUrl(imageId: string | null | undefined): string {
-        if (!imageId) return '/placeholder-image.svg';
-        // Use the public Directus URL for client-side image loading
-        const directusUrl = 'https://kore.alphabits.team';
-        return `${directusUrl}/assets/${imageId}?width=600&height=400&fit=cover&quality=80`;
-    }
-    
-    function getAvatarUrl(avatarId: string | null | undefined, size: number = 40): string {
-        if (!avatarId) return '/placeholder-avatar.svg';
-        // Use the hardcoded Directus URL for client-side compatibility
-        const directusUrl = 'https://kore.alphabits.team';
-        return `${directusUrl}/assets/${avatarId}?width=${size}&height=${size}&fit=cover&quality=80`;
-    }
-    
-    function getAuthorName(author: any): string {
-        if (!author) return 'AlphaBits';
-        if (typeof author === 'string') return author;
-        return author.name || 'AlphaBits';
-    }
-    
-    function getAuthorInitials(author: any): string {
-        if (!author) return 'AB';
-        const name = typeof author === 'string' ? author : author.name;
-        if (!name) return 'AB';
-        const words = name.split(' ');
-        return words.length > 1 ? `${words[0][0]}${words[1][0]}`.toUpperCase() : name.substring(0, 2).toUpperCase();
-    }
-    import type { PageData } from './$types';
-    
-    export let data: PageData;
-    
-    let mounted = false;
-    
-    // Use server-side data
-    $: ({ categories, blogPostsByCategory, loading, error } = data);
-    
-    // Tech words for random display
-    const techWords = ['Bits', 'Bytes', 'API', 'SaaS', 'A.I', 'Data', 'Code', 'IoT', 'DX', 'React', 'GCP', 'Docker', 'NodeRED', 'DB', 'SQL', 'GraphQL', 'Rust'];
-    
-    function getRandomWords(arr: string[], count: number) {
-        const shuffled = [...arr].sort(() => 0.5 - Math.random());
-        return shuffled.slice(0, count);
-    }
-    
-    $: randomTechWords = getRandomWords(techWords, 5).join(', ');
-    
-    interface BlogPost {
-        id: number;
-        title: string;
-        excerpt: string;
-        category: string;
-        tags: string[];
-        author: string;
-        readTime: number;
-        publishedAt: string;
-        thumbnail: string;
-        featured: boolean;
-    }
-    
-    import { onMount } from 'svelte';
-    
-    onMount(() => {
-        mounted = true;
-    });
-    
-    // Helper function to get category icon path - now dynamic based on actual categories
-    function getCategoryIconPath(categoryTitle: string): string {
-        const iconType = getCategoryIcon(categoryTitle);
-        const iconMap: { [key: string]: string } = {
-            'software': '/icons/icon_software.png',
-            'iot': '/icons/icon_iot.png',
-            'data': '/icons/icon_data.png',
-            'ai': '/icons/icon_ai.png',
-            'dx': '/icons/icon_dx.png',
-            'analytics': '/icons/icon_analytics.png',
-            'workflow': '/icons/icon_workflow.png'
-        };
-        return iconMap[iconType] || '/icons/icon_software.png';
-    }
-    
-    // Updated category icon mapping to match actual Directus categories
-    function getCategoryIcon(categoryTitle: string): string {
-        const iconMap: Record<string, string> = {
-            'Software Dev': 'software',
-            'IoT News': 'iot',
-            'Data & Analytics': 'analytics',
-            'Workflow Automation': 'workflow',
-            'Digital Transformation': 'dx'
-        };
-        return iconMap[categoryTitle] || 'software';
-    }
+	import { fade, fly } from 'svelte/transition';
+	// Helper functions moved to client-side
+	function formatDate(dateString: string | null | undefined): string {
+		if (!dateString) return '';
+		const date = new Date(dateString);
+		return date.toLocaleDateString('en-US', {
+			year: 'numeric',
+			month: 'short',
+			day: 'numeric'
+		});
+	}
+
+	function calculateReadTime(content: string | null | undefined): number {
+		if (!content) return 1;
+		const wordsPerMinute = 200;
+		const wordCount = content.split(/\s+/).length;
+		return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
+	}
+
+	function getImageUrl(imageId: string | null | undefined): string {
+		if (!imageId) return '/placeholder-image.svg';
+		// Use the public Directus URL for client-side image loading
+		const directusUrl = 'https://kore.alphabits.team';
+		return `${directusUrl}/assets/${imageId}?width=600&height=400&fit=cover&quality=80`;
+	}
+
+	function getAvatarUrl(avatarId: string | null | undefined, size: number = 40): string {
+		if (!avatarId) return '/placeholder-avatar.svg';
+		// Use the hardcoded Directus URL for client-side compatibility
+		const directusUrl = 'https://kore.alphabits.team';
+		return `${directusUrl}/assets/${avatarId}?width=${size}&height=${size}&fit=cover&quality=80`;
+	}
+
+	function getAuthorName(author: any): string {
+		if (!author) return 'AlphaBits';
+		if (typeof author === 'string') return author;
+		return author.name || 'AlphaBits';
+	}
+
+	function getAuthorInitials(author: any): string {
+		if (!author) return 'AB';
+		const name = typeof author === 'string' ? author : author.name;
+		if (!name) return 'AB';
+		const words = name.split(' ');
+		return words.length > 1
+			? `${words[0][0]}${words[1][0]}`.toUpperCase()
+			: name.substring(0, 2).toUpperCase();
+	}
+	import type { PageData } from './$types';
+
+	export let data: PageData;
+
+	let mounted = false;
+
+	// Use server-side data
+	$: ({ categories, blogPostsByCategory, loading, error } = data);
+
+	// Tech words for random display
+	const techWords = [
+		'Bits',
+		'Bytes',
+		'API',
+		'SaaS',
+		'A.I',
+		'Data',
+		'Code',
+		'IoT',
+		'DX',
+		'React',
+		'GCP',
+		'Docker',
+		'NodeRED',
+		'DB',
+		'SQL',
+		'GraphQL',
+		'Rust'
+	];
+
+	function getRandomWords(arr: string[], count: number) {
+		const shuffled = [...arr].sort(() => 0.5 - Math.random());
+		return shuffled.slice(0, count);
+	}
+
+	$: randomTechWords = getRandomWords(techWords, 5).join(', ');
+
+	interface BlogPost {
+		id: number;
+		title: string;
+		excerpt: string;
+		category: string;
+		tags: string[];
+		author: string;
+		readTime: number;
+		publishedAt: string;
+		thumbnail: string;
+		featured: boolean;
+	}
+
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		mounted = true;
+	});
+
+	// Helper function to get category icon path - now dynamic based on actual categories
+	function getCategoryIconPath(categoryTitle: string): string {
+		const iconType = getCategoryIcon(categoryTitle);
+		const iconMap: { [key: string]: string } = {
+			software: '/icons/icon_software.png',
+			iot: '/icons/icon_iot.png',
+			data: '/icons/icon_data.png',
+			ai: '/icons/icon_ai.png',
+			dx: '/icons/icon_dx.png',
+			analytics: '/icons/icon_analytics.png',
+			workflow: '/icons/icon_workflow.png'
+		};
+		return iconMap[iconType] || '/icons/icon_software.png';
+	}
+
+	// Updated category icon mapping to match actual Directus categories
+	function getCategoryIcon(categoryTitle: string): string {
+		const iconMap: Record<string, string> = {
+			'Software Dev': 'software',
+			'IoT News': 'iot',
+			'Data & Analytics': 'analytics',
+			'Workflow Automation': 'workflow',
+			'Digital Transformation': 'dx'
+		};
+		return iconMap[categoryTitle] || 'software';
+	}
 </script>
 
 <svelte:head>
-    <title>Tech Hotpot - AlphaBits Technology Hub | Latest Tech Insights & Tutorials</title>
-    <meta name="description" content="Explore cutting-edge technology insights, AI developments, IoT innovations, and digital transformation strategies with AlphaBits Tech Hotpot. Expert tutorials, industry analysis, and practical guides for developers and tech leaders." />
-    <meta name="keywords" content="technology blog, AI, IoT, digital transformation, software development, tech tutorials, AlphaBits, programming, automation, data analytics" />
-    <meta name="author" content="AlphaBits Team" />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://alphabits.team/tech-hotpot" />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Tech Hotpot - AlphaBits Technology Hub" />
-    <meta property="og:description" content="Explore cutting-edge technology insights, AI developments, IoT innovations, and digital transformation strategies with AlphaBits Tech Hotpot." />
-    <meta property="og:image" content="https://alphabits.team/logos/logo_square.png" />
-    <meta property="og:url" content="https://alphabits.team/tech-hotpot" />
-    <meta property="og:site_name" content="AlphaBits" />
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Tech Hotpot - AlphaBits Technology Hub" />
-    <meta name="twitter:description" content="Explore cutting-edge technology insights, AI developments, IoT innovations, and digital transformation strategies." />
-    <meta name="twitter:image" content="https://alphabits.team/logos/logo_square.png" />
-    
-    <!-- Additional SEO -->
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow" />
-    <meta name="language" content="English" />
-    <meta name="revisit-after" content="7 days" />
-    
-    <!-- Schema.org structured data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Blog",
-        "name": "Tech Hotpot",
-        "description": "AlphaBits Technology Hub featuring the latest insights in AI, IoT, and digital transformation",
-        "url": "https://alphabits.team/tech-hotpot",
-        "publisher": {
-            "@type": "Organization",
-            "name": "AlphaBits",
-            "url": "https://alphabits.team",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://alphabits.team/logos/logo_square.png"
-            }
-        },
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https://alphabits.team/tech-hotpot"
-        }
-    }
-    </script>
+	<title>Tech Hotpot - AlphaBits Technology Hub | Latest Tech Insights & Tutorials</title>
+	<meta
+		name="description"
+		content="Explore cutting-edge technology insights, AI developments, IoT innovations, and digital transformation strategies with AlphaBits Tech Hotpot. Expert tutorials, industry analysis, and practical guides for developers and tech leaders."
+	/>
+	<meta
+		name="keywords"
+		content="technology blog, AI, IoT, digital transformation, software development, tech tutorials, AlphaBits, programming, automation, data analytics"
+	/>
+	<meta name="author" content="AlphaBits Team" />
+
+	<!-- Canonical URL -->
+	<link rel="canonical" href="https://alphabits.team/tech-hotpot" />
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Tech Hotpot - AlphaBits Technology Hub" />
+	<meta
+		property="og:description"
+		content="Explore cutting-edge technology insights, AI developments, IoT innovations, and digital transformation strategies with AlphaBits Tech Hotpot."
+	/>
+	<meta property="og:image" content="https://alphabits.team/logos/logo_square.png" />
+	<meta property="og:url" content="https://alphabits.team/tech-hotpot" />
+	<meta property="og:site_name" content="AlphaBits" />
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Tech Hotpot - AlphaBits Technology Hub" />
+	<meta
+		name="twitter:description"
+		content="Explore cutting-edge technology insights, AI developments, IoT innovations, and digital transformation strategies."
+	/>
+	<meta name="twitter:image" content="https://alphabits.team/logos/logo_square.png" />
+
+	<!-- Additional SEO -->
+	<meta name="robots" content="index, follow" />
+	<meta name="googlebot" content="index, follow" />
+	<meta name="language" content="English" />
+	<meta name="revisit-after" content="7 days" />
+
+	<!-- Schema.org structured data -->
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Blog",
+			"name": "Tech Hotpot",
+			"description": "AlphaBits Technology Hub featuring the latest insights in AI, IoT, and digital transformation",
+			"url": "https://alphabits.team/tech-hotpot",
+			"publisher": {
+				"@type": "Organization",
+				"name": "AlphaBits",
+				"url": "https://alphabits.team",
+				"logo": {
+					"@type": "ImageObject",
+					"url": "https://alphabits.team/logos/logo_square.png"
+				}
+			},
+			"mainEntityOfPage": {
+				"@type": "WebPage",
+				"@id": "https://alphabits.team/tech-hotpot"
+			}
+		}
+	</script>
 </svelte:head>
 
 <!-- Animated Background -->
 <div class="fixed inset-0 -z-10 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50"></div>
-    <!-- Floating particles -->
-    <div class="absolute inset-0">
-        {#each Array(20) as _, i}
-            <div 
-                class="absolute w-2 h-2 bg-blue-400 rounded-full opacity-20 animate-float"
-                style="
+	<div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50"></div>
+	<!-- Floating particles -->
+	<div class="absolute inset-0">
+		{#each Array(20) as _, i}
+			<div
+				class="animate-float absolute h-2 w-2 rounded-full bg-blue-400 opacity-20"
+				style="
                     left: {Math.random() * 100}%;
                     top: {Math.random() * 100}%;
                     animation-delay: {Math.random() * 5}s;
                     animation-duration: {3 + Math.random() * 4}s;
                 "
-            ></div>
-        {/each}
-    </div>
+			></div>
+		{/each}
+	</div>
 </div>
 
 <!-- Header -->
 <header class="relative z-10 py-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="flex items-center justify-center space-x-4 mb-4">
-            <!-- Tech Hotpot Logo - Intricate Design -->
-            <div class="relative">
-                <svg class="w-20 h-20" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Gradient Definitions -->
-                    <defs>
-                        <linearGradient id="potGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
-                            <stop offset="50%" style="stop-color:#f7931e;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#ff4500;stop-opacity:1" />
-                        </linearGradient>
-                        <linearGradient id="steamGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-                            <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.8" />
-                            <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:0.6" />
-                            <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:0.4" />
-                        </linearGradient>
-                        <radialGradient id="circuitGlow" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.8" />
-                            <stop offset="100%" style="stop-color:#059669;stop-opacity:0.3" />
-                        </radialGradient>
-                    </defs>
-                    
-                    <!-- Pot Shadow -->
-                    <ellipse cx="50" cy="85" rx="25" ry="4" fill="#000000" opacity="0.2"/>
-                    
-                    <!-- Main Pot Body -->
-                    <path d="M20 45 L80 45 L78 75 C78 78 75 80 72 80 L28 80 C25 80 22 78 22 75 Z" 
-                          fill="url(#potGradient)" stroke="#d97706" stroke-width="1.5"/>
-                    
-                    <!-- Pot Rim -->
-                    <ellipse cx="50" cy="45" rx="30" ry="3" fill="#ea580c" stroke="#9a3412" stroke-width="1"/>
-                    
-                    <!-- Left Handle -->
-                    <path d="M15 40 C12 40 10 42 10 45 C10 48 12 50 15 50 L20 50 L20 45 L20 40 Z" 
-                          fill="#92400e" stroke="#451a03" stroke-width="1.5"/>
-                    
-                    <!-- Right Handle -->
-                    <path d="M85 40 C88 40 90 42 90 45 C90 48 88 50 85 50 L80 50 L80 45 L80 40 Z" 
-                          fill="#92400e" stroke="#451a03" stroke-width="1.5"/>
-                    
-                    <!-- Tech Circuit Pattern Inside Pot -->
-                    <g opacity="0.6">
-                        <!-- Circuit Board Lines -->
-                        <path d="M30 55 L35 55 L35 60 L40 60" stroke="url(#circuitGlow)" stroke-width="2" fill="none"/>
-                        <path d="M60 55 L65 55 L65 60 L70 60" stroke="url(#circuitGlow)" stroke-width="2" fill="none"/>
-                        <path d="M45 65 L55 65" stroke="url(#circuitGlow)" stroke-width="2" fill="none"/>
-                        
-                        <!-- Circuit Nodes -->
-                        <circle cx="35" cy="55" r="2" fill="#10b981"/>
-                        <circle cx="40" cy="60" r="2" fill="#10b981"/>
-                        <circle cx="65" cy="55" r="2" fill="#10b981"/>
-                        <circle cx="70" cy="60" r="2" fill="#10b981"/>
-                        <circle cx="50" cy="65" r="2" fill="#10b981"/>
-                        
-                        <!-- Microchip Symbol -->
-                        <rect x="47" y="57" width="6" height="6" fill="#374151" stroke="#10b981" stroke-width="1"/>
-                        <rect x="48.5" y="58.5" width="3" height="3" fill="#10b981"/>
-                    </g>
-                    
-                    <!-- Steam/Data Streams -->
-                    <g class="animate-pulse">
-                        <!-- Left Steam -->
-                        <path d="M35 40 Q37 35 35 30 Q33 25 35 20 Q37 15 35 10" 
-                              stroke="url(#steamGradient)" stroke-width="2.5" fill="none" 
-                              class="animate-bounce" style="animation-delay: 0s"/>
-                        
-                        <!-- Center Steam -->
-                        <path d="M50 40 Q52 35 50 30 Q48 25 50 20 Q52 15 50 10" 
-                              stroke="url(#steamGradient)" stroke-width="3" fill="none" 
-                              class="animate-bounce" style="animation-delay: 0.3s"/>
-                        
-                        <!-- Right Steam -->
-                        <path d="M65 40 Q67 35 65 30 Q63 25 65 20 Q67 15 65 10" 
-                              stroke="url(#steamGradient)" stroke-width="2.5" fill="none" 
-                              class="animate-bounce" style="animation-delay: 0.6s"/>
-                    </g>
-                    
-                    <!-- Digital Particles -->
-                    <g class="animate-ping" style="animation-delay: 1s">
-                        <circle cx="42" cy="25" r="1" fill="#3b82f6" opacity="0.8"/>
-                        <circle cx="58" cy="18" r="1" fill="#10b981" opacity="0.8"/>
-                        <circle cx="48" cy="12" r="1" fill="#f59e0b" opacity="0.8"/>
-                    </g>
-                    
-                    <!-- Binary Code Floating -->
-                    <g class="animate-pulse" style="animation-delay: 0.5s">
-                        <text x="25" y="15" font-family="monospace" font-size="4" fill="#6b7280" opacity="0.7">101</text>
-                        <text x="70" y="25" font-family="monospace" font-size="4" fill="#6b7280" opacity="0.7">010</text>
-                        <text x="55" y="8" font-family="monospace" font-size="4" fill="#6b7280" opacity="0.7">110</text>
-                    </g>
-                    
-                    <!-- Pot Lid (Optional Tech Element) -->
-                    <ellipse cx="50" cy="42" rx="28" ry="2" fill="#dc2626" opacity="0.3"/>
-                </svg>
-            </div>
-            <h1 class="text-5xl md:text-6xl font-bold text-orange-600">
-                TECH HOTPOT
-            </h1>
-        </div>
+	<div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+		<div class="mb-4 flex items-center justify-center space-x-4">
+			<!-- Tech Hotpot Logo - Intricate Design -->
+			<div class="relative">
+				<svg class="h-20 w-20" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<!-- Gradient Definitions -->
+					<defs>
+						<linearGradient id="potGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+							<stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+							<stop offset="50%" style="stop-color:#f7931e;stop-opacity:1" />
+							<stop offset="100%" style="stop-color:#ff4500;stop-opacity:1" />
+						</linearGradient>
+						<linearGradient id="steamGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+							<stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.8" />
+							<stop offset="50%" style="stop-color:#3b82f6;stop-opacity:0.6" />
+							<stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:0.4" />
+						</linearGradient>
+						<radialGradient id="circuitGlow" cx="50%" cy="50%" r="50%">
+							<stop offset="0%" style="stop-color:#10b981;stop-opacity:0.8" />
+							<stop offset="100%" style="stop-color:#059669;stop-opacity:0.3" />
+						</radialGradient>
+					</defs>
 
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-            {randomTechWords}
-        </p>
-    </div>
+					<!-- Pot Shadow -->
+					<ellipse cx="50" cy="85" rx="25" ry="4" fill="#000000" opacity="0.2" />
+
+					<!-- Main Pot Body -->
+					<path
+						d="M20 45 L80 45 L78 75 C78 78 75 80 72 80 L28 80 C25 80 22 78 22 75 Z"
+						fill="url(#potGradient)"
+						stroke="#d97706"
+						stroke-width="1.5"
+					/>
+
+					<!-- Pot Rim -->
+					<ellipse
+						cx="50"
+						cy="45"
+						rx="30"
+						ry="3"
+						fill="#ea580c"
+						stroke="#9a3412"
+						stroke-width="1"
+					/>
+
+					<!-- Left Handle -->
+					<path
+						d="M15 40 C12 40 10 42 10 45 C10 48 12 50 15 50 L20 50 L20 45 L20 40 Z"
+						fill="#92400e"
+						stroke="#451a03"
+						stroke-width="1.5"
+					/>
+
+					<!-- Right Handle -->
+					<path
+						d="M85 40 C88 40 90 42 90 45 C90 48 88 50 85 50 L80 50 L80 45 L80 40 Z"
+						fill="#92400e"
+						stroke="#451a03"
+						stroke-width="1.5"
+					/>
+
+					<!-- Tech Circuit Pattern Inside Pot -->
+					<g opacity="0.6">
+						<!-- Circuit Board Lines -->
+						<path
+							d="M30 55 L35 55 L35 60 L40 60"
+							stroke="url(#circuitGlow)"
+							stroke-width="2"
+							fill="none"
+						/>
+						<path
+							d="M60 55 L65 55 L65 60 L70 60"
+							stroke="url(#circuitGlow)"
+							stroke-width="2"
+							fill="none"
+						/>
+						<path d="M45 65 L55 65" stroke="url(#circuitGlow)" stroke-width="2" fill="none" />
+
+						<!-- Circuit Nodes -->
+						<circle cx="35" cy="55" r="2" fill="#10b981" />
+						<circle cx="40" cy="60" r="2" fill="#10b981" />
+						<circle cx="65" cy="55" r="2" fill="#10b981" />
+						<circle cx="70" cy="60" r="2" fill="#10b981" />
+						<circle cx="50" cy="65" r="2" fill="#10b981" />
+
+						<!-- Microchip Symbol -->
+						<rect
+							x="47"
+							y="57"
+							width="6"
+							height="6"
+							fill="#374151"
+							stroke="#10b981"
+							stroke-width="1"
+						/>
+						<rect x="48.5" y="58.5" width="3" height="3" fill="#10b981" />
+					</g>
+
+					<!-- Steam/Data Streams -->
+					<g class="animate-pulse">
+						<!-- Left Steam -->
+						<path
+							d="M35 40 Q37 35 35 30 Q33 25 35 20 Q37 15 35 10"
+							stroke="url(#steamGradient)"
+							stroke-width="2.5"
+							fill="none"
+							class="animate-bounce"
+							style="animation-delay: 0s"
+						/>
+
+						<!-- Center Steam -->
+						<path
+							d="M50 40 Q52 35 50 30 Q48 25 50 20 Q52 15 50 10"
+							stroke="url(#steamGradient)"
+							stroke-width="3"
+							fill="none"
+							class="animate-bounce"
+							style="animation-delay: 0.3s"
+						/>
+
+						<!-- Right Steam -->
+						<path
+							d="M65 40 Q67 35 65 30 Q63 25 65 20 Q67 15 65 10"
+							stroke="url(#steamGradient)"
+							stroke-width="2.5"
+							fill="none"
+							class="animate-bounce"
+							style="animation-delay: 0.6s"
+						/>
+					</g>
+
+					<!-- Digital Particles -->
+					<g class="animate-ping" style="animation-delay: 1s">
+						<circle cx="42" cy="25" r="1" fill="#3b82f6" opacity="0.8" />
+						<circle cx="58" cy="18" r="1" fill="#10b981" opacity="0.8" />
+						<circle cx="48" cy="12" r="1" fill="#f59e0b" opacity="0.8" />
+					</g>
+
+					<!-- Binary Code Floating -->
+					<g class="animate-pulse" style="animation-delay: 0.5s">
+						<text x="25" y="15" font-family="monospace" font-size="4" fill="#6b7280" opacity="0.7"
+							>101</text
+						>
+						<text x="70" y="25" font-family="monospace" font-size="4" fill="#6b7280" opacity="0.7"
+							>010</text
+						>
+						<text x="55" y="8" font-family="monospace" font-size="4" fill="#6b7280" opacity="0.7"
+							>110</text
+						>
+					</g>
+
+					<!-- Pot Lid (Optional Tech Element) -->
+					<ellipse cx="50" cy="42" rx="28" ry="2" fill="#dc2626" opacity="0.3" />
+				</svg>
+			</div>
+			<h1 class="text-5xl font-bold text-orange-600 md:text-6xl">TECH HOTPOT</h1>
+		</div>
+
+		<p class="mx-auto max-w-2xl text-xl text-gray-600">
+			{randomTechWords}
+		</p>
+	</div>
 </header>
 
 <!-- Sticky Category Navigation -->
-<nav class="sticky top-14 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
-    <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
-        <div class="flex items-center justify-between sm:justify-center py-3">
-            <div class="flex items-center justify-between sm:justify-center w-full sm:w-auto space-x-1 sm:space-x-4 md:space-x-6 lg:space-x-8">
-                {#each categories as category, index}
-                    <a 
-                        href="/tech-hotpot/all?category={encodeURIComponent(category.slug)}"
-                        class="group flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105"
-                        in:fly={{ y: -20, delay: index * 50, duration: 400 }}
-                    >
-                        <!-- Compact Category Icon -->
-                        <div class="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 mb-1">
-                            {#if getCategoryIcon(category.title) === 'software'}
-                                <svg class="w-full h-full text-blue-500 group-hover:text-blue-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
-                                    <rect x="8" y="12" width="48" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <path d="M16 20 L20 24 L16 28" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <line x1="24" y1="28" x2="32" y2="28" stroke="currentColor" stroke-width="2"/>
-                                </svg>
-                            {:else if getCategoryIcon(category.title) === 'iot'}
-                                <svg class="w-full h-full text-green-500 group-hover:text-green-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
-                                    <circle cx="32" cy="20" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <circle cx="16" cy="40" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <circle cx="48" cy="40" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <circle cx="32" cy="52" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <path d="M32 26 L32 32 M26 20 L20 36 M38 20 L44 36 M32 32 L16 40 M32 32 L48 40 M32 32 L32 48" stroke="currentColor" stroke-width="2"/>
-                                </svg>
-                            {:else if getCategoryIcon(category.title) === 'analytics'}
-                                <svg class="w-full h-full text-purple-500 group-hover:text-purple-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
-                                    <rect x="8" y="32" width="8" height="24" rx="2"/>
-                                    <rect x="20" y="24" width="8" height="32" rx="2"/>
-                                    <rect x="32" y="16" width="8" height="40" rx="2"/>
-                                    <rect x="44" y="28" width="8" height="28" rx="2"/>
-                                </svg>
-                            {:else if getCategoryIcon(category.title) === 'workflow'}
-                                <svg class="w-full h-full text-teal-500 group-hover:text-teal-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
-                                    <circle cx="16" cy="16" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <circle cx="48" cy="16" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <circle cx="32" cy="48" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <path d="M24 16 L40 16 M24 22 L26 40 M40 22 L38 40" stroke="currentColor" stroke-width="2"/>
-                                    <path d="M16 24 L16 32 L24 40 M48 24 L48 32 L40 40" stroke="currentColor" stroke-width="2"/>
-                                </svg>
-                            {:else if getCategoryIcon(category.title) === 'dx'}
-                                <svg class="w-full h-full text-orange-500 group-hover:text-orange-600 transition-colors" viewBox="0 0 64 64" fill="currentColor">
-                                    <circle cx="20" cy="32" r="12" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <path d="M14 26 L26 38 M26 26 L14 38" stroke="currentColor" stroke-width="2"/>
-                                    <rect x="40" y="20" width="16" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <circle cx="44" cy="28" r="1"/>
-                                    <circle cx="52" cy="28" r="1"/>
-                                    <path d="M44 36 Q48 32 52 36" fill="none" stroke="currentColor" stroke-width="2"/>
-                                </svg>
-                            {/if}
-                        </div>
-                        
-                        <!-- Compact Category Name -->
-                        <span class="text-xs sm:text-sm font-medium text-gray-700 group-hover:text-gray-900 transition-colors text-center leading-tight max-w-16 sm:max-w-none">
-                            <span class="hidden sm:inline">{category.title.replace(' & ', '\n&\n').replace(' ', '\n')}</span>
-                            <span class="sm:hidden">{category.title.split(' ')[0]}</span>
-                        </span>
-                    </a>
-                {/each}
-            </div>
-        </div>
-    </div>
+<nav class="sticky top-14 z-40 border-b border-gray-200 bg-white/90 shadow-sm backdrop-blur-md">
+	<div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
+		<div class="flex items-center justify-between py-3 sm:justify-center">
+			<div
+				class="flex w-full items-center justify-between space-x-1 sm:w-auto sm:justify-center sm:space-x-4 md:space-x-6 lg:space-x-8"
+			>
+				{#each categories as category, index}
+					<a
+						href="/tech-hotpot/all?category={encodeURIComponent(category.slug)}"
+						class="group flex cursor-pointer flex-col items-center transition-all duration-200 hover:scale-105"
+						in:fly={{ y: -20, delay: index * 50, duration: 400 }}
+					>
+						<!-- Compact Category Icon -->
+						<div class="mb-1 h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10">
+							{#if getCategoryIcon(category.title) === 'software'}
+								<svg
+									class="h-full w-full text-blue-500 transition-colors group-hover:text-blue-600"
+									viewBox="0 0 64 64"
+									fill="currentColor"
+								>
+									<rect
+										x="8"
+										y="12"
+										width="48"
+										height="32"
+										rx="4"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									/>
+									<path
+										d="M16 20 L20 24 L16 28"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									/>
+									<line x1="24" y1="28" x2="32" y2="28" stroke="currentColor" stroke-width="2" />
+								</svg>
+							{:else if getCategoryIcon(category.title) === 'iot'}
+								<svg
+									class="h-full w-full text-green-500 transition-colors group-hover:text-green-600"
+									viewBox="0 0 64 64"
+									fill="currentColor"
+								>
+									<circle
+										cx="32"
+										cy="20"
+										r="6"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									/>
+									<circle
+										cx="16"
+										cy="40"
+										r="4"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									/>
+									<circle
+										cx="48"
+										cy="40"
+										r="4"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									/>
+									<circle
+										cx="32"
+										cy="52"
+										r="4"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									/>
+									<path
+										d="M32 26 L32 32 M26 20 L20 36 M38 20 L44 36 M32 32 L16 40 M32 32 L48 40 M32 32 L32 48"
+										stroke="currentColor"
+										stroke-width="2"
+									/>
+								</svg>
+							{:else if getCategoryIcon(category.title) === 'analytics'}
+								<svg
+									class="h-full w-full text-purple-500 transition-colors group-hover:text-purple-600"
+									viewBox="0 0 64 64"
+									fill="currentColor"
+								>
+									<rect x="8" y="32" width="8" height="24" rx="2" />
+									<rect x="20" y="24" width="8" height="32" rx="2" />
+									<rect x="32" y="16" width="8" height="40" rx="2" />
+									<rect x="44" y="28" width="8" height="28" rx="2" />
+								</svg>
+							{:else if getCategoryIcon(category.title) === 'workflow'}
+								<svg
+									class="h-full w-full text-teal-500 transition-colors group-hover:text-teal-600"
+									viewBox="0 0 64 64"
+									fill="currentColor"
+								>
+									<circle
+										cx="16"
+										cy="16"
+										r="8"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									/>
+									<circle
+										cx="48"
+										cy="16"
+										r="8"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									/>
+									<circle
+										cx="32"
+										cy="48"
+										r="8"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									/>
+									<path
+										d="M24 16 L40 16 M24 22 L26 40 M40 22 L38 40"
+										stroke="currentColor"
+										stroke-width="2"
+									/>
+									<path
+										d="M16 24 L16 32 L24 40 M48 24 L48 32 L40 40"
+										stroke="currentColor"
+										stroke-width="2"
+									/>
+								</svg>
+							{:else if getCategoryIcon(category.title) === 'dx'}
+								<svg
+									class="h-full w-full text-orange-500 transition-colors group-hover:text-orange-600"
+									viewBox="0 0 64 64"
+									fill="currentColor"
+								>
+									<circle
+										cx="20"
+										cy="32"
+										r="12"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									/>
+									<path d="M14 26 L26 38 M26 26 L14 38" stroke="currentColor" stroke-width="2" />
+									<rect
+										x="40"
+										y="20"
+										width="16"
+										height="24"
+										rx="2"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									/>
+									<circle cx="44" cy="28" r="1" />
+									<circle cx="52" cy="28" r="1" />
+									<path
+										d="M44 36 Q48 32 52 36"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									/>
+								</svg>
+							{/if}
+						</div>
+
+						<!-- Compact Category Name -->
+						<span
+							class="max-w-16 text-center text-xs leading-tight font-medium text-gray-700 transition-colors group-hover:text-gray-900 sm:max-w-none sm:text-sm"
+						>
+							<span class="hidden sm:inline"
+								>{category.title.replace(' & ', '\n&\n').replace(' ', '\n')}</span
+							>
+							<span class="sm:hidden">{category.title.split(' ')[0]}</span>
+						</span>
+					</a>
+				{/each}
+			</div>
+		</div>
+	</div>
 </nav>
 
 <!-- Hero Section -->
-<section class="relative py-8">
-</section>
+<section class="relative py-8"></section>
 
 <!-- Latest Blog Posts Section -->
-<section class="pb-16 bg-white/50 backdrop-blur-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {#if loading}
-            <div class="flex justify-center items-center py-16">
-                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
-                <span class="ml-3 text-gray-600">Loading blog posts...</span>
-            </div>
-        {:else if error}
-            <div class="text-center py-16">
-                <div class="text-red-500 mb-4">
-                    <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-                    </svg>
-                </div>
-                <p class="text-gray-600">{error}</p>
-                <a 
-                    href="/tech-hotpot"
-                    class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors inline-block"
-                >
-                    Refresh Page
-                </a>
-            </div>
-        {:else}
-            <!-- Blog Posts Grid by Category - 5 Columns Layout -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-                {#each categories as category, categoryIndex}
-                    {@const categoryPosts = blogPostsByCategory[category.title] || []}
-                    <div class="category-column" in:fly={{ x: -50, delay: categoryIndex * 100, duration: 600 }}>
-                            <!-- Category Header -->
-                            <div class="flex items-center mb-4">
-                                <div class="w-8 h-8 mr-2">
-                                    <img src="{getCategoryIconPath(category.title)}" alt="{category.title}" class="w-full h-full opacity-70" />
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-gray-800">{category.title}</h3>
-                                </div>
-                            </div>
-                            
-                            <!-- Posts in Column (2 posts per category) -->
-                            <div class="space-y-4">
-                                {#if categoryPosts.length === 0}
-                                    <!-- Empty category message -->
-                                    <div class="bg-gray-50 rounded-lg border-2 border-dashed border-gray-200 p-4 text-center">
-                                        <div class="text-gray-400 mb-2">
-                                            <svg class="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                                            </svg>
-                                        </div>
-                                        <p class="text-xs text-gray-500">No posts yet</p>
-                                        <p class="text-xs text-gray-400 mt-1">Coming soon!</p>
-                                    </div>
-                                {:else}
-                                    {#each categoryPosts.slice(0, 2) as post, postIndex}
-                                      <a 
-                                          href="/tech-hotpot/{post.slug}"
-                                          class="block bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-md hover:border-blue-300 transition-all duration-300 cursor-pointer"
-                                          in:fly={{ y: 20, delay: (categoryIndex * 100) + (postIndex * 50), duration: 400 }}
-                                      >
-                                         <!-- Post Thumbnail -->
-                                         <div class="h-32 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
-                                             <img 
-                                                 src="{getImageUrl(post.image)}" 
-                                                 alt="{post.title}" 
-                                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                                                 loading="lazy"
-                                             />
-                                         </div>
-                                        
-                                        <!-- Post Content -->
-                                         <div class="p-4">
-                                             <!-- Meta Information -->
-                                             <div class="flex items-center justify-between mb-2">
-                                                 <span class="text-xs text-gray-500">
-                                                     {calculateReadTime(post.content)} min read
-                                                 </span>
-                                                 <span class="text-xs text-gray-500">
-                                                     {formatDate(post.date_published || post.date_created)}
-                                                 </span>
-                                             </div>
-                                             
-                                             <!-- Post Title -->
-                                               <h4 class="text-sm font-semibold mb-2 line-clamp-2 text-gray-800">
-                                                   {post.title}
-                                               </h4>
-                                             
-                                             <!-- Post Excerpt -->
-                                             <p class="text-gray-600 text-xs mb-3 line-clamp-2">
-                                                 {post.summary || ''}
-                                             </p>
-                                            
-                                            <!-- Author -->
-                                              <div class="flex items-center justify-between">
-                                                  <div class="flex items-center space-x-1">
-                                                      {#if typeof post.author === 'object' && post.author?.image}
-                                                          <img 
-                                                              src="{getAvatarUrl(post.author.image, 20)}" 
-                                                              alt="{getAuthorName(post.author)}" 
-                                                              class="w-5 h-5 rounded-full object-cover"
-                                                              loading="lazy"
-                                                          />
-                                                      {:else}
-                                                          <div class="w-5 h-5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                                                              <span class="text-white text-xs font-semibold">
-                                                                   {getAuthorInitials(post.author)}
-                                                               </span>
-                                                          </div>
-                                                      {/if}
-                                                      <span class="text-xs text-gray-600">{getAuthorName(post.author)}</span>
-                                                  </div>
-                                                 
-                                                 <span class="text-blue-600 font-medium text-xs flex items-center space-x-1">
-                                                       <span>Read</span>
-                                                       <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                                       </svg>
-                                                   </span>
-                                             </div>
-                                        </div>
-                                    </a>
-                                     {/each}
-                                 {/if}
-                            </div>
-                        </div>
-                {/each}
-            </div>
-            
-            <div class="text-center mt-12">
-                <a 
-                    href="/tech-hotpot/all"
-                    class="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
-                >
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                    </svg>
-                    <span>View All Posts</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </a>
-            </div>
-        {/if}
-    </div>
+<section class="bg-white/50 pb-16 backdrop-blur-sm">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		{#if loading}
+			<div class="flex items-center justify-center py-16">
+				<div class="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-500"></div>
+				<span class="ml-3 text-gray-600">Loading blog posts...</span>
+			</div>
+		{:else if error}
+			<div class="py-16 text-center">
+				<div class="mb-4 text-red-500">
+					<svg class="mx-auto mb-4 h-16 w-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+						></path>
+					</svg>
+				</div>
+				<p class="text-gray-600">{error}</p>
+				<a
+					href="/tech-hotpot"
+					class="mt-4 inline-block rounded-lg bg-blue-500 px-6 py-2 text-white transition-colors hover:bg-blue-600"
+				>
+					Refresh Page
+				</a>
+			</div>
+		{:else}
+			<!-- Blog Posts Grid by Category - 5 Columns Layout -->
+			<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+				{#each categories as category, categoryIndex}
+					{@const categoryPosts = blogPostsByCategory[category.title] || []}
+					<div
+						class="category-column"
+						in:fly={{ x: -50, delay: categoryIndex * 100, duration: 600 }}
+					>
+						<!-- Category Header -->
+						<div class="mb-4 flex items-center">
+							<div class="mr-2 h-8 w-8">
+								<img
+									src={getCategoryIconPath(category.title)}
+									alt={category.title}
+									class="h-full w-full opacity-70"
+								/>
+							</div>
+							<div>
+								<h3 class="text-lg font-bold text-gray-800">{category.title}</h3>
+							</div>
+						</div>
+
+						<!-- Posts in Column (2 posts per category) -->
+						<div class="space-y-4">
+							{#if categoryPosts.length === 0}
+								<!-- Empty category message -->
+								<div
+									class="rounded-lg border-2 border-dashed border-gray-200 bg-gray-50 p-4 text-center"
+								>
+									<div class="mb-2 text-gray-400">
+										<svg
+											class="mx-auto h-8 w-8"
+											fill="none"
+											stroke="currentColor"
+											viewBox="0 0 24 24"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+											></path>
+										</svg>
+									</div>
+									<p class="text-xs text-gray-500">No posts yet</p>
+									<p class="mt-1 text-xs text-gray-400">Coming soon!</p>
+								</div>
+							{:else}
+								{#each categoryPosts.slice(0, 2) as post, postIndex}
+									<a
+										href="/tech-hotpot/{post.slug}"
+										class="block cursor-pointer overflow-hidden rounded-lg border border-gray-200 bg-white transition-all duration-300 hover:border-blue-300 hover:shadow-md"
+										in:fly={{ y: 20, delay: categoryIndex * 100 + postIndex * 50, duration: 400 }}
+									>
+										<!-- Post Thumbnail -->
+										<div class="h-32 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+											<img
+												src={getImageUrl(post.image)}
+												alt={post.title}
+												class="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+												loading="lazy"
+											/>
+										</div>
+
+										<!-- Post Content -->
+										<div class="p-4">
+											<!-- Meta Information -->
+											<div class="mb-2 flex items-center justify-between">
+												<span class="text-xs text-gray-500">
+													{calculateReadTime(post.content)} min read
+												</span>
+												<span class="text-xs text-gray-500">
+													{formatDate(post.date_published || post.date_created)}
+												</span>
+											</div>
+
+											<!-- Post Title -->
+											<h4 class="mb-2 line-clamp-2 text-sm font-semibold text-gray-800">
+												{post.title}
+											</h4>
+
+											<!-- Post Excerpt -->
+											<p class="mb-3 line-clamp-2 text-xs text-gray-600">
+												{post.summary || ''}
+											</p>
+
+											<!-- Author -->
+											<div class="flex items-center justify-between">
+												<div class="flex items-center space-x-1">
+													{#if typeof post.author === 'object' && post.author?.image}
+														<img
+															src={getAvatarUrl(post.author.image, 20)}
+															alt={getAuthorName(post.author)}
+															class="h-5 w-5 rounded-full object-cover"
+															loading="lazy"
+														/>
+													{:else}
+														<div
+															class="flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500"
+														>
+															<span class="text-xs font-semibold text-white">
+																{getAuthorInitials(post.author)}
+															</span>
+														</div>
+													{/if}
+													<span class="text-xs text-gray-600">{getAuthorName(post.author)}</span>
+												</div>
+
+												<span class="flex items-center space-x-1 text-xs font-medium text-blue-600">
+													<span>Read</span>
+													<svg
+														class="h-3 w-3"
+														fill="none"
+														stroke="currentColor"
+														viewBox="0 0 24 24"
+													>
+														<path
+															stroke-linecap="round"
+															stroke-linejoin="round"
+															stroke-width="2"
+															d="M9 5l7 7-7 7"
+														></path>
+													</svg>
+												</span>
+											</div>
+										</div>
+									</a>
+								{/each}
+							{/if}
+						</div>
+					</div>
+				{/each}
+			</div>
+
+			<div class="mt-12 text-center">
+				<a
+					href="/tech-hotpot/all"
+					class="inline-flex transform items-center space-x-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-3 font-medium transition-all duration-300 hover:scale-105 hover:from-blue-600 hover:to-purple-600"
+				>
+					<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+						></path>
+					</svg>
+					<span>View All Posts</span>
+					<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"
+						></path>
+					</svg>
+				</a>
+			</div>
+		{/if}
+	</div>
 </section>
 
 <style>
-    .line-clamp-2 {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-    
+	.line-clamp-2 {
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
 
-    
-    @keyframes float {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        33% { transform: translateY(-10px) rotate(120deg); }
-        66% { transform: translateY(5px) rotate(240deg); }
-    }
-    
-    .animate-float {
-        animation: float 6s ease-in-out infinite;
-    }
+	@keyframes float {
+		0%,
+		100% {
+			transform: translateY(0px) rotate(0deg);
+		}
+		33% {
+			transform: translateY(-10px) rotate(120deg);
+		}
+		66% {
+			transform: translateY(5px) rotate(240deg);
+		}
+	}
+
+	.animate-float {
+		animation: float 6s ease-in-out infinite;
+	}
 </style>

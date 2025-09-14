@@ -14,24 +14,22 @@
 
 	// Default structured data for organization
 	const defaultStructuredData = {
-		"@context": "https://schema.org",
-		"@type": "Organization",
-		"name": "AlphaBits",
-		"url": "https://alphabits.team",
-		"logo": "https://alphabits.team/logos/logo_square.png",
-		"description": "AI Workflow Automation & Digital Transformation Solutions",
-		"address": {
-			"@type": "PostalAddress",
-			"addressCountry": "VN"
+		'@context': 'https://schema.org',
+		'@type': 'Organization',
+		name: 'AlphaBits',
+		url: 'https://alphabits.team',
+		logo: 'https://alphabits.team/logos/logo_square.png',
+		description: 'AI Workflow Automation & Digital Transformation Solutions',
+		address: {
+			'@type': 'PostalAddress',
+			addressCountry: 'VN'
 		},
-		"contactPoint": {
-			"@type": "ContactPoint",
-			"contactType": "customer service",
-			"url": "https://alphabits.team/contact"
+		contactPoint: {
+			'@type': 'ContactPoint',
+			contactType: 'customer service',
+			url: 'https://alphabits.team/contact'
 		},
-		"sameAs": [
-			"https://www.linkedin.com/company/alphabits-team"
-		]
+		sameAs: ['https://www.linkedin.com/company/alphabits-team']
 	};
 
 	// Merge custom structured data with defaults
@@ -50,7 +48,7 @@
 	<meta name="robots" content="index, follow" />
 	<meta name="language" content="English" />
 	<meta name="revisit-after" content="7 days" />
-	
+
 	<!-- Canonical URL -->
 	{#if canonicalUrl}
 		<link rel="canonical" href={canonicalUrl} />
@@ -66,7 +64,7 @@
 	<meta property="og:image:height" content="630" />
 	<meta property="og:site_name" content="AlphaBits" />
 	<meta property="og:locale" content="en_US" />
-	
+
 	<!-- Article specific Open Graph tags -->
 	{#if ogType === 'article'}
 		{#if publishedTime}
@@ -99,7 +97,7 @@
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 	<meta name="apple-mobile-web-app-title" content="AlphaBits" />
-	
+
 	<!-- Structured Data -->
 	{@html `<script type="application/ld+json">${JSON.stringify(finalStructuredData)}</script>`}
 </svelte:head>

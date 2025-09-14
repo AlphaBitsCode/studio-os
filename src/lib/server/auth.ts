@@ -23,7 +23,7 @@ export async function createSession(token: string, userId: string) {
 		token,
 		expires_at: new Date(Date.now() + DAY_IN_MS * 30).toISOString()
 	};
-	
+
 	try {
 		// Create session in a custom collection (you'll need to create this in Directus)
 		await directus.request(createItem('user_sessions', session));
@@ -36,7 +36,7 @@ export async function createSession(token: string, userId: string) {
 
 export async function validateSessionToken(token: string) {
 	const sessionId = encodeHexLowerCase(sha256(new TextEncoder().encode(token)));
-	
+
 	try {
 		// Get session from custom collection
 		const sessions = await directus.request(
@@ -45,11 +45,11 @@ export async function validateSessionToken(token: string) {
 				limit: 1
 			})
 		);
-		
+
 		if (!sessions || sessions.length === 0) {
 			return { session: null, user: null };
 		}
-		
+
 		const sessionData = sessions[0];
 		const session = {
 			id: sessionData.id,
@@ -58,7 +58,7 @@ export async function validateSessionToken(token: string) {
 			expires_at: new Date(sessionData.expires_at),
 			created_at: new Date(sessionData.created_at || sessionData.expires_at)
 		};
-		
+
 		// Get user data
 		const users = await directus.request(
 			readUsers({
@@ -67,22 +67,22 @@ export async function validateSessionToken(token: string) {
 				limit: 1
 			})
 		);
-		
+
 		if (!users || users.length === 0) {
 			// Clean up orphaned session
 			await directus.request(deleteItems('user_sessions', [sessionId]));
 			return { session: null, user: null };
 		}
-		
+
 		const userData = users[0];
-		
+
 		// Check if session is expired
 		const sessionExpired = Date.now() >= session.expires_at.getTime();
 		if (sessionExpired) {
 			await directus.request(deleteItems('user_sessions', [sessionId]));
 			return { session: null, user: null };
 		}
-		
+
 		// Renew session if needed
 		const renewSession = Date.now() >= session.expires_at.getTime() - DAY_IN_MS * 15;
 		if (renewSession) {
@@ -94,9 +94,9 @@ export async function validateSessionToken(token: string) {
 			);
 			session.expires_at = newExpiresAt;
 		}
-		
-		return { 
-			session, 
+
+		return {
+			session,
 			user: {
 				id: userData.id,
 				username: userData.email, // Use email as username for compatibility

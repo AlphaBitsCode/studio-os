@@ -6,9 +6,9 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
 	server: {
-		host: "::",
-		allowedHosts: ['localhost','beta.alphabits.team','alphabits.team'],
-		port: 5173,
+		host: '::',
+		allowedHosts: ['localhost', 'beta.alphabits.team', 'alphabits.team'],
+		port: 5173
 	},
 	plugins: [
 		tailwindcss(),

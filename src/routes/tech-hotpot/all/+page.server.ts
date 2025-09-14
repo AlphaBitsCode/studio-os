@@ -4,17 +4,17 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({ url }) => {
 	try {
 		const categorySlug = url.searchParams.get('category');
-		
+
 		// Fetch categories for navigation
 		const categories = await getBlogCategories();
-		
+
 		// Fetch posts based on category filter
 		let posts;
 		let selectedCategory = null;
-		
+
 		if (categorySlug) {
 			// Find the selected category
-			selectedCategory = categories.find(cat => cat.slug === categorySlug) || null;
+			selectedCategory = categories.find((cat) => cat.slug === categorySlug) || null;
 			posts = await getBlogPostsByCategory(categorySlug);
 		} else {
 			// Get all posts if no category filter

@@ -7,17 +7,20 @@ This is the official Alpha Bits corporate website, built with cutting-edge techn
 ## 🚀 Tech Stack
 
 ### Frontend
+
 - **Svelte 5** - Latest reactive framework with runes and modern TypeScript support
 - **SvelteKit** - Full-stack framework with SSR, routing, and deployment optimization
 - **Tailwind CSS** - Utility-first CSS framework for rapid UI development
 - **Shadcn/ui Components** - High-quality, accessible UI components via MCP integration
 
 ### Backend & Content
+
 - **Directus** - Headless CMS with powerful API and admin interface
 - **Remote Directus Instance** - Cloud-hosted for scalability and reliability
 - **RESTful APIs** - Clean data fetching and content management
 
 ### Development Workflow
+
 - **Trae IDE** - Next-generation IDE with AI-powered development assistance
 - **Model Context Protocol (MCP)** - Seamless integration between AI tools and services
   - Directus MCP Server - Direct CMS integration in development environment
@@ -58,6 +61,7 @@ npm run dev
 ## 🏠 HomeLab Integration
 
 This project is part of our comprehensive HomeLab setup series, where we demonstrate:
+
 - Setting up Directus on self-hosted infrastructure
 - Configuring CI/CD pipelines with open-source tools
 - Implementing monitoring and analytics
@@ -66,6 +70,7 @@ This project is part of our comprehensive HomeLab setup series, where we demonst
 ## 📚 Learn More
 
 Interested in our development approach? Check out our blog posts about:
+
 - Digital transformation strategies
 - AI workflow automation
 - Modern web development practices

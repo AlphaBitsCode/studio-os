@@ -11,7 +11,7 @@
 
 	// Check if we're on a blog route
 	let isBlogRoute = $derived($page.route.id?.startsWith('/(blog)'));
-	
+
 	// Show loading indicator during navigation
 	$effect(() => {
 		setLoading(!!$navigating);
@@ -22,16 +22,16 @@
 	<script src="https://cdn.tailwindcss.com"></script>
 </svelte:head>
 
-<div class="min-h-screen flex flex-col bg-white text-gray-900 transition-colors">
+<div class="flex min-h-screen flex-col bg-white text-gray-900 transition-colors">
 	{#if isBlogRoute}
 		<BlogHeader user={data.user} />
 	{:else}
 		<Header user={data.user} />
 	{/if}
-	
+
 	<main class="flex-1 pt-14">
 		{@render children?.()}
 	</main>
-	
+
 	<Footer />
 </div>

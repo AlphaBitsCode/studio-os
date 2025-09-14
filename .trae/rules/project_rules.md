@@ -1,11 +1,10 @@
-
 Tech Stack:
 Svelte 5 + Typescript
 Directus SDK
 Shadcn
 Tailwindss
 
-Usage Rule: 
+Usage Rule:
 When asked to use shaden components, use the MCP server.
 
 Planning Rule

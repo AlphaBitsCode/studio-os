@@ -9,13 +9,15 @@ export interface BlogPost {
 	date_published?: string;
 	date_created?: string;
 	image?: string;
-	author?: {
-		id: string;
-		name: string;
-		job_title?: string;
-		image?: string;
-		bio?: string;
-	} | string;
+	author?:
+		| {
+				id: string;
+				name: string;
+				job_title?: string;
+				image?: string;
+				bio?: string;
+		  }
+		| string;
 	category?: {
 		id: string;
 		title: string;
@@ -56,38 +58,41 @@ export async function getAllBlogPosts(limit?: number): Promise<BlogPost[]> {
 		url.searchParams.set('filter[type][_eq]', 'blog');
 		url.searchParams.set('sort', '-date_published');
 		if (limit) url.searchParams.set('limit', limit.toString());
-		url.searchParams.set('fields', [
-			'id',
-			'title',
-			'slug',
-			'summary',
-			'date_published',
-			'date_created',
-			'image',
-			'author.id',
-			'author.name',
-			'author.job_title',
-			'author.image',
-			'author.bio',
-			'status',
-			'type',
-			'category.id',
-			'category.title',
-			'category.slug',
-			'category.color',
-			'seo.id',
-			'seo.title',
-			'seo.meta_description',
-			'seo.canonical_url',
-			'seo.no_index',
-			'seo.no_follow',
-			'seo.sitemap_priority',
-			'seo.sitemap_change_frequency'
-		].join(','));
+		url.searchParams.set(
+			'fields',
+			[
+				'id',
+				'title',
+				'slug',
+				'summary',
+				'date_published',
+				'date_created',
+				'image',
+				'author.id',
+				'author.name',
+				'author.job_title',
+				'author.image',
+				'author.bio',
+				'status',
+				'type',
+				'category.id',
+				'category.title',
+				'category.slug',
+				'category.color',
+				'seo.id',
+				'seo.title',
+				'seo.meta_description',
+				'seo.canonical_url',
+				'seo.no_index',
+				'seo.no_follow',
+				'seo.sitemap_priority',
+				'seo.sitemap_change_frequency'
+			].join(',')
+		);
 
 		const response = await fetch(url.toString(), {
 			headers: {
-				'Authorization': `Bearer ${env.DIRECTUS_SERVER_TOKEN}`,
+				Authorization: `Bearer ${env.DIRECTUS_SERVER_TOKEN}`,
 				'Content-Type': 'application/json'
 			}
 		});
@@ -107,7 +112,10 @@ export async function getAllBlogPosts(limit?: number): Promise<BlogPost[]> {
 /**
  * Fetch blog posts by category
  */
-export async function getBlogPostsByCategory(categorySlug?: string, limit?: number): Promise<BlogPost[]> {
+export async function getBlogPostsByCategory(
+	categorySlug?: string,
+	limit?: number
+): Promise<BlogPost[]> {
 	try {
 		const url = new URL('/items/posts', env.DIRECTUS_URL || 'http://localhost:8055');
 		url.searchParams.set('filter[status][_eq]', 'published');
@@ -117,38 +125,41 @@ export async function getBlogPostsByCategory(categorySlug?: string, limit?: numb
 		}
 		url.searchParams.set('sort', '-date_published');
 		if (limit) url.searchParams.set('limit', limit.toString());
-		url.searchParams.set('fields', [
-			'id',
-			'title',
-			'slug',
-			'summary',
-			'date_published',
-			'date_created',
-			'image',
-			'author.id',
-			'author.name',
-			'author.job_title',
-			'author.image',
-			'author.bio',
-			'status',
-			'type',
-			'category.id',
-			'category.title',
-			'category.slug',
-			'category.color',
-			'seo.id',
-			'seo.title',
-			'seo.meta_description',
-			'seo.canonical_url',
-			'seo.no_index',
-			'seo.no_follow',
-			'seo.sitemap_priority',
-			'seo.sitemap_change_frequency'
-		].join(','));
+		url.searchParams.set(
+			'fields',
+			[
+				'id',
+				'title',
+				'slug',
+				'summary',
+				'date_published',
+				'date_created',
+				'image',
+				'author.id',
+				'author.name',
+				'author.job_title',
+				'author.image',
+				'author.bio',
+				'status',
+				'type',
+				'category.id',
+				'category.title',
+				'category.slug',
+				'category.color',
+				'seo.id',
+				'seo.title',
+				'seo.meta_description',
+				'seo.canonical_url',
+				'seo.no_index',
+				'seo.no_follow',
+				'seo.sitemap_priority',
+				'seo.sitemap_change_frequency'
+			].join(',')
+		);
 
 		const response = await fetch(url.toString(), {
 			headers: {
-				'Authorization': `Bearer ${env.DIRECTUS_SERVER_TOKEN}`,
+				Authorization: `Bearer ${env.DIRECTUS_SERVER_TOKEN}`,
 				'Content-Type': 'application/json'
 			}
 		});
@@ -175,39 +186,42 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
 		url.searchParams.set('filter[type][_eq]', 'blog');
 		url.searchParams.set('filter[slug][_eq]', slug);
 		url.searchParams.set('limit', '1');
-		url.searchParams.set('fields', [
-			'id',
-			'title',
-			'slug',
-			'summary',
-			'content',
-			'date_published',
-			'date_created',
-			'image',
-			'author.id',
-			'author.name',
-			'author.job_title',
-			'author.image',
-			'author.bio',
-			'status',
-			'type',
-			'category.id',
-			'category.title',
-			'category.slug',
-			'category.color',
-			'seo.id',
-			'seo.title',
-			'seo.meta_description',
-			'seo.canonical_url',
-			'seo.no_index',
-			'seo.no_follow',
-			'seo.sitemap_priority',
-			'seo.sitemap_change_frequency'
-		].join(','));
+		url.searchParams.set(
+			'fields',
+			[
+				'id',
+				'title',
+				'slug',
+				'summary',
+				'content',
+				'date_published',
+				'date_created',
+				'image',
+				'author.id',
+				'author.name',
+				'author.job_title',
+				'author.image',
+				'author.bio',
+				'status',
+				'type',
+				'category.id',
+				'category.title',
+				'category.slug',
+				'category.color',
+				'seo.id',
+				'seo.title',
+				'seo.meta_description',
+				'seo.canonical_url',
+				'seo.no_index',
+				'seo.no_follow',
+				'seo.sitemap_priority',
+				'seo.sitemap_change_frequency'
+			].join(',')
+		);
 
 		const response = await fetch(url.toString(), {
 			headers: {
-				'Authorization': `Bearer ${env.DIRECTUS_SERVER_TOKEN}`,
+				Authorization: `Bearer ${env.DIRECTUS_SERVER_TOKEN}`,
 				'Content-Type': 'application/json'
 			}
 		});
@@ -231,18 +245,11 @@ export async function getBlogCategories(): Promise<BlogCategory[]> {
 	try {
 		const url = new URL('/items/categories', env.DIRECTUS_URL || 'http://localhost:8055');
 		url.searchParams.set('sort', 'sort,title');
-		url.searchParams.set('fields', [
-			'id',
-			'title',
-			'slug',
-			'color',
-			'headline',
-			'sort'
-		].join(','));
+		url.searchParams.set('fields', ['id', 'title', 'slug', 'color', 'headline', 'sort'].join(','));
 
 		const response = await fetch(url.toString(), {
 			headers: {
-				'Authorization': `Bearer ${env.DIRECTUS_SERVER_TOKEN}`,
+				Authorization: `Bearer ${env.DIRECTUS_SERVER_TOKEN}`,
 				'Content-Type': 'application/json'
 			}
 		});
@@ -264,7 +271,9 @@ export async function getBlogCategories(): Promise<BlogCategory[]> {
  * Returns an object with category names as keys and arrays of posts as values
  * Now includes all categories, even those without posts
  */
-export async function getBlogPostsGroupedByCategory(postsPerCategory: number = 2): Promise<Record<string, BlogPost[]>> {
+export async function getBlogPostsGroupedByCategory(
+	postsPerCategory: number = 2
+): Promise<Record<string, BlogPost[]>> {
 	try {
 		const categories = await getBlogCategories();
 		const result: Record<string, BlogPost[]> = {};
@@ -288,7 +297,7 @@ export async function getBlogPostsGroupedByCategory(postsPerCategory: number = 2
  */
 export function getCategoryIcon(categoryTitle: string): string {
 	const iconMap: Record<string, string> = {
-		'Software': 'software',
+		Software: 'software',
 		'Software Dev': 'software',
 		'IoT News': 'iot',
 		'Data & Analytics': 'data',
@@ -319,7 +328,11 @@ export function formatDate(dateString: string | null | undefined): string {
 /**
  * Get image URL from Directus
  */
-export function getImageUrl(imageId: string | null | undefined, width: number = 600, height: number = 400): string {
+export function getImageUrl(
+	imageId: string | null | undefined,
+	width: number = 600,
+	height: number = 400
+): string {
 	if (!imageId) return '/placeholder-image.svg';
 	// Use the Directus URL to construct proper asset URLs
 	const directusUrl = env.DIRECTUS_URL || 'http://localhost:8055';
@@ -353,7 +366,9 @@ export function getAuthorInitials(author: BlogPost['author']): string {
 	const name = typeof author === 'string' ? author : author.name;
 	if (!name) return 'AB';
 	const words = name.split(' ');
-	return words.length > 1 ? `${words[0][0]}${words[1][0]}`.toUpperCase() : name.substring(0, 2).toUpperCase();
+	return words.length > 1
+		? `${words[0][0]}${words[1][0]}`.toUpperCase()
+		: name.substring(0, 2).toUpperCase();
 }
 
 /**

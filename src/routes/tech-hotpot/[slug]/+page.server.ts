@@ -12,7 +12,7 @@ async function processMarkdownToHtml(markdown: string): Promise<string> {
 			.use(remarkGfm) // GitHub Flavored Markdown support
 			.use(remarkHtml, { sanitize: false }) // Allow HTML in markdown
 			.process(markdown);
-		
+
 		return String(result);
 	} catch (error) {
 		console.error('Error processing markdown:', error);
@@ -24,14 +24,14 @@ async function processMarkdownToHtml(markdown: string): Promise<string> {
 export const load: PageServerLoad = async ({ params }) => {
 	try {
 		const { slug } = params;
-		
+
 		if (!slug) {
 			throw error(400, 'Blog post slug is required');
 		}
-		
+
 		// Fetch the blog post by slug
 		const post = await getBlogPostBySlug(slug);
-		
+
 		if (!post) {
 			throw error(404, 'Blog post not found');
 		}
@@ -53,12 +53,12 @@ export const load: PageServerLoad = async ({ params }) => {
 		};
 	} catch (err) {
 		console.error('Error loading blog post:', err);
-		
+
 		// Re-throw SvelteKit errors
 		if (err && typeof err === 'object' && 'status' in err) {
 			throw err;
 		}
-		
+
 		throw error(500, 'Failed to load blog post');
 	}
 };

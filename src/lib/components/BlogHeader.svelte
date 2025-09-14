@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import Logo from './Logo.svelte';
 	import * as NavigationMenu from './ui/navigation-menu/index.js';
-	
+
 	let { user = null } = $props();
 
 	async function handleLogout() {
@@ -19,9 +19,9 @@
 	}
 </script>
 
-<header class="bg-white border-b border-gray-200">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="flex justify-between items-center h-16">
+<header class="border-b border-gray-200 bg-white">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div class="flex h-16 items-center justify-between">
 			<!-- Logo -->
 			<div class="flex-shrink-0">
 				<a href="/" class="flex items-center">
@@ -31,8 +31,12 @@
 
 			<!-- Simple Navigation for Blog -->
 			<nav class="hidden md:flex">
-				<NavigationMenu.Root class="relative z-10 flex max-w-max flex-1 items-center justify-center">
-					<NavigationMenu.List class="group flex flex-1 list-none items-center justify-center space-x-1">
+				<NavigationMenu.Root
+					class="relative z-10 flex max-w-max flex-1 items-center justify-center"
+				>
+					<NavigationMenu.List
+						class="group flex flex-1 list-none items-center justify-center space-x-1"
+					>
 						<!-- Back to Main Site -->
 						<NavigationMenu.Item>
 							<NavigationMenu.Link href="/">
@@ -41,7 +45,6 @@
 								{/snippet}
 							</NavigationMenu.Link>
 						</NavigationMenu.Item>
-
 					</NavigationMenu.List>
 				</NavigationMenu.Root>
 			</nav>

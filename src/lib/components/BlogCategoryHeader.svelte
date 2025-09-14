@@ -50,26 +50,30 @@
 	}
 </script>
 
-<div 
+<div
 	bind:this={headerElement}
-	class="-mt-14 category-header transition-all duration-300 {isSticky ? 'sticky top-0 z-50 shadow-lg bg-white/95 backdrop-blur-sm dark:bg-deep-navy/95' : 'bg-white dark:bg-deep-navy'}"
+	class="category-header -mt-14 transition-all duration-300 {isSticky
+		? 'dark:bg-deep-navy/95 sticky top-0 z-50 bg-white/95 shadow-lg backdrop-blur-sm'
+		: 'dark:bg-deep-navy bg-white'}"
 >
-	<div class="container mx-auto px-2 sm:px-4 py-2">
-		<div class="flex justify-between sm:justify-center items-center gap-2 sm:gap-4 md:gap-8">
+	<div class="container mx-auto px-2 py-2 sm:px-4">
+		<div class="flex items-center justify-between gap-2 sm:justify-center sm:gap-4 md:gap-8">
 			{#each categories as category}
 				<button
 					on:click={() => handleCategoryClick(category.path)}
-					class="flex flex-col items-center gap-1 sm:gap-2 p-1 sm:p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group flex-1 sm:flex-none"
+					class="group flex flex-1 flex-col items-center gap-1 rounded-lg p-1 transition-colors hover:bg-gray-100 sm:flex-none sm:gap-2 sm:p-2 dark:hover:bg-gray-800"
 					aria-label={`View ${category.name} posts`}
 				>
-					<div class="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center">
-						<img 
-							src={category.icon} 
+					<div class="flex h-6 w-6 items-center justify-center sm:h-8 sm:w-8 md:h-10 md:w-10">
+						<img
+							src={category.icon}
 							alt={`${category.name} icon`}
-							class="w-full h-full object-contain group-hover:brightness-75 transition-all"
+							class="h-full w-full object-contain transition-all group-hover:brightness-75"
 						/>
 					</div>
-					<span class="text-[10px] sm:text-xs md:text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-medium-teal transition-colors text-center line-clamp-2 sm:line-clamp-1">
+					<span
+						class="group-hover:text-medium-teal line-clamp-2 text-center text-[10px] font-medium text-gray-700 transition-colors sm:line-clamp-1 sm:text-xs md:text-sm dark:text-gray-300"
+					>
 						{category.name}
 					</span>
 				</button>
@@ -82,11 +86,11 @@
 	.category-header {
 		border-bottom: 1px solid rgba(229, 231, 235, 0.5);
 	}
-	
+
 	.dark .category-header {
 		border-bottom-color: rgba(75, 85, 99, 0.5);
 	}
-	
+
 	.container {
 		max-width: 1200px;
 	}

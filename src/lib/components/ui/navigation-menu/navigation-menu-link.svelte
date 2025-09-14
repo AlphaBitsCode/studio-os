@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { NavigationMenu as NavigationMenuPrimitive } from "bits-ui";
-	import { cn } from "$lib/utils.js";
+	import { NavigationMenu as NavigationMenuPrimitive } from 'bits-ui';
+	import { cn } from '$lib/utils.js';
 
 	let {
 		ref = $bindable(null),
@@ -15,11 +15,7 @@
 
 <NavigationMenuPrimitive.Link
 	bind:ref
-	class={cn(
-		"",
-		"justify-start",
-		className
-	)}
+	class={cn('', 'justify-start', className)}
 	{href}
 	{...restProps}
 >

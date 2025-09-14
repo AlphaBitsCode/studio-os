@@ -31,10 +31,12 @@
 			const level = parseInt(el.tagName.charAt(1));
 			const text = el.textContent || '';
 			const id = `heading-${level}-${index}`;
-			
+
 			// Add ID to the actual DOM element
 			setTimeout(() => {
-				const actualElement = contentElement?.querySelector(`${el.tagName.toLowerCase()}:nth-of-type(${Array.from(doc.querySelectorAll(el.tagName.toLowerCase())).indexOf(el) + 1})`);
+				const actualElement = contentElement?.querySelector(
+					`${el.tagName.toLowerCase()}:nth-of-type(${Array.from(doc.querySelectorAll(el.tagName.toLowerCase())).indexOf(el) + 1})`
+				);
 				if (actualElement) {
 					actualElement.id = id;
 				}
@@ -55,8 +57,8 @@
 				entries.forEach((entry) => {
 					if (entry.isIntersecting) {
 						const headingId = entry.target.id;
-						const heading = headings.find(h => h.id === headingId);
-						
+						const heading = headings.find((h) => h.id === headingId);
+
 						if (heading) {
 							activeHeading = headingId;
 							updateStickyHeaders(heading);
@@ -72,7 +74,7 @@
 
 		// Observe all heading elements
 		setTimeout(() => {
-			headings.forEach(heading => {
+			headings.forEach((heading) => {
 				const element = document.getElementById(heading.id);
 				if (element) {
 					heading.element = element;
@@ -86,12 +88,12 @@
 		const newStickyHeaders: { h1?: Heading; h2?: Heading; h3?: Heading } = {};
 
 		// Find the current hierarchy
-		const currentIndex = headings.findIndex(h => h.id === currentHeading.id);
-		
+		const currentIndex = headings.findIndex((h) => h.id === currentHeading.id);
+
 		// Look backwards to find parent headings
 		for (let i = currentIndex; i >= 0; i--) {
 			const heading = headings[i];
-			
+
 			if (heading.level === 1 && !newStickyHeaders.h1) {
 				newStickyHeaders.h1 = heading;
 			} else if (heading.level === 2 && !newStickyHeaders.h2) {
@@ -128,20 +130,20 @@
 
 <!-- Sticky Headers -->
 {#if Object.keys(stickyHeaders).length > 0}
-	<div class="sticky top-27 z-40 bg-green-50/70 backdrop-blur-md border border-t-0 rounded-b-lg">
-		<div class="max-w-4xl mx-auto px-4 py-2">
+	<div class="sticky top-27 z-40 rounded-b-lg border border-t-0 bg-green-50/70 backdrop-blur-md">
+		<div class="mx-auto max-w-4xl px-4 py-2">
 			<!-- {#if stickyHeaders.h1}
 				<div class="text-md font-semibold text-gray-900 truncate">
 					{stickyHeaders.h1.text}
 				</div>
 			{/if} -->
 			{#if stickyHeaders.h2}
-				<span class="text-sm font-medium text-gray-700 truncate py-2" class:ml-4={stickyHeaders.h1}>
-					{stickyHeaders.h2.text} 
+				<span class="truncate py-2 text-sm font-medium text-gray-700" class:ml-4={stickyHeaders.h1}>
+					{stickyHeaders.h2.text}
 				</span>
 			{/if}
 			{#if stickyHeaders.h3}
-				<span class="text-sm font-light text-gray-500 truncate">
+				<span class="truncate text-sm font-light text-gray-500">
 					‣ {stickyHeaders.h3.text}
 				</span>
 			{/if}
@@ -149,8 +151,8 @@
 	</div>
 {/if}
 
-<article 
-	class="prose prose-lg prose-gray max-w-none"
+<article
+	class="prose prose-lg max-w-none prose-gray"
 	bind:this={contentElement}
 	in:fly={{ y: 50, delay, duration }}
 >
