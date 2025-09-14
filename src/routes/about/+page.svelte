@@ -2,6 +2,18 @@
 	import CTA from '$lib/components/CTA.svelte';
 	import ImageSlideshow from '$lib/components/ImageSlideshow.svelte';
 	import SEOHead from '$lib/components/SEOHead.svelte';
+	import ApproachCard from '$lib/components/ApproachCard.svelte';
+	import ExpertiseCard from '$lib/components/ExpertiseCard.svelte';
+	import {
+		heroSection,
+		missionVision,
+		founderInfo,
+		ourApproach,
+		expertiseAreas,
+		companyDetails,
+		workspaceSection,
+		ctaSection
+	} from '$lib/data/about';
 	import { onMount } from 'svelte';
 
 	let mounted = false;
@@ -163,15 +175,14 @@
 				? 'animate-fade-in-up'
 				: 'opacity-0'}"
 		>
-			About AlphaBits
+			{heroSection.title}
 		</h1>
 		<p
 			class="text-xl leading-relaxed text-black/80 md:text-2xl {mounted
 				? 'animate-fade-in-up-delayed'
 				: 'opacity-0'}"
 		>
-			We're passionate about helping businesses harness the transformative power of AI and modern
-			technology.
+			{heroSection.description}
 		</p>
 
 		<!-- Floating Action Elements -->
@@ -206,20 +217,18 @@
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 		<div class="grid items-center gap-12 md:grid-cols-2">
 			<div>
-				<h2 class="mb-6 text-3xl font-bold md:text-4xl">Our Mission</h2>
+				<h2 class="mb-6 text-3xl font-bold md:text-4xl">{missionVision.mission.title}</h2>
 				<p class="mb-6 text-lg text-gray-600">
-					To democratize access to cutting-edge AI and automation technologies, making them
-					practical for businesses of all sizes.
+					{missionVision.mission.description}
 				</p>
 				<p class="text-lg text-gray-600">
-					We bridge the gap between complex technology and real-world business solutions.
+					{missionVision.mission.subDescription}
 				</p>
 			</div>
 			<div class="rounded-lg bg-gradient-to-br from-blue-50 to-purple-50 p-8">
-				<h3 class="mb-4 text-2xl font-bold">Our Vision</h3>
+				<h3 class="mb-4 text-2xl font-bold">{missionVision.vision.title}</h3>
 				<p class="text-gray-600">
-					A world where businesses operate with seamless efficiency through intelligent automation,
-					where data drives decisions, and technology serves as a catalyst for growth.
+					{missionVision.vision.description}
 				</p>
 			</div>
 		</div>
@@ -256,40 +265,28 @@
 				<div class="mb-6">
 					<h3 class="mb-2 text-2xl font-bold text-gray-900">
 						<a
-							href="https://www.kentnguyen.com/"
+							href={founderInfo.website}
 							target="_blank"
 							rel="noopener noreferrer"
 							class="transition-colors hover:text-blue-600"
 						>
-							Kent Nguyen
+							{founderInfo.name}
 						</a>
 					</h3>
 					<p class="mb-4 text-lg font-semibold text-blue-600">
-						Serial Tech Entrepreneur & Inventor of Alterno Sand Battery
+						{founderInfo.title}
 					</p>
 				</div>
 
 				<div class="prose prose-lg mb-6 text-gray-600">
-					<p class="mb-4">
-						Kent Nguyen is a seasoned tech entrepreneur and inventor with over 20 years of
-						experience building startups, systems, and innovative solutions. As a Fractional CTO, he
-						specializes in crafting technology strategies and leading software development teams
-						across multiple countries.
-					</p>
-					<p class="mb-4">
-						Based in Vietnam, Kent has a proven track record of creating complex software systems
-						and driving energy-efficient breakthroughs, including pioneering work on thermal energy
-						storage like the Sand Battery.
-					</p>
-					<p>
-						His collaborative approach, strategic mindset, and ability to build trust with partners
-						make him a respected leader in the tech industry.
-					</p>
+					{#each founderInfo.bio as paragraph}
+						<p class="mb-4">{paragraph}</p>
+					{/each}
 				</div>
 
 				<div class="flex flex-col gap-4 sm:flex-row">
 					<a
-						href="https://www.kentnguyen.com/"
+						href={founderInfo.website}
 						target="_blank"
 						rel="noopener noreferrer"
 						class="inline-flex items-center rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-blue-700"
@@ -314,14 +311,12 @@
 
 				<!-- Key Achievements -->
 				<div class="mt-8 grid grid-cols-2 gap-4">
-					<div class="rounded-lg bg-white p-4 text-center">
-						<div class="mb-1 text-2xl font-bold text-blue-600">20+</div>
-						<div class="text-sm text-gray-600">Years Experience</div>
-					</div>
-					<div class="rounded-lg bg-white p-4 text-center">
-						<div class="mb-1 text-2xl font-bold text-green-600">15+</div>
-						<div class="text-sm text-gray-600">Startups Founded</div>
-					</div>
+					{#each founderInfo.achievements as achievement}
+						<div class="rounded-lg bg-white p-4 text-center">
+							<div class="mb-1 text-2xl font-bold text-blue-600">{achievement.label}</div>
+							<div class="text-sm text-gray-600">{achievement.description}</div>
+						</div>
+					{/each}
 				</div>
 			</div>
 		</div>
@@ -340,70 +335,9 @@
 		</div>
 
 		<div class="grid gap-8 md:grid-cols-3">
-			<div class="text-center">
-				<div
-					class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100"
-				>
-					<svg class="h-8 w-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-						></path>
-					</svg>
-				</div>
-				<h3 class="mb-3 text-xl font-semibold">Innovation-First</h3>
-				<p class="text-gray-600">
-					We stay at the forefront of technology trends, constantly exploring new tools and
-					methodologies to deliver cutting-edge solutions.
-				</p>
-			</div>
-
-			<div class="text-center">
-				<div
-					class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100"
-				>
-					<svg class="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-						></path>
-					</svg>
-				</div>
-				<h3 class="mb-3 text-xl font-semibold">Client-Centric</h3>
-				<p class="text-gray-600">
-					Every solution is tailored to your specific needs, challenges, and goals. We don't believe
-					in one-size-fits-all approaches.
-				</p>
-			</div>
-
-			<div class="text-center">
-				<div
-					class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-purple-100"
-				>
-					<svg
-						class="h-8 w-8 text-purple-600"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-						></path>
-					</svg>
-				</div>
-				<h3 class="mb-3 text-xl font-semibold">Results-Driven</h3>
-				<p class="text-gray-600">
-					We measure success by the tangible impact our solutions have on your business operations,
-					efficiency, and growth.
-				</p>
-			</div>
+			{#each ourApproach as approach}
+				<ApproachCard {approach} />
+			{/each}
 		</div>
 	</div>
 </section>
@@ -419,33 +353,9 @@
 		</div>
 
 		<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-			<div class="rounded-lg bg-white p-6 text-center">
-				<h3 class="mb-2 text-lg font-semibold">AI & Machine Learning</h3>
-				<p class="text-sm text-gray-600">
-					Advanced AI agents, LLM integration, and intelligent automation systems
-				</p>
-			</div>
-
-			<div class="rounded-lg bg-white p-6 text-center">
-				<h3 class="mb-2 text-lg font-semibold">IoT & Automation</h3>
-				<p class="text-sm text-gray-600">
-					Node-RED workflows, sensor integration, and real-time monitoring
-				</p>
-			</div>
-
-			<div class="rounded-lg bg-white p-6 text-center">
-				<h3 class="mb-2 text-lg font-semibold">Data Engineering</h3>
-				<p class="text-sm text-gray-600">
-					BigQuery, ClickHouse, InfluxDB, and comprehensive data pipelines
-				</p>
-			</div>
-
-			<div class="rounded-lg bg-white p-6 text-center">
-				<h3 class="mb-2 text-lg font-semibold">Cloud Infrastructure</h3>
-				<p class="text-sm text-gray-600">
-					Modern cloud architectures, network configuration, and scalable systems
-				</p>
-			</div>
+			{#each expertiseAreas as expertise}
+				<ExpertiseCard {expertise} />
+			{/each}
 		</div>
 	</div>
 </section>
@@ -454,9 +364,9 @@
 <section class="py-16">
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 		<div class="mb-12 text-center">
-			<h2 class="mb-4 text-3xl font-bold md:text-4xl">Our Workspace</h2>
+			<h2 class="mb-4 text-3xl font-bold md:text-4xl">{workspaceSection.title}</h2>
 			<p class="mx-auto max-w-2xl text-lg text-gray-600">
-				Take a look inside our collaborative environment where innovation happens every day.
+				{workspaceSection.description}
 			</p>
 		</div>
 
@@ -502,7 +412,7 @@
 						<div>
 							<h4 class="mb-1 text-lg font-semibold text-gray-800">Legal Name</h4>
 							<p class="font-medium text-gray-600">
-								ALPHA BITS TECHNOLOGY INNOVATION CONSULTING COMPANY LIMITED
+								{companyDetails.legalName}
 							</p>
 						</div>
 					</div>
@@ -534,9 +444,9 @@
 						</div>
 						<div>
 							<h4 class="mb-1 text-lg font-semibold text-gray-800">Address</h4>
-							<p class="text-gray-600">Lầu 2, 68 Nguyễn Huệ</p>
-							<p class="text-gray-600">Phường Bến Nghé, Quận 1</p>
-							<p class="text-gray-600">Thành phố Hồ Chí Minh, Việt Nam</p>
+							<p class="text-gray-600">{companyDetails.address.line1}</p>
+							<p class="text-gray-600">{companyDetails.address.line2}</p>
+							<p class="text-gray-600">{companyDetails.address.line3}</p>
 						</div>
 					</div>
 
@@ -562,12 +472,12 @@
 						<div>
 							<h4 class="mb-1 text-lg font-semibold text-gray-800">Tax ID</h4>
 							<a
-								href="https://masothue.com/0317647935-cong-ty-tnhh-tu-van-cong-nghe-sang-tao-alpha-bits"
+								href={companyDetails.taxId.verificationUrl}
 								target="_blank"
 								rel="noopener noreferrer"
 								class="text-purple-600 transition-colors hover:text-purple-700 hover:underline"
 							>
-								0317647935
+								{companyDetails.taxId.number}
 							</a>
 							<p class="mt-1 text-sm text-gray-500">Click to verify registration</p>
 						</div>
@@ -601,8 +511,8 @@
 						</div>
 						<div>
 							<h4 class="mb-1 text-lg font-semibold text-gray-800">Phone</h4>
-							<p class="font-medium text-gray-600">+84 868 000 317</p>
-							<p class="text-sm text-gray-500">Available on WhatsApp & Telegram</p>
+							<p class="font-medium text-gray-600">{companyDetails.contact.phone}</p>
+							<p class="text-sm text-gray-500">{companyDetails.contact.phoneNote}</p>
 						</div>
 					</div>
 
@@ -627,8 +537,8 @@
 						</div>
 						<div>
 							<h4 class="mb-1 text-lg font-semibold text-gray-800">Email</h4>
-							<p class="text-gray-600">contact@alphabits.com</p>
-							<p class="text-sm text-gray-500">We typically respond within 24 hours</p>
+							<p class="text-gray-600">{companyDetails.contact.email}</p>
+							<p class="text-sm text-gray-500">{companyDetails.contact.emailNote}</p>
 						</div>
 					</div>
 
@@ -653,7 +563,10 @@
 						</div>
 						<div>
 							<h4 class="mb-1 text-lg font-semibold text-gray-800">Bank Account</h4>
-							<p class="text-gray-600">BIDV Account: <span class="font-mono">1471388638</span></p>
+							<p class="text-gray-600">
+								{companyDetails.contact.bankName}:
+								<span class="font-mono">{companyDetails.contact.bankAccount}</span>
+							</p>
 							<p class="text-sm text-gray-500">For business transactions</p>
 						</div>
 					</div>
@@ -679,8 +592,8 @@
 						</div>
 						<div>
 							<h4 class="mb-1 text-lg font-semibold text-gray-800">Business Hours</h4>
-							<p class="text-gray-600">Monday - Friday: 9 AM - 6 PM</p>
-							<p class="text-sm text-gray-500">GMT+7 (Ho Chi Minh City Time)</p>
+							<p class="text-gray-600">{companyDetails.contact.businessHours}</p>
+							<p class="text-sm text-gray-500">{companyDetails.contact.timezone}</p>
 						</div>
 					</div>
 				</div>
@@ -689,23 +602,7 @@
 	</div>
 </section>
 
-<CTA
-	description="Let's discuss how our expertise can help you achieve your technology and business goals."
-	primaryButton={{
-		text: 'Get in Touch',
-		href: '/contact',
-		variant: 'custom',
-		class:
-			'bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors'
-	}}
-	secondaryButton={{
-		text: 'Explore Our Services',
-		href: '/services',
-		variant: 'custom',
-		class:
-			'border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors'
-	}}
-/>
+<CTA {...ctaSection} />
 
 <style>
 	@keyframes float-slow {

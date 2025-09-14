@@ -1,52 +1,17 @@
 <script lang="ts">
 	import { fade, fly } from 'svelte/transition';
-	// Helper functions moved to client-side
-	function formatDate(dateString: string | null | undefined): string {
-		if (!dateString) return '';
-		const date = new Date(dateString);
-		return date.toLocaleDateString('en-US', {
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric'
-		});
-	}
-
-	function calculateReadTime(content: string | null | undefined): number {
-		if (!content) return 1;
-		const wordsPerMinute = 200;
-		const wordCount = content.split(/\s+/).length;
-		return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
-	}
-
-	function getImageUrl(imageId: string | null | undefined): string {
-		if (!imageId) return '/placeholder-image.svg';
-		// Use the public Directus URL for client-side image loading
-		const directusUrl = 'https://kore.alphabits.team';
-		return `${directusUrl}/assets/${imageId}?width=600&height=400&fit=cover&quality=80`;
-	}
-
-	function getAvatarUrl(avatarId: string | null | undefined, size: number = 40): string {
-		if (!avatarId) return '/placeholder-avatar.svg';
-		// Use the hardcoded Directus URL for client-side compatibility
-		const directusUrl = 'https://kore.alphabits.team';
-		return `${directusUrl}/assets/${avatarId}?width=${size}&height=${size}&fit=cover&quality=80`;
-	}
-
-	function getAuthorName(author: any): string {
-		if (!author) return 'AlphaBits';
-		if (typeof author === 'string') return author;
-		return author.name || 'AlphaBits';
-	}
-
-	function getAuthorInitials(author: any): string {
-		if (!author) return 'AB';
-		const name = typeof author === 'string' ? author : author.name;
-		if (!name) return 'AB';
-		const words = name.split(' ');
-		return words.length > 1
-			? `${words[0][0]}${words[1][0]}`.toUpperCase()
-			: name.substring(0, 2).toUpperCase();
-	}
+	import { onMount } from 'svelte';
+	import BlogPostCard from '$lib/components/BlogPostCard.svelte';
+	import CategoryNavigation from '$lib/components/CategoryNavigation.svelte';
+	import {
+		formatDate,
+		calculateReadTime,
+		getImageUrl,
+		getAvatarUrl,
+		getAuthorName,
+		getAuthorInitials,
+		getCategoryIconPath
+	} from '$lib/utils/blog-helpers';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -84,51 +49,9 @@
 
 	$: randomTechWords = getRandomWords(techWords, 5).join(', ');
 
-	interface BlogPost {
-		id: number;
-		title: string;
-		excerpt: string;
-		category: string;
-		tags: string[];
-		author: string;
-		readTime: number;
-		publishedAt: string;
-		thumbnail: string;
-		featured: boolean;
-	}
-
-	import { onMount } from 'svelte';
-
 	onMount(() => {
 		mounted = true;
 	});
-
-	// Helper function to get category icon path - now dynamic based on actual categories
-	function getCategoryIconPath(categoryTitle: string): string {
-		const iconType = getCategoryIcon(categoryTitle);
-		const iconMap: { [key: string]: string } = {
-			software: '/icons/icon_software.png',
-			iot: '/icons/icon_iot.png',
-			data: '/icons/icon_data.png',
-			ai: '/icons/icon_ai.png',
-			dx: '/icons/icon_dx.png',
-			analytics: '/icons/icon_analytics.png',
-			workflow: '/icons/icon_workflow.png'
-		};
-		return iconMap[iconType] || '/icons/icon_software.png';
-	}
-
-	// Updated category icon mapping to match actual Directus categories
-	function getCategoryIcon(categoryTitle: string): string {
-		const iconMap: Record<string, string> = {
-			'Software Dev': 'software',
-			'IoT News': 'iot',
-			'Data & Analytics': 'analytics',
-			'Workflow Automation': 'workflow',
-			'Digital Transformation': 'dx'
-		};
-		return iconMap[categoryTitle] || 'software';
-	}
 </script>
 
 <svelte:head>
@@ -386,186 +309,7 @@
 <nav class="sticky top-14 z-40 border-b border-gray-200 bg-white/90 shadow-sm backdrop-blur-md">
 	<div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
 		<div class="flex items-center justify-between py-3 sm:justify-center">
-			<div
-				class="flex w-full items-center justify-between space-x-1 sm:w-auto sm:justify-center sm:space-x-4 md:space-x-6 lg:space-x-8"
-			>
-				{#each categories as category, index}
-					<a
-						href="/tech-hotpot/all?category={encodeURIComponent(category.slug)}"
-						class="group flex cursor-pointer flex-col items-center transition-all duration-200 hover:scale-105"
-						in:fly={{ y: -20, delay: index * 50, duration: 400 }}
-					>
-						<!-- Compact Category Icon -->
-						<div class="mb-1 h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10">
-							{#if getCategoryIcon(category.title) === 'software'}
-								<svg
-									class="h-full w-full text-blue-500 transition-colors group-hover:text-blue-600"
-									viewBox="0 0 64 64"
-									fill="currentColor"
-								>
-									<rect
-										x="8"
-										y="12"
-										width="48"
-										height="32"
-										rx="4"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-									/>
-									<path
-										d="M16 20 L20 24 L16 28"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-									/>
-									<line x1="24" y1="28" x2="32" y2="28" stroke="currentColor" stroke-width="2" />
-								</svg>
-							{:else if getCategoryIcon(category.title) === 'iot'}
-								<svg
-									class="h-full w-full text-green-500 transition-colors group-hover:text-green-600"
-									viewBox="0 0 64 64"
-									fill="currentColor"
-								>
-									<circle
-										cx="32"
-										cy="20"
-										r="6"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-									/>
-									<circle
-										cx="16"
-										cy="40"
-										r="4"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-									/>
-									<circle
-										cx="48"
-										cy="40"
-										r="4"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-									/>
-									<circle
-										cx="32"
-										cy="52"
-										r="4"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-									/>
-									<path
-										d="M32 26 L32 32 M26 20 L20 36 M38 20 L44 36 M32 32 L16 40 M32 32 L48 40 M32 32 L32 48"
-										stroke="currentColor"
-										stroke-width="2"
-									/>
-								</svg>
-							{:else if getCategoryIcon(category.title) === 'analytics'}
-								<svg
-									class="h-full w-full text-purple-500 transition-colors group-hover:text-purple-600"
-									viewBox="0 0 64 64"
-									fill="currentColor"
-								>
-									<rect x="8" y="32" width="8" height="24" rx="2" />
-									<rect x="20" y="24" width="8" height="32" rx="2" />
-									<rect x="32" y="16" width="8" height="40" rx="2" />
-									<rect x="44" y="28" width="8" height="28" rx="2" />
-								</svg>
-							{:else if getCategoryIcon(category.title) === 'workflow'}
-								<svg
-									class="h-full w-full text-teal-500 transition-colors group-hover:text-teal-600"
-									viewBox="0 0 64 64"
-									fill="currentColor"
-								>
-									<circle
-										cx="16"
-										cy="16"
-										r="8"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-									/>
-									<circle
-										cx="48"
-										cy="16"
-										r="8"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-									/>
-									<circle
-										cx="32"
-										cy="48"
-										r="8"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-									/>
-									<path
-										d="M24 16 L40 16 M24 22 L26 40 M40 22 L38 40"
-										stroke="currentColor"
-										stroke-width="2"
-									/>
-									<path
-										d="M16 24 L16 32 L24 40 M48 24 L48 32 L40 40"
-										stroke="currentColor"
-										stroke-width="2"
-									/>
-								</svg>
-							{:else if getCategoryIcon(category.title) === 'dx'}
-								<svg
-									class="h-full w-full text-orange-500 transition-colors group-hover:text-orange-600"
-									viewBox="0 0 64 64"
-									fill="currentColor"
-								>
-									<circle
-										cx="20"
-										cy="32"
-										r="12"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-									/>
-									<path d="M14 26 L26 38 M26 26 L14 38" stroke="currentColor" stroke-width="2" />
-									<rect
-										x="40"
-										y="20"
-										width="16"
-										height="24"
-										rx="2"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-									/>
-									<circle cx="44" cy="28" r="1" />
-									<circle cx="52" cy="28" r="1" />
-									<path
-										d="M44 36 Q48 32 52 36"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-									/>
-								</svg>
-							{/if}
-						</div>
-
-						<!-- Compact Category Name -->
-						<span
-							class="max-w-16 text-center text-xs leading-tight font-medium text-gray-700 transition-colors group-hover:text-gray-900 sm:max-w-none sm:text-sm"
-						>
-							<span class="hidden sm:inline"
-								>{category.title.replace(' & ', '\n&\n').replace(' ', '\n')}</span
-							>
-							<span class="sm:hidden">{category.title.split(' ')[0]}</span>
-						</span>
-					</a>
-				{/each}
-			</div>
+			<CategoryNavigation {categories} />
 		</div>
 	</div>
 </nav>
@@ -651,84 +395,11 @@
 								</div>
 							{:else}
 								{#each categoryPosts.slice(0, 2) as post, postIndex}
-									<a
-										href="/tech-hotpot/{post.slug}"
-										class="block cursor-pointer overflow-hidden rounded-lg border border-gray-200 bg-white transition-all duration-300 hover:border-blue-300 hover:shadow-md"
-										in:fly={{ y: 20, delay: categoryIndex * 100 + postIndex * 50, duration: 400 }}
-									>
-										<!-- Post Thumbnail -->
-										<div class="h-32 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
-											<img
-												src={getImageUrl(post.image)}
-												alt={post.title}
-												class="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-												loading="lazy"
-											/>
-										</div>
-
-										<!-- Post Content -->
-										<div class="p-4">
-											<!-- Meta Information -->
-											<div class="mb-2 flex items-center justify-between">
-												<span class="text-xs text-gray-500">
-													{calculateReadTime(post.content)} min read
-												</span>
-												<span class="text-xs text-gray-500">
-													{formatDate(post.date_published || post.date_created)}
-												</span>
-											</div>
-
-											<!-- Post Title -->
-											<h4 class="mb-2 line-clamp-2 text-sm font-semibold text-gray-800">
-												{post.title}
-											</h4>
-
-											<!-- Post Excerpt -->
-											<p class="mb-3 line-clamp-2 text-xs text-gray-600">
-												{post.summary || ''}
-											</p>
-
-											<!-- Author -->
-											<div class="flex items-center justify-between">
-												<div class="flex items-center space-x-1">
-													{#if typeof post.author === 'object' && post.author?.image}
-														<img
-															src={getAvatarUrl(post.author.image, 20)}
-															alt={getAuthorName(post.author)}
-															class="h-5 w-5 rounded-full object-cover"
-															loading="lazy"
-														/>
-													{:else}
-														<div
-															class="flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500"
-														>
-															<span class="text-xs font-semibold text-white">
-																{getAuthorInitials(post.author)}
-															</span>
-														</div>
-													{/if}
-													<span class="text-xs text-gray-600">{getAuthorName(post.author)}</span>
-												</div>
-
-												<span class="flex items-center space-x-1 text-xs font-medium text-blue-600">
-													<span>Read</span>
-													<svg
-														class="h-3 w-3"
-														fill="none"
-														stroke="currentColor"
-														viewBox="0 0 24 24"
-													>
-														<path
-															stroke-linecap="round"
-															stroke-linejoin="round"
-															stroke-width="2"
-															d="M9 5l7 7-7 7"
-														></path>
-													</svg>
-												</span>
-											</div>
-										</div>
-									</a>
+									<BlogPostCard
+										{post}
+										viewMode="compact"
+										delay={categoryIndex * 100 + postIndex * 50}
+									/>
 								{/each}
 							{/if}
 						</div>
