@@ -1,4 +1,4 @@
-<script lang="ts">
+<script context="module" lang="ts">
 	export interface Service {
 		title: string;
 		description: string;
@@ -11,11 +11,18 @@
 		};
 		colorTheme: 'blue' | 'emerald' | 'purple' | 'orange' | 'teal';
 	}
+</script>
+
+<script lang="ts">
+	import Card from '$lib/components/ui/card.svelte';
+	import Badge from '$lib/components/ui/badge.svelte';
+	import Button from '$lib/components/ui/button.svelte';
 
 	export let service: Service;
 	export let className: string = '';
 
 	const colorThemes = {
+
 		blue: {
 			border: 'border-blue-200',
 			hoverBorder: 'hover:border-blue-400',

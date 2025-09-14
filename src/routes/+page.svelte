@@ -1,7 +1,4 @@
 <script>
-	// Page data export for SvelteKit
-	export let data;
-
 	import Card from '$lib/components/ui/card.svelte';
 	import Button from '$lib/components/ui/button.svelte';
 	import Badge from '$lib/components/ui/badge.svelte';

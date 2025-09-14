@@ -4,7 +4,7 @@
 	import { footerSections, socialLinks } from '$lib/data/navigation';
 </script>
 
-<footer class="border-t border-gray-200 bg-gray-50" role="contentinfo">
+<footer class="border-t border-gray-200 bg-gray-50">
 	<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-4">
 			<!-- Company Info -->

@@ -51,7 +51,6 @@
 
 <header
 	class="fixed top-0 right-0 left-0 z-90 border-b border-gray-200 bg-white/95 backdrop-blur-sm"
-	role="banner"
 >
 	<!-- Loading Bar -->
 	{#if $isLoading}
@@ -81,7 +80,7 @@
 			</div>
 
 			<!-- Desktop Navigation -->
-			<nav class="hidden lg:flex" role="navigation" aria-label="Main navigation">
+			<nav class="hidden lg:flex" aria-label="Main navigation">
 				<NavigationMenu.Root
 					class="relative z-100 flex max-w-max flex-1 items-center justify-center"
 				>
