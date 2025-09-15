@@ -100,7 +100,7 @@
 </script>
 
 <nav class={className}>
-	<div class="flex items-center justify-between space-x-1 sm:space-x-4 md:space-x-6 lg:space-x-8">
+	<div class="flex items-center justify-around space-x-1 sm:justify-between sm:space-x-4 md:space-x-6 lg:space-x-8">
 		{#if showAll}
 			<a
 				href="/tech-hotpot/all"
