@@ -667,7 +667,7 @@
 		</div>
 
 		<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-			<!-- MindStudio -->
+			<!-- Node-RED -->
 			<div
 				class="rounded-lg border border-gray-200 bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl"
 			>
@@ -681,7 +681,7 @@
 						></path>
 					</svg>
 				</div>
-				<h3 class="mb-2 text-lg font-semibold">MindStudio</h3>
+				<h3 class="mb-2 text-lg font-semibold">Node-RED</h3>
 				<p class="mb-4 text-sm text-gray-600">
 					Visual AI workflow builder for complex multi-step automations.
 				</p>
@@ -692,7 +692,7 @@
 				</ul>
 			</div>
 
-			<!-- Dify.ai -->
+			<!-- Flowise -->
 			<div
 				class="rounded-lg border border-gray-200 bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl"
 			>
@@ -706,7 +706,7 @@
 						></path>
 					</svg>
 				</div>
-				<h3 class="mb-2 text-lg font-semibold">Dify.ai</h3>
+				<h3 class="mb-2 text-lg font-semibold">Flowise</h3>
 				<p class="mb-4 text-sm text-gray-600">
 					Enterprise-grade LLM application development platform.
 				</p>

@@ -15,7 +15,7 @@
 				<p class="mb-4 text-gray-600">AIoT Solutions for the modern businesses.</p>
 				<div class="flex space-x-4">
 					{#each socialLinks as social}
-						<SocialIcon {...social} size="medium" />
+						<SocialIcon {...social} size="small" />
 					{/each}
 				</div>
 			</div>

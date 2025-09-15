@@ -800,7 +800,7 @@
 							<div class="rounded-lg bg-white p-4 shadow-sm">
 								<h4 class="mb-2 font-semibold text-purple-600">AI Agent Development</h4>
 								<p class="text-sm text-gray-600">
-									Custom AI agents using MindStudio, Dify.ai, and local LLM deployments
+									Custom AI agents using Node-RED, Flowise and local LLM deployments
 								</p>
 							</div>
 							<div class="rounded-lg bg-white p-4 shadow-sm">

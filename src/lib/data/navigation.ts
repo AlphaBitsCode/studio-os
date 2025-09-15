@@ -168,8 +168,4 @@ export const socialLinks: SocialLink[] = [
 		platform: 'github',
 		href: 'https://github.com/AlphaBitsCode/'
 	},
-	{
-		platform: 'linkedin',
-		href: 'https://www.linkedin.com/company/alpha-bits-consulting/'
-	}
 ];

@@ -473,17 +473,6 @@
 					ClickHouse for real-time analytics, advanced ETL pipelines, and custom AI agents built
 					with the latest LLM technologies for intelligent automation and insights.
 				</p>
-
-				<div class="grid grid-cols-2 gap-6">
-					<div class="text-center">
-						<div class="mb-2 text-3xl font-bold text-purple-600">10TB+</div>
-						<div class="text-sm text-gray-600">Data Processed Daily</div>
-					</div>
-					<div class="text-center">
-						<div class="mb-2 text-3xl font-bold text-violet-600">99.9%</div>
-						<div class="text-sm text-gray-600">Model Accuracy</div>
-					</div>
-				</div>
 			</div>
 
 			<div class="rounded-lg bg-gradient-to-br from-purple-50 to-violet-50 p-8">
@@ -644,7 +633,7 @@
 					decision-making, and business processes.
 				</p>
 				<ul class="space-y-2 text-sm text-gray-500">
-					<li>• Custom AI agents with MindStudio and Dify.ai</li>
+					<li>• Custom AI agents with Node-RED</li>
 					<li>• Local LLM deployment and fine-tuning</li>
 					<li>• RAG (Retrieval Augmented Generation) systems</li>
 					<li>• Natural language processing solutions</li>
@@ -755,7 +744,7 @@
 				</ul>
 			</div>
 
-			<!-- MindStudio -->
+			<!-- Node-RED -->
 			<div
 				class="rounded-lg border border-gray-200 bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl"
 			>
@@ -774,7 +763,7 @@
 						></path>
 					</svg>
 				</div>
-				<h3 class="mb-2 text-lg font-semibold">MindStudio</h3>
+				<h3 class="mb-2 text-lg font-semibold">Node-RED</h3>
 				<p class="mb-4 text-sm text-gray-600">
 					Visual AI agent builder for complex multi-step workflows.
 				</p>
@@ -854,37 +843,7 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="rounded-lg bg-white p-6 shadow-lg">
-				<div class="mb-4 flex items-center">
-					<div class="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-						<span class="font-bold text-blue-600">F</span>
-					</div>
-					<div>
-						<h3 class="font-bold text-gray-900">FinTech Startup</h3>
-						<p class="text-sm text-gray-600">AI-Powered Risk Assessment</p>
-					</div>
-				</div>
-				<p class="mb-4 text-gray-600">
-					"Custom AI agents built with local LLM deployment revolutionized our risk assessment
-					process. Processing time reduced by 80%, accuracy improved to 99.2%, and we can now handle
-					10x more loan applications with intelligent automation and predictive modeling."
-				</p>
-				<div class="grid grid-cols-3 gap-4 text-center">
-					<div>
-						<div class="text-2xl font-bold text-purple-600">80%</div>
-						<div class="text-xs text-gray-500">Faster Processing</div>
-					</div>
-					<div>
-						<div class="text-2xl font-bold text-violet-600">99.2%</div>
-						<div class="text-xs text-gray-500">Model Accuracy</div>
-					</div>
-					<div>
-						<div class="text-2xl font-bold text-indigo-600">10x</div>
-						<div class="text-xs text-gray-500">Volume Increase</div>
-					</div>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 </section>
